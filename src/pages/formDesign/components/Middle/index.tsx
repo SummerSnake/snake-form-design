@@ -9,25 +9,29 @@ import { WidgetGroup } from '@/pages/formDesign/index.d';
 import MiddleItem from './MiddleItem';
 
 interface MiddleProps {
-  seedsList: WidgetGroup[];
+  widgetsList: WidgetGroup[];
 }
 
 const MiddleComponent: FC<MiddleProps> = (props) => {
-  const { seedsList = [] } = props;
+  const { widgetsList = [] } = props;
 
   return (
     <div className="middleWrap">
-      <Droppable droppableId="middle">
-        {(provided, snapshot) => (
-          <div
-            className="layoutPanel"
-            ref={provided.innerRef}
-            {...provided.droppableProps}
-          >
-            {provided.placeholder}
-          </div>
-        )}
-      </Droppable>
+      <div className="middleContent">
+        <p className="middleTitle">信息采集表</p>
+
+        <Droppable droppableId="middle">
+          {(provided, snapshot) => (
+            <div
+              className="layoutPanel"
+              ref={provided.innerRef}
+              {...provided.droppableProps}
+            >
+              {provided.placeholder}
+            </div>
+          )}
+        </Droppable>
+      </div>
     </div>
   );
 };

@@ -5,6 +5,8 @@ import { FormDesignModelState, ConnectProps, Loading, connect } from 'umi';
 
 import { Widget } from './index.d';
 import Left from './components/Left';
+import Middle from './components/Middle';
+import Right from './components/Right';
 import './index.less';
 
 interface FormDesignProps extends ConnectProps {
@@ -95,8 +97,8 @@ const FormDesignPage: FC<FormDesignProps> = (props, dispatch) => {
       <DragDropContext onDragEnd={onDragEnd}>
         <div className="form-design-panel">
           <Left widgetsList={widgets} />
-          {/* <Middle /> */}
-          {/* <Right callback={updateConfig} /> */}
+          <Middle widgetsList={widgets} />
+          <Right widgetsList={widgets} />
         </div>
       </DragDropContext>
     </div>
