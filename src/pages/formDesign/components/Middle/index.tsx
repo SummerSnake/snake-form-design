@@ -5,15 +5,15 @@
 import React, { FC } from 'react';
 import { Droppable } from 'react-beautiful-dnd';
 
-import { WidgetGroup } from '@/pages/formDesign/index.d';
+import { Widget } from '@/pages/formDesign/index.d';
 import MiddleItem from './MiddleItem';
 
 interface MiddleProps {
-  widgetsList: WidgetGroup[];
+  middleList: Widget[];
 }
 
 const MiddleComponent: FC<MiddleProps> = (props) => {
-  const { widgetsList = [] } = props;
+  const { middleList = [] } = props;
 
   return (
     <div className="middleWrap">
@@ -25,8 +25,12 @@ const MiddleComponent: FC<MiddleProps> = (props) => {
             <div
               className="layoutPanel"
               ref={provided.innerRef}
+              data-is-dragging-over={snapshot.isDraggingOver}
               {...provided.droppableProps}
             >
+              {middleList.map((item, index) => (
+                <MiddleItem key={item.id} itemData={item} idx={index} />
+              ))}
               {provided.placeholder}
             </div>
           )}

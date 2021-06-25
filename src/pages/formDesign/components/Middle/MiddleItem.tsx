@@ -2,40 +2,42 @@
  * @Author: SummerSnake
  * @Description: 中间布局子组件
  */
-import React from 'react';
+import React, { FC } from 'react';
 import { Draggable } from 'react-beautiful-dnd';
 
-function MiddleItem(props) {
-  const { data = {}, idx = 0 } = props;
+import { Widget } from '@/pages/formDesign/index.d';
+
+interface MiddleItemProps {
+  itemData: Widget;
+  idx: number;
+}
+const MiddleItemComponent: FC<MiddleItemProps> = (props) => {
+  const { itemData = { id: '', label: '' }, idx = 0 } = props;
 
   return (
-    <Draggable draggableId={data.id} index={idx} direction="vertical">
+    <Draggable draggableId={itemData.id} index={idx}>
       {(provided, snapshot) => (
         <div
           {...provided.draggableProps}
           {...provided.dragHandleProps}
           ref={provided.innerRef}
         >
-          {(() => {
-            switch (data.dataType) {
-              case 0:
-                return <div>1</div>;
-              case 1:
-                return '淘宝';
-              case 2:
-                return '美团';
-              case 3:
-                return '爱奇艺';
-              case 4:
-                return '腾讯';
-              default:
-                return null;
-            }
-          })()}
+          <React.Fragment>
+            <div
+              className="widgetWrap"
+              {...provided.draggableProps}
+              {...provided.dragHandleProps}
+              ref={provided.innerRef}
+              data-is-dragging={snapshot.isDragging}
+              style={provided.draggableProps.style}
+            >
+              <span>{itemData.label}</span>
+            </div>
+          </React.Fragment>
         </div>
       )}
     </Draggable>
   );
-}
+};
 
-export default MiddleItem;
+export default MiddleItemComponent;

@@ -25,5 +25,5 @@ export interface WidgetGroup {
 export interface InitialData {
   widgets: WidgetGroup[];
   activeId: string;
-  content: number[];
+  midList: Widget[];
 }

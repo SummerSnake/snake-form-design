@@ -22,12 +22,12 @@ const LeftComponent: FC<LeftProps> = (props) => {
           <React.Fragment key={widget.id}>
             <h3 className="leftTitle">{widget.title}</h3>
 
-            <Droppable droppableId={widget.id}>
+            <Droppable droppableId="left" isDropDisabled>
               {(provided, snapshot) => (
                 <div
                   className="widgetsListWrap"
                   ref={provided.innerRef}
-                  {...provided.droppableProps}
+                  data-is-dragging-over={snapshot.isDraggingOver}
                 >
                   {widget.items.map((item, index) => (
                     <Widget key={item.id} widgetData={item} idx={index} />

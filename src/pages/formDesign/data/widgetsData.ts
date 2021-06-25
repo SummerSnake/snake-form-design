@@ -3,6 +3,7 @@
  * @Description: 表单控件数据
  */
 const initialData = {
+  // 左侧控件数据
   widgets: [
     {
       id: 'baseComponent',
@@ -142,13 +143,14 @@ const initialData = {
       ],
     },
   ],
+  // 中间布局面板数据
+  midList: [],
   // config: {
   //   layout: 'vertical',
   //   labelAlign: 'left',
   //   size: 'default',
   // },
   activeId: '',
-  content: [],
 };
 
 export default initialData;

@@ -1,9 +1,10 @@
 import { Reducer } from 'umi';
 import widgetsData from '../pages/formDesign/data/widgetsData';
-import { WidgetGroup } from '@/pages/formDesign/index.d';
+import { Widget, WidgetGroup } from '@/pages/formDesign/index.d';
 
 export interface FormDesignModelState {
   widgets: WidgetGroup[];
+  midList: Widget[];
 }
 
 export interface FormDesignModalType {
@@ -19,6 +20,7 @@ const FormDesignModal: FormDesignModalType = {
   namespace: 'formDesign',
   state: {
     widgets: widgetsData.widgets,
+    midList: widgetsData.midList,
   },
 
   reducers: {
@@ -31,6 +33,7 @@ const FormDesignModal: FormDesignModalType = {
     reset() {
       return {
         widgets: [],
+        midList: [],
       };
     },
   },
