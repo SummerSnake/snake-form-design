@@ -143,8 +143,6 @@ const initialData = {
       ],
     },
   ],
-  // 中间布局面板数据
-  midList: [],
   // config: {
   //   layout: 'vertical',
   //   labelAlign: 'left',

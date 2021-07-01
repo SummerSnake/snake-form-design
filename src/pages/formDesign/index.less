@@ -39,30 +39,34 @@
     // 中间布局面板
     .middleWrap {
       .wh(336px, 737px);
+      position: relative;
       box-sizing: border-box;
-      padding: 12px;
+      padding: 62px 12px 50px;
       margin: 50px auto 0;
       background-color: #fff;
       box-shadow: 0px 0px 8px 0px rgba(0, 0, 0, 0.12);
       border-radius: 16px;
       .middleContent {
         .wh(312px, 702px);
-        position: relative;
-        box-sizing: border-box;
-        padding-top: 50px;
+        position: absolute;
+        top: 12px;
+        left: 12px;
         background-color: #f5f5f5;
         border: 1px solid #d9d9d9;
         border-radius: 12px;
         overflow: auto;
         .middleTitle {
           .wh(100%, 42px);
-          position: absolute;
-          top: 0;
-          left: 0;
           line-height: 42px;
           text-align: center;
           color: #18263c;
           background-color: #fff;
+        }
+        .widgetWrap {
+          .widgetDom {
+            .wh(100%, 44px);
+            background-color: #fff;
+          }
         }
       }
     }

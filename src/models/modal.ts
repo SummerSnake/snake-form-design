@@ -20,7 +20,7 @@ const FormDesignModal: FormDesignModalType = {
   namespace: 'formDesign',
   state: {
     widgets: widgetsData.widgets,
-    midList: widgetsData.midList,
+    midList: [],
   },
 
   reducers: {

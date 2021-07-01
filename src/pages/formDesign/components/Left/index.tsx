@@ -22,7 +22,7 @@ const LeftComponent: FC<LeftProps> = (props) => {
           <React.Fragment key={widget.id}>
             <h3 className="leftTitle">{widget.title}</h3>
 
-            <Droppable droppableId="left" isDropDisabled>
+            <Droppable droppableId="left" isDropDisabled={true}>
               {(provided, snapshot) => (
                 <div
                   className="widgetsListWrap"

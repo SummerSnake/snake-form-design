@@ -15,25 +15,17 @@ const MiddleItemComponent: FC<MiddleItemProps> = (props) => {
   const { itemData = { id: '', label: '' }, idx = 0 } = props;
 
   return (
-    <Draggable draggableId={itemData.id} index={idx}>
+    <Draggable draggableId={itemData.id} index={idx} key={itemData.id}>
       {(provided, snapshot) => (
         <div
+          className="widgetWrap"
           {...provided.draggableProps}
           {...provided.dragHandleProps}
           ref={provided.innerRef}
+          data-is-dragging={snapshot.isDragging}
+          style={provided.draggableProps.style}
         >
-          <React.Fragment>
-            <div
-              className="widgetWrap"
-              {...provided.draggableProps}
-              {...provided.dragHandleProps}
-              ref={provided.innerRef}
-              data-is-dragging={snapshot.isDragging}
-              style={provided.draggableProps.style}
-            >
-              <span>{itemData.label}</span>
-            </div>
-          </React.Fragment>
+          <span className="widgetDom">{itemData.label}</span>
         </div>
       )}
     </Draggable>

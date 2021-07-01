@@ -1,5 +1,6 @@
 import { DraggableLocation, DroppableId } from 'react-beautiful-dnd';
-import { Widget } from '@/pages/formDesign/index.d';
+import uuid from 'uuidv4';
+import { Widget, WidgetGroup } from '@/pages/formDesign/index.d';
 
 interface resultType {
   [key: string]: number;
@@ -16,7 +17,7 @@ export const reorder = (
   list: Widget[],
   startIndex: number,
   endIndex: number,
-) => {
+): Widget[] => {
   const result = Array.from(list);
   const [removed] = result.splice(startIndex, 1);
   result.splice(endIndex, 0, removed);
@@ -26,25 +27,23 @@ export const reorder = (
 
 /**
  * @desc 复制
- * @param { Widget[] } source
- * @param { Widget[] } destination
+ * @param { WidgetGroup[] } source
+ * @param { DraggableLocation | undefined } destination
  * @param { DraggableLocation | undefined } droppableSource
  * @param { DraggableLocation } droppableDestination
- * @param { string } id
  * @return { Widget[] }
  */
-const copy = (
-  source: Widget[],
-  destination: Widget[],
-  droppableSource: DraggableLocation,
-  droppableDestination: DraggableLocation,
-  id: string,
-) => {
+export const copy = (
+  widgets: WidgetGroup[],
+  midList: Widget[],
+  source: DraggableLocation,
+  destination: DraggableLocation,
+): Widget[] => {
   const sourceClone = Array.from(source);
   const destClone = Array.from(destination);
   const item = sourceClone[droppableSource.index];
 
-  destClone.splice(droppableDestination.index, 0, { ...item, id });
+  destClone.splice(droppableDestination.index, 0, { ...item, id: uuid() });
   return destClone;
 };
 
@@ -56,12 +55,12 @@ const copy = (
  * @param { DraggableLocation } droppableDestination
  * @return { Widget[] }
  */
-const move = (
+export const move = (
   source: Widget[],
   destination: Widget[],
   droppableSource: DraggableLocation,
   droppableDestination: DraggableLocation,
-) => {
+): Widget[] => {
   const sourceClone = Array.from(source);
   const destClone = Array.from(destination);
   const [removed] = sourceClone.splice(droppableSource.index, 1);
