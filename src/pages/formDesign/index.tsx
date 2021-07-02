@@ -1,6 +1,12 @@
 import React, { FC } from 'react';
 import { DragDropContext, DropResult } from 'react-beautiful-dnd';
-import { FormDesignModelState, ConnectProps, Loading, connect } from 'umi';
+import {
+  FormDesignModelState,
+  ConnectProps,
+  Loading,
+  connect,
+  useDispatch,
+} from 'umi';
 import { reorder, copy } from '@/utils/util';
 
 import { Widget } from './index.d';
@@ -14,7 +20,9 @@ interface FormDesignProps extends ConnectProps {
   loading: boolean;
 }
 
-const FormDesignPage: FC<FormDesignProps> = (props, dispatch) => {
+const FormDesignPage: FC<FormDesignProps> = (props) => {
+  const dispatch = useDispatch();
+
   const { formDesign = { widgets: [], midList: [] } } = props;
   let { widgets = [], midList = [] } = formDesign;
 
@@ -23,8 +31,7 @@ const FormDesignPage: FC<FormDesignProps> = (props, dispatch) => {
    * @param { object } result
    */
   const onDragEnd = (result: DropResult) => {
-    const { source, destination } = result;
-    debugger;
+    const { draggableId, source, destination } = result;
     // dropped outside the list
     if (!destination) {
       return;
@@ -43,14 +50,17 @@ const FormDesignPage: FC<FormDesignProps> = (props, dispatch) => {
       //     },
       //   });
       //   break;
-      case 'middle':
-        const newWidget = copy(widgets, midList, source, destination);
-        // dispatch({
-        //   type: 'formDesign/save',
-        //   payload: {
-        //     [destination.droppableId]: ,
-        //   },
-        // });
+      case 'left':
+        const newWidget: Widget = copy(widgets, draggableId);
+        const midListClone = JSON.parse(JSON.stringify(midList));
+        midListClone.splice(destination.index, 0, newWidget);
+
+        dispatch({
+          type: 'formDesign/save',
+          payload: {
+            midList: [...midListClone],
+          },
+        });
         break;
       // default:
       //   this.setState(

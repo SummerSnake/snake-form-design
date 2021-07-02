@@ -12,10 +12,14 @@ interface MiddleItemProps {
   idx: number;
 }
 const MiddleItemComponent: FC<MiddleItemProps> = (props) => {
-  const { itemData = { id: '', label: '' }, idx = 0 } = props;
+  const { itemData = { randomCode: '', label: '' }, idx = 0 } = props;
 
   return (
-    <Draggable draggableId={itemData.id} index={idx} key={itemData.id}>
+    <Draggable
+      draggableId={itemData.randomCode}
+      index={idx}
+      key={itemData.randomCode}
+    >
       {(provided, snapshot) => (
         <div
           className="widgetWrap"

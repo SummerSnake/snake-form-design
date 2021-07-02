@@ -1,5 +1,5 @@
-import { DraggableLocation, DroppableId } from 'react-beautiful-dnd';
-import uuid from 'uuidv4';
+import { DraggableLocation } from 'react-beautiful-dnd';
+import { uuid } from 'uuidv4';
 import { Widget, WidgetGroup } from '@/pages/formDesign/index.d';
 
 interface resultType {
@@ -27,24 +27,26 @@ export const reorder = (
 
 /**
  * @desc 复制
- * @param { WidgetGroup[] } source
- * @param { DraggableLocation | undefined } destination
- * @param { DraggableLocation | undefined } droppableSource
- * @param { DraggableLocation } droppableDestination
- * @return { Widget[] }
+ * @param { WidgetGroup[] } widgets
+ * @param { string } draggableId
+ * @return { Widget }
  */
-export const copy = (
-  widgets: WidgetGroup[],
-  midList: Widget[],
-  source: DraggableLocation,
-  destination: DraggableLocation,
-): Widget[] => {
-  const sourceClone = Array.from(source);
-  const destClone = Array.from(destination);
-  const item = sourceClone[droppableSource.index];
+export const copy = (widgets: WidgetGroup[], draggableId: string): Widget => {
+  let cloneElement = null;
+  const a = JSON.parse(JSON.stringify(widgets));
 
-  destClone.splice(droppableDestination.index, 0, { ...item, id: uuid() });
-  return destClone;
+  for (let widgetGroup of a) {
+    for (let item of widgetGroup.items) {
+      if (item.id === draggableId) {
+        cloneElement = {
+          ...JSON.parse(JSON.stringify(item)),
+          randomCode: uuid(),
+        };
+      }
+    }
+  }
+
+  return cloneElement;
 };
 
 /**

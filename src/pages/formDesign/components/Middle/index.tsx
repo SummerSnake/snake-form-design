@@ -16,7 +16,7 @@ const MiddleComponent: FC<MiddleProps> = (props) => {
   const { middleList = [] } = props;
 
   return (
-    <Droppable droppableId="middle">
+    <Droppable droppableId="middle" key="middle">
       {(provided, snapshot) => (
         <div
           className="middleWrap"
