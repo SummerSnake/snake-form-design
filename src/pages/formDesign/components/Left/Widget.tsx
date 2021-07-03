@@ -44,7 +44,7 @@ const WidgetComponent: FC<WidgetProps> = (props) => {
           </div>
 
           {snapshot.isDragging && (
-            <div className="widgetWrap">
+            <div className="widgetWrap widgetPlaceholder">
               <span>{widgetData.label}</span>
               <span className="widgetIcon">
                 {(Icons as ICONSTYPE)[widgetData.icon]}

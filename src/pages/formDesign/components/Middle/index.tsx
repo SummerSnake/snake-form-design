@@ -29,7 +29,7 @@ const MiddleComponent: FC<MiddleProps> = (props) => {
           >
             <div>
               {middleList.map((item, index) => (
-                <MiddleItem itemData={item} idx={index} />
+                <MiddleItem key={item.randomCode} itemData={item} idx={index} />
               ))}
               {provided.placeholder}
             </div>

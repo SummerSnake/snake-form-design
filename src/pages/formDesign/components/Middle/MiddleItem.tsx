@@ -15,11 +15,7 @@ const MiddleItemComponent: FC<MiddleItemProps> = (props) => {
   const { itemData = { randomCode: '', label: '' }, idx = 0 } = props;
 
   return (
-    <Draggable
-      draggableId={itemData.randomCode}
-      index={idx}
-      key={itemData.randomCode}
-    >
+    <Draggable draggableId={itemData.randomCode} index={idx}>
       {(provided, snapshot) => (
         <div
           className="widgetWrap"

@@ -16,30 +16,31 @@ const LeftComponent: FC<LeftProps> = (props) => {
   const { widgetsList = [] } = props;
 
   return (
-    <div className="leftWrap">
-      {Array.isArray(widgetsList) &&
-        widgetsList.map((widget) => (
-          <React.Fragment key={widget.id}>
-            <h3 className="leftTitle">{widget.title}</h3>
+    <Droppable droppableId="left" isDropDisabled={true}>
+      {(provided, snapshot) => (
+        <div
+          ref={provided.innerRef}
+          data-is-dragging-over={snapshot.isDraggingOver}
+        >
+          <div className="leftWrap">
+            {Array.isArray(widgetsList) &&
+              widgetsList.map((widget) => (
+                <React.Fragment key={widget.id}>
+                  <h3 className="leftTitle">{widget.title}</h3>
 
-            <Droppable droppableId="left" isDropDisabled={true}>
-              {(provided, snapshot) => (
-                <div
-                  className="widgetsListWrap"
-                  ref={provided.innerRef}
-                  data-is-dragging-over={snapshot.isDraggingOver}
-                >
-                  {widget.items.map((item, index) => (
-                    <Widget key={item.id} widgetData={item} idx={index} />
-                  ))}
+                  <div className="widgetsListWrap">
+                    {widget.items.map((item, index) => (
+                      <Widget key={item.id} widgetData={item} idx={index} />
+                    ))}
+                  </div>
+                </React.Fragment>
+              ))}
 
-                  {provided.placeholder}
-                </div>
-              )}
-            </Droppable>
-          </React.Fragment>
-        ))}
-    </div>
+            {provided.placeholder}
+          </div>
+        </div>
+      )}
+    </Droppable>
   );
 };
 

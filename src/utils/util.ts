@@ -1,9 +1,5 @@
-import { uuid } from 'uuidv4';
+import { v4 as uuidv4 } from 'uuid';
 import { Widget, WidgetGroup } from '@/pages/formDesign/index.d';
-
-interface resultType {
-  [key: string]: number;
-}
 
 /**
  * @desc 排序
@@ -38,7 +34,7 @@ export const copy = (widgets: WidgetGroup[], draggableId: string): Widget => {
       if (item.id === draggableId) {
         cloneElement = {
           ...JSON.parse(JSON.stringify(item)),
-          randomCode: uuid(),
+          randomCode: uuidv4(),
         };
       }
     }
