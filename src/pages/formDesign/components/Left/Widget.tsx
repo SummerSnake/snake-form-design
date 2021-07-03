@@ -23,10 +23,10 @@ const Icons = {
 };
 
 const WidgetComponent: FC<WidgetProps> = (props) => {
-  const { widgetData, idx = 0 } = props;
+  const { widgetData, idx } = props;
 
   return (
-    <Draggable draggableId={widgetData.id} index={idx} key={widgetData.id}>
+    <Draggable draggableId={widgetData.id} index={idx}>
       {(provided, snapshot) => (
         <React.Fragment>
           <div

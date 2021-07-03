@@ -32,27 +32,32 @@ const FormDesignPage: FC<FormDesignProps> = (props) => {
    */
   const onDragEnd = (result: DropResult) => {
     const { draggableId, source, destination } = result;
+
     // dropped outside the list
     if (!destination) {
-      return;
+      return false;
     }
 
+    const midListClone = JSON.parse(JSON.stringify(midList));
+
     switch (source.droppableId) {
-      // case destination.droppableId:
-      //   dispatch({
-      //     type: 'formDesign/save',
-      //     payload: {
-      //       [destination.droppableId]: reorder(
-      //         widgets[source.droppableId],
-      //         source.index,
-      //         destination.index,
-      //       ),
-      //     },
-      //   });
-      //   break;
+      case destination.droppableId:
+        const newMidList = reorder(
+          midListClone,
+          source.index,
+          destination.index,
+        );
+
+        dispatch({
+          type: 'formDesign/save',
+          payload: {
+            midList: [...newMidList],
+          },
+        });
+        break;
+
       case 'left':
         const newWidget: Widget = copy(widgets, draggableId);
-        const midListClone = JSON.parse(JSON.stringify(midList));
         midListClone.splice(destination.index, 0, newWidget);
 
         dispatch({
@@ -62,16 +67,9 @@ const FormDesignPage: FC<FormDesignProps> = (props) => {
           },
         });
         break;
-      // default:
-      //   this.setState(
-      //     move(
-      //       this.state[source.droppableId],
-      //       this.state[destination.droppableId],
-      //       source,
-      //       destination,
-      //     ),
-      //   );
-      //   break;
+
+      default:
+        break;
     }
   };
 

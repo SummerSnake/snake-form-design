@@ -32,6 +32,7 @@ const LeftComponent: FC<LeftProps> = (props) => {
                   {widget.items.map((item, index) => (
                     <Widget key={item.id} widgetData={item} idx={index} />
                   ))}
+
                   {provided.placeholder}
                 </div>
               )}

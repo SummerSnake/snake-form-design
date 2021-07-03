@@ -29,7 +29,7 @@ const MiddleItemComponent: FC<MiddleItemProps> = (props) => {
           data-is-dragging={snapshot.isDragging}
           style={provided.draggableProps.style}
         >
-          <span className="widgetDom">{itemData.label}</span>
+          <div className="widgetDom">{itemData.label}</div>
         </div>
       )}
     </Draggable>
