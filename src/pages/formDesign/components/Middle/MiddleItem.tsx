@@ -3,7 +3,7 @@
  * @Description: 中间布局子组件
  */
 import React, { FC } from 'react';
-import { Draggable } from 'react-beautiful-dnd';
+import { useDrag } from 'react-dnd';
 
 import { Widget } from '@/pages/formDesign/index.d';
 
@@ -14,21 +14,20 @@ interface MiddleItemProps {
 const MiddleItemComponent: FC<MiddleItemProps> = (props) => {
   const { itemData = { randomCode: '', label: '' }, idx = 0 } = props;
 
+  const [{ isDragging }, drager] = useDrag(
+    () => ({
+      type: 'snake-form-design',
+      collect: (monitor) => ({
+        isDragging: !!monitor.isDragging(),
+      }),
+    }),
+    [],
+  );
+
   return (
-    <Draggable draggableId={itemData.randomCode} index={idx}>
-      {(provided, snapshot) => (
-        <div
-          className="widgetWrap"
-          {...provided.draggableProps}
-          {...provided.dragHandleProps}
-          ref={provided.innerRef}
-          data-is-dragging={snapshot.isDragging}
-          style={provided.draggableProps.style}
-        >
-          <div className="widgetDom">{itemData.label}</div>
-        </div>
-      )}
-    </Draggable>
+    <div ref={drager} className="widgetWrap">
+      <div className="widgetDom">{itemData.label}</div>
+    </div>
   );
 };
 

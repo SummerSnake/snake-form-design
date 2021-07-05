@@ -1,5 +1,6 @@
 import React, { FC } from 'react';
-import { DragDropContext, DropResult } from 'react-beautiful-dnd';
+import { DndProvider } from 'react-dnd';
+import { HTML5Backend } from 'react-dnd-html5-backend';
 import {
   FormDesignModelState,
   ConnectProps,
@@ -30,58 +31,58 @@ const FormDesignPage: FC<FormDesignProps> = (props) => {
    * @desc 拖拽事件
    * @param { object } result
    */
-  const onDragEnd = (result: DropResult) => {
-    const { draggableId, source, destination } = result;
+  // const onDragEnd = (result: DropResult) => {
+  //   const { draggableId, source, destination } = result;
 
-    // dropped outside the list
-    if (!destination) {
-      return false;
-    }
+  //   // dropped outside the list
+  //   if (!destination) {
+  //     return false;
+  //   }
 
-    const midListClone = JSON.parse(JSON.stringify(midList));
+  //   const midListClone = JSON.parse(JSON.stringify(midList));
 
-    switch (source.droppableId) {
-      case destination.droppableId:
-        const newMidList = reorder(
-          midListClone,
-          source.index,
-          destination.index,
-        );
+  //   switch (source.droppableId) {
+  //     case destination.droppableId:
+  //       const newMidList = reorder(
+  //         midListClone,
+  //         source.index,
+  //         destination.index,
+  //       );
 
-        dispatch({
-          type: 'formDesign/save',
-          payload: {
-            midList: [...newMidList],
-          },
-        });
-        break;
+  //       dispatch({
+  //         type: 'formDesign/save',
+  //         payload: {
+  //           midList: [...newMidList],
+  //         },
+  //       });
+  //       break;
 
-      case 'left':
-        const newWidget: Widget = copy(widgets, draggableId);
-        midListClone.splice(destination.index, 0, newWidget);
+  //     case 'left':
+  //       const newWidget: Widget = copy(widgets, draggableId);
+  //       midListClone.splice(destination.index, 0, newWidget);
 
-        dispatch({
-          type: 'formDesign/save',
-          payload: {
-            midList: [...midListClone],
-          },
-        });
-        break;
+  //       dispatch({
+  //         type: 'formDesign/save',
+  //         payload: {
+  //           midList: [...midListClone],
+  //         },
+  //       });
+  //       break;
 
-      default:
-        break;
-    }
-  };
+  //     default:
+  //       break;
+  //   }
+  // };
 
   return (
     <div className="formDesignWrap">
-      <DragDropContext onDragEnd={onDragEnd}>
+      <DndProvider backend={HTML5Backend}>
         <div className="form-design-panel">
           <Left widgetsList={widgets} />
           <Middle middleList={midList} />
           <Right widgetsList={widgets} />
         </div>
-      </DragDropContext>
+      </DndProvider>
     </div>
   );
 };

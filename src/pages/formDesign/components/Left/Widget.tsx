@@ -4,7 +4,8 @@
  */
 import React, { FC, ReactElement } from 'react';
 import { SketchOutlined, SlackOutlined } from '@ant-design/icons';
-import { Draggable } from 'react-beautiful-dnd';
+import { useDrag, DragSourceMonitor } from 'react-dnd';
+import { copy } from '@/utils/util';
 
 import { Widget } from '@/pages/formDesign/index.d';
 
@@ -23,37 +24,28 @@ const Icons = {
 };
 
 const WidgetComponent: FC<WidgetProps> = (props) => {
-  const { widgetData, idx } = props;
+  const { widgetData, widgets } = props;
+
+  const [{ opacity }, drager] = useDrag(() => ({
+    type: 'snake-form-design',
+    end(item, monitor: DragSourceMonitor) {
+      console.log(monitor.didDrop());
+      if (monitor.didDrop()) {
+        copy(widgets, monitor.getItem());
+      }
+    },
+    collect: (monitor: DragSourceMonitor) => ({
+      opacity: monitor.isDragging() ? 0.4 : 1,
+    }),
+  }));
 
   return (
-    <Draggable draggableId={widgetData.id} index={idx}>
-      {(provided, snapshot) => (
-        <React.Fragment>
-          <div
-            className="widgetWrap"
-            {...provided.draggableProps}
-            {...provided.dragHandleProps}
-            ref={provided.innerRef}
-            data-is-dragging={snapshot.isDragging}
-            style={provided.draggableProps.style}
-          >
-            <span>{widgetData.label}</span>
-            <span className="widgetIcon">
-              {(Icons as ICONSTYPE)[widgetData.icon]}
-            </span>
-          </div>
-
-          {snapshot.isDragging && (
-            <div className="widgetWrap widgetPlaceholder">
-              <span>{widgetData.label}</span>
-              <span className="widgetIcon">
-                {(Icons as ICONSTYPE)[widgetData.icon]}
-              </span>
-            </div>
-          )}
-        </React.Fragment>
-      )}
-    </Draggable>
+    <div ref={drager} className="widgetWrap">
+      <span>{widgetData.label}</span>
+      <span className="widgetIcon">
+        {(Icons as ICONSTYPE)[widgetData.icon]}
+      </span>
+    </div>
   );
 };
 
