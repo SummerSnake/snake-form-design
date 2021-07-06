@@ -75,11 +75,11 @@ const MiddleItemComponent: FC<MiddleItemProps> = (props) => {
       // 创建或移动元素插入位置 placeholder
       const widget = JSON.parse(JSON.stringify(item));
       Reflect.deleteProperty(item, idx);
-      updatePlaceholder(widget, hoverIndex);
+      updatePlaceholder(widget, hoverIndex || 0);
 
       /**
-       * 如果拖拽的组件为 Box，则 dragIndex 为 undefined，此时不对 item 的 index 进行修改
-       * 如果拖拽的组件为 Card，则将 hoverIndex 赋值给 item 的 index 属性
+       * 如果拖拽的组件为 Left，则 dragIndex 为 undefined，此时不对 item 的 index 进行修改
+       * 如果拖拽的组件为 Middle，则将 hoverIndex 赋值给 item 的 index 属性
        */
       if (item.idx !== undefined) {
         item.idx = hoverIndex;
@@ -89,7 +89,6 @@ const MiddleItemComponent: FC<MiddleItemProps> = (props) => {
 
   /**
    * 使用 drag 和 drop 对 ref 进行包裹，则组件既可以进行拖拽也可以接收拖拽组件
-   * 使用 dragPreview 包裹组件，可以实现拖动时预览该组件的效果
    */
   drager(droper(widgetRef));
 
@@ -106,4 +105,4 @@ const MiddleItemComponent: FC<MiddleItemProps> = (props) => {
   );
 };
 
-export default MiddleItemComponent;
+export default React.memo(MiddleItemComponent);
