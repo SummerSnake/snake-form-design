@@ -1,4 +1,5 @@
 import { v4 as uuidv4 } from 'uuid';
+import { getDvaApp, FormDesignModelState } from 'umi';
 import { Widget, WidgetGroup } from '@/pages/formDesign/index.d';
 
 /**
@@ -41,4 +42,30 @@ export const copy = (widgets: WidgetGroup[], draggableId: string): Widget => {
   }
 
   return cloneElement;
+};
+
+/**
+ * @desc 更新中间布局面板列表
+ * @param { Widget } item
+ * @return { void }
+ */
+export const updateMidList = (item?: Widget) => {
+  const { getState, dispatch } = getDvaApp()._store;
+  const { formDesign }: { formDesign: FormDesignModelState } = getState();
+  const { midList }: { midList: Widget[] } = formDesign;
+  let arr = JSON.parse(JSON.stringify(midList));
+  const index = midList.findIndex((item: Widget) => item.id === '-1') || 0;
+
+  if (item) {
+    arr.splice(index, 1, { ...item, randomCode: uuidv4() });
+  } else {
+    arr.splice(index, 1);
+  }
+
+  dispatch({
+    type: 'formDesign/save',
+    payload: {
+      midList: [...arr],
+    },
+  });
 };

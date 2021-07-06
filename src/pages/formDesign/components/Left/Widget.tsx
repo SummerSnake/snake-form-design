@@ -5,7 +5,7 @@
 import React, { FC, ReactElement } from 'react';
 import { SketchOutlined, SlackOutlined } from '@ant-design/icons';
 import { useDrag, DragSourceMonitor } from 'react-dnd';
-import { copy } from '@/utils/util';
+import { updateMidList } from '@/utils/util';
 
 import { Widget } from '@/pages/formDesign/index.d';
 
@@ -24,14 +24,16 @@ const Icons = {
 };
 
 const WidgetComponent: FC<WidgetProps> = (props) => {
-  const { widgetData, widgets } = props;
+  const { widgetData } = props;
 
   const [{ opacity }, drager] = useDrag(() => ({
     type: 'snake-form-design',
-    end(item, monitor: DragSourceMonitor) {
-      console.log(monitor.didDrop());
+    item: { ...widgetData },
+    end(item: Widget, monitor: DragSourceMonitor) {
       if (monitor.didDrop()) {
-        copy(widgets, monitor.getItem());
+        updateMidList(monitor.getItem());
+      } else {
+        updateMidList();
       }
     },
     collect: (monitor: DragSourceMonitor) => ({
