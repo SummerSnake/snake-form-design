@@ -22,7 +22,7 @@
   "dependencies": {
     "@ant-design/pro-layout": "^6.5.0",
     "@umijs/preset-react": "1.x",
-    "react-dnd": "^14.0.2",
+    "react-dnd": "^14.0.0",
     "react-dnd-html5-backend": "^14.0.0",
     "umi": "^3.4.25",
     "uuid": "^8.3.2"

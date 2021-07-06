@@ -22,8 +22,8 @@ const LeftComponent: FC<LeftProps> = (props) => {
             <h3 className="leftTitle">{widget.title}</h3>
 
             <div className="widgetsListWrap">
-              {widget.items.map((item, index) => (
-                <Widget key={item.id} widgetData={item} idx={index} />
+              {widget.items.map((item) => (
+                <Widget key={item.id} widgetData={item} />
               ))}
             </div>
           </React.Fragment>

@@ -9,11 +9,7 @@ import { Widget, WidgetGroup } from '@/pages/formDesign/index.d';
  * @param { number } endIndex
  * @return { Widget[] }
  */
-export const reorder = (
-  list: Widget[],
-  startIndex: number,
-  endIndex: number,
-): Widget[] => {
+export const reorder = (list: Widget[], startIndex: number, endIndex: number): Widget[] => {
   const cloneList = Array.from(list);
   const [removed] = cloneList.splice(startIndex, 1);
   cloneList.splice(endIndex, 0, removed);
@@ -22,44 +18,56 @@ export const reorder = (
 };
 
 /**
- * @desc 复制
- * @param { WidgetGroup[] } widgets
- * @param { string } draggableId
- * @return { Widget }
- */
-export const copy = (widgets: WidgetGroup[], draggableId: string): Widget => {
-  let cloneElement = null;
-
-  for (let widgetGroup of widgets) {
-    for (let item of widgetGroup.items) {
-      if (item.id === draggableId) {
-        cloneElement = {
-          ...JSON.parse(JSON.stringify(item)),
-          randomCode: uuidv4(),
-        };
-      }
-    }
-  }
-
-  return cloneElement;
-};
-
-/**
- * @desc 更新中间布局面板列表
+ * @desc 中间布局面板 => 创建或移动 placeholder
  * @param { Widget } item
  * @return { void }
  */
-export const updateMidList = (item?: Widget) => {
+export const updatePlaceholder = (item?: Widget, hoverIndex?: number): void => {
   const { getState, dispatch } = getDvaApp()._store;
   const { formDesign }: { formDesign: FormDesignModelState } = getState();
   const { midList }: { midList: Widget[] } = formDesign;
   let arr = JSON.parse(JSON.stringify(midList));
-  const index = midList.findIndex((item: Widget) => item.id === '-1') || 0;
+
+  const index = midList.findIndex((item: Widget) => item.randomCode === '-1');
+  const placeholder: Widget = {
+    id: 'placeholder',
+    label: '放这里',
+    type: 'placeholder',
+    icon: '',
+    options: {},
+    randomCode: '-1',
+  };
+
+  if (index === -1) {
+    arr.splice(0, 0, placeholder);
+  } else {
+    arr.splice(index, 1);
+    arr.splice(hoverIndex, 0, placeholder);
+  }
+
+  dispatch({
+    type: 'formDesign/save',
+    payload: {
+      midList: [...arr],
+    },
+  });
+};
+
+/**
+ * @desc 中间布局面板 => 放置元素
+ * @param { Widget } item
+ * @return { void }
+ */
+export const handleDrop = (item?: Widget): void => {
+  const { getState, dispatch } = getDvaApp()._store;
+  const { formDesign }: { formDesign: FormDesignModelState } = getState();
+  const { midList }: { midList: Widget[] } = formDesign;
+  let arr = JSON.parse(JSON.stringify(midList));
+
+  const index = midList.findIndex((item: Widget) => item.randomCode === '-1') || 0;
 
   if (item) {
     arr.splice(index, 1, { ...item, randomCode: uuidv4() });
-  } else {
-    arr.splice(index, 1);
   }
 
   dispatch({

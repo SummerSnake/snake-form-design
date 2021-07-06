@@ -5,7 +5,7 @@
 import React, { FC, ReactElement } from 'react';
 import { SketchOutlined, SlackOutlined } from '@ant-design/icons';
 import { useDrag, DragSourceMonitor } from 'react-dnd';
-import { updateMidList } from '@/utils/util';
+import { handleDrop } from '@/utils/util';
 
 import { Widget } from '@/pages/formDesign/index.d';
 
@@ -15,7 +15,6 @@ interface ICONSTYPE {
 
 interface WidgetProps {
   widgetData: Widget;
-  idx: number;
 }
 
 const Icons = {
@@ -31,9 +30,7 @@ const WidgetComponent: FC<WidgetProps> = (props) => {
     item: { ...widgetData },
     end(item: Widget, monitor: DragSourceMonitor) {
       if (monitor.didDrop()) {
-        updateMidList(monitor.getItem());
-      } else {
-        updateMidList();
+        handleDrop(monitor.getItem());
       }
     },
     collect: (monitor: DragSourceMonitor) => ({
@@ -44,9 +41,7 @@ const WidgetComponent: FC<WidgetProps> = (props) => {
   return (
     <div ref={drager} className="widgetWrap">
       <span>{widgetData.label}</span>
-      <span className="widgetIcon">
-        {(Icons as ICONSTYPE)[widgetData.icon]}
-      </span>
+      <span className="widgetIcon">{(Icons as ICONSTYPE)[widgetData.icon]}</span>
     </div>
   );
 };
