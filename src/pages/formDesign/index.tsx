@@ -15,7 +15,7 @@ interface FormDesignProps extends ConnectProps {
 
 const FormDesignPage: FC<FormDesignProps> = (props) => {
   const { formDesign = { widgets: [], midList: [] } } = props;
-  let { widgets = [], midList = [] } = formDesign;
+  const { widgets = [], midList = [] } = formDesign;
 
   return (
     <div className="formDesignWrap">
@@ -31,13 +31,7 @@ const FormDesignPage: FC<FormDesignProps> = (props) => {
 };
 
 export default connect(
-  ({
-    formDesign,
-    loading,
-  }: {
-    formDesign: FormDesignModelState;
-    loading: Loading;
-  }) => ({
+  ({ formDesign, loading }: { formDesign: FormDesignModelState; loading: Loading }) => ({
     formDesign,
     loading: loading.models.formDesign,
   }),

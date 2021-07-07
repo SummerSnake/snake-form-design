@@ -1,10 +1,10 @@
 /**
  * @Author: SummerSnake
- * @Description: 中间布局子组件
+ * @Description: 中间布局列表控件
  */
 import React, { FC, useRef } from 'react';
 import { useDrag, useDrop, DragSourceMonitor, DropTargetMonitor, XYCoord } from 'react-dnd';
-import { updatePlaceholder } from '@/utils/util';
+import { updatePlaceholder, reOrder } from '@/utils/util';
 import { Widget } from '@/pages/formDesign/index.d';
 
 interface MiddleItemProps {
@@ -12,14 +12,14 @@ interface MiddleItemProps {
   idx: number;
 }
 const MiddleItemComponent: FC<MiddleItemProps> = (props) => {
-  const { itemData = { randomCode: '', label: '' }, idx = 0 } = props;
+  const { itemData, idx = 0 } = props;
 
   const widgetRef = useRef<HTMLDivElement>(null);
 
   // 拖拽
   const [{ isDragging }, drager] = useDrag(() => ({
     type: 'snake-form-design',
-    item: { ...itemData, idx },
+    item: { itemData, idx },
     collect: (monitor: DragSourceMonitor) => ({
       isDragging: !!monitor.isDragging(),
     }),
@@ -28,7 +28,14 @@ const MiddleItemComponent: FC<MiddleItemProps> = (props) => {
   // 接收拖拽组件
   const [, droper] = useDrop({
     accept: 'snake-form-design',
-    drop() {},
+    drop(item: MiddleItemProps, monitor: DropTargetMonitor) {
+      const { itemData } = item;
+
+      // 排序
+      if (itemData?.randomCode) {
+        reOrder(itemData);
+      }
+    },
     hover(item: MiddleItemProps, monitor: DropTargetMonitor) {
       if (!widgetRef.current) {
         return false;
@@ -72,16 +79,14 @@ const MiddleItemComponent: FC<MiddleItemProps> = (props) => {
         return false;
       }
 
-      // 创建或移动元素插入位置 placeholder
-      const widget = JSON.parse(JSON.stringify(item));
-      Reflect.deleteProperty(item, idx);
-      updatePlaceholder(widget, hoverIndex || 0);
+      // 创建或移动 placeholder
+      updatePlaceholder(hoverIndex || 0);
 
       /**
        * 如果拖拽的组件为 Left，则 dragIndex 为 undefined，此时不对 item 的 index 进行修改
        * 如果拖拽的组件为 Middle，则将 hoverIndex 赋值给 item 的 index 属性
        */
-      if (item.idx !== undefined) {
+      if (typeof item.idx !== 'undefined') {
         item.idx = hoverIndex;
       }
     },

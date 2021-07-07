@@ -1,37 +1,26 @@
 import { v4 as uuidv4 } from 'uuid';
 import { getDvaApp, FormDesignModelState } from 'umi';
-import { Widget, WidgetGroup } from '@/pages/formDesign/index.d';
+import { Widget } from '@/pages/formDesign/index.d';
 
 /**
- * @desc 排序
- * @param { Widget[] } list
- * @param { number } startIndex
- * @param { number } endIndex
- * @return { Widget[] }
- */
-export const reorder = (list: Widget[], startIndex: number, endIndex: number): Widget[] => {
-  const cloneList = Array.from(list);
-  const [removed] = cloneList.splice(startIndex, 1);
-  cloneList.splice(endIndex, 0, removed);
-
-  return cloneList;
-};
-
-/**
- * @desc 中间布局面板 => 放置元素
- * @param { Widget } item
+ * @desc 左侧控件面板 拖拽至 中间布局面板 => 放置元素
+ * @param { Widget } widget
  * @return { void }
  */
-export const handleDrop = (item?: Widget): void => {
+export const handleDrop = (widget?: Widget): void => {
   const { getState, dispatch } = getDvaApp()._store;
   const { formDesign }: { formDesign: FormDesignModelState } = getState();
   const { midList }: { midList: Widget[] } = formDesign;
-  let arr = JSON.parse(JSON.stringify(midList));
+  const arr = JSON.parse(JSON.stringify(midList));
 
-  const index = midList.findIndex((item: Widget) => item.randomCode === '-1') || 0;
+  const index = midList.findIndex((item: Widget) => item.randomCode === '-1');
 
-  if (item) {
-    arr.splice(index, 1, { ...item, randomCode: uuidv4() });
+  if (widget) {
+    if (index > -1) {
+      arr.splice(index, 1, { ...widget, randomCode: uuidv4() });
+    } else {
+      arr.push({ ...widget, randomCode: uuidv4() });
+    }
   }
 
   dispatch({
@@ -44,16 +33,14 @@ export const handleDrop = (item?: Widget): void => {
 
 /**
  * @desc 中间布局面板 => 创建或移动 placeholder
- * @param { Widget } item
  * @param { number } hoverIndex
- * @param { number } dragIndex
  * @return { void }
  */
-export const updatePlaceholder = (item: Widget, hoverIndex: number, dragIndex?: number): void => {
+export const updatePlaceholder = (hoverIndex: number): void => {
   const { getState, dispatch } = getDvaApp()._store;
   const { formDesign }: { formDesign: FormDesignModelState } = getState();
   const { midList }: { midList: Widget[] } = formDesign;
-  let arr = JSON.parse(JSON.stringify(midList));
+  const arr = JSON.parse(JSON.stringify(midList));
 
   const index = arr.findIndex((item: Widget) => item.randomCode === '-1');
   const placeholder: Widget = {
@@ -72,22 +59,38 @@ export const updatePlaceholder = (item: Widget, hoverIndex: number, dragIndex?: 
 
   // placeholder 存在，移动其位置
   if (index > -1) {
-    arr.splice(index, 1);
-
-    // 如果此时拖拽的组件是 Left 组件，则 dragIndex 为 undefined，则此时修改 midList 中的占位元素的位置即可
-    if (!dragIndex) {
-      arr.splice(hoverIndex, 0, placeholder);
-    }
-
-    // // 如果此时拖拽的组件是 Middle 组件，则 dragIndex 不为 undefined，此时替换 dragIndex 和 hoverIndex 位置的元素即可
-    if (typeof dragIndex !== 'undefined' && typeof hoverIndex !== 'undefined') {
-      [arr[hoverIndex], arr[dragIndex]] = [arr[dragIndex], arr[hoverIndex]];
-
-      const placeholderIdx = arr.findIndex((item: Widget) => item.randomCode === '-1');
-      console.log(arr.findIndex((item: Widget) => item.randomCode === '-1'));
-      arr.splice(placeholderIdx, 1);
-    }
+    [arr[index], arr[hoverIndex]] = [arr[hoverIndex], arr[index]];
   }
+
+  dispatch({
+    type: 'formDesign/save',
+    payload: {
+      midList: [...arr],
+    },
+  });
+};
+
+/**
+ * @desc 中间布局面板 => 重新排序
+ * @param { Widget } widget
+ * @return { void }
+ */
+export const reOrder = (widget: Widget): void => {
+  const { getState, dispatch } = getDvaApp()._store;
+  const { formDesign }: { formDesign: FormDesignModelState } = getState();
+  const { midList }: { midList: Widget[] } = formDesign;
+  const arr = JSON.parse(JSON.stringify(midList));
+
+  // 当前拖拽元素下标
+  const dragIndex = arr.findIndex((item: Widget) => item.randomCode === widget.randomCode);
+  // placeholder 下标
+  const placeholderIndex = arr.findIndex((item: Widget) => item.randomCode === '-1');
+  // 交换位置
+  [arr[dragIndex], arr[placeholderIndex]] = [arr[placeholderIndex], arr[dragIndex]];
+
+  // 删除 placeholder => 交换位置后，之前拖拽元素下标即为 placeholder 下标
+  arr.splice(dragIndex, 1);
+
   dispatch({
     type: 'formDesign/save',
     payload: {

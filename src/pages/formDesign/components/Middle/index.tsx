@@ -3,7 +3,7 @@
  * @Description: 中间布局面板
  */
 import React, { FC } from 'react';
-import { useDrop, DropTargetMonitor } from 'react-dnd';
+import { useDrop } from 'react-dnd';
 
 import { Widget } from '@/pages/formDesign/index.d';
 import MiddleItem from './MiddleItem';
