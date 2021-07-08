@@ -3,6 +3,18 @@ import { getDvaApp, FormDesignModelState } from 'umi';
 import { Widget } from '@/pages/formDesign/index.d';
 
 /**
+ * @desc midList 深拷贝
+ * @return { Widget[] }
+ */
+export const cloneMidList = (): Widget[] => {
+  const { getState } = getDvaApp()._store;
+  const { formDesign }: { formDesign: FormDesignModelState } = getState();
+  const { midList }: { midList: Widget[] } = formDesign;
+
+  return JSON.parse(JSON.stringify(midList));
+};
+
+/**
  * @desc 左侧控件面板 拖拽至 中间布局面板 => 放置元素
  * @param { Widget } widget
  * @return { void }
@@ -12,26 +24,24 @@ export const handleDrop = (widget: Widget): void => {
     return;
   }
 
-  const { getState, dispatch } = getDvaApp()._store;
-  const { formDesign }: { formDesign: FormDesignModelState } = getState();
-  const { midList }: { midList: Widget[] } = formDesign;
-  const arr = JSON.parse(JSON.stringify(midList));
+  const { dispatch } = getDvaApp()._store;
+  const midArr: Widget[] = cloneMidList();
 
-  const index = arr.findIndex((item: Widget) => item.randomCode === '-1');
+  const placeholderIndex = midArr.findIndex((item: Widget) => item.randomCode === '-1');
 
   // 没有 placeholder(放置到白色面板下方区域), 添加至末尾
-  if (index === -1) {
-    arr.push({ ...widget, randomCode: uuidv4() });
+  if (placeholderIndex === -1) {
+    midArr.push({ ...widget, randomCode: uuidv4() });
   }
   // 有 placeholder, 替换掉 placeholder
-  if (index > -1) {
-    arr.splice(index, 1, { ...widget, randomCode: uuidv4() });
+  if (placeholderIndex > -1) {
+    midArr.splice(placeholderIndex, 1, { ...widget, randomCode: uuidv4() });
   }
 
   dispatch({
     type: 'formDesign/save',
     payload: {
-      midList: [...arr],
+      midList: [...midArr],
     },
   });
 };
@@ -42,12 +52,10 @@ export const handleDrop = (widget: Widget): void => {
  * @return { void }
  */
 export const updatePlaceholder = (hoverIndex: number): void => {
-  const { getState, dispatch } = getDvaApp()._store;
-  const { formDesign }: { formDesign: FormDesignModelState } = getState();
-  const { midList }: { midList: Widget[] } = formDesign;
-  const arr = JSON.parse(JSON.stringify(midList));
+  const { dispatch } = getDvaApp()._store;
+  const midArr: Widget[] = cloneMidList();
 
-  const index = arr.findIndex((item: Widget) => item.randomCode === '-1');
+  const placeholderIndex = midArr.findIndex((item: Widget) => item.randomCode === '-1');
   const placeholder: Widget = {
     id: 'placeholder',
     label: '放这里',
@@ -58,19 +66,18 @@ export const updatePlaceholder = (hoverIndex: number): void => {
   };
 
   // placeholder 不存在，创建 placeholder
-  if (index === -1) {
-    arr.splice(hoverIndex, 0, placeholder);
+  if (placeholderIndex === -1) {
+    midArr.splice(hoverIndex, 0, placeholder);
   }
-
   // placeholder 存在，移动其位置
-  if (index > -1) {
-    [arr[index], arr[hoverIndex]] = [arr[hoverIndex], arr[index]];
+  if (placeholderIndex > -1) {
+    [midArr[placeholderIndex], midArr[hoverIndex]] = [midArr[hoverIndex], midArr[placeholderIndex]];
   }
 
   dispatch({
     type: 'formDesign/save',
     payload: {
-      midList: [...arr],
+      midList: [...midArr],
     },
   });
 };
@@ -85,50 +92,50 @@ export const reOrder = (widget: Widget): void => {
     return;
   }
 
-  const { getState, dispatch } = getDvaApp()._store;
-  const { formDesign }: { formDesign: FormDesignModelState } = getState();
-  const { midList }: { midList: Widget[] } = formDesign;
-  const arr = JSON.parse(JSON.stringify(midList));
+  const { dispatch } = getDvaApp()._store;
+  const midArr: Widget[] = cloneMidList();
 
   // 当前拖拽元素下标
-  const dragIndex = arr.findIndex((item: Widget) => item.randomCode === widget.randomCode);
+  const dragIndex = midArr.findIndex((item: Widget) => item.randomCode === widget.randomCode);
   // placeholder 下标
-  const placeholderIndex = arr.findIndex((item: Widget) => item.randomCode === '-1');
-  // 交换位置
-  [arr[dragIndex], arr[placeholderIndex]] = [arr[placeholderIndex], arr[dragIndex]];
+  const placeholderIndex = midArr.findIndex((item: Widget) => item.randomCode === '-1');
 
-  // 删除 placeholder => 交换位置后，之前拖拽元素下标即为 placeholder 下标
-  arr.splice(dragIndex, 1);
+  if (dragIndex > -1 && placeholderIndex > -1) {
+    // 交换位置
+    [midArr[dragIndex], midArr[placeholderIndex]] = [midArr[placeholderIndex], midArr[dragIndex]];
 
-  dispatch({
-    type: 'formDesign/save',
-    payload: {
-      midList: [...arr],
-    },
-  });
+    // 移除 placeholder => 交换位置后，之前拖拽元素下标即为 placeholder 下标
+    midArr.splice(dragIndex, 1);
+
+    dispatch({
+      type: 'formDesign/save',
+      payload: {
+        midList: [...midArr],
+      },
+    });
+  }
 };
 
 /**
- * @desc 中间布局面板 => 删除 placeholder
+ * @desc 中间布局面板 => 移除 placeholder
  * @return { void }
  */
 export const deletePlaceholder = (): void => {
-  const { getState, dispatch } = getDvaApp()._store;
-  const { formDesign }: { formDesign: FormDesignModelState } = getState();
-  const { midList }: { midList: Widget[] } = formDesign;
-  const arr = JSON.parse(JSON.stringify(midList));
+  const { dispatch } = getDvaApp()._store;
+  const midArr: Widget[] = cloneMidList();
 
   // placeholder 下标
-  const placeholderIndex = arr.findIndex((item: Widget) => item.randomCode === '-1');
+  const placeholderIndex = midArr.findIndex((item: Widget) => item.randomCode === '-1');
 
+  // 移除 placeholder
   if (placeholderIndex > -1) {
-    arr.splice(placeholderIndex, 1);
-  }
+    midArr.splice(placeholderIndex, 1);
 
-  dispatch({
-    type: 'formDesign/save',
-    payload: {
-      midList: [...arr],
-    },
-  });
+    dispatch({
+      type: 'formDesign/save',
+      payload: {
+        midList: [...midArr],
+      },
+    });
+  }
 };
