@@ -10,11 +10,15 @@ import MiddleItem from './MiddleItem';
 
 interface MiddleProps {
   middleList: Widget[];
+  activeIdx: number;
 }
 
 const MiddleComponent: FC<MiddleProps> = (props) => {
-  const { middleList = [] } = props;
+  const { middleList = [], activeIdx = 0 } = props;
 
+  /**
+   * @desc 接收拖拽组件
+   */
   const [, droper] = useDrop({
     accept: 'snake-form-design',
   });
@@ -25,7 +29,7 @@ const MiddleComponent: FC<MiddleProps> = (props) => {
 
       <div ref={droper} className="middleContent">
         {middleList.map((item, index) => (
-          <MiddleItem key={item.randomCode} itemData={item} idx={index} />
+          <MiddleItem key={item.randomCode} itemData={item} idx={index} activeIndex={activeIdx} />
         ))}
       </div>
     </div>

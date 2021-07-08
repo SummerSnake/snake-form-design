@@ -5,6 +5,7 @@ import { Widget, WidgetGroup } from '@/pages/formDesign/index.d';
 export interface FormDesignModelState {
   widgets: WidgetGroup[];
   midList: Widget[];
+  activeIdx: number;
 }
 
 export interface FormDesignModalType {
@@ -21,6 +22,7 @@ const FormDesignModal: FormDesignModalType = {
   state: {
     widgets: widgetsData.widgets,
     midList: [],
+    activeIdx: 0,
   },
 
   reducers: {
@@ -34,6 +36,7 @@ const FormDesignModal: FormDesignModalType = {
       return {
         widgets: [],
         midList: [],
+        activeIdx: 0,
       };
     },
   },

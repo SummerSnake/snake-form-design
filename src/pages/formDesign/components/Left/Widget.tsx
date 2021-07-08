@@ -43,7 +43,7 @@ const WidgetComponent: FC<WidgetProps> = (props) => {
   }));
 
   return (
-    <div ref={drager} className="widgetWrap">
+    <div ref={drager} className="widgetWrap" style={{ opacity }}>
       <span>{widgetData.label}</span>
       <span className="widgetIcon">{(Icons as ICONSTYPE)[widgetData.icon]}</span>
     </div>

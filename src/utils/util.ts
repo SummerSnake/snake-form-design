@@ -28,20 +28,24 @@ export const handleDrop = (widget: Widget): void => {
   const midArr: Widget[] = cloneMidList();
 
   const placeholderIndex = midArr.findIndex((item: Widget) => item.randomCode === '-1');
+  let activeIdx: number = 0;
 
   // 没有 placeholder(放置到白色面板下方区域), 添加至末尾
   if (placeholderIndex === -1) {
     midArr.push({ ...widget, randomCode: uuidv4() });
+    activeIdx = midArr.length - 1;
   }
   // 有 placeholder, 替换掉 placeholder
   if (placeholderIndex > -1) {
     midArr.splice(placeholderIndex, 1, { ...widget, randomCode: uuidv4() });
+    activeIdx = placeholderIndex;
   }
 
   dispatch({
     type: 'formDesign/save',
     payload: {
       midList: [...midArr],
+      activeIdx,
     },
   });
 };
@@ -111,6 +115,7 @@ export const reOrder = (widget: Widget): void => {
       type: 'formDesign/save',
       payload: {
         midList: [...midArr],
+        activeIdx: placeholderIndex >= midArr.length ? midArr.length - 1 : placeholderIndex,
       },
     });
   }

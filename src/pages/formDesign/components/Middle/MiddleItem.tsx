@@ -4,23 +4,44 @@
  */
 import React, { FC, useRef } from 'react';
 import { useDrag, useDrop, DragSourceMonitor, DropTargetMonitor, XYCoord } from 'react-dnd';
+import { getDvaApp } from 'umi';
 import { updatePlaceholder, deletePlaceholder, reOrder } from '@/utils/util';
 import { Widget } from '@/pages/formDesign/index.d';
 
 interface MiddleItemProps {
   itemData: Widget;
   idx: number;
+  activeIndex: number;
+}
+interface ItemType {
+  itemData: Widget;
+  idx: number;
 }
 const MiddleItemComponent: FC<MiddleItemProps> = (props) => {
-  const { itemData, idx = 0 } = props;
+  const { dispatch } = getDvaApp()._store;
+  const { itemData, idx = 0, activeIndex = 0 } = props;
 
   const widgetRef = useRef<HTMLDivElement>(null);
 
-  // 拖拽
-  const [{ isDragging }, drager] = useDrag(() => ({
+  /**
+   * @desc 修改当前选择项下标
+   */
+  const handleActive = () => {
+    dispatch({
+      type: 'formDesign/save',
+      payload: {
+        activeIdx: idx,
+      },
+    });
+  };
+
+  /**
+   * @desc 拖拽
+   */
+  const [{ isDragging, opacity }, drager] = useDrag(() => ({
     type: 'snake-form-design',
     item: { itemData, idx },
-    end(item: MiddleItemProps, monitor: DragSourceMonitor) {
+    end(item: ItemType, monitor: DragSourceMonitor) {
       if (monitor.didDrop()) {
         // 放置成功
         const { itemData } = item;
@@ -36,13 +57,16 @@ const MiddleItemComponent: FC<MiddleItemProps> = (props) => {
     },
     collect: (monitor: DragSourceMonitor) => ({
       isDragging: !!monitor.isDragging(),
+      opacity: monitor.isDragging() ? 0.4 : 1,
     }),
   }));
 
-  // 接收拖拽组件
+  /**
+   * @desc 接收拖拽组件
+   */
   const [, droper] = useDrop({
     accept: 'snake-form-design',
-    hover(item: MiddleItemProps, monitor: DropTargetMonitor) {
+    hover(item: ItemType, monitor: DropTargetMonitor) {
       if (!widgetRef.current) {
         return false;
       }
@@ -104,8 +128,16 @@ const MiddleItemComponent: FC<MiddleItemProps> = (props) => {
   drager(droper(widgetRef));
 
   return (
-    <div ref={widgetRef} className="widgetWrap">
-      {itemData.randomCode !== '-1' && <div className="widgetDom">{itemData.label}</div>}
+    <div ref={widgetRef} className="widgetWrap" style={{ opacity }}>
+      {itemData.randomCode !== '-1' && (
+        <div
+          className="widgetDom"
+          style={{ border: activeIndex === idx ? '1px solid #40a9ff' : 'none' }}
+          onClick={handleActive}
+        >
+          <span>{itemData.label}</span>
+        </div>
+      )}
 
       {itemData.randomCode === '-1' && <div className="placeholderDom">{itemData.label}</div>}
     </div>
