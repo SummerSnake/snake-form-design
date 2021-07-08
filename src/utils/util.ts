@@ -7,20 +7,25 @@ import { Widget } from '@/pages/formDesign/index.d';
  * @param { Widget } widget
  * @return { void }
  */
-export const handleDrop = (widget?: Widget): void => {
+export const handleDrop = (widget: Widget): void => {
+  if (!widget) {
+    return;
+  }
+
   const { getState, dispatch } = getDvaApp()._store;
   const { formDesign }: { formDesign: FormDesignModelState } = getState();
   const { midList }: { midList: Widget[] } = formDesign;
   const arr = JSON.parse(JSON.stringify(midList));
 
-  const index = midList.findIndex((item: Widget) => item.randomCode === '-1');
+  const index = arr.findIndex((item: Widget) => item.randomCode === '-1');
 
-  if (widget) {
-    if (index > -1) {
-      arr.splice(index, 1, { ...widget, randomCode: uuidv4() });
-    } else {
-      arr.push({ ...widget, randomCode: uuidv4() });
-    }
+  // 没有 placeholder(放置到白色面板下方区域), 添加至末尾
+  if (index === -1) {
+    arr.push({ ...widget, randomCode: uuidv4() });
+  }
+  // 有 placeholder, 替换掉 placeholder
+  if (index > -1) {
+    arr.splice(index, 1, { ...widget, randomCode: uuidv4() });
   }
 
   dispatch({
@@ -76,6 +81,10 @@ export const updatePlaceholder = (hoverIndex: number): void => {
  * @return { void }
  */
 export const reOrder = (widget: Widget): void => {
+  if (!widget) {
+    return;
+  }
+
   const { getState, dispatch } = getDvaApp()._store;
   const { formDesign }: { formDesign: FormDesignModelState } = getState();
   const { midList }: { midList: Widget[] } = formDesign;
@@ -90,6 +99,31 @@ export const reOrder = (widget: Widget): void => {
 
   // 删除 placeholder => 交换位置后，之前拖拽元素下标即为 placeholder 下标
   arr.splice(dragIndex, 1);
+
+  dispatch({
+    type: 'formDesign/save',
+    payload: {
+      midList: [...arr],
+    },
+  });
+};
+
+/**
+ * @desc 中间布局面板 => 删除 placeholder
+ * @return { void }
+ */
+export const deletePlaceholder = (): void => {
+  const { getState, dispatch } = getDvaApp()._store;
+  const { formDesign }: { formDesign: FormDesignModelState } = getState();
+  const { midList }: { midList: Widget[] } = formDesign;
+  const arr = JSON.parse(JSON.stringify(midList));
+
+  // placeholder 下标
+  const placeholderIndex = arr.findIndex((item: Widget) => item.randomCode === '-1');
+
+  if (placeholderIndex > -1) {
+    arr.splice(placeholderIndex, 1);
+  }
 
   dispatch({
     type: 'formDesign/save',

@@ -4,7 +4,7 @@
  */
 import React, { FC, useRef } from 'react';
 import { useDrag, useDrop, DragSourceMonitor, DropTargetMonitor, XYCoord } from 'react-dnd';
-import { updatePlaceholder, reOrder } from '@/utils/util';
+import { updatePlaceholder, deletePlaceholder, reOrder } from '@/utils/util';
 import { Widget } from '@/pages/formDesign/index.d';
 
 interface MiddleItemProps {
@@ -20,6 +20,20 @@ const MiddleItemComponent: FC<MiddleItemProps> = (props) => {
   const [{ isDragging }, drager] = useDrag(() => ({
     type: 'snake-form-design',
     item: { itemData, idx },
+    end(item: MiddleItemProps, monitor: DragSourceMonitor) {
+      if (monitor.didDrop()) {
+        // 放置成功
+        const { itemData } = item;
+
+        // 排序
+        if (itemData?.randomCode) {
+          reOrder(itemData);
+        }
+      } else {
+        // 放置失败(放置到接收区域以外)
+        deletePlaceholder();
+      }
+    },
     collect: (monitor: DragSourceMonitor) => ({
       isDragging: !!monitor.isDragging(),
     }),
@@ -28,14 +42,6 @@ const MiddleItemComponent: FC<MiddleItemProps> = (props) => {
   // 接收拖拽组件
   const [, droper] = useDrop({
     accept: 'snake-form-design',
-    drop(item: MiddleItemProps, monitor: DropTargetMonitor) {
-      const { itemData } = item;
-
-      // 排序
-      if (itemData?.randomCode) {
-        reOrder(itemData);
-      }
-    },
     hover(item: MiddleItemProps, monitor: DropTargetMonitor) {
       if (!widgetRef.current) {
         return false;
@@ -101,11 +107,7 @@ const MiddleItemComponent: FC<MiddleItemProps> = (props) => {
     <div ref={widgetRef} className="widgetWrap">
       {itemData.randomCode !== '-1' && <div className="widgetDom">{itemData.label}</div>}
 
-      {itemData.randomCode === '-1' && (
-        <div className="widgetDom" style={{ color: '#f00' }}>
-          {itemData.label}
-        </div>
-      )}
+      {itemData.randomCode === '-1' && <div className="placeholderDom">{itemData.label}</div>}
     </div>
   );
 };

@@ -5,7 +5,7 @@
 import React, { FC, ReactElement } from 'react';
 import { SketchOutlined, SlackOutlined } from '@ant-design/icons';
 import { useDrag, DragSourceMonitor } from 'react-dnd';
-import { handleDrop } from '@/utils/util';
+import { handleDrop, deletePlaceholder } from '@/utils/util';
 
 import { Widget } from '@/pages/formDesign/index.d';
 
@@ -29,8 +29,12 @@ const WidgetComponent: FC<WidgetProps> = (props) => {
     type: 'snake-form-design',
     item: { ...widgetData },
     end(item: Widget, monitor: DragSourceMonitor) {
+      // 放置成功
       if (monitor.didDrop()) {
         handleDrop(monitor.getItem());
+      } else {
+        // 放置失败(放置到接收区域以外)
+        deletePlaceholder();
       }
     },
     collect: (monitor: DragSourceMonitor) => ({
