@@ -22,7 +22,7 @@ const FormDesignModal: FormDesignModalType = {
   state: {
     widgets: widgetsData.widgets,
     midList: [],
-    activeIdx: 0,
+    activeIdx: -1,
   },
 
   reducers: {
@@ -36,7 +36,7 @@ const FormDesignModal: FormDesignModalType = {
       return {
         widgets: [],
         midList: [],
-        activeIdx: 0,
+        activeIdx: -1,
       };
     },
   },

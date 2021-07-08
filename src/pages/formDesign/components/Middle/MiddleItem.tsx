@@ -5,7 +5,7 @@
 import React, { FC, useRef } from 'react';
 import { useDrag, useDrop, DragSourceMonitor, DropTargetMonitor, XYCoord } from 'react-dnd';
 import { getDvaApp } from 'umi';
-import { updatePlaceholder, deletePlaceholder, reOrder } from '@/utils/util';
+import { updatePlaceholder, deletePlaceholder, deleteActiveItem, reOrder } from '@/utils/util';
 import { Widget } from '@/pages/formDesign/index.d';
 
 interface MiddleItemProps {
@@ -33,6 +33,14 @@ const MiddleItemComponent: FC<MiddleItemProps> = (props) => {
         activeIdx: idx,
       },
     });
+  };
+
+  /**
+   * @desc 删除当前选择项
+   */
+  const handleDeleteWidget = (e: React.MouseEvent<HTMLDivElement>) => {
+    e.stopPropagation();
+    deleteActiveItem(idx);
   };
 
   /**
@@ -131,10 +139,17 @@ const MiddleItemComponent: FC<MiddleItemProps> = (props) => {
     <div ref={widgetRef} className="widgetWrap" style={{ opacity }}>
       {itemData.randomCode !== '-1' && (
         <div
-          className="widgetDom"
-          style={{ border: activeIndex === idx ? '1px solid #40a9ff' : 'none' }}
+          className={`widgetDom ${activeIndex === idx && 'widgetDomActive'}`}
           onClick={handleActive}
         >
+          <div
+            className="deleteBtnWrap"
+            style={{ visibility: activeIndex === idx ? 'visible' : 'hidden' }}
+            onClick={handleDeleteWidget}
+          >
+            <span className="deleteBtnDom">×</span>
+          </div>
+
           <span>{itemData.label}</span>
         </div>
       )}

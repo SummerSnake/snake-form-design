@@ -70,20 +70,46 @@
         overflow: auto;
         // 单个控件
         .widgetWrap {
-          padding: 0 12px;
           background-color: #fff;
           user-select: none;
           cursor: move;
           .widgetDom {
             .wh(100%, 44px);
             position: relative;
+            box-sizing: border-box;
+            padding: 0 12px;
             line-height: 44px;
+            border: 1px solid transparent;
             border-bottom: 1px solid @borderColor;
-          }
-          &:last-child {
-            .widgetDom {
-              border: none;
+
+            &:last-child {
+              .widgetDom {
+                border-bottom: 1px solid transparent;
+              }
             }
+            .deleteBtnWrap {
+              .wh(20px, 20px);
+              position: absolute;
+              top: 0;
+              right: 0;
+              z-index: 9;
+              border-bottom-left-radius: 20px;
+              color: #fff;
+              background-color: @primaryColor;
+              cursor: pointer;
+              .deleteBtnDom {
+                .wh(16px, 16px);
+                position: absolute;
+                top: 0;
+                right: 0;
+                line-height: 16px;
+                font-size: 16px;
+                text-align: center;
+              }
+            }
+          }
+          .widgetDomActive {
+            border: 1px solid @primaryColor;
           }
           .placeholderDom {
             .wh(100%, 44px);

@@ -144,3 +144,28 @@ export const deletePlaceholder = (): void => {
     });
   }
 };
+
+/**
+ * @desc 中间布局面板 => 移除当前项
+ * @param { number } index
+ * @return { void }
+ */
+export const deleteActiveItem = (index: number): void => {
+  if (index < 0) {
+    return;
+  }
+
+  const { dispatch } = getDvaApp()._store;
+  const midArr: Widget[] = cloneMidList();
+
+  // 移除当前项
+  midArr.splice(index, 1);
+
+  dispatch({
+    type: 'formDesign/save',
+    payload: {
+      midList: [...midArr],
+      activeIdx: -1,
+    },
+  });
+};
