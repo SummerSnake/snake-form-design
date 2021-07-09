@@ -1,9 +1,15 @@
+export interface optionsElement {
+  id: number;
+  elemTitle: string;
+  elemName: string;
+  elemVal: string;
+}
+
 export interface WidgetOptions {
-  width?: string;
   defaultValue?: string;
   isRequired?: number;
   isDisabled?: number;
-  dataType?: string;
+  elements?: optionsElement[];
   placeholder?: string;
 }
 

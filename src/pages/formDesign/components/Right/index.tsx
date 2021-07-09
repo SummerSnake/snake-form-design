@@ -5,7 +5,8 @@
 import React, { FC } from 'react';
 
 import { Widget } from '@/pages/formDesign/index.d';
-import { InputConfig } from '@/components/config';
+
+import { InputConfig, SelectConfig } from '@/components/config';
 
 interface RightProps {
   middleList: Widget[];
@@ -26,6 +27,8 @@ const RightComponent: FC<RightProps> = (props) => {
               return '多行文本';
             case 'baseRadio':
               return '文本框';
+            case 'baseSelect':
+              return <SelectConfig middleArr={middleList} activeIndex={activeIdx} />;
             default:
               return null;
           }
