@@ -23,7 +23,7 @@ const FormDesignPage: FC<FormDesignProps> = (props) => {
         <div className="form-design-panel">
           <Left widgetsList={widgets} />
           <Middle middleList={midList} activeIdx={activeIdx} />
-          <Right widgetsList={widgets} />
+          <Right middleList={midList} activeIdx={activeIdx} />
         </div>
       </DndProvider>
     </div>

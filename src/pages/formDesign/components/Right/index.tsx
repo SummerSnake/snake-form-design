@@ -4,16 +4,34 @@
  */
 import React, { FC } from 'react';
 
-import { WidgetGroup } from '@/pages/formDesign/index.d';
+import { Widget } from '@/pages/formDesign/index.d';
+import { InputConfig } from '@/components/config';
 
 interface RightProps {
-  widgetsList: WidgetGroup[];
+  middleList: Widget[];
+  activeIdx: number;
 }
 
 const RightComponent: FC<RightProps> = (props) => {
-  const { widgetsList = [] } = props;
+  const { middleList = [], activeIdx } = props;
 
-  return <div className="rightWrap">1</div>;
+  return (
+    <div className="rightWrap">
+      {(() => {
+        if (Array.isArray(middleList) && middleList[activeIdx])
+          switch (middleList[activeIdx].id) {
+            case 'baseInput':
+              return <InputConfig widgetData={middleList[activeIdx]} />;
+            case 'baseTextarea':
+              return '多行文本';
+            case 'baseRadio':
+              return '文本框';
+            default:
+              return null;
+          }
+      })()}
+    </div>
+  );
 };
 
 export default React.memo(RightComponent);
