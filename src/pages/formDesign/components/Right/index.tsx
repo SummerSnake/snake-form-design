@@ -21,7 +21,7 @@ const RightComponent: FC<RightProps> = (props) => {
         if (Array.isArray(middleList) && middleList[activeIdx])
           switch (middleList[activeIdx].id) {
             case 'baseInput':
-              return <InputConfig widgetData={middleList[activeIdx]} />;
+              return <InputConfig middleArr={middleList} activeIndex={activeIdx} />;
             case 'baseTextarea':
               return '多行文本';
             case 'baseRadio':

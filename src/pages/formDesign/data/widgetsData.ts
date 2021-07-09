@@ -17,8 +17,8 @@ const initialData = {
           options: {
             width: '100%',
             defaultValue: '',
-            required: false,
-            disabled: false,
+            isRequired: 0,
+            isDisabled: 0,
             dataType: 'text',
             placeholder: '请输入单行文本',
           },
@@ -32,8 +32,8 @@ const initialData = {
           options: {
             width: '100%',
             defaultValue: '',
-            required: false,
-            disabled: false,
+            isRequired: 0,
+            isDisabled: 0,
             placeholder: '请输入多行文本',
           },
           randomCode: '',
@@ -45,8 +45,8 @@ const initialData = {
           icon: 'slack',
           options: {
             defaultValue: '',
-            required: false,
-            disabled: false,
+            isRequired: 0,
+            isDisabled: 0,
             elements: [
               { label: '标题1', value: '值1' },
               { label: '标题2', value: '值2' },
@@ -62,8 +62,8 @@ const initialData = {
           icon: 'sketch',
           options: {
             defaultValue: '',
-            required: false,
-            disabled: false,
+            isRequired: 0,
+            isDisabled: 0,
             elements: [
               { label: '标题1', value: '值1' },
               { label: '标题2', value: '值2' },
@@ -80,8 +80,8 @@ const initialData = {
           options: {
             width: '100%',
             defaultValue: '',
-            required: false,
-            disabled: false,
+            isRequired: 0,
+            isDisabled: 0,
             elements: [
               { label: '标题1', value: '值1' },
               { label: '标题2', value: '值2' },
@@ -98,8 +98,8 @@ const initialData = {
           options: {
             width: '100%',
             format: 'YYYY-MM-DD',
-            required: false,
-            disabled: false,
+            isRequired: 0,
+            isDisabled: 0,
             elements: [
               { label: 'YYYY-MM-DD', value: 'YYYY-MM-DD' },
               { label: 'YYYY-MM-DD HH:mm', value: 'YYYY-MM-DD HH:mm' },
@@ -114,8 +114,8 @@ const initialData = {
           icon: '',
           options: {
             default: false,
-            required: false,
-            disabled: false,
+            isRequired: 0,
+            isDisabled: 0,
           },
           randomCode: '',
         },
@@ -133,8 +133,8 @@ const initialData = {
           options: {
             width: '100%',
             defaultValue: '',
-            required: false,
-            disabled: false,
+            isRequired: 0,
+            isDisabled: 0,
             dataType: 'text',
             placeholder: '请输入民族',
           },

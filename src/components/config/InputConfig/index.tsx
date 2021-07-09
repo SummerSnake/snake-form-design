@@ -1,24 +1,55 @@
 import React, { FC } from 'react';
 import { Form, Input, Radio } from 'antd';
+import { getDvaApp } from 'umi';
 import { Widget, WidgetOptions } from '@/pages/formDesign/index.d';
 
-// import './index.less';
-
 interface InputConfigProps {
-  widgetData: Widget;
+  middleArr: Widget[];
+  activeIndex: number;
 }
 
 const InputConfig: FC<InputConfigProps> = (props) => {
+  const { dispatch } = getDvaApp()._store;
+
   const [form] = Form.useForm();
-  const { widgetData }: { widgetData: Widget } = props;
+  let { middleArr, activeIndex }: { middleArr: Widget[]; activeIndex: number } = props;
+  const widgetData: Widget = middleArr[activeIndex];
   const { options }: { options: WidgetOptions } = widgetData;
 
+  /**
+   * @desc 表单项值改变，更新 midList
+   * @return { void }
+   */
+  const handleFormChange = (): void => {
+    const formData = form.getFieldsValue();
+
+    middleArr[activeIndex] = {
+      ...widgetData,
+      label: formData.label,
+      options: {
+        ...widgetData.options,
+        defaultValue: formData.defaultValue,
+        isRequired: formData.isRequired,
+        isDisabled: formData.isDisabled,
+        placeholder: formData.placeholder,
+      },
+    };
+
+    dispatch({
+      type: 'formDesign/save',
+      payload: {
+        midList: [...middleArr],
+      },
+    });
+  };
+
   return (
-    <div className="formDesignWrap">
+    <>
       <Form
         form={form}
         id="InputConfig"
         layout="horizontal"
+        onFieldsChange={handleFormChange}
         labelCol={{ span: 6 }}
         wrapperCol={{ span: 14 }}
       >
@@ -42,8 +73,8 @@ const InputConfig: FC<InputConfigProps> = (props) => {
 
         <Form.Item
           label="是否必填"
-          name="required"
-          initialValue={options.required}
+          name="isRequired"
+          initialValue={options.isRequired}
           rules={[
             {
               required: true,
@@ -63,8 +94,8 @@ const InputConfig: FC<InputConfigProps> = (props) => {
 
         <Form.Item
           label="是否禁用"
-          name="required"
-          initialValue={options.disabled}
+          name="isDisabled"
+          initialValue={options.isDisabled}
           rules={[
             {
               required: true,
@@ -86,7 +117,7 @@ const InputConfig: FC<InputConfigProps> = (props) => {
           <Input placeholder={options.placeholder} />
         </Form.Item>
       </Form>
-    </div>
+    </>
   );
 };
 

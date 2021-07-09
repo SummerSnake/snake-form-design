@@ -151,6 +151,12 @@ const MiddleItemComponent: FC<MiddleItemProps> = (props) => {
           </div>
 
           <span>{itemData.label}</span>
+          <i
+            className="requiredStar"
+            style={{ visibility: !!itemData?.options?.isRequired ? 'visible' : 'hidden' }}
+          >
+            *
+          </i>
         </div>
       )}
 

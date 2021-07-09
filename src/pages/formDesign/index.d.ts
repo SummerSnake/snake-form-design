@@ -1,8 +1,8 @@
 export interface WidgetOptions {
   width?: string;
   defaultValue?: string;
-  required?: boolean;
-  disabled?: boolean;
+  isRequired?: number;
+  isDisabled?: number;
   dataType?: string;
   placeholder?: string;
 }
