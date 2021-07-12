@@ -13,7 +13,7 @@ const initialData = {
           id: 'baseInput',
           label: '单行文本',
           type: 'input',
-          icon: 'slack',
+          icon: 'fileTextOutlined',
           options: {
             defaultValue: '',
             isRequired: 0,
@@ -26,7 +26,7 @@ const initialData = {
           id: 'baseTextarea',
           label: '多行文本',
           type: 'textarea',
-          icon: 'sketch',
+          icon: 'fileZipOutlined',
           options: {
             defaultValue: '',
             isRequired: 0,

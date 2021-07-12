@@ -6,7 +6,7 @@ import React, { FC } from 'react';
 
 import { Widget } from '@/pages/formDesign/index.d';
 
-import { InputConfig, TextareaConfig, SelectConfig } from '@/components/config';
+import { InputConfig, TextareaConfig, RadioConfig, SelectConfig } from '@/components/config';
 
 interface RightProps {
   middleList: Widget[];
@@ -26,7 +26,7 @@ const RightComponent: FC<RightProps> = (props) => {
             case 'baseTextarea':
               return <TextareaConfig activeIndex={activeIdx} />;
             case 'baseRadio':
-              return '文本框';
+              return <RadioConfig activeIndex={activeIdx} />;
             case 'baseSelect':
               return <SelectConfig activeIndex={activeIdx} />;
             default:

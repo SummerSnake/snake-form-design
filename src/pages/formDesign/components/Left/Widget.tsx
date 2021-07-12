@@ -3,7 +3,12 @@
  * @Description: 单个控件
  */
 import React, { FC, ReactElement } from 'react';
-import { SketchOutlined, SlackOutlined } from '@ant-design/icons';
+import {
+  FileTextOutlined,
+  FileZipOutlined,
+  SketchOutlined,
+  SlackOutlined,
+} from '@ant-design/icons';
 import { useDrag, DragSourceMonitor } from 'react-dnd';
 import { handleDrop, deletePlaceholder } from '@/utils/util';
 
@@ -18,6 +23,8 @@ interface WidgetProps {
 }
 
 const Icons = {
+  fileTextOutlined: <FileTextOutlined />,
+  fileZipOutlined: <FileZipOutlined />,
   sketch: <SketchOutlined />,
   slack: <SlackOutlined />,
 };
