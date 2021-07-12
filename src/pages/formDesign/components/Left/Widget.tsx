@@ -8,6 +8,8 @@ import {
   FileZipOutlined,
   SketchOutlined,
   SlackOutlined,
+  OrderedListOutlined,
+  DotChartOutlined,
 } from '@ant-design/icons';
 import { useDrag, DragSourceMonitor } from 'react-dnd';
 import { handleDrop, deletePlaceholder } from '@/utils/util';
@@ -27,6 +29,8 @@ const Icons = {
   fileZipOutlined: <FileZipOutlined />,
   sketch: <SketchOutlined />,
   slack: <SlackOutlined />,
+  orderedListOutlined: <OrderedListOutlined />,
+  dotChartOutlined: <DotChartOutlined />,
 };
 
 const WidgetComponent: FC<WidgetProps> = (props) => {

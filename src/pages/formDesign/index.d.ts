@@ -11,6 +11,7 @@ export interface WidgetOptions {
   isDisabled?: number;
   elements?: optionsElement[];
   placeholder?: string;
+  format?: string;
 }
 
 export interface Widget {

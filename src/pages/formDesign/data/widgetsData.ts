@@ -73,7 +73,7 @@ const initialData = {
           id: 'baseSelect',
           label: '下拉选择框',
           type: 'select',
-          icon: '',
+          icon: 'orderedListOutlined',
           options: {
             defaultValue: '',
             isRequired: 0,
@@ -87,21 +87,27 @@ const initialData = {
           randomCode: '',
         },
         {
-          id: 'baseDatepicker',
+          id: 'baseDatePicker',
           label: '日期选择器',
           type: 'date',
-          icon: '',
+          icon: 'dotChartOutlined',
           options: {
             format: 'YYYY-MM-DD',
             isRequired: 0,
             isDisabled: 0,
             elements: [
-              { id: 1, elemTitle: 'YYYY-MM-DD', elemName: '字段1', elemVal: 'YYYY-MM-DD' },
+              { id: 1, elemTitle: '年-月-日', elemName: '字段1', elemVal: 'YYYY-MM-DD' },
               {
                 id: 2,
-                elemTitle: 'YYYY-MM-DD HH:mm',
+                elemTitle: '年-月-日 时:分',
                 elemName: '字段2',
                 elemVal: 'YYYY-MM-DD HH:mm',
+              },
+              {
+                id: 3,
+                elemTitle: '年-月-日 时:分:秒',
+                elemName: '字段2',
+                elemVal: 'YYYY-MM-DD HH:mm:ss',
               },
             ],
           },
