@@ -113,7 +113,7 @@ const initialData = {
           type: 'switch',
           icon: '',
           options: {
-            default: false,
+            defaultValue: '',
             isRequired: 0,
             isDisabled: 0,
           },
