@@ -1,5 +1,6 @@
 import React, { FC } from 'react';
 import { Form, Input, Radio } from 'antd';
+import { PlusCircleOutlined, MinusCircleOutlined } from '@ant-design/icons';
 import { v4 as uuidv4 } from 'uuid';
 import { getDvaApp } from 'umi';
 import { cloneMidList } from '@/utils/util';
@@ -36,27 +37,23 @@ const SelectConfig: FC<SelectConfigProps> = (props) => {
   /**
    * @desc elements 子选项值改变，更新 midList
    * @param { string } sign
-   * @param { number } id
+   * @param { number } index
    * @param { React.ChangeEvent<HTMLInputElement> } e
    * @return { void }
    */
   const handleInputChange = (
     sign: string,
-    id: number,
+    index: number,
     e: React.ChangeEvent<HTMLInputElement>,
   ): void => {
     const formData = form.getFieldsValue();
 
     const elemArr = getElementsList();
 
-    for (let i = 0; i < elemArr.length; i++) {
-      if (elemArr[i].id === id) {
-        elemArr[i] = {
-          ...elemArr[i],
-          [sign]: e.target.value,
-        };
-      }
-    }
+    elemArr[index] = {
+      ...elemArr[index],
+      [sign]: e.target.value,
+    };
 
     const middleArr = cloneMidList();
     const widgetData: Widget = middleArr[activeIndex];
@@ -64,6 +61,40 @@ const SelectConfig: FC<SelectConfigProps> = (props) => {
     middleArr[activeIndex] = {
       ...widgetData,
       label: formData.label,
+      options: {
+        ...widgetData.options,
+        elements: [...elemArr],
+      },
+    };
+
+    dispatch({
+      type: 'formDesign/save',
+      payload: {
+        midList: middleArr,
+      },
+    });
+  };
+
+  /**
+   * @desc elements 添加/减少子项
+   * @param { string } sign
+   * @param { number } index
+   * @return { void }
+   */
+  const handleUpdateElements = (sign: string, index: number): void => {
+    const elemArr = getElementsList();
+
+    if (sign === 'add') {
+      elemArr.push({ ...elemArr[index], id: elemArr[elemArr.length - 1].id + 1 });
+    } else {
+      elemArr.splice(index, 1);
+    }
+
+    const middleArr = cloneMidList();
+    const widgetData: Widget = middleArr[activeIndex];
+
+    middleArr[activeIndex] = {
+      ...widgetData,
       options: {
         ...widgetData.options,
         elements: [...elemArr],
@@ -177,9 +208,21 @@ const SelectConfig: FC<SelectConfigProps> = (props) => {
         </Form.Item>
 
         {Array.isArray(initElements) &&
-          initElements.map((item) => (
+          initElements.map((item, index) => (
             <React.Fragment key={item.id}>
-              <h3 style={{ margin: '30px 0 20px' }}>Select 选择框：</h3>
+              <div style={{ display: 'flex', margin: '30px 0 20px' }}>
+                <h3 style={{ flex: 3, margin: 0 }}>Select 选择框：</h3>
+                <div style={{ flex: 1 }}>
+                  <PlusCircleOutlined
+                    style={{ cursor: 'pointer', color: '#40a9ff' }}
+                    onClick={() => handleUpdateElements('add', index)}
+                  />
+                  <MinusCircleOutlined
+                    style={{ marginLeft: 8, cursor: 'pointer', color: '#40a9ff' }}
+                    onClick={() => handleUpdateElements('reduce', index)}
+                  />
+                </div>
+              </div>
 
               <Form.Item
                 label="标题"
@@ -194,7 +237,7 @@ const SelectConfig: FC<SelectConfigProps> = (props) => {
               >
                 <Input
                   placeholder="请输入标题"
-                  onChange={(e) => handleInputChange('elemTitle', item.id, e)}
+                  onChange={(e) => handleInputChange('elemTitle', index, e)}
                 />
               </Form.Item>
 
@@ -211,7 +254,7 @@ const SelectConfig: FC<SelectConfigProps> = (props) => {
               >
                 <Input
                   placeholder="请输入字段名"
-                  onChange={(e) => handleInputChange('elemName', item.id, e)}
+                  onChange={(e) => handleInputChange('elemName', index, e)}
                 />
               </Form.Item>
 
@@ -228,7 +271,7 @@ const SelectConfig: FC<SelectConfigProps> = (props) => {
               >
                 <Input
                   placeholder="请输入字段值"
-                  onChange={(e) => handleInputChange('elemVal', item.id, e)}
+                  onChange={(e) => handleInputChange('elemVal', index, e)}
                 />
               </Form.Item>
             </React.Fragment>
