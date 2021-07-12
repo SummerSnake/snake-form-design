@@ -110,7 +110,7 @@ const SelectConfig: FC<SelectConfigProps> = (props) => {
     <>
       <Form
         form={form}
-        id="InputConfig"
+        id="SelectConfig"
         layout="horizontal"
         onValuesChange={handleFormChange}
         labelCol={{ span: 6 }}
