@@ -1,10 +1,10 @@
 import React, { FC } from 'react';
 import { Form, Input, Radio } from 'antd';
 import { getDvaApp } from 'umi';
+import { cloneMidList } from '@/utils/util';
 import { Widget, WidgetOptions } from '@/pages/formDesign/index.d';
 
 interface InputConfigProps {
-  middleArr: Widget[];
   activeIndex: number;
 }
 
@@ -12,9 +12,11 @@ const InputConfig: FC<InputConfigProps> = (props) => {
   const { dispatch } = getDvaApp()._store;
 
   const [form] = Form.useForm();
-  let { middleArr, activeIndex }: { middleArr: Widget[]; activeIndex: number } = props;
-  const widgetData: Widget = middleArr[activeIndex];
-  const { options }: { options: WidgetOptions } = widgetData;
+  const { activeIndex }: { activeIndex: number } = props;
+
+  const initMiddleArr = cloneMidList();
+  const initWidgetData: Widget = initMiddleArr[activeIndex];
+  const { options: initOptions }: { options: WidgetOptions } = initWidgetData;
 
   /**
    * @desc 表单项值改变，更新 midList
@@ -22,6 +24,9 @@ const InputConfig: FC<InputConfigProps> = (props) => {
    */
   const handleFormChange = (): void => {
     const formData = form.getFieldsValue();
+
+    const middleArr = cloneMidList();
+    const widgetData: Widget = middleArr[activeIndex];
 
     middleArr[activeIndex] = {
       ...widgetData,
@@ -56,7 +61,7 @@ const InputConfig: FC<InputConfigProps> = (props) => {
         <Form.Item
           label="标题"
           name="label"
-          initialValue={widgetData.label}
+          initialValue={initWidgetData.label}
           rules={[
             {
               required: true,
@@ -64,17 +69,17 @@ const InputConfig: FC<InputConfigProps> = (props) => {
             },
           ]}
         >
-          <Input placeholder={widgetData.label} />
+          <Input placeholder={initWidgetData.label} />
         </Form.Item>
 
-        <Form.Item label="默认值" name="defaultValue" initialValue={options.defaultValue}>
-          <Input placeholder={options.defaultValue} />
+        <Form.Item label="默认值" name="defaultValue" initialValue={initOptions.defaultValue}>
+          <Input placeholder={initOptions.defaultValue} />
         </Form.Item>
 
         <Form.Item
           label="是否必填"
           name="isRequired"
-          initialValue={options.isRequired}
+          initialValue={initOptions.isRequired}
           rules={[
             {
               required: true,
@@ -95,7 +100,7 @@ const InputConfig: FC<InputConfigProps> = (props) => {
         <Form.Item
           label="是否禁用"
           name="isDisabled"
-          initialValue={options.isDisabled}
+          initialValue={initOptions.isDisabled}
           rules={[
             {
               required: true,
@@ -113,8 +118,8 @@ const InputConfig: FC<InputConfigProps> = (props) => {
           </Radio.Group>
         </Form.Item>
 
-        <Form.Item label="占位符" name="placeholder" initialValue={options.placeholder}>
-          <Input placeholder={options.placeholder} />
+        <Form.Item label="占位符" name="placeholder" initialValue={initOptions.placeholder}>
+          <Input placeholder={initOptions.placeholder} />
         </Form.Item>
       </Form>
     </>

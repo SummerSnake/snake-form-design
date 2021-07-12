@@ -22,13 +22,13 @@ const RightComponent: FC<RightProps> = (props) => {
         if (Array.isArray(middleList) && middleList[activeIdx])
           switch (middleList[activeIdx].id) {
             case 'baseInput':
-              return <InputConfig middleArr={middleList} activeIndex={activeIdx} />;
+              return <InputConfig activeIndex={activeIdx} />;
             case 'baseTextarea':
               return '多行文本';
             case 'baseRadio':
               return '文本框';
             case 'baseSelect':
-              return <SelectConfig middleArr={middleList} activeIndex={activeIdx} />;
+              return <SelectConfig activeIndex={activeIdx} />;
             default:
               return null;
           }

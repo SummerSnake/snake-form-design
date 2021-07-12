@@ -2,10 +2,10 @@ import React, { FC } from 'react';
 import { Form, Input, Radio } from 'antd';
 import { v4 as uuidv4 } from 'uuid';
 import { getDvaApp } from 'umi';
-import { Widget, WidgetOptions } from '@/pages/formDesign/index.d';
+import { cloneMidList } from '@/utils/util';
+import { Widget, WidgetOptions, optionsElement } from '@/pages/formDesign/index.d';
 
 interface SelectConfigProps {
-  middleArr: Widget[];
   activeIndex: number;
 }
 
@@ -13,10 +13,25 @@ const SelectConfig: FC<SelectConfigProps> = (props) => {
   const { dispatch } = getDvaApp()._store;
 
   const [form] = Form.useForm();
-  let { middleArr, activeIndex }: { middleArr: Widget[]; activeIndex: number } = props;
-  const widgetData: Widget = middleArr[activeIndex];
-  const { options }: { options: WidgetOptions } = widgetData;
-  const { elements = [] } = options;
+  const { activeIndex }: { activeIndex: number } = props;
+
+  const initMiddleArr = cloneMidList();
+  const initWidgetData: Widget = initMiddleArr[activeIndex];
+  const { options: initOptions }: { options: WidgetOptions } = initWidgetData;
+  const { elements: initElements } = initOptions;
+
+  /**
+   * @desc 获取当前控件自定义元素列表
+   * @return { optionsElement[] }
+   */
+  const getElementsList = (): optionsElement[] => {
+    const middleArr = cloneMidList();
+    const widgetData: Widget = middleArr[activeIndex];
+    const { options }: { options: WidgetOptions } = widgetData;
+    const { elements = [] } = options;
+
+    return JSON.parse(JSON.stringify(elements));
+  };
 
   /**
    * @desc elements 子选项值改变，更新 midList
@@ -32,7 +47,7 @@ const SelectConfig: FC<SelectConfigProps> = (props) => {
   ): void => {
     const formData = form.getFieldsValue();
 
-    const elemArr = JSON.parse(JSON.stringify(elements));
+    const elemArr = getElementsList();
 
     for (let i = 0; i < elemArr.length; i++) {
       if (elemArr[i].id === id) {
@@ -42,6 +57,9 @@ const SelectConfig: FC<SelectConfigProps> = (props) => {
         };
       }
     }
+
+    const middleArr = cloneMidList();
+    const widgetData: Widget = middleArr[activeIndex];
 
     middleArr[activeIndex] = {
       ...widgetData,
@@ -66,6 +84,8 @@ const SelectConfig: FC<SelectConfigProps> = (props) => {
    */
   const handleFormChange = (): void => {
     const formData = form.getFieldsValue();
+    const middleArr = cloneMidList();
+    const widgetData: Widget = middleArr[activeIndex];
 
     middleArr[activeIndex] = {
       ...widgetData,
@@ -99,7 +119,7 @@ const SelectConfig: FC<SelectConfigProps> = (props) => {
         <Form.Item
           label="标题"
           name="label"
-          initialValue={widgetData.label}
+          initialValue={initWidgetData.label}
           rules={[
             {
               required: true,
@@ -107,17 +127,17 @@ const SelectConfig: FC<SelectConfigProps> = (props) => {
             },
           ]}
         >
-          <Input placeholder={widgetData.label} />
+          <Input placeholder={initWidgetData.label} />
         </Form.Item>
 
-        <Form.Item label="默认值" name="defaultValue" initialValue={options.defaultValue}>
-          <Input placeholder={options.defaultValue} />
+        <Form.Item label="默认值" name="defaultValue" initialValue={initOptions.defaultValue}>
+          <Input placeholder={initOptions.defaultValue} />
         </Form.Item>
 
         <Form.Item
           label="是否必填"
           name="isRequired"
-          initialValue={options.isRequired}
+          initialValue={initOptions.isRequired}
           rules={[
             {
               required: true,
@@ -138,7 +158,7 @@ const SelectConfig: FC<SelectConfigProps> = (props) => {
         <Form.Item
           label="是否禁用"
           name="isDisabled"
-          initialValue={options.isDisabled}
+          initialValue={initOptions.isDisabled}
           rules={[
             {
               required: true,
@@ -156,8 +176,8 @@ const SelectConfig: FC<SelectConfigProps> = (props) => {
           </Radio.Group>
         </Form.Item>
 
-        {Array.isArray(elements) &&
-          elements.map((item) => (
+        {Array.isArray(initElements) &&
+          initElements.map((item) => (
             <React.Fragment key={item.id}>
               <h3 style={{ margin: '30px 0 20px' }}>Select 选择框：</h3>
 
