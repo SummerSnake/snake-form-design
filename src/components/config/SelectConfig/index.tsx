@@ -3,6 +3,7 @@ import { Form, Input, Radio } from 'antd';
 import { PlusCircleOutlined, MinusCircleOutlined } from '@ant-design/icons';
 import { v4 as uuidv4 } from 'uuid';
 import { getDvaApp } from 'umi';
+
 import { cloneMidList } from '@/utils/util';
 import { Widget, WidgetOptions, optionsElement } from '@/pages/formDesign/index.d';
 

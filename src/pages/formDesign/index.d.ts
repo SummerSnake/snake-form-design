@@ -25,14 +25,13 @@ export interface Widget {
   randomCode: string;
 }
 
-export interface WidgetGroup {
+export interface Widgets {
   id: string;
   title: string;
   items: Widget[];
 }
 
 export interface InitialData {
-  widgets: WidgetGroup[];
-  activeId: string;
-  midList: Widget[];
+  widgets: Widgets;
+  widgetGroups: Widgets;
 }

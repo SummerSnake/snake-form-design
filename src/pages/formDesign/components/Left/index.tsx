@@ -3,31 +3,43 @@
  * @Description: 左侧控件面板
  */
 import React, { FC } from 'react';
-
-import { WidgetGroup } from '@/pages/formDesign/index.d';
+import { Tabs } from 'antd';
+import { Widgets } from '@/pages/formDesign/index.d';
 import Widget from './Widget';
 
 interface LeftProps {
-  widgetsList: WidgetGroup[];
+  widgetsData: Widgets;
+  widgetGroupsData: Widgets;
 }
 
 const LeftComponent: FC<LeftProps> = (props) => {
-  const { widgetsList = [] } = props;
+  const { widgetsData, widgetGroupsData } = props;
+  const { items: singleItem } = widgetsData;
+  const { items: groupItem } = widgetGroupsData;
 
   return (
     <div className="leftWrap">
-      {Array.isArray(widgetsList) &&
-        widgetsList.map((widget) => (
-          <React.Fragment key={widget.id}>
-            <h3 className="leftTitle">{widget.title}</h3>
+      <Tabs defaultActiveKey={widgetsData.id} size="large" centered>
+        <Tabs.TabPane tab="控件" key={widgetsData.id}>
+          <h3 className="leftTitle">{widgetsData.title}</h3>
 
-            <div className="widgetsListWrap">
-              {widget.items.map((item) => (
-                <Widget key={item.id} widgetData={item} />
-              ))}
-            </div>
-          </React.Fragment>
-        ))}
+          <div className="widgetsListWrap">
+            {singleItem.map((item) => (
+              <Widget key={item.id} widgetData={item} />
+            ))}
+          </div>
+        </Tabs.TabPane>
+
+        <Tabs.TabPane tab="控件组" key={widgetGroupsData.id}>
+          <h3 className="leftTitle">{widgetGroupsData.title}</h3>
+
+          <div className="widgetsListWrap">
+            {groupItem.map((item) => (
+              <Widget key={item.id} widgetData={item} />
+            ))}
+          </div>
+        </Tabs.TabPane>
+      </Tabs>
     </div>
   );
 };

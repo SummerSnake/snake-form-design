@@ -1,9 +1,10 @@
 import { Reducer } from 'umi';
 import widgetsData from '../pages/formDesign/data/widgetsData';
-import { Widget, WidgetGroup } from '@/pages/formDesign/index.d';
+import { Widget, Widgets } from '@/pages/formDesign/index.d';
 
 export interface FormDesignModelState {
-  widgets: WidgetGroup[];
+  widgets: Widgets;
+  widgetGroups: Widgets;
   midList: Widget[];
   activeIdx: number;
 }
@@ -21,6 +22,7 @@ const FormDesignModal: FormDesignModalType = {
   namespace: 'formDesign',
   state: {
     widgets: widgetsData.widgets,
+    widgetGroups: widgetsData.widgetGroups,
     midList: [],
     activeIdx: -1,
   },
@@ -34,7 +36,8 @@ const FormDesignModal: FormDesignModalType = {
     },
     reset() {
       return {
-        widgets: [],
+        widgets: { id: 'widgets', title: '控件', items: [] },
+        widgetGroups: { id: 'widgetGroups', title: '控件组', items: [] },
         midList: [],
         activeIdx: -1,
       };

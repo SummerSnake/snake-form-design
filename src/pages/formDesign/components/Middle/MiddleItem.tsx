@@ -5,6 +5,7 @@
 import React, { FC, useRef } from 'react';
 import { useDrag, useDrop, DragSourceMonitor, DropTargetMonitor, XYCoord } from 'react-dnd';
 import { getDvaApp } from 'umi';
+
 import { updatePlaceholder, deletePlaceholder, deleteActiveItem, reOrder } from '@/utils/util';
 import { Widget } from '@/pages/formDesign/index.d';
 
@@ -17,6 +18,7 @@ interface ItemType {
   itemData: Widget;
   idx: number;
 }
+
 const MiddleItemComponent: FC<MiddleItemProps> = (props) => {
   const { dispatch } = getDvaApp()._store;
   const { itemData, idx = 0, activeIndex = 0 } = props;

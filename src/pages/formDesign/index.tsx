@@ -14,14 +14,14 @@ interface FormDesignProps extends ConnectProps {
 }
 
 const FormDesignPage: FC<FormDesignProps> = (props) => {
-  const { formDesign = { widgets: [], midList: [], activeIdx: 0 } } = props;
-  const { widgets = [], midList = [], activeIdx = 0 } = formDesign;
+  const { formDesign } = props;
+  const { widgets, widgetGroups, midList = [], activeIdx = 0 } = formDesign;
 
   return (
     <div className="formDesignWrap">
       <DndProvider backend={HTML5Backend}>
-        <div className="form-design-panel">
-          <Left widgetsList={widgets} />
+        <div className="formDesignPanel">
+          <Left widgetsData={widgets} widgetGroupsData={widgetGroups} />
           <Middle middleList={midList} activeIdx={activeIdx} />
           <Right middleList={midList} activeIdx={activeIdx} />
         </div>

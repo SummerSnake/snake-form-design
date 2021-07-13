@@ -14,14 +14,13 @@ import {
   ToTopOutlined,
 } from '@ant-design/icons';
 import { useDrag, DragSourceMonitor } from 'react-dnd';
-import { handleDrop, deletePlaceholder } from '@/utils/util';
 
+import { handleDrop, deletePlaceholder } from '@/utils/util';
 import { Widget } from '@/pages/formDesign/index.d';
 
 interface ICONSTYPE {
   [key: string]: ReactElement;
 }
-
 interface WidgetProps {
   widgetData: Widget;
 }

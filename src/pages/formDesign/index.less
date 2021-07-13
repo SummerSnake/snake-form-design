@@ -1,7 +1,7 @@
 @import '../../styles/mixin.less';
 
 .formDesignWrap {
-  .form-design-panel {
+  .formDesignPanel {
     display: flex;
     height: 100vh;
     background-color: @bgColor;
@@ -30,6 +30,18 @@
             float: right;
             margin-right: 10px;
           }
+        }
+      }
+      .ant-tabs-nav-list {
+        width: 100%;
+        .ant-tabs-tab {
+          flex: 1;
+          .ant-tabs-tab-btn {
+            margin: 0 auto;
+          }
+        }
+        .ant-tabs-ink-bar {
+          width: 50%;
         }
       }
     }

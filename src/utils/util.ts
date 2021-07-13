@@ -1,5 +1,6 @@
 import { v4 as uuidv4 } from 'uuid';
 import { getDvaApp, FormDesignModelState } from 'umi';
+
 import { Widget } from '@/pages/formDesign/index.d';
 
 /**

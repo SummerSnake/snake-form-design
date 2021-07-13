@@ -1,6 +1,7 @@
 import React, { FC } from 'react';
 import { Form, Input, Radio } from 'antd';
 import { getDvaApp } from 'umi';
+
 import { cloneMidList } from '@/utils/util';
 import { Widget, WidgetOptions } from '@/pages/formDesign/index.d';
 
