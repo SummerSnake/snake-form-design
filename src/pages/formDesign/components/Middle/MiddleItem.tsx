@@ -4,10 +4,11 @@
  */
 import React, { FC, useRef } from 'react';
 import { useDrag, useDrop, DragSourceMonitor, DropTargetMonitor, XYCoord } from 'react-dnd';
-import { getDvaApp } from 'umi';
 
-import { updatePlaceholder, deletePlaceholder, deleteActiveItem, reOrder } from '@/utils/util';
-import { Widget } from '@/pages/formDesign/index.d';
+import { updatePlaceholder, deletePlaceholder, reOrder } from '@/utils/util';
+import { Widget, ViewDataType } from '@/pages/formDesign/index.d';
+
+import ViewComponent from '@/components/view';
 
 interface MiddleItemProps {
   itemData: Widget;
@@ -20,30 +21,9 @@ interface ItemType {
 }
 
 const MiddleItemComponent: FC<MiddleItemProps> = (props) => {
-  const { dispatch } = getDvaApp()._store;
   const { itemData, idx = 0, activeIndex = 0 } = props;
 
   const widgetRef = useRef<HTMLDivElement>(null);
-
-  /**
-   * @desc 修改当前选择项下标
-   */
-  const handleActive = () => {
-    dispatch({
-      type: 'formDesign/save',
-      payload: {
-        activeIdx: idx,
-      },
-    });
-  };
-
-  /**
-   * @desc 删除当前选择项
-   */
-  const handleDeleteWidget = (e: React.MouseEvent<HTMLDivElement>) => {
-    e.stopPropagation();
-    deleteActiveItem(idx);
-  };
 
   /**
    * @desc 拖拽
@@ -132,37 +112,23 @@ const MiddleItemComponent: FC<MiddleItemProps> = (props) => {
     },
   });
 
-  /**
-   * 使用 drag 和 drop 对 ref 进行包裹，则组件既可以进行拖拽也可以接收拖拽组件
-   */
+  // 使用 drag 和 drop 对 ref 进行包裹，则组件既可以进行拖拽也可以接收拖拽组件
   drager(droper(widgetRef));
 
+  // 视图组件所需数据
+  const viewData: ViewDataType = {
+    ...itemData,
+    widgetIdx: idx,
+    isActive: activeIndex === idx,
+  };
+
   return (
-    <div ref={widgetRef} className="widgetWrap" style={{ opacity }}>
-      {itemData.randomCode !== '-1' && (
-        <div
-          className={`widgetDom ${activeIndex === idx && 'widgetDomActive'}`}
-          onClick={handleActive}
-        >
-          <div
-            className="deleteBtnWrap"
-            style={{ visibility: activeIndex === idx ? 'visible' : 'hidden' }}
-            onClick={handleDeleteWidget}
-          >
-            <span className="deleteBtnDom">×</span>
-          </div>
-
-          <span>{itemData.label}</span>
-          <i
-            className="requiredStar"
-            style={{ visibility: !!itemData?.options?.isRequired ? 'visible' : 'hidden' }}
-          >
-            *
-          </i>
-        </div>
+    <div className="widgetWrap" style={{ opacity }} ref={widgetRef}>
+      {itemData.randomCode === '-1' ? (
+        <div className="placeholderDom">{itemData.label}</div>
+      ) : (
+        <ViewComponent viewInfo={viewData} />
       )}
-
-      {itemData.randomCode === '-1' && <div className="placeholderDom">{itemData.label}</div>}
     </div>
   );
 };

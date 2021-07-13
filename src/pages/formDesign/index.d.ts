@@ -35,3 +35,14 @@ export interface InitialData {
   widgets: Widgets;
   widgetGroups: Widgets;
 }
+
+export interface ViewDataType {
+  id: string;
+  label: string;
+  type: string;
+  icon: string;
+  options: WidgetOptions;
+  randomCode: string;
+  widgetIdx: number;
+  isActive: boolean;
+}
