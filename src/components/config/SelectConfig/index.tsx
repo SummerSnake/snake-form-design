@@ -281,4 +281,4 @@ const SelectConfig: FC<SelectConfigProps> = (props) => {
   );
 };
 
-export default SelectConfig;
+export default React.memo(SelectConfig);

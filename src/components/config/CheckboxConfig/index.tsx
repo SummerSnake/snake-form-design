@@ -281,4 +281,4 @@ const CheckboxConfig: FC<CheckboxConfigProps> = (props) => {
   );
 };
 
-export default CheckboxConfig;
+export default React.memo(CheckboxConfig);

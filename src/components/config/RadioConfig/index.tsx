@@ -281,4 +281,4 @@ const RadioConfig: FC<RadioConfigProps> = (props) => {
   );
 };
 
-export default RadioConfig;
+export default React.memo(RadioConfig);

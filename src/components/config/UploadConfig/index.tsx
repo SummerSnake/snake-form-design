@@ -125,4 +125,4 @@ const UploadConfig: FC<UploadConfigProps> = (props) => {
   );
 };
 
-export default UploadConfig;
+export default React.memo(UploadConfig);

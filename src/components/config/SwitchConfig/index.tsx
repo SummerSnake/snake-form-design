@@ -150,4 +150,4 @@ const SwitchConfig: FC<SwitchConfigProps> = (props) => {
   );
 };
 
-export default SwitchConfig;
+export default React.memo(SwitchConfig);

@@ -126,4 +126,4 @@ const TextareaConfig: FC<TextareaConfigProps> = (props) => {
   );
 };
 
-export default TextareaConfig;
+export default React.memo(TextareaConfig);

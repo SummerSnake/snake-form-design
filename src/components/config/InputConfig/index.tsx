@@ -126,4 +126,4 @@ const InputConfig: FC<InputConfigProps> = (props) => {
   );
 };
 
-export default InputConfig;
+export default React.memo(InputConfig);
