@@ -11,6 +11,7 @@ import {
   OrderedListOutlined,
   DotChartOutlined,
   HeartOutlined,
+  ToTopOutlined,
 } from '@ant-design/icons';
 import { useDrag, DragSourceMonitor } from 'react-dnd';
 import { handleDrop, deletePlaceholder } from '@/utils/util';
@@ -33,6 +34,7 @@ const Icons = {
   orderedListOutlined: <OrderedListOutlined />,
   dotChartOutlined: <DotChartOutlined />,
   heartOutlined: <HeartOutlined />,
+  toTopOutlined: <ToTopOutlined />,
 };
 
 const WidgetComponent: FC<WidgetProps> = (props) => {

@@ -14,6 +14,7 @@ import {
   SelectConfig,
   DatePickerConfig,
   SwitchConfig,
+  UploadConfig,
 } from '@/components/config';
 
 interface RightProps {
@@ -43,6 +44,8 @@ const RightComponent: FC<RightProps> = (props) => {
               return <DatePickerConfig activeIndex={activeIdx} />;
             case 'baseSwitch':
               return <SwitchConfig activeIndex={activeIdx} />;
+            case 'baseUpload':
+              return <UploadConfig activeIndex={activeIdx} />;
             default:
               return null;
           }

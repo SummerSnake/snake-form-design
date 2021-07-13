@@ -5,6 +5,7 @@ import RadioConfig from './RadioConfig';
 import SelectConfig from './SelectConfig';
 import SwitchConfig from './SwitchConfig';
 import TextareaConfig from './TextareaConfig';
+import UploadConfig from './UploadConfig';
 
 export {
   CheckboxConfig,
@@ -14,4 +15,5 @@ export {
   SelectConfig,
   SwitchConfig,
   TextareaConfig,
+  UploadConfig,
 };

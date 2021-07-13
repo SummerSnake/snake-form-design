@@ -125,6 +125,18 @@ const initialData = {
           },
           randomCode: '',
         },
+        {
+          id: 'baseUpload',
+          label: '上传',
+          type: 'upload',
+          icon: 'toTopOutlined',
+          options: {
+            isRequired: 0,
+            limitSize: 10240,
+            limitNum: 1,
+          },
+          randomCode: '',
+        },
       ],
     },
     {

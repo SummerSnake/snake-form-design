@@ -12,6 +12,8 @@ export interface WidgetOptions {
   elements?: optionsElement[];
   placeholder?: string;
   format?: string;
+  limitSize?: number;
+  limitNum?: number;
 }
 
 export interface Widget {
