@@ -117,9 +117,9 @@ const initialData = {
           id: 'baseSwitch',
           label: '开关',
           type: 'switch',
-          icon: '',
+          icon: 'heartOutlined',
           options: {
-            defaultValue: '',
+            defaultValue: '0',
             isRequired: 0,
             isDisabled: 0,
           },

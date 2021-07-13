@@ -10,6 +10,7 @@ import {
   SlackOutlined,
   OrderedListOutlined,
   DotChartOutlined,
+  HeartOutlined,
 } from '@ant-design/icons';
 import { useDrag, DragSourceMonitor } from 'react-dnd';
 import { handleDrop, deletePlaceholder } from '@/utils/util';
@@ -31,6 +32,7 @@ const Icons = {
   slack: <SlackOutlined />,
   orderedListOutlined: <OrderedListOutlined />,
   dotChartOutlined: <DotChartOutlined />,
+  heartOutlined: <HeartOutlined />,
 };
 
 const WidgetComponent: FC<WidgetProps> = (props) => {

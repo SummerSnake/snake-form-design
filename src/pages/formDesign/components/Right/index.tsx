@@ -13,6 +13,7 @@ import {
   CheckboxConfig,
   SelectConfig,
   DatePickerConfig,
+  SwitchConfig,
 } from '@/components/config';
 
 interface RightProps {
@@ -40,6 +41,8 @@ const RightComponent: FC<RightProps> = (props) => {
               return <SelectConfig activeIndex={activeIdx} />;
             case 'baseDatePicker':
               return <DatePickerConfig activeIndex={activeIdx} />;
+            case 'baseSwitch':
+              return <SwitchConfig activeIndex={activeIdx} />;
             default:
               return null;
           }

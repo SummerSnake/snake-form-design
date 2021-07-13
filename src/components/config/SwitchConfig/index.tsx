@@ -1,14 +1,14 @@
 import React, { FC } from 'react';
-import { Form, Input, Select, Radio } from 'antd';
+import { Form, Input, Radio } from 'antd';
 import { getDvaApp } from 'umi';
 import { cloneMidList } from '@/utils/util';
 import { Widget, WidgetOptions, optionsElement } from '@/pages/formDesign/index.d';
 
-interface DatePickerConfigProps {
+interface SwitchConfigProps {
   activeIndex: number;
 }
 
-const DatePickerConfig: FC<DatePickerConfigProps> = (props) => {
+const SwitchConfig: FC<SwitchConfigProps> = (props) => {
   const { dispatch } = getDvaApp()._store;
 
   const [form] = Form.useForm();
@@ -17,7 +17,6 @@ const DatePickerConfig: FC<DatePickerConfigProps> = (props) => {
   const initMiddleArr = cloneMidList();
   const initWidgetData: Widget = initMiddleArr[activeIndex];
   const { options: initOptions }: { options: WidgetOptions } = initWidgetData;
-  const { elements: initElements } = initOptions;
 
   /**
    * @desc 获取当前控件自定义元素列表
@@ -46,7 +45,7 @@ const DatePickerConfig: FC<DatePickerConfigProps> = (props) => {
       label: formData.label,
       options: {
         ...widgetData.options,
-        format: formData.format,
+        defaultValue: formData.defaultValue,
         isRequired: formData.isRequired,
         isDisabled: formData.isDisabled,
       },
@@ -64,7 +63,7 @@ const DatePickerConfig: FC<DatePickerConfigProps> = (props) => {
     <>
       <Form
         form={form}
-        id="DatePickerConfig"
+        id="SwitchConfig"
         layout="horizontal"
         onValuesChange={handleFormChange}
         labelCol={{ span: 6 }}
@@ -82,6 +81,27 @@ const DatePickerConfig: FC<DatePickerConfigProps> = (props) => {
           ]}
         >
           <Input placeholder={initWidgetData.label} />
+        </Form.Item>
+
+        <Form.Item
+          label="默认值"
+          name="defaultValue"
+          initialValue={!!initOptions.defaultValue}
+          rules={[
+            {
+              required: true,
+              message: '请选择默认值',
+            },
+          ]}
+        >
+          <Radio.Group>
+            <Radio key={1} value="1">
+              打开
+            </Radio>
+            <Radio key={0} value="0">
+              关闭
+            </Radio>
+          </Radio.Group>
         </Form.Item>
 
         <Form.Item
@@ -125,30 +145,9 @@ const DatePickerConfig: FC<DatePickerConfigProps> = (props) => {
             </Radio>
           </Radio.Group>
         </Form.Item>
-
-        <Form.Item
-          label="时间格式"
-          name="format"
-          initialValue={initOptions.format}
-          rules={[
-            {
-              required: true,
-              message: '请选择时间格式',
-            },
-          ]}
-        >
-          <Select>
-            {Array.isArray(initElements) &&
-              initElements.map((item) => (
-                <Select.Option key={item.id} value={item.elemVal}>
-                  {item.elemTitle}
-                </Select.Option>
-              ))}
-          </Select>
-        </Form.Item>
       </Form>
     </>
   );
 };
 
-export default DatePickerConfig;
+export default SwitchConfig;
