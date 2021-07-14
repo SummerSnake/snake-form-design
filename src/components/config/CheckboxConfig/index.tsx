@@ -1,4 +1,4 @@
-import React, { FC } from 'react';
+import React, { FC, useState, useEffect } from 'react';
 import { Form, Input, Radio } from 'antd';
 import { PlusCircleOutlined, MinusCircleOutlined } from '@ant-design/icons';
 import { v4 as uuidv4 } from 'uuid';
@@ -20,7 +20,8 @@ const CheckboxConfig: FC<CheckboxConfigProps> = (props) => {
   const initMiddleArr = cloneMidList();
   const initWidgetData: Widget = initMiddleArr[activeIndex];
   const { options: initOptions }: { options: WidgetOptions } = initWidgetData;
-  const { elements: initElements } = initOptions;
+
+  const [initElements, setInitElements] = useState<optionsElement[]>(initOptions?.elements || []);
 
   /**
    * @desc 获取当前控件自定义元素列表
@@ -102,6 +103,8 @@ const CheckboxConfig: FC<CheckboxConfigProps> = (props) => {
       },
     };
 
+    setInitElements(elemArr);
+
     dispatch({
       type: 'formDesign/save',
       payload: {
@@ -137,6 +140,13 @@ const CheckboxConfig: FC<CheckboxConfigProps> = (props) => {
       },
     });
   };
+
+  /**
+   * @desc 重新渲染
+   */
+  useEffect(() => {
+    setInitElements(initOptions.elements || []);
+  }, [activeIndex]);
 
   return (
     <>

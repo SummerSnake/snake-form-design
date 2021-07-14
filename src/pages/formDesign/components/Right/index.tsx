@@ -2,8 +2,9 @@
  * @Author: SummerSnake
  * @Description: 右侧配置面板
  */
-import React, { FC } from 'react';
+import React, { FC, useState, useEffect } from 'react';
 
+import { cloneMidList } from '@/utils/util';
 import { Widget } from '@/pages/formDesign/index.d';
 
 import {
@@ -24,12 +25,19 @@ interface RightProps {
 
 const RightComponent: FC<RightProps> = (props) => {
   const { middleList = [], activeIdx } = props;
+  const [midList, setMidList] = useState<Widget[]>(middleList);
+
+  // 更新右侧配置面板
+  useEffect(() => {
+    const midArr = cloneMidList();
+    setMidList(midArr);
+  }, [activeIdx]);
 
   return (
     <div className="rightWrap">
       {(() => {
-        if (Array.isArray(middleList) && middleList[activeIdx])
-          switch (middleList[activeIdx].id) {
+        if (Array.isArray(midList) && midList[activeIdx])
+          switch (midList[activeIdx].id) {
             case 'baseInput':
               return <InputConfig activeIndex={activeIdx} />;
             case 'baseTextarea':

@@ -75,7 +75,7 @@ export const updatePlaceholder = (hoverIndex: number): void => {
     midArr.splice(hoverIndex, 0, placeholder);
   }
   // placeholder 存在，移动其位置
-  if (placeholderIndex > -1) {
+  if (placeholderIndex > -1 && placeholderIndex !== hoverIndex) {
     [midArr[placeholderIndex], midArr[hoverIndex]] = [midArr[hoverIndex], midArr[placeholderIndex]];
   }
 
