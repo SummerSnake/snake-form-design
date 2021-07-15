@@ -1,0 +1,37 @@
+@import '../../styles/mixin.less';
+
+.panelWrap {
+  .wh(336px, 737px);
+  position: relative;
+  box-sizing: border-box;
+  padding: 62px 12px 50px;
+  margin: 0 auto;
+  background-color: #fff;
+  box-shadow: 0px 0px 8px 0px rgba(0, 0, 0, 0.12);
+  border-radius: 16px;
+  .panelTitle {
+    .wh(312px, 42px);
+    position: absolute;
+    top: 12px;
+    left: 12px;
+    line-height: 42px;
+    text-align: center;
+    color: #18263c;
+    background-color: #fff;
+    border: 1px solid @borderColor;
+    border-bottom: none;
+    border-radius: 12px 12px 0 0;
+  }
+  .panelContent {
+    .wh(312px, 660px);
+    position: absolute;
+    top: 54px;
+    left: 12px;
+    box-sizing: border-box;
+    padding-top: 10px;
+    background-color: @bgColor;
+    border: 1px solid @borderColor;
+    border-radius: 0 0 12px 12px;
+    overflow: auto;
+  }
+}
