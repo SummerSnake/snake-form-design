@@ -6,7 +6,7 @@ import React, { FC, useRef } from 'react';
 import { useDrag, useDrop, DragSourceMonitor, DropTargetMonitor, XYCoord } from 'react-dnd';
 
 import { updatePlaceholder, deletePlaceholder, reOrder } from '@/utils/util';
-import { Widget, ViewDataType } from '@/pages/formDesign/index.d';
+import { Widget } from '@/pages/formDesign/index.d';
 
 import ViewComponent from '@/components/view';
 
@@ -115,19 +115,12 @@ const MiddleItemComponent: FC<MiddleItemProps> = (props) => {
   // 使用 drag 和 drop 对 ref 进行包裹，则组件既可以进行拖拽也可以接收拖拽组件
   drager(droper(widgetRef));
 
-  // 视图组件所需数据
-  const viewData: ViewDataType = {
-    ...itemData,
-    widgetIdx: idx,
-    isActive: activeIndex === idx,
-  };
-
   return (
-    <div className="widgetWrap" style={{ opacity }} ref={widgetRef}>
+    <div style={{ opacity }} ref={widgetRef}>
       {itemData.randomCode === '-1' ? (
         <div className="placeholderDom">{itemData.label}</div>
       ) : (
-        <ViewComponent viewInfo={viewData} />
+        <ViewComponent viewInfo={itemData} widgetIdx={idx} isActive={activeIndex === idx} />
       )}
     </div>
   );

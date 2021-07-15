@@ -155,6 +155,11 @@ const initialData = {
           isDisabled: 0,
           placeholder: '请输入民族',
         },
+        widgetsList: [
+          { id: 'baseInput', title: '单行文本', isRequired: 1 },
+          { id: 'baseSelect', title: '下拉选择框', isRequired: 1 },
+          { id: 'baseCheckbox', title: '多选框组', isRequired: 1 },
+        ],
         randomCode: '',
       },
     ],

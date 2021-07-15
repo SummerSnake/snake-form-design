@@ -82,60 +82,61 @@
         overflow: auto;
         // 单个控件
         .widgetWrap {
+          position: relative;
+          box-sizing: border-box;
+          margin-bottom: 10px;
+          padding: 0 12px;
+          border: 1px solid transparent;
           background-color: #fff;
           user-select: none;
           cursor: move;
-          .widgetDom {
-            .wh(100%, 44px);
-            position: relative;
-            box-sizing: border-box;
-            padding: 0 12px;
-            line-height: 44px;
-            border: 1px solid transparent;
-            border-bottom: 1px solid @borderColor;
-
-            &:last-child {
-              .widgetDom {
-                border-bottom: 1px solid transparent;
-              }
-            }
-            .deleteBtnWrap {
-              .wh(20px, 20px);
+          .deleteBtnWrap {
+            .wh(20px, 20px);
+            position: absolute;
+            top: 0;
+            right: 0;
+            z-index: 9;
+            border-bottom-left-radius: 20px;
+            color: #fff;
+            background-color: @primaryColor;
+            cursor: pointer;
+            .deleteBtnDom {
+              .wh(16px, 16px);
               position: absolute;
               top: 0;
               right: 0;
-              z-index: 9;
-              border-bottom-left-radius: 20px;
-              color: #fff;
-              background-color: @primaryColor;
-              cursor: pointer;
-              .deleteBtnDom {
-                .wh(16px, 16px);
-                position: absolute;
-                top: 0;
-                right: 0;
-                line-height: 16px;
-                font-size: 16px;
-                text-align: center;
-              }
+              line-height: 16px;
+              font-size: 16px;
+              text-align: center;
             }
+          }
+          .widgetDom {
+            .wh(100%, 42px);
+            line-height: 42px;
             .requiredStar {
               margin-left: 4px;
               color: #ff4d4f;
               vertical-align: middle;
             }
           }
-          .widgetDomActive {
-            border: 1px solid @primaryColor;
+          .groupViewItem {
+            border-bottom: 1px solid @borderColor;
+            &:last-child {
+              border: none;
+            }
           }
-          .placeholderDom {
-            .wh(100%, 44px);
-            .sc(12px, @primaryColor);
-            line-height: 44px;
-            text-align: center;
-            border-top: 1px dashed @primaryColor;
-            border-bottom: 1px dashed @primaryColor;
-          }
+        }
+        .widgetWrapActive {
+          border: 1px solid @primaryColor;
+        }
+        // 放这里
+        .placeholderDom {
+          .wh(100%, 42px);
+          .sc(12px, @primaryColor);
+          line-height: 42px;
+          text-align: center;
+          border-top: 1px dashed @primaryColor;
+          border-bottom: 1px dashed @primaryColor;
         }
       }
     }

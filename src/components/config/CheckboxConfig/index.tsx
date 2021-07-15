@@ -145,7 +145,7 @@ const CheckboxConfig: FC<CheckboxConfigProps> = (props) => {
    * @desc 重新渲染
    */
   useEffect(() => {
-    setInitElements(initOptions.elements || []);
+    setInitElements(initOptions?.elements || []);
   }, [activeIndex]);
 
   return (
