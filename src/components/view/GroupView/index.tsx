@@ -1,7 +1,7 @@
 import React, { FC, ReactElement } from 'react';
 import { v4 as uuidv4 } from 'uuid';
 
-import { Widget, widgetsListItem } from '@/pages/formDesign/index.d';
+import { Widget } from '@/pages/formDesign/index.d';
 
 import CommonView from '../CommonView';
 
@@ -46,9 +46,9 @@ const GroupViewComponent: FC<GroupViewProps> = (props) => {
   return (
     <>
       {Array.isArray(widgetsList) &&
-        widgetsList.map((item: widgetsListItem) => (
+        widgetsList.map((item: Widget) => (
           <div className="groupViewItem" key={uuidv4()}>
-            {(viewMap as ViewMapType)[item.id](item.title, item.isRequired)}
+            {(viewMap as ViewMapType)[item.id](item.label, item.options?.isRequired || 0)}
           </div>
         ))}
     </>

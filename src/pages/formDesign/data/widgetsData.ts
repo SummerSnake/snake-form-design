@@ -88,7 +88,7 @@ const initialData = {
       {
         id: 'baseDatePicker',
         label: '日期选择器',
-        type: 'date',
+        type: 'datePicker',
         icon: 'dotChartOutlined',
         options: {
           format: 'YYYY-MM-DD',
@@ -147,7 +147,7 @@ const initialData = {
       {
         id: 'nations',
         label: '民族',
-        type: 'input',
+        type: 'group',
         icon: '',
         options: {
           defaultValue: '',
@@ -156,9 +156,49 @@ const initialData = {
           placeholder: '请输入民族',
         },
         widgetsList: [
-          { id: 'baseInput', title: '单行文本', isRequired: 1 },
-          { id: 'baseSelect', title: '下拉选择框', isRequired: 1 },
-          { id: 'baseCheckbox', title: '多选框组', isRequired: 1 },
+          {
+            id: 'baseInput',
+            label: '单行文本',
+            type: 'input',
+            icon: 'fileTextOutlined',
+            options: {
+              defaultValue: '',
+              isRequired: 1,
+              isDisabled: 0,
+              placeholder: '请输入单行文本',
+            },
+            randomCode: '',
+          },
+          {
+            id: 'baseTextarea',
+            label: '多行文本',
+            type: 'textarea',
+            icon: 'fileZipOutlined',
+            options: {
+              defaultValue: '',
+              isRequired: 0,
+              isDisabled: 0,
+              placeholder: '请输入多行文本',
+            },
+            randomCode: '',
+          },
+          {
+            id: 'baseRadio',
+            label: '单选框组',
+            type: 'radio',
+            icon: 'slack',
+            options: {
+              defaultValue: '',
+              isRequired: 0,
+              isDisabled: 0,
+              elements: [
+                { id: 1, elemTitle: '标题1', elemName: '字段1', elemVal: '值1' },
+                { id: 2, elemTitle: '标题2', elemName: '字段2', elemVal: '值2' },
+                { id: 3, elemTitle: '标题3', elemName: '字段3', elemVal: '值3' },
+              ],
+            },
+            randomCode: '',
+          },
         ],
         randomCode: '',
       },

@@ -16,12 +16,6 @@ export interface WidgetOptions {
   limitNum?: number;
 }
 
-export interface widgetsListItem {
-  id: string;
-  title: string;
-  isRequired: number;
-}
-
 export interface Widget {
   id: string;
   label: string;
@@ -29,7 +23,7 @@ export interface Widget {
   icon: string;
   options: WidgetOptions;
   randomCode: string;
-  widgetsList?: widgetsListItem[];
+  widgetsList?: Widget[];
 }
 
 export interface Widgets {

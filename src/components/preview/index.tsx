@@ -1,7 +1,9 @@
 import React, { FC } from 'react';
-import { Modal } from 'antd';
+import { Modal, Form } from 'antd';
+import { v4 as uuidv4 } from 'uuid';
 
 import { Widget } from '@/pages/formDesign/index.d';
+import FormItems from './FormItems';
 
 import './index.less';
 
@@ -12,7 +14,15 @@ interface PreviewProps {
 }
 
 const PreviewComponent: FC<PreviewProps> = (props) => {
+  const [form] = Form.useForm();
   const { midList = [], isShow, handleCancel } = props;
+
+  /**
+   * @desc 表单提交
+   */
+  const handleSubmit = () => {
+    handleCancel();
+  };
 
   return (
     <Modal
@@ -21,16 +31,26 @@ const PreviewComponent: FC<PreviewProps> = (props) => {
       destroyOnClose
       mask
       maskClosable={false}
-      footer={null}
       onCancel={handleCancel}
+      onOk={handleSubmit}
     >
       <div className="panelWrap">
         <p className="panelTitle">信息采集表</p>
 
         <div className="panelContent">
-          {midList.map((item, index) => (
-            <div></div>
-          ))}
+          <Form form={form}>
+            {Array.isArray(midList) &&
+              midList.map((item) => (
+                <React.Fragment key={uuidv4()}>
+                  {item?.type === 'group' ? (
+                    Array.isArray(item.widgetsList) &&
+                    item.widgetsList.map((child) => <FormItems widgetData={child} />)
+                  ) : (
+                    <FormItems widgetData={item} />
+                  )}
+                </React.Fragment>
+              ))}
+          </Form>
         </div>
       </div>
     </Modal>
