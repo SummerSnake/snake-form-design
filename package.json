@@ -1,0 +1,89 @@
+{
+  "name": "snake-form-design",
+  "version": "0.0.13",
+  "description": "表单设计器",
+  "main": "index.js",
+  "types": "dist/index.d.js",
+  "private": false,
+  "files": [
+    "dist",
+    "index.js"
+  ],
+  "license": "ISC",
+  "repository": {
+    "type": "git",
+    "url": "git+git@github.com:SummerSnake/snake-form-design.git"
+  },
+  "keywords": [
+    "form-design"
+  ],
+  "scripts": {
+    "start": "webpack serve --config ./config/webpack.dev.ts",
+    "dev": "webpack serve --config ./config/webpack.dev.ts",
+    "build": "cross-env NODE_ENV=production webpack  --config  ./config/webpack.prod.ts",
+    "lint": "eslint --ext .tsx,.ts --fix ./src",
+    "prettier": "node scripts/prettier.ts"
+  },
+  "dependencies": {
+    "@ant-design/icons": "^4.6.2",
+    "antd": "^4.16.7",
+    "dva-core": "^2.0.4",
+    "dva-loading": "^3.0.22",
+    "react": "^17.0.2",
+    "react-dnd": "^14.0.2",
+    "react-dnd-html5-backend": "^14.0.0",
+    "react-dom": "^17.0.2",
+    "react-redux": "^7.2.4",
+    "react-router-dom": "^5.2.0",
+    "uuid": "^8.3.2"
+  },
+  "peerDependencies": {
+    "antd": "^4.16.7",
+    "react": "^17.0.2",
+    "react-dnd": "^14.0.2",
+    "react-dnd-html5-backend": "^14.0.0",
+    "react-dom": "^17.0.2",
+    "uuid": "^8.3.2"
+  },
+  "devDependencies": {
+    "@babel/runtime": "^7.14.6",
+    "@types/node": "^16.3.2",
+    "@types/react": "^17.0.14",
+    "@types/react-dom": "^17.0.9",
+    "@types/react-redux": "^7.1.18",
+    "@types/react-router-dom": "^5.1.8",
+    "@types/webpack": "^5.28.0",
+    "@types/webpack-dev-server": "^3.11.5",
+    "@typescript-eslint/eslint-plugin": "^4.28.3",
+    "@typescript-eslint/parser": "^4.28.3",
+    "babel-loader": "^8.2.2",
+    "clean-webpack-plugin": "^4.0.0-alpha.0",
+    "cross-env": "^7.0.3",
+    "css-loader": "^5.2.6",
+    "css-minimizer-webpack-plugin": "^3.0.2",
+    "eslint": "^7.30.0",
+    "eslint-config-prettier": "^8.3.0",
+    "eslint-plugin-prettier": "^3.4.0",
+    "eslint-plugin-react": "^7.24.0",
+    "eslint-plugin-react-hooks": "^4.2.0",
+    "file-loader": "^6.2.0",
+    "html-loader": "^2.1.2",
+    "html-webpack-plugin": "^5.3.2",
+    "less": "^4.1.1",
+    "less-loader": "^10.0.1",
+    "mini-css-extract-plugin": "^1.3.3",
+    "prettier": "^2.3.2",
+    "style-loader": "^2.0.0",
+    "ts-import-plugin": "^1.6.7",
+    "ts-loader": "^9.2.3",
+    "ts-node": "^10.1.0",
+    "typescript": "^4.3.5",
+    "url-loader": "^4.1.1",
+    "webpack": "^5.44.0",
+    "webpack-bundle-analyzer": "^4.4.2",
+    "webpack-cli": "^4.7.2",
+    "webpack-dev-server": "^3.11.2",
+    "webpack-merge": "^5.8.0",
+    "webpackbar": "^5.0.0-3"
+  }
+}
