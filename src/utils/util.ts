@@ -46,6 +46,7 @@ export const handleDrop = (widget: Widget): void => {
     payload: {
       midList: [...midArr],
       activeIdx,
+      isDroped: uuidv4(),
     },
   });
 };
@@ -116,6 +117,7 @@ export const reOrder = (widget: Widget): void => {
       payload: {
         midList: [...midArr],
         activeIdx: placeholderIndex >= midArr.length ? midArr.length - 1 : placeholderIndex,
+        isDroped: uuidv4(),
       },
     });
   }

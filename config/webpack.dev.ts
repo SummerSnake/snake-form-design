@@ -33,7 +33,7 @@ module.exports = merge(baseConfig, {
   },
   devServer: {
     contentBase: resolve(__dirname, '../dist'),
-    port: 8080,
+    port: 8088,
     open: true,
     hot: true,
     progress: true,

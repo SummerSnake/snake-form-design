@@ -145,8 +145,8 @@ const initialData = {
     title: '控件组',
     items: [
       {
-        id: 'nations',
-        label: '民族',
+        id: 'expense',
+        label: '报销',
         type: 'group',
         icon: '',
         options: {

@@ -67,7 +67,7 @@ const ViewComponent: FC<ViewProps> = (props) => {
             return <CommonView title={label} required={isRequired} />;
           case 'baseUpload':
             return <CommonView title={label} required={isRequired} />;
-          case 'nations':
+          case 'expense':
             return <GroupView itemInfo={viewInfo} />;
           default:
             return null;

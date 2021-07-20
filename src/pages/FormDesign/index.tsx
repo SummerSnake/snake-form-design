@@ -16,7 +16,7 @@ interface FormDesignProps {
 
 const FormDesignPage: FC<FormDesignProps> = (props) => {
   const { formDesign } = props;
-  const { widgets, widgetGroups, midList = [], activeIdx = 0 } = formDesign;
+  const { widgets, widgetGroups, midList = [], activeIdx = 0, isDroped = '' } = formDesign;
 
   return (
     <div className="formDesignWrap">
@@ -24,7 +24,7 @@ const FormDesignPage: FC<FormDesignProps> = (props) => {
         <div className="formDesignPanel">
           <Left widgetsData={widgets} widgetGroupsData={widgetGroups} />
           <Middle middleList={midList} activeIdx={activeIdx} />
-          <Right middleList={midList} activeIdx={activeIdx} />
+          <Right middleList={midList} activeIdx={activeIdx} isDroped={isDroped} />
         </div>
       </DndProvider>
     </div>

@@ -19,6 +19,7 @@ const FormDesignModal: FormDesignModalType = {
     widgetGroups: widgetsData.widgetGroups,
     midList: [],
     activeIdx: -1,
+    isDroped: '',
   },
 
   reducers: {
@@ -34,6 +35,7 @@ const FormDesignModal: FormDesignModalType = {
         widgetGroups: widgetsData.widgetGroups,
         midList: [],
         activeIdx: -1,
+        isDroped: '',
       };
     },
   },

@@ -47,7 +47,6 @@
     "declarationMap": true,
     "declarationDir": "dist",
     "rootDir": "src",
-
   },
   "include": ["./src/*", "./global.d.ts"]
 }

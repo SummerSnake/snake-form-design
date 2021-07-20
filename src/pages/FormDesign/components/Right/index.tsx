@@ -21,17 +21,18 @@ import {
 interface RightProps {
   middleList: Widget[];
   activeIdx: number;
+  isDroped: string;
 }
 
 const RightComponent: FC<RightProps> = (props) => {
-  const { middleList = [], activeIdx } = props;
+  const { middleList = [], activeIdx, isDroped } = props;
   const [midList, setMidList] = useState<Widget[]>(middleList);
 
   // 更新右侧配置面板
   useEffect(() => {
     const midArr = cloneMidList();
     setMidList(midArr);
-  }, [activeIdx]);
+  }, [activeIdx, isDroped]);
 
   return (
     <div className="rightWrap">
