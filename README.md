@@ -5,9 +5,18 @@ snake-form-design
 # 说明
 
 表单设计器
-React + Typescript + webpack5.x + ant design + dva
+
+React-dnd + React + Typescript + webpack5.x + ant design + dva
 
 # 注意事项
+
+需要单独引入 css
+
+```
+
+import 'snake-form-design/dist/index.css';
+
+```
 
 # 安装
 
