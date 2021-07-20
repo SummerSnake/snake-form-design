@@ -1,5 +1,4 @@
 import { create } from 'dva-core';
-import createLoading from 'dva-loading';
 import models from '@/models';
 
 let app;
@@ -8,7 +7,6 @@ let dispatch;
 
 function createApp(opt) {
   app = create(opt);
-  app.use(createLoading({}));
 
   app.use({
     onError(error) {

@@ -1,8 +1,8 @@
-import React, { FC } from 'react';
+import React, { FC, useEffect } from 'react';
 import { connect } from 'react-redux';
 import { DndProvider } from 'react-dnd';
 import { HTML5Backend } from 'react-dnd-html5-backend';
-import { FormDesignModelState } from '@/pages/index.d';
+import { FormDesignModelState, InitialDataType } from '@/pages/index.d';
 
 import Left from './components/Left';
 import Middle from './components/Middle';
@@ -11,17 +11,31 @@ import './index.less';
 
 interface FormDesignProps {
   formDesign: FormDesignModelState;
-  loading: boolean;
+  dispatch: Function;
+  dataSource?: InitialDataType;
+  height?: string;
 }
 
 const FormDesignPage: FC<FormDesignProps> = (props) => {
-  const { formDesign } = props;
+  const { formDesign, dispatch, dataSource, height } = props;
   const { widgets, widgetGroups, midList = [], activeIdx = 0, isDroped = '' } = formDesign;
+
+  useEffect(() => {
+    if (dataSource) {
+      dispatch({
+        type: 'formDesign/save',
+        payload: {
+          widgets: dataSource?.widgets,
+          widgetGroups: dataSource?.widgetGroups,
+        },
+      });
+    }
+  }, []);
 
   return (
     <div className="formDesignWrap">
       <DndProvider backend={HTML5Backend}>
-        <div className="formDesignPanel">
+        <div className="formDesignPanel" style={{ height }}>
           <Left widgetsData={widgets} widgetGroupsData={widgetGroups} />
           <Middle middleList={midList} activeIdx={activeIdx} />
           <Right middleList={midList} activeIdx={activeIdx} isDroped={isDroped} />
@@ -31,9 +45,6 @@ const FormDesignPage: FC<FormDesignProps> = (props) => {
   );
 };
 
-export default connect(
-  ({ formDesign, loading }: { formDesign: FormDesignModelState; loading }) => ({
-    formDesign,
-    loading: loading.models.formDesign,
-  })
-)(FormDesignPage);
+export default connect(({ formDesign }: { formDesign: FormDesignModelState }) => ({
+  formDesign,
+}))(FormDesignPage);

@@ -32,7 +32,7 @@ export interface Widgets {
   items: Widget[];
 }
 
-export interface InitialData {
+export interface InitialDataType {
   widgets: Widgets;
   widgetGroups: Widgets;
 }
@@ -43,4 +43,9 @@ export interface FormDesignModelState {
   midList: Widget[];
   activeIdx: number;
   isDroped: string;
+}
+
+export interface SnakeFormDesignProps {
+  height?: string;
+  dataSource?: InitialDataType;
 }
