@@ -99,6 +99,15 @@ const MiddleItemComponent: FC<MiddleItemProps> = (props) => {
         return false;
       }
 
+      // 左侧拖拽放置防抖动优化
+      if (!dragIndex) {
+        const handleTopY = (hoverBoundingRect.bottom - hoverBoundingRect.top) / 2.92;
+        // 向下拖动
+        if (hoverClientY < handleTopY * 2 && hoverClientY > handleTopY) {
+          return false;
+        }
+      }
+
       // 创建或移动 placeholder
       updatePlaceholder(hoverIndex || 0);
 
