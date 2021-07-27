@@ -1,4 +1,4 @@
-import React, { FC } from 'react';
+import React, { FC, useEffect } from 'react';
 import { Form, Input, Radio } from 'antd';
 import _store from '@/utils/dva';
 
@@ -25,7 +25,6 @@ const TextareaConfig: FC<TextareaConfigProps> = (props) => {
    */
   const handleFormChange = (): void => {
     const formData = form.getFieldsValue();
-
     const middleArr = cloneMidList();
     const widgetData: Widget = middleArr[activeIndex];
 
@@ -49,6 +48,19 @@ const TextareaConfig: FC<TextareaConfigProps> = (props) => {
     });
   };
 
+  /**
+   * @desc 重新渲染
+   */
+  useEffect(() => {
+    form.setFieldsValue({
+      label: initWidgetData?.label,
+      defaultValue: initOptions?.defaultValue,
+      isRequired: initOptions?.isRequired,
+      isDisabled: initOptions?.isDisabled,
+      placeholder: initOptions?.placeholder,
+    });
+  }, [activeIndex]);
+
   return (
     <>
       <Form
@@ -62,7 +74,6 @@ const TextareaConfig: FC<TextareaConfigProps> = (props) => {
         <Form.Item
           label="标题"
           name="label"
-          initialValue={initWidgetData.label}
           rules={[
             {
               required: true,
@@ -70,17 +81,16 @@ const TextareaConfig: FC<TextareaConfigProps> = (props) => {
             },
           ]}
         >
-          <Input placeholder={initWidgetData.label} />
+          <Input />
         </Form.Item>
 
-        <Form.Item label="默认值" name="defaultValue" initialValue={initOptions.defaultValue}>
-          <Input placeholder={initOptions.defaultValue} />
+        <Form.Item label="默认值" name="defaultValue">
+          <Input />
         </Form.Item>
 
         <Form.Item
           label="是否必填"
           name="isRequired"
-          initialValue={initOptions.isRequired}
           rules={[
             {
               required: true,
@@ -101,7 +111,6 @@ const TextareaConfig: FC<TextareaConfigProps> = (props) => {
         <Form.Item
           label="是否禁用"
           name="isDisabled"
-          initialValue={initOptions.isDisabled}
           rules={[
             {
               required: true,
@@ -119,8 +128,8 @@ const TextareaConfig: FC<TextareaConfigProps> = (props) => {
           </Radio.Group>
         </Form.Item>
 
-        <Form.Item label="占位符" name="placeholder" initialValue={initOptions.placeholder}>
-          <Input placeholder={initOptions.placeholder} />
+        <Form.Item label="占位符" name="placeholder">
+          <Input />
         </Form.Item>
       </Form>
     </>

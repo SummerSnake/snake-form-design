@@ -1,4 +1,4 @@
-import React, { FC } from 'react';
+import React, { FC, useEffect } from 'react';
 import { Form, Input, Radio } from 'antd';
 import _store from '@/utils/dva';
 
@@ -25,7 +25,6 @@ const UploadConfig: FC<UploadConfigProps> = (props) => {
    */
   const handleFormChange = (): void => {
     const formData = form.getFieldsValue();
-
     const middleArr = cloneMidList();
     const widgetData: Widget = middleArr[activeIndex];
 
@@ -49,6 +48,18 @@ const UploadConfig: FC<UploadConfigProps> = (props) => {
     });
   };
 
+  /**
+   * @desc 重新渲染
+   */
+  useEffect(() => {
+    form.setFieldsValue({
+      label: initWidgetData?.label,
+      isRequired: initOptions?.isRequired,
+      limitSize: initOptions?.limitSize,
+      limitNum: initOptions?.limitNum,
+    });
+  }, [activeIndex]);
+
   return (
     <>
       <Form
@@ -62,7 +73,6 @@ const UploadConfig: FC<UploadConfigProps> = (props) => {
         <Form.Item
           label="标题"
           name="label"
-          initialValue={initWidgetData.label}
           rules={[
             {
               required: true,
@@ -70,13 +80,12 @@ const UploadConfig: FC<UploadConfigProps> = (props) => {
             },
           ]}
         >
-          <Input placeholder={initWidgetData.label} />
+          <Input />
         </Form.Item>
 
         <Form.Item
           label="是否必填"
           name="isRequired"
-          initialValue={initOptions.isRequired}
           rules={[
             {
               required: true,
@@ -97,11 +106,10 @@ const UploadConfig: FC<UploadConfigProps> = (props) => {
         <Form.Item
           label="大小限制"
           name="limitSize"
-          initialValue={initOptions.limitSize}
           rules={[
             {
               required: true,
-              message: '请选择是否必填',
+              message: '请输入大小限制',
             },
           ]}
         >
@@ -111,11 +119,10 @@ const UploadConfig: FC<UploadConfigProps> = (props) => {
         <Form.Item
           label="数量限制"
           name="limitNum"
-          initialValue={initOptions.limitNum}
           rules={[
             {
               required: true,
-              message: '请选择是否必填',
+              message: '请输入数量限制',
             },
           ]}
         >

@@ -146,6 +146,14 @@ const SelectConfig: FC<SelectConfigProps> = (props) => {
    */
   useEffect(() => {
     setInitElements(initOptions?.elements || []);
+
+    form.setFieldsValue({
+      label: initWidgetData?.label,
+      defaultValue: initOptions?.defaultValue,
+      isRequired: initOptions?.isRequired,
+      isDisabled: initOptions?.isDisabled,
+      placeholder: initOptions?.placeholder,
+    });
   }, [activeIndex]);
 
   return (
@@ -161,7 +169,6 @@ const SelectConfig: FC<SelectConfigProps> = (props) => {
         <Form.Item
           label="标题"
           name="label"
-          initialValue={initWidgetData.label}
           rules={[
             {
               required: true,
@@ -169,17 +176,16 @@ const SelectConfig: FC<SelectConfigProps> = (props) => {
             },
           ]}
         >
-          <Input placeholder={initWidgetData.label} />
+          <Input />
         </Form.Item>
 
-        <Form.Item label="默认值" name="defaultValue" initialValue={initOptions.defaultValue}>
-          <Input placeholder={initOptions.defaultValue} />
+        <Form.Item label="默认值" name="defaultValue">
+          <Input />
         </Form.Item>
 
         <Form.Item
           label="是否必填"
           name="isRequired"
-          initialValue={initOptions.isRequired}
           rules={[
             {
               required: true,
@@ -200,7 +206,6 @@ const SelectConfig: FC<SelectConfigProps> = (props) => {
         <Form.Item
           label="是否禁用"
           name="isDisabled"
-          initialValue={initOptions.isDisabled}
           rules={[
             {
               required: true,

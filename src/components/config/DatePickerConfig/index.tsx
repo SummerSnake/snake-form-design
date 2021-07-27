@@ -1,4 +1,4 @@
-import React, { FC } from 'react';
+import React, { FC, useEffect } from 'react';
 import { Form, Input, Select, Radio } from 'antd';
 import _store from '@/utils/dva';
 
@@ -18,20 +18,8 @@ const DatePickerConfig: FC<DatePickerConfigProps> = (props) => {
   const initMiddleArr = cloneMidList();
   const initWidgetData: Widget = initMiddleArr[activeIndex];
   const { options: initOptions }: { options: WidgetOptions } = initWidgetData;
+
   const { elements: initElements } = initOptions;
-
-  /**
-   * @desc 获取当前控件自定义元素列表
-   * @return { optionsElement[] }
-   */
-  const getElementsList = (): optionsElement[] => {
-    const middleArr = cloneMidList();
-    const widgetData: Widget = middleArr[activeIndex];
-    const { options }: { options: WidgetOptions } = widgetData;
-    const { elements = [] } = options;
-
-    return JSON.parse(JSON.stringify(elements));
-  };
 
   /**
    * @desc 表单项值改变，更新 midList
@@ -61,6 +49,18 @@ const DatePickerConfig: FC<DatePickerConfigProps> = (props) => {
     });
   };
 
+  /**
+   * @desc 重新渲染
+   */
+  useEffect(() => {
+    form.setFieldsValue({
+      label: initWidgetData?.label,
+      isRequired: initOptions?.isRequired,
+      isDisabled: initOptions?.isDisabled,
+      format: initOptions?.format,
+    });
+  }, [activeIndex]);
+
   return (
     <>
       <Form
@@ -74,7 +74,6 @@ const DatePickerConfig: FC<DatePickerConfigProps> = (props) => {
         <Form.Item
           label="标题"
           name="label"
-          initialValue={initWidgetData.label}
           rules={[
             {
               required: true,
@@ -82,13 +81,12 @@ const DatePickerConfig: FC<DatePickerConfigProps> = (props) => {
             },
           ]}
         >
-          <Input placeholder={initWidgetData.label} />
+          <Input />
         </Form.Item>
 
         <Form.Item
           label="是否必填"
           name="isRequired"
-          initialValue={initOptions.isRequired}
           rules={[
             {
               required: true,
@@ -109,7 +107,6 @@ const DatePickerConfig: FC<DatePickerConfigProps> = (props) => {
         <Form.Item
           label="是否禁用"
           name="isDisabled"
-          initialValue={initOptions.isDisabled}
           rules={[
             {
               required: true,
@@ -130,7 +127,6 @@ const DatePickerConfig: FC<DatePickerConfigProps> = (props) => {
         <Form.Item
           label="时间格式"
           name="format"
-          initialValue={initOptions.format}
           rules={[
             {
               required: true,

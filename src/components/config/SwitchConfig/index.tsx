@@ -1,4 +1,4 @@
-import React, { FC } from 'react';
+import React, { FC, useEffect } from 'react';
 import { Form, Input, Radio } from 'antd';
 import _store from '@/utils/dva';
 
@@ -60,6 +60,18 @@ const SwitchConfig: FC<SwitchConfigProps> = (props) => {
     });
   };
 
+  /**
+   * @desc 重新渲染
+   */
+  useEffect(() => {
+    form.setFieldsValue({
+      label: initWidgetData?.label,
+      defaultValue: initOptions?.defaultValue,
+      isRequired: initOptions?.isRequired,
+      isDisabled: initOptions?.isDisabled,
+    });
+  }, [activeIndex]);
+
   return (
     <>
       <Form
@@ -73,7 +85,6 @@ const SwitchConfig: FC<SwitchConfigProps> = (props) => {
         <Form.Item
           label="标题"
           name="label"
-          initialValue={initWidgetData.label}
           rules={[
             {
               required: true,
@@ -81,13 +92,12 @@ const SwitchConfig: FC<SwitchConfigProps> = (props) => {
             },
           ]}
         >
-          <Input placeholder={initWidgetData.label} />
+          <Input />
         </Form.Item>
 
         <Form.Item
           label="默认值"
           name="defaultValue"
-          initialValue={initOptions.defaultValue}
           rules={[
             {
               required: true,
@@ -108,7 +118,6 @@ const SwitchConfig: FC<SwitchConfigProps> = (props) => {
         <Form.Item
           label="是否必填"
           name="isRequired"
-          initialValue={initOptions.isRequired}
           rules={[
             {
               required: true,
@@ -129,7 +138,6 @@ const SwitchConfig: FC<SwitchConfigProps> = (props) => {
         <Form.Item
           label="是否禁用"
           name="isDisabled"
-          initialValue={initOptions.isDisabled}
           rules={[
             {
               required: true,
