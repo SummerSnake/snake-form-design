@@ -87,7 +87,7 @@ const SwitchConfig: FC<SwitchConfigProps> = (props) => {
         <Form.Item
           label="默认值"
           name="defaultValue"
-          initialValue={!!initOptions.defaultValue}
+          initialValue={initOptions.defaultValue}
           rules={[
             {
               required: true,
@@ -96,10 +96,10 @@ const SwitchConfig: FC<SwitchConfigProps> = (props) => {
           ]}
         >
           <Radio.Group>
-            <Radio key={1} value="1">
+            <Radio key={1} value={1}>
               打开
             </Radio>
-            <Radio key={0} value="0">
+            <Radio key={0} value={0}>
               关闭
             </Radio>
           </Radio.Group>

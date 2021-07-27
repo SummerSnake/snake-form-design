@@ -1,5 +1,6 @@
 import React, { FC } from 'react';
 import { Form, Input, Radio, Checkbox, Select, DatePicker, Switch, Upload } from 'antd';
+import { v4 as uuidv4 } from 'uuid';
 
 import { Widget } from '@/pages/index.d';
 
@@ -17,11 +18,15 @@ const GroupViewComponent: FC<FormItemsProps> = (props) => {
       labelCol={{ span: 8 }}
       wrapperCol={{ span: 14 }}
       label={widgetData.label}
-      name={widgetData.id}
-      initialValue={
-        typeof options?.defaultValue === 'number' ? !!options?.defaultValue : options?.defaultValue
+      name={uuidv4()}
+      valuePropName={
+        widgetData.type === 'switch'
+          ? 'checked'
+          : widgetData.type === 'upload'
+          ? 'fileList'
+          : 'value'
       }
-      valuePropName={widgetData?.type === 'switch' ? 'checked' : 'value'}
+      initialValue={widgetData.type === 'switch' ? !!options?.defaultValue : options?.defaultValue}
       rules={[
         {
           required: !!options.isRequired,

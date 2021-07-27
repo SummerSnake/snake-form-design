@@ -118,7 +118,7 @@ const initialData = {
         type: 'switch',
         icon: 'heartOutlined',
         options: {
-          defaultValue: '0',
+          defaultValue: 0,
           isRequired: 0,
           isDisabled: 0,
         },
@@ -167,7 +167,7 @@ const initialData = {
               isDisabled: 0,
               placeholder: '请输入单行文本',
             },
-            randomCode: '',
+            randomCode: 'group_item_01',
           },
           {
             id: 'baseTextarea',
@@ -180,7 +180,7 @@ const initialData = {
               isDisabled: 0,
               placeholder: '请输入多行文本',
             },
-            randomCode: '',
+            randomCode: 'group_item_02',
           },
           {
             id: 'baseRadio',
@@ -197,7 +197,7 @@ const initialData = {
                 { id: 3, elemTitle: '标题3', elemName: '字段3', elemVal: '值3' },
               ],
             },
-            randomCode: '',
+            randomCode: 'group_item_03',
           },
         ],
         randomCode: '',

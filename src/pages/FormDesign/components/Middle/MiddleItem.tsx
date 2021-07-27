@@ -7,6 +7,7 @@ import { useDrag, useDrop, DragSourceMonitor, DropTargetMonitor, XYCoord } from 
 
 import { updatePlaceholder, deletePlaceholder, reOrder } from '@/utils/util';
 import { Widget } from '@/pages/index.d';
+import { cloneMidList } from '@/utils/util';
 
 import ViewComponent from '@/components/view';
 
@@ -60,7 +61,7 @@ const MiddleItemComponent: FC<MiddleItemProps> = (props) => {
       if (!widgetRef.current) {
         return false;
       }
-      const dragIndex = item.idx;
+      let dragIndex = item.idx;
       const hoverIndex = idx;
 
       // 拖拽元素下标与鼠标悬浮元素下标一致时，不进行操作
@@ -89,6 +90,13 @@ const MiddleItemComponent: FC<MiddleItemProps> = (props) => {
        * 可以防止鼠标位于元素一半高度时元素抖动的状况
        */
 
+      // 左侧控件拖拽至中间控件列表，将 dragIndex 设置为 placeholderIndex
+      if (!dragIndex) {
+        const midArr: Widget[] = cloneMidList();
+        const placeholderIndex = midArr.findIndex((item: Widget) => item.randomCode === '-1');
+        dragIndex = placeholderIndex;
+      }
+
       // 向下拖动
       if (dragIndex < hoverIndex && hoverClientY < hoverMiddleY) {
         return false;
@@ -97,15 +105,6 @@ const MiddleItemComponent: FC<MiddleItemProps> = (props) => {
       // 向上拖动
       if (dragIndex > hoverIndex && hoverClientY > hoverMiddleY) {
         return false;
-      }
-
-      // 左侧拖拽放置防抖动优化
-      if (!dragIndex) {
-        const handleTopY = (hoverBoundingRect.bottom - hoverBoundingRect.top) / 2.92;
-        // 向下拖动
-        if (hoverClientY < handleTopY * 2 && hoverClientY > handleTopY) {
-          return false;
-        }
       }
 
       // 创建或移动 placeholder

@@ -6,7 +6,7 @@ export interface optionsElement {
 }
 
 export interface WidgetOptions {
-  defaultValue?: string;
+  defaultValue?: string | number;
   isRequired?: number;
   isDisabled?: number;
   elements?: optionsElement[];
