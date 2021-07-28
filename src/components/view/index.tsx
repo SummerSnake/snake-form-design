@@ -7,6 +7,7 @@ import { Widget } from '@/pages/index.d';
 import AmountView from './AmountView';
 import CommonView from './CommonView';
 import SingleTxtView from './SingleTxtView';
+import MultipleTxtView from './MultipleTxtView';
 import GroupView from './GroupView';
 
 interface ViewProps {
@@ -56,7 +57,7 @@ const ViewComponent: FC<ViewProps> = (props) => {
           case 'baseInput':
             return <SingleTxtView title={label} required={isRequired} />;
           case 'baseTextarea':
-            return <CommonView title={label} required={isRequired} />;
+            return <MultipleTxtView title={label} required={isRequired} />;
           case 'baseAmount':
             return <AmountView title={label} required={isRequired} />;
           case 'baseRadio':
