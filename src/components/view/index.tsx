@@ -5,6 +5,7 @@ import { deleteActiveItem } from '@/utils/util';
 import { Widget } from '@/pages/index.d';
 
 import CommonView from './CommonView';
+import SingleTxtView from './SingleTxtView';
 import GroupView from './GroupView';
 
 interface ViewProps {
@@ -52,7 +53,7 @@ const ViewComponent: FC<ViewProps> = (props) => {
       {(() => {
         switch (viewInfo.id) {
           case 'baseInput':
-            return <CommonView title={label} required={isRequired} />;
+            return <SingleTxtView title={label} required={isRequired} />;
           case 'baseTextarea':
             return <CommonView title={label} required={isRequired} />;
           case 'baseRadio':
