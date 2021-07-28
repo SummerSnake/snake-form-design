@@ -10,6 +10,7 @@ import { Widget } from '@/pages/index.d';
 import {
   InputConfig,
   TextareaConfig,
+  AmountConfig,
   RadioConfig,
   CheckboxConfig,
   SelectConfig,
@@ -43,6 +44,8 @@ const RightComponent: FC<RightProps> = (props) => {
               return <InputConfig activeIndex={activeIdx} />;
             case 'baseTextarea':
               return <TextareaConfig activeIndex={activeIdx} />;
+            case 'baseAmount':
+              return <AmountConfig activeIndex={activeIdx} />;
             case 'baseRadio':
               return <RadioConfig activeIndex={activeIdx} />;
             case 'baseCheckbox':

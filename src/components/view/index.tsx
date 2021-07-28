@@ -4,6 +4,7 @@ import _store from '@/utils/dva';
 import { deleteActiveItem } from '@/utils/util';
 import { Widget } from '@/pages/index.d';
 
+import AmountView from './AmountView';
 import CommonView from './CommonView';
 import SingleTxtView from './SingleTxtView';
 import GroupView from './GroupView';
@@ -56,6 +57,8 @@ const ViewComponent: FC<ViewProps> = (props) => {
             return <SingleTxtView title={label} required={isRequired} />;
           case 'baseTextarea':
             return <CommonView title={label} required={isRequired} />;
+          case 'baseAmount':
+            return <AmountView title={label} required={isRequired} />;
           case 'baseRadio':
             return <CommonView title={label} required={isRequired} />;
           case 'baseCheckbox':

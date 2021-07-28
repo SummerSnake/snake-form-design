@@ -1,0 +1,17 @@
+@import '@/styles/mixin.less';
+
+.amountWrap {
+  font-size: @titleSize;
+  padding: 16px 0;
+  background-color: #fff;
+  .amountTitle {
+    padding-bottom: 16px;
+    color: @titleColor;
+    .requiredStar {
+      .sc(19px, @requireColor);
+    }
+  }
+  .amountPlaceholder {
+    color: @placeholderColor;
+  }
+}

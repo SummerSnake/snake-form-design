@@ -35,6 +35,19 @@ const initialData = {
         randomCode: '',
       },
       {
+        id: 'baseAmount',
+        label: '金额 (元)',
+        type: 'input',
+        icon: 'fileTextOutlined',
+        options: {
+          defaultValue: '',
+          isRequired: 0,
+          isDisabled: 0,
+          placeholder: '请输入金额',
+        },
+        randomCode: '',
+      },
+      {
         id: 'baseRadio',
         label: '单选框组',
         type: 'radio',
