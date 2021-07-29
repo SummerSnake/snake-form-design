@@ -1,10 +1,11 @@
 @import '@/styles/mixin.less';
 
-.singleTxtWrap {
+.datePickerWrap {
+  position: relative;
   font-size: @titleSize;
   padding: 10px 0 12px;
   background-color: #fff;
-  .singleTxtTitle {
+  .datePickerTitle {
     padding-bottom: 12px;
     color: @titleColor;
     .requiredStar {
@@ -12,7 +13,14 @@
       vertical-align: middle;
     }
   }
-  .singleTxtPlaceholder {
+  .datePickerPlaceholder {
     color: @placeholderColor;
+  }
+  .datePickerArrow {
+    position: absolute;
+    top: 50%;
+    right: 0;
+    transform: translateY(-50%);
+    color: #666;
   }
 }

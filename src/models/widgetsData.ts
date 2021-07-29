@@ -100,7 +100,7 @@ const initialData = {
       },
       {
         id: 'baseDatePicker',
-        label: '日期选择器',
+        label: '日期',
         type: 'datePicker',
         icon: 'dotChartOutlined',
         options: {

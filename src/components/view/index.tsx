@@ -9,6 +9,7 @@ import CommonView from './CommonView';
 import SingleTxtView from './SingleTxtView';
 import MultipleTxtView from './MultipleTxtView';
 import UploadView from './UploadView';
+import DatePickerView from './DatePickerView';
 import GroupView from './GroupView';
 
 interface ViewProps {
@@ -68,7 +69,7 @@ const ViewComponent: FC<ViewProps> = (props) => {
           case 'baseSelect':
             return <CommonView title={label} required={isRequired} />;
           case 'baseDatePicker':
-            return <CommonView title={label} required={isRequired} />;
+            return <DatePickerView title={label} required={isRequired} />;
           case 'baseSwitch':
             return <CommonView title={label} required={isRequired} />;
           case 'baseUpload':
