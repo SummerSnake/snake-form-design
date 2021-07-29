@@ -12,6 +12,13 @@
       box-sizing: border-box;
       padding: 0 24px;
       background-color: #fff;
+      overflow: auto;
+      // 隐藏滚动条
+      -ms-overflow-style: none;
+      scrollbar-width: none;
+      &::-webkit-scrollbar {
+        display: none;
+      }
       .widgetsListWrap {
         display: flex;
         flex-wrap: wrap;
@@ -88,6 +95,12 @@
         border: 1px solid @borderColor;
         border-radius: 0 0 12px 12px;
         overflow: auto;
+        // 隐藏滚动条
+        -ms-overflow-style: none;
+        scrollbar-width: none;
+        &::-webkit-scrollbar {
+          display: none;
+        }
         // 单个控件
         .widgetWrap {
           position: relative;
@@ -157,6 +170,12 @@
       padding: 24px;
       background-color: #fff;
       overflow: auto;
+      // 隐藏滚动条
+      -ms-overflow-style: none;
+      scrollbar-width: none;
+      &::-webkit-scrollbar {
+        display: none;
+      }
     }
   }
 }
