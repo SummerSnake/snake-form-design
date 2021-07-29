@@ -1,0 +1,23 @@
+@import '@/styles/mixin.less';
+
+.uploadWrap {
+  font-size: @titleSize;
+  padding: 10px 0 14px;
+  background-color: #fff;
+  .uploadTitle {
+    padding-bottom: 12px;
+    color: @titleColor;
+    .requiredStar {
+      .sc(19px, @requireColor);
+    }
+  }
+  .uploadPlaceholder {
+    .wh(55px, 55px);
+    .flexCenter;
+    box-sizing: border-box;
+    border: 1px solid @borderColor;
+    .placeholderIcon {
+      .sc(26px, #8691a3);
+    }
+  }
+}

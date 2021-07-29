@@ -8,6 +8,7 @@ import AmountView from './AmountView';
 import CommonView from './CommonView';
 import SingleTxtView from './SingleTxtView';
 import MultipleTxtView from './MultipleTxtView';
+import UploadView from './UploadView';
 import GroupView from './GroupView';
 
 interface ViewProps {
@@ -71,7 +72,7 @@ const ViewComponent: FC<ViewProps> = (props) => {
           case 'baseSwitch':
             return <CommonView title={label} required={isRequired} />;
           case 'baseUpload':
-            return <CommonView title={label} required={isRequired} />;
+            return <UploadView title={label} required={isRequired} />;
           case 'expense':
             return <GroupView itemInfo={viewInfo} />;
           default:

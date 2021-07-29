@@ -139,7 +139,7 @@ const initialData = {
       },
       {
         id: 'baseUpload',
-        label: '上传',
+        label: '图片',
         type: 'upload',
         icon: 'toTopOutlined',
         options: {
