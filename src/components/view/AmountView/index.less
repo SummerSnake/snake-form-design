@@ -1,11 +1,10 @@
 @import '@/styles/mixin.less';
 
 .amountWrap {
-  padding: 10px 16px 12px;
+  padding: 11px 16px;
   font-size: @titleSize;
   background-color: #fff;
   .amountTitle {
-    padding-bottom: 12px;
     color: @titleColor;
     .requiredStar {
       .sc(19px, @requireColor);
@@ -13,6 +12,11 @@
     }
   }
   .amountPlaceholder {
+    padding-top: 10px;
     color: @placeholderColor;
+  }
+  .amountUppercase {
+    padding-top: 10px;
+    color: @titleColor;
   }
 }

@@ -1,5 +1,5 @@
 import React, { FC, useEffect } from 'react';
-import { Form, Input, Radio } from 'antd';
+import { Form, Input, Radio, Select, Checkbox } from 'antd';
 import _store from '@/utils/dva';
 
 import { cloneMidList } from '@/utils/util';
@@ -33,10 +33,15 @@ const AmountConfig: FC<AmountConfigProps> = (props) => {
       label: formData.label,
       options: {
         ...widgetData.options,
-        defaultValue: formData.defaultValue,
-        isRequired: formData.isRequired,
-        isDisabled: formData.isDisabled,
+        currency: formData.currency,
+        decimal: formData.decimal,
+        isUppercase: formData.isUppercase ? 1 : 0,
         placeholder: formData.placeholder,
+        lowerLimit: formData.lowerLimit,
+        upperLimit: formData.upperLimit,
+        isRequired: formData?.otherOptions.includes('isRequired') ? 1 : 0,
+        isPreview: formData?.otherOptions.includes('isPreview') ? 1 : 0,
+        isStatistics: formData?.otherOptions.includes('isStatistics') ? 1 : 0,
       },
     };
 
@@ -54,10 +59,15 @@ const AmountConfig: FC<AmountConfigProps> = (props) => {
   useEffect(() => {
     form.setFieldsValue({
       label: initWidgetData?.label,
-      defaultValue: initOptions?.defaultValue,
-      isRequired: initOptions?.isRequired,
-      isDisabled: initOptions?.isDisabled,
+      currency: initOptions?.currency,
+      decimal: initOptions?.decimal,
+      isUppercase: !!initOptions?.isUppercase,
       placeholder: initOptions?.placeholder,
+      lowerLimit: initOptions?.lowerLimit,
+      upperLimit: initOptions?.upperLimit,
+      isRequired: !!initOptions?.isRequired,
+      isPreview: !!initOptions?.isPreview,
+      isStatistics: !!initOptions?.isStatistics,
     });
   }, [activeIndex]);
 
@@ -66,70 +76,95 @@ const AmountConfig: FC<AmountConfigProps> = (props) => {
       <Form
         form={form}
         id="AmountConfig"
-        layout="horizontal"
+        layout="vertical"
         onFieldsChange={handleFormChange}
         labelCol={{ span: 6 }}
         wrapperCol={{ span: 14 }}
       >
         <Form.Item
-          label="标题"
+          label="控件名称"
           name="label"
           rules={[
             {
               required: true,
-              message: '请输入标题',
+              message: '请输入控件名称',
             },
           ]}
         >
-          <Input placeholder={initWidgetData.label} />
+          <Input placeholder={initWidgetData.label} style={{ width: 312 }} />
         </Form.Item>
 
-        <Form.Item label="默认值" name="defaultValue">
-          <Input />
+        <Form.Item label="提示文字" name="placeholder">
+          <Input style={{ width: 312 }} />
+        </Form.Item>
+
+        <Form.Item label="币种选择" name="currency" style={{ marginBottom: 8 }}>
+          <Select defaultValue={1} style={{ width: 312 }}>
+            <Select.Option key={1} value={1}>
+              人民币元(CNY)
+            </Select.Option>
+            <Select.Option key={2} value={2}>
+              美元(USD)
+            </Select.Option>
+          </Select>
+        </Form.Item>
+
+        <Form.Item label="" name="isUppercase" valuePropName="checked">
+          <Checkbox style={{ width: 312 }}>
+            <div style={{ whiteSpace: 'nowrap' }}>
+              <span>显示大写数字</span>
+              <span style={{ color: '#8691a3' }}>(建议币种当人民币时使用)</span>
+            </div>
+          </Checkbox>
         </Form.Item>
 
         <Form.Item
-          label="是否必填"
-          name="isRequired"
+          label="小数点"
+          name="decimal"
           rules={[
             {
               required: true,
-              message: '请选择是否必填',
+              message: '请选择小数点',
             },
           ]}
         >
-          <Radio.Group>
-            <Radio key={1} value={1}>
-              是
-            </Radio>
+          <Radio.Group style={{ width: 312 }}>
             <Radio key={0} value={0}>
-              否
+              整数
+            </Radio>
+            <Radio key={1} value={1}>
+              1位
+            </Radio>
+            <Radio key={2} value={2}>
+              2位
             </Radio>
           </Radio.Group>
         </Form.Item>
 
-        <Form.Item
-          label="是否禁用"
-          name="isDisabled"
-          rules={[
-            {
-              required: true,
-              message: '请选择是否禁用',
-            },
-          ]}
-        >
-          <Radio.Group>
-            <Radio key={1} value={1}>
-              是
-            </Radio>
-            <Radio key={0} value={0}>
-              否
-            </Radio>
-          </Radio.Group>
-        </Form.Item>
+        <div style={{ paddingBottom: 8 }}>范围</div>
+        <div>
+          <span style={{ paddingRight: 10 }}>下限</span>
+          <div style={{ display: 'inline-block' }}>
+            <Form.Item label="" name="lowerLimit">
+              <Input style={{ width: 68 }} />
+            </Form.Item>
+          </div>
 
-        <Form.Item label="占位符" name="placeholder">
-          <Input />
+          <span style={{ padding: '0 10px 0 20px' }}>上限</span>
+          <div style={{ display: 'inline-block' }}>
+            <Form.Item label="" name="upperLimit">
+              <Input style={{ width: 68 }} />
+            </Form.Item>
+          </div>
+        </div>
+
+        <div style={{ paddingBottom: 8 }}>其他</div>
+        <Form.Item label="" name="otherOptions" valuePropName="checked">
+          <Checkbox.Group style={{ width: 312 }}>
+            <Checkbox value="isRequired">必填</Checkbox>
+            <Checkbox value="isPreview">预览</Checkbox>
+            <Checkbox value="isStatistics">汇总</Checkbox>
+          </Checkbox.Group>
         </Form.Item>
       </Form>
     </>
