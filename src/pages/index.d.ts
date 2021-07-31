@@ -9,6 +9,7 @@ export interface WidgetOptions {
   defaultValue?: string | number;
   isRequired?: number;
   isDisabled?: number;
+  isPreview?: number;
   elements?: optionsElement[];
   placeholder?: string;
   format?: string;

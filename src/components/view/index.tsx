@@ -4,12 +4,13 @@ import _store from '@/utils/dva';
 import { deleteActiveItem } from '@/utils/util';
 import { Widget } from '@/pages/index.d';
 
-import AmountView from './AmountView';
-import CommonView from './CommonView';
+import TitleView from './TitleView';
 import SingleTxtView from './SingleTxtView';
 import MultipleTxtView from './MultipleTxtView';
-import UploadView from './UploadView';
+import AmountView from './AmountView';
 import DatePickerView from './DatePickerView';
+import UploadView from './UploadView';
+import CommonView from './CommonView';
 import GroupView from './GroupView';
 
 interface ViewProps {
@@ -74,6 +75,8 @@ const ViewComponent: FC<ViewProps> = (props) => {
             return <CommonView title={label} required={isRequired} />;
           case 'baseUpload':
             return <UploadView title={label} required={isRequired} />;
+          case 'baseTitle':
+            return <TitleView title={label} />;
           case 'expense':
             return <GroupView itemInfo={viewInfo} />;
           default:
