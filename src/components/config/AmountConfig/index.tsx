@@ -25,6 +25,7 @@ const AmountConfig: FC<AmountConfigProps> = (props) => {
    */
   const handleFormChange = (): void => {
     const formData = form.getFieldsValue();
+    const { otherOptions = [] }: { otherOptions: string[] } = formData;
     const middleArr = cloneMidList();
     const widgetData: Widget = middleArr[activeIndex];
 
@@ -39,9 +40,9 @@ const AmountConfig: FC<AmountConfigProps> = (props) => {
         placeholder: formData.placeholder,
         lowerLimit: formData.lowerLimit,
         upperLimit: formData.upperLimit,
-        isRequired: formData?.otherOptions.includes('isRequired') ? 1 : 0,
-        isPreview: formData?.otherOptions.includes('isPreview') ? 1 : 0,
-        isStatistics: formData?.otherOptions.includes('isStatistics') ? 1 : 0,
+        isRequired: otherOptions.includes('isRequired') ? 1 : 0,
+        isPreview: otherOptions.includes('isPreview') ? 1 : 0,
+        isStatistics: otherOptions.includes('isStatistics') ? 1 : 0,
       },
     };
 
@@ -99,7 +100,7 @@ const AmountConfig: FC<AmountConfigProps> = (props) => {
         </Form.Item>
 
         <Form.Item label="币种选择" name="currency" style={{ marginBottom: 8 }}>
-          <Select defaultValue={1} style={{ width: 312 }}>
+          <Select style={{ width: 312 }}>
             <Select.Option key={1} value={1}>
               人民币元(CNY)
             </Select.Option>

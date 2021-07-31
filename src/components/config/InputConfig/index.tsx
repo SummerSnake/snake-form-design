@@ -25,6 +25,7 @@ const InputConfig: FC<InputConfigProps> = (props) => {
    */
   const handleFormChange = (): void => {
     const formData = form.getFieldsValue();
+    const { otherOptions = [] }: { otherOptions: string[] } = formData;
     const middleArr = cloneMidList();
     const widgetData: Widget = middleArr[activeIndex];
 
@@ -34,8 +35,8 @@ const InputConfig: FC<InputConfigProps> = (props) => {
       options: {
         ...widgetData.options,
         placeholder: formData.placeholder,
-        isRequired: formData?.otherOptions.includes('isRequired') ? 1 : 0,
-        isPreview: formData?.otherOptions.includes('isPreview') ? 1 : 0,
+        isRequired: otherOptions.includes('isRequired') ? 1 : 0,
+        isPreview: otherOptions.includes('isPreview') ? 1 : 0,
       },
     };
 

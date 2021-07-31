@@ -60,7 +60,7 @@ const ViewComponent: FC<ViewProps> = (props) => {
           case 'baseInput':
             return <SingleTxtView title={label} options={options} />;
           case 'baseTextarea':
-            return <MultipleTxtView title={label} required={isRequired} />;
+            return <MultipleTxtView title={label} options={options} />;
           case 'baseAmount':
             return <AmountView title={label} options={options} />;
           case 'baseRadio':

@@ -1,5 +1,5 @@
 import React, { FC, useEffect } from 'react';
-import { Form, Input, Radio } from 'antd';
+import { Form, Input } from 'antd';
 import _store from '@/utils/dva';
 
 import { cloneMidList } from '@/utils/util';
@@ -31,10 +31,6 @@ const TitleConfig: FC<TitleConfigProps> = (props) => {
     middleArr[activeIndex] = {
       ...widgetData,
       label: formData.label,
-      options: {
-        ...widgetData.options,
-        placeholder: formData.placeholder,
-      },
     };
 
     dispatch({
@@ -60,31 +56,31 @@ const TitleConfig: FC<TitleConfigProps> = (props) => {
       <Form
         form={form}
         id="TitleConfig"
-        layout="horizontal"
+        layout="vertical"
         onFieldsChange={handleFormChange}
         labelCol={{ span: 6 }}
         wrapperCol={{ span: 14 }}
       >
         <Form.Item
-          label="标题"
-          name="label"
-          rules={[
-            {
-              required: true,
-              message: '请输入标题',
-            },
-          ]}
-        >
-          <Input />
-        </Form.Item>
-
-        <Form.Item
-          label="提示文字"
+          label="控件名称"
           name="placeholder"
           rules={[
             {
               required: true,
-              message: '请输入提示文字',
+              message: '请输入控件名称',
+            },
+          ]}
+        >
+          <Input disabled />
+        </Form.Item>
+
+        <Form.Item
+          label="说明文字"
+          name="label"
+          rules={[
+            {
+              required: true,
+              message: '请输入说明文字',
             },
           ]}
         >

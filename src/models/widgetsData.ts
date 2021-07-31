@@ -161,7 +161,7 @@ const initialData = {
         type: 'div',
         icon: 'toTopOutlined',
         options: {
-          placeholder: '请输入说明文本',
+          placeholder: '说明文本',
         },
         randomCode: '',
       },
