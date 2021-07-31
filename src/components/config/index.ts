@@ -7,6 +7,7 @@ import SelectConfig from './SelectConfig';
 import SwitchConfig from './SwitchConfig';
 import TextareaConfig from './TextareaConfig';
 import UploadConfig from './UploadConfig';
+import TitleConfig from './TitleConfig';
 
 export {
   AmountConfig,
@@ -18,4 +19,5 @@ export {
   SwitchConfig,
   TextareaConfig,
   UploadConfig,
+  TitleConfig,
 };

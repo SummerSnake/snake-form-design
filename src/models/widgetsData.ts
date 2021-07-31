@@ -155,7 +155,6 @@ const initialData = {
         type: 'div',
         icon: 'toTopOutlined',
         options: {
-          isPreview: 0,
           placeholder: '请输入说明文本',
         },
         randomCode: '',
