@@ -58,7 +58,7 @@ const ViewComponent: FC<ViewProps> = (props) => {
       {(() => {
         switch (viewInfo.id) {
           case 'baseInput':
-            return <SingleTxtView title={label} required={isRequired} />;
+            return <SingleTxtView title={label} options={options} />;
           case 'baseTextarea':
             return <MultipleTxtView title={label} required={isRequired} />;
           case 'baseAmount':

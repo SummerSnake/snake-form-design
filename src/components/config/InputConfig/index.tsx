@@ -1,5 +1,5 @@
 import React, { FC, useEffect } from 'react';
-import { Form, Input, Radio } from 'antd';
+import { Form, Input, Checkbox } from 'antd';
 import _store from '@/utils/dva';
 
 import { cloneMidList } from '@/utils/util';
@@ -33,10 +33,9 @@ const InputConfig: FC<InputConfigProps> = (props) => {
       label: formData.label,
       options: {
         ...widgetData.options,
-        defaultValue: formData.defaultValue,
-        isRequired: formData.isRequired,
-        isDisabled: formData.isDisabled,
         placeholder: formData.placeholder,
+        isRequired: formData?.otherOptions.includes('isRequired') ? 1 : 0,
+        isPreview: formData?.otherOptions.includes('isPreview') ? 1 : 0,
       },
     };
 
@@ -54,9 +53,7 @@ const InputConfig: FC<InputConfigProps> = (props) => {
   useEffect(() => {
     form.setFieldsValue({
       label: initWidgetData?.label,
-      defaultValue: initOptions?.defaultValue,
-      isRequired: initOptions?.isRequired,
-      isDisabled: initOptions?.isDisabled,
+      isRequired: !!initOptions?.isRequired,
       placeholder: initOptions?.placeholder,
     });
   }, [activeIndex]);
@@ -66,70 +63,34 @@ const InputConfig: FC<InputConfigProps> = (props) => {
       <Form
         form={form}
         id="InputConfig"
-        layout="horizontal"
+        layout="vertical"
         onFieldsChange={handleFormChange}
         labelCol={{ span: 6 }}
         wrapperCol={{ span: 14 }}
       >
         <Form.Item
-          label="标题"
+          label="控件名称"
           name="label"
           rules={[
             {
               required: true,
-              message: '请输入标题',
+              message: '请输入控件名称',
             },
           ]}
         >
-          <Input placeholder={initWidgetData.label} />
+          <Input style={{ width: 312 }} />
         </Form.Item>
 
-        <Form.Item label="默认值" name="defaultValue">
-          <Input />
+        <Form.Item label="提示文字" name="placeholder">
+          <Input style={{ width: 312 }} />
         </Form.Item>
 
-        <Form.Item
-          label="是否必填"
-          name="isRequired"
-          rules={[
-            {
-              required: true,
-              message: '请选择是否必填',
-            },
-          ]}
-        >
-          <Radio.Group>
-            <Radio key={1} value={1}>
-              是
-            </Radio>
-            <Radio key={0} value={0}>
-              否
-            </Radio>
-          </Radio.Group>
-        </Form.Item>
-
-        <Form.Item
-          label="是否禁用"
-          name="isDisabled"
-          rules={[
-            {
-              required: true,
-              message: '请选择是否禁用',
-            },
-          ]}
-        >
-          <Radio.Group>
-            <Radio key={1} value={1}>
-              是
-            </Radio>
-            <Radio key={0} value={0}>
-              否
-            </Radio>
-          </Radio.Group>
-        </Form.Item>
-
-        <Form.Item label="占位符" name="placeholder">
-          <Input />
+        <div>其他</div>
+        <Form.Item label="" name="otherOptions" valuePropName="checked">
+          <Checkbox.Group style={{ width: 312 }}>
+            <Checkbox value="isRequired">必填</Checkbox>
+            <Checkbox value="isPreview">预览</Checkbox>
+          </Checkbox.Group>
         </Form.Item>
       </Form>
     </>
