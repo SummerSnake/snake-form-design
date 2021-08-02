@@ -14,9 +14,7 @@ import {
   AmountConfig,
   RadioConfig,
   CheckboxConfig,
-  SelectConfig,
   DatePickerConfig,
-  SwitchConfig,
   UploadConfig,
   TitleConfig,
 } from '@/components/config';
@@ -54,12 +52,8 @@ const RightComponent: FC<RightProps> = (props) => {
               return <RadioConfig activeIndex={activeIdx} />;
             case 'baseCheckbox':
               return <CheckboxConfig activeIndex={activeIdx} />;
-            case 'baseSelect':
-              return <SelectConfig activeIndex={activeIdx} />;
             case 'baseDatePicker':
               return <DatePickerConfig activeIndex={activeIdx} />;
-            case 'baseSwitch':
-              return <SwitchConfig activeIndex={activeIdx} />;
             case 'baseUpload':
               return <UploadConfig activeIndex={activeIdx} />;
             case 'baseTitle':

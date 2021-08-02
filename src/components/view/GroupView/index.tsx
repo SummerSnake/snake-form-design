@@ -1,39 +1,33 @@
 import React, { FC, ReactElement } from 'react';
 import { v4 as uuidv4 } from 'uuid';
 
-import { Widget } from '@/pages/index.d';
+import { Widget, WidgetOptions } from '@/pages/index.d';
 
-import CommonView from '../CommonView';
+import SingleTxtView from '../SingleTxtView';
 
 const viewMap = {
-  baseInput: (label: string, isRequired: number) => (
-    <CommonView title={label} required={isRequired} />
+  baseInput: (label: string, options: WidgetOptions) => (
+    <SingleTxtView title={label} options={options} />
   ),
-  baseTextarea: (label: string, isRequired: number) => (
-    <CommonView title={label} required={isRequired} />
+  baseTextarea: (label: string, options: WidgetOptions) => (
+    <SingleTxtView title={label} options={options} />
   ),
-  baseRadio: (label: string, isRequired: number) => (
-    <CommonView title={label} required={isRequired} />
+  baseRadio: (label: string, options: WidgetOptions) => (
+    <SingleTxtView title={label} options={options} />
   ),
-  baseCheckbox: (label: string, isRequired: number) => (
-    <CommonView title={label} required={isRequired} />
+  baseCheckbox: (label: string, options: WidgetOptions) => (
+    <SingleTxtView title={label} options={options} />
   ),
-  baseSelect: (label: string, isRequired: number) => (
-    <CommonView title={label} required={isRequired} />
+  baseDatePicker: (label: string, options: WidgetOptions) => (
+    <SingleTxtView title={label} options={options} />
   ),
-  baseDatePicker: (label: string, isRequired: number) => (
-    <CommonView title={label} required={isRequired} />
-  ),
-  baseSwitch: (label: string, isRequired: number) => (
-    <CommonView title={label} required={isRequired} />
-  ),
-  baseUpload: (label: string, isRequired: number) => (
-    <CommonView title={label} required={isRequired} />
+  baseUpload: (label: string, options: WidgetOptions) => (
+    <SingleTxtView title={label} options={options} />
   ),
 };
 
 interface ViewMapType {
-  [key: string]: (label: string, isRequired: number) => ReactElement;
+  [key: string]: (label: string, options: WidgetOptions) => ReactElement;
 }
 interface GroupViewProps {
   itemInfo: Widget;
@@ -48,7 +42,7 @@ const GroupViewComponent: FC<GroupViewProps> = (props) => {
       {Array.isArray(widgetsList) &&
         widgetsList.map((item: Widget) => (
           <div className="groupViewItem" key={uuidv4()}>
-            {(viewMap as ViewMapType)[item.id](item.label, item.options?.isRequired || 0)}
+            {(viewMap as ViewMapType)[item.id](item.label, item.options)}
           </div>
         ))}
     </>

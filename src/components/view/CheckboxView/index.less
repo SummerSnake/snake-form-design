@@ -1,0 +1,26 @@
+@import '@/styles/mixin.less';
+
+.checkboxWrap {
+  position: relative;
+  padding: 10px 12px 9px;
+  font-size: @txtSize;
+  background-color: #fff;
+  .checkboxTitle {
+    padding-bottom: 2px;
+    color: @titleColor;
+    .requiredStar {
+      .sc(19px, @requireColor);
+      vertical-align: middle;
+    }
+  }
+  .checkboxPlaceholder {
+    color: @placeholderColor;
+  }
+  .checkboxArrow {
+    position: absolute;
+    top: 50%;
+    right: 0;
+    transform: translateY(-50%);
+    color: #666;
+  }
+}

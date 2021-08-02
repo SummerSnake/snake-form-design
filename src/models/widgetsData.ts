@@ -109,35 +109,15 @@ const initialData = {
         },
         {
           id: 'baseCheckbox',
-          label: '多选框组',
+          label: '多选',
           type: 'checkbox',
           icon: 'sketch',
           options: {
             defaultValue: '',
             isRequired: 0,
-            isDisabled: 0,
-            elements: [
-              { id: 1, elemTitle: '标题1', elemName: '字段1', elemVal: '值1' },
-              { id: 2, elemTitle: '标题2', elemName: '字段2', elemVal: '值2' },
-              { id: 3, elemTitle: '标题3', elemName: '字段3', elemVal: '值3' },
-            ],
-          },
-          randomCode: '',
-        },
-        {
-          id: 'baseSelect',
-          label: '下拉选择框',
-          type: 'select',
-          icon: 'orderedListOutlined',
-          options: {
-            defaultValue: '',
-            isRequired: 0,
-            isDisabled: 0,
-            elements: [
-              { id: 1, elemTitle: '标题1', elemName: '字段1', elemVal: '值1' },
-              { id: 2, elemTitle: '标题2', elemName: '字段2', elemVal: '值2' },
-              { id: 3, elemTitle: '标题3', elemName: '字段3', elemVal: '值3' },
-            ],
+            isPreview: 0,
+            placeholder: '请选择',
+            elements: [{ id: 1, elemTitle: '' }],
           },
           randomCode: '',
         },
@@ -165,18 +145,6 @@ const initialData = {
       id: 'otherWidgets',
       title: '其他',
       items: [
-        {
-          id: 'baseSwitch',
-          label: '开关',
-          type: 'switch',
-          icon: 'heartOutlined',
-          options: {
-            defaultValue: 0,
-            isRequired: 0,
-            isDisabled: 0,
-          },
-          randomCode: '',
-        },
         {
           id: 'baseUpload',
           label: '图片',
