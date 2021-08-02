@@ -3,17 +3,17 @@ import { RightOutlined } from '@ant-design/icons';
 import { WidgetOptions } from '@/pages/index.d';
 import './index.less';
 
-interface DatePickerViewProps {
+interface RadioViewProps {
   title: string;
   options: WidgetOptions;
 }
 
-const DatePickerViewComponent: FC<DatePickerViewProps> = (props) => {
+const RadioViewComponent: FC<RadioViewProps> = (props) => {
   const { title, options } = props;
 
   return (
-    <div className="datePickerWrap">
-      <div className="datePickerTitle">
+    <div className="radioWrap">
+      <div className="radioTitle">
         <span>{title}</span>
         <i
           className="requiredStar"
@@ -23,11 +23,11 @@ const DatePickerViewComponent: FC<DatePickerViewProps> = (props) => {
         </i>
       </div>
 
-      <div className="datePickerPlaceholder">{options?.placeholder}</div>
+      <div className="radioPlaceholder">{options?.placeholder}</div>
 
-      <RightOutlined className="datePickerArrow" />
+      <RightOutlined className="radioArrow" />
     </div>
   );
 };
 
-export default React.memo(DatePickerViewComponent);
+export default React.memo(RadioViewComponent);

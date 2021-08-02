@@ -2,11 +2,11 @@ import NumberConfig from './NumberConfig';
 import AmountConfig from './AmountConfig';
 import CheckboxConfig from './CheckboxConfig';
 import DatePickerConfig from './DatePickerConfig';
-import InputConfig from './InputConfig';
+import SingleTxtConfig from './SingleTxtConfig';
 import RadioConfig from './RadioConfig';
 import SelectConfig from './SelectConfig';
 import SwitchConfig from './SwitchConfig';
-import TextareaConfig from './TextareaConfig';
+import MultipleTxtConfig from './MultipleTxtConfig';
 import UploadConfig from './UploadConfig';
 import TitleConfig from './TitleConfig';
 
@@ -15,11 +15,11 @@ export {
   AmountConfig,
   CheckboxConfig,
   DatePickerConfig,
-  InputConfig,
+  SingleTxtConfig,
   RadioConfig,
   SelectConfig,
   SwitchConfig,
-  TextareaConfig,
+  MultipleTxtConfig,
   UploadConfig,
   TitleConfig,
 };

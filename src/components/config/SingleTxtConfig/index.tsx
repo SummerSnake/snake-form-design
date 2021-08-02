@@ -5,11 +5,11 @@ import _store from '@/utils/dva';
 import { cloneMidList } from '@/utils/util';
 import { Widget, WidgetOptions } from '@/pages/index.d';
 
-interface TextareaConfigProps {
+interface SingleTxtConfigProps {
   activeIndex: number;
 }
 
-const TextareaConfig: FC<TextareaConfigProps> = (props) => {
+const SingleTxtConfig: FC<SingleTxtConfigProps> = (props) => {
   const { dispatch } = _store;
 
   const [form] = Form.useForm();
@@ -71,7 +71,7 @@ const TextareaConfig: FC<TextareaConfigProps> = (props) => {
     <>
       <Form
         form={form}
-        id="TextareaConfig"
+        id="SingleTxtConfig"
         layout="vertical"
         onFieldsChange={handleFormChange}
         labelCol={{ span: 6 }}
@@ -106,4 +106,4 @@ const TextareaConfig: FC<TextareaConfigProps> = (props) => {
   );
 };
 
-export default React.memo(TextareaConfig);
+export default React.memo(SingleTxtConfig);

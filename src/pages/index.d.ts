@@ -1,8 +1,6 @@
 export interface optionsElement {
   id: number; // 主键
   elemTitle: string; // 标题 => 前端显示名称
-  elemName: string; // 字段名 => 数据库字段名 key
-  elemVal: string; // 字段值 => 数据库字段值 value
 }
 
 export interface WidgetOptions {

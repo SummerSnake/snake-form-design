@@ -5,11 +5,11 @@ import _store from '@/utils/dva';
 import { cloneMidList } from '@/utils/util';
 import { Widget, WidgetOptions } from '@/pages/index.d';
 
-interface InputConfigProps {
+interface MultipleTxtConfigProps {
   activeIndex: number;
 }
 
-const InputConfig: FC<InputConfigProps> = (props) => {
+const MultipleTxtConfig: FC<MultipleTxtConfigProps> = (props) => {
   const { dispatch } = _store;
 
   const [form] = Form.useForm();
@@ -71,7 +71,7 @@ const InputConfig: FC<InputConfigProps> = (props) => {
     <>
       <Form
         form={form}
-        id="InputConfig"
+        id="MultipleTxtConfig"
         layout="vertical"
         onFieldsChange={handleFormChange}
         labelCol={{ span: 6 }}
@@ -106,4 +106,4 @@ const InputConfig: FC<InputConfigProps> = (props) => {
   );
 };
 
-export default React.memo(InputConfig);
+export default React.memo(MultipleTxtConfig);

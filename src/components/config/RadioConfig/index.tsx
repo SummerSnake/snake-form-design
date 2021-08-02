@@ -1,6 +1,6 @@
 import React, { FC, useState, useEffect } from 'react';
-import { Form, Input, Radio } from 'antd';
-import { PlusCircleOutlined, MinusCircleOutlined } from '@ant-design/icons';
+import { Form, Input, Checkbox } from 'antd';
+import { PlusOutlined, DeleteOutlined } from '@ant-design/icons';
 import { v4 as uuidv4 } from 'uuid';
 import _store from '@/utils/dva';
 
@@ -87,7 +87,7 @@ const RadioConfig: FC<RadioConfigProps> = (props) => {
     const elemArr = getElementsList();
 
     if (sign === 'add') {
-      elemArr.push({ ...elemArr[index], id: elemArr[elemArr.length - 1].id + 1 });
+      elemArr.push({ id: elemArr[elemArr.length - 1].id + 1, elemTitle: '' });
     } else {
       elemArr.splice(index, 1);
     }
@@ -119,6 +119,7 @@ const RadioConfig: FC<RadioConfigProps> = (props) => {
    */
   const handleFormChange = (): void => {
     const formData = form.getFieldsValue();
+    const { otherOptions = [] }: { otherOptions: string[] } = formData;
     const middleArr = cloneMidList();
     const widgetData: Widget = middleArr[activeIndex];
 
@@ -127,9 +128,9 @@ const RadioConfig: FC<RadioConfigProps> = (props) => {
       label: formData.label,
       options: {
         ...widgetData.options,
-        defaultValue: formData.defaultValue,
-        isRequired: formData.isRequired,
-        isDisabled: formData.isDisabled,
+        placeholder: formData.placeholder,
+        isRequired: otherOptions.includes('isRequired') ? 1 : 0,
+        isPreview: otherOptions.includes('isPreview') ? 1 : 0,
       },
     };
 
@@ -147,11 +148,18 @@ const RadioConfig: FC<RadioConfigProps> = (props) => {
   useEffect(() => {
     setInitElements(initOptions?.elements || []);
 
+    const arr: string[] = [];
+    if (!!initOptions?.isRequired) {
+      arr.push('isRequired');
+    }
+    if (!!initOptions?.isPreview) {
+      arr.push('isPreview');
+    }
+
     form.setFieldsValue({
       label: initWidgetData?.label,
-      defaultValue: initOptions?.defaultValue,
-      isRequired: initOptions?.isRequired,
-      isDisabled: initOptions?.isDisabled,
+      placeholder: initOptions?.placeholder,
+      otherOptions: arr,
     });
   }, [activeIndex]);
 
@@ -160,137 +168,82 @@ const RadioConfig: FC<RadioConfigProps> = (props) => {
       <Form
         form={form}
         id="RadioConfig"
-        layout="horizontal"
+        layout="vertical"
         onValuesChange={handleFormChange}
         labelCol={{ span: 6 }}
         wrapperCol={{ span: 14 }}
       >
         <Form.Item
-          label="标题"
+          label="控件名称"
           name="label"
           rules={[
             {
               required: true,
-              message: '请输入标题',
+              message: '请输入控件名称',
             },
           ]}
         >
-          <Input />
+          <Input style={{ width: 312 }} />
         </Form.Item>
 
-        <Form.Item label="默认值" name="defaultValue">
-          <Input />
+        <Form.Item label="提示文字" name="placeholder">
+          <Input style={{ width: 312 }} />
         </Form.Item>
 
-        <Form.Item
-          label="是否必填"
-          name="isRequired"
-          rules={[
-            {
-              required: true,
-              message: '请选择是否必填',
-            },
-          ]}
-        >
-          <Radio.Group>
-            <Radio key={1} value={1}>
-              是
-            </Radio>
-            <Radio key={0} value={0}>
-              否
-            </Radio>
-          </Radio.Group>
-        </Form.Item>
-
-        <Form.Item
-          label="是否禁用"
-          name="isDisabled"
-          rules={[
-            {
-              required: true,
-              message: '请选择是否禁用',
-            },
-          ]}
-        >
-          <Radio.Group>
-            <Radio key={1} value={1}>
-              是
-            </Radio>
-            <Radio key={0} value={0}>
-              否
-            </Radio>
-          </Radio.Group>
-        </Form.Item>
-
-        {Array.isArray(initElements) &&
-          initElements.map((item, index) => (
-            <React.Fragment key={item.id}>
-              <div style={{ display: 'flex', margin: '30px 0 20px' }}>
-                <h3 style={{ flex: 3, margin: 0 }}>Radio 单选框：</h3>
-                <div style={{ flex: 1 }}>
-                  <PlusCircleOutlined
-                    style={{ cursor: 'pointer', color: '#40a9ff' }}
-                    onClick={() => handleUpdateElements('add', index)}
+        <>
+          {Array.isArray(initElements) &&
+            initElements.map((item, index) => (
+              <div key={item.id} style={{ position: 'relative' }}>
+                <Form.Item
+                  label={index === 0 ? '选项' : ''}
+                  name={uuidv4()}
+                  initialValue={item.elemTitle}
+                  style={{ marginBottom: 10 }}
+                  rules={[
+                    {
+                      required: true,
+                      message: '请输入',
+                    },
+                  ]}
+                >
+                  <Input
+                    placeholder="请输入"
+                    style={{ width: 284 }}
+                    onChange={(e) => handleInputChange('elemTitle', index, e)}
                   />
-                  <MinusCircleOutlined
-                    style={{ marginLeft: 8, cursor: 'pointer', color: '#40a9ff' }}
-                    onClick={() => handleUpdateElements('reduce', index)}
-                  />
-                </div>
+                </Form.Item>
+
+                <DeleteOutlined
+                  style={{
+                    position: 'absolute',
+                    bottom: '7px',
+                    right: '0',
+                    cursor: 'pointer',
+                    color: '#ff7875',
+                    fontSize: 18,
+                    visibility: initElements.length > 1 ? 'visible' : 'hidden',
+                  }}
+                  onClick={() => handleUpdateElements('reduce', index)}
+                />
               </div>
+            ))}
 
-              <Form.Item
-                label="标题"
-                name={uuidv4()}
-                initialValue={item.elemTitle}
-                rules={[
-                  {
-                    required: true,
-                    message: '请输入标题',
-                  },
-                ]}
-              >
-                <Input
-                  placeholder="请输入标题"
-                  onChange={(e) => handleInputChange('elemTitle', index, e)}
-                />
-              </Form.Item>
+          <div
+            onClick={() => handleUpdateElements('add', 0)}
+            style={{ marginBottom: 20, cursor: 'pointer', color: '#40a9ff' }}
+          >
+            <PlusOutlined style={{ fontSize: 18, verticalAlign: 'middle', marginRight: 4 }} />
+            <span style={{ verticalAlign: 'middle' }}>添加条件</span>
+          </div>
+        </>
 
-              <Form.Item
-                label="字段名"
-                name={uuidv4()}
-                initialValue={item.elemName}
-                rules={[
-                  {
-                    required: true,
-                    message: '请输入字段名',
-                  },
-                ]}
-              >
-                <Input
-                  placeholder="请输入字段名"
-                  onChange={(e) => handleInputChange('elemName', index, e)}
-                />
-              </Form.Item>
-
-              <Form.Item
-                label="字段值"
-                name={uuidv4()}
-                initialValue={item.elemVal}
-                rules={[
-                  {
-                    required: true,
-                    message: '请输入字段值',
-                  },
-                ]}
-              >
-                <Input
-                  placeholder="请输入字段值"
-                  onChange={(e) => handleInputChange('elemVal', index, e)}
-                />
-              </Form.Item>
-            </React.Fragment>
-          ))}
+        <div>其他</div>
+        <Form.Item label="" name="otherOptions">
+          <Checkbox.Group style={{ width: 312 }}>
+            <Checkbox value="isRequired">必填</Checkbox>
+            <Checkbox value="isPreview">预览</Checkbox>
+          </Checkbox.Group>
+        </Form.Item>
       </Form>
     </>
   );

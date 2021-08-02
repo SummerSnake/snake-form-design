@@ -8,8 +8,8 @@ import { cloneMidList } from '@/utils/util';
 import { Widget } from '@/pages/index.d';
 
 import {
-  InputConfig,
-  TextareaConfig,
+  SingleTxtConfig,
+  MultipleTxtConfig,
   NumberConfig,
   AmountConfig,
   RadioConfig,
@@ -43,9 +43,9 @@ const RightComponent: FC<RightProps> = (props) => {
         if (Array.isArray(midList) && midList[activeIdx])
           switch (midList[activeIdx].id) {
             case 'baseInput':
-              return <InputConfig activeIndex={activeIdx} />;
+              return <SingleTxtConfig activeIndex={activeIdx} />;
             case 'baseTextarea':
-              return <TextareaConfig activeIndex={activeIdx} />;
+              return <MultipleTxtConfig activeIndex={activeIdx} />;
             case 'baseNumber':
               return <NumberConfig activeIndex={activeIdx} />;
             case 'baseAmount':

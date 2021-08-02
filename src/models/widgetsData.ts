@@ -95,18 +95,15 @@ const initialData = {
       items: [
         {
           id: 'baseRadio',
-          label: '单选框组',
+          label: '单选',
           type: 'radio',
           icon: 'slack',
           options: {
             defaultValue: '',
             isRequired: 0,
-            isDisabled: 0,
-            elements: [
-              { id: 1, elemTitle: '标题1', elemName: '字段1', elemVal: '值1' },
-              { id: 2, elemTitle: '标题2', elemName: '字段2', elemVal: '值2' },
-              { id: 3, elemTitle: '标题3', elemName: '字段3', elemVal: '值3' },
-            ],
+            isPreview: 0,
+            placeholder: '请选择',
+            elements: [{ id: 1, elemTitle: '' }],
           },
           randomCode: '',
         },

@@ -10,6 +10,7 @@ import MultipleTxtView from './MultipleTxtView';
 import NumberView from './NumberView';
 import AmountView from './AmountView';
 import DatePickerView from './DatePickerView';
+import RadioView from './RadioView';
 import UploadView from './UploadView';
 import CommonView from './CommonView';
 import GroupView from './GroupView';
@@ -67,13 +68,13 @@ const ViewComponent: FC<ViewProps> = (props) => {
           case 'baseAmount':
             return <AmountView title={label} options={options} />;
           case 'baseRadio':
-            return <CommonView title={label} required={isRequired} />;
+            return <RadioView title={label} options={options} />;
           case 'baseCheckbox':
             return <CommonView title={label} required={isRequired} />;
           case 'baseSelect':
             return <CommonView title={label} required={isRequired} />;
           case 'baseDatePicker':
-            return <DatePickerView title={label} required={isRequired} />;
+            return <DatePickerView title={label} options={options} />;
           case 'baseSwitch':
             return <CommonView title={label} required={isRequired} />;
           case 'baseUpload':
