@@ -1,0 +1,18 @@
+@import '@/styles/mixin.less';
+
+.numberWrap {
+  padding: 10px 12px;
+  font-size: @txtSize;
+  background-color: #fff;
+  .numberTitle {
+    color: @titleColor;
+    .requiredStar {
+      .sc(19px, @requireColor);
+      vertical-align: middle;
+    }
+  }
+  .numberPlaceholder {
+    padding-top: 3px;
+    color: @placeholderColor;
+  }
+}

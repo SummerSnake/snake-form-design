@@ -7,6 +7,7 @@ import { Widget } from '@/pages/index.d';
 import TitleView from './TitleView';
 import SingleTxtView from './SingleTxtView';
 import MultipleTxtView from './MultipleTxtView';
+import NumberView from './NumberView';
 import AmountView from './AmountView';
 import DatePickerView from './DatePickerView';
 import UploadView from './UploadView';
@@ -61,6 +62,8 @@ const ViewComponent: FC<ViewProps> = (props) => {
             return <SingleTxtView title={label} options={options} />;
           case 'baseTextarea':
             return <MultipleTxtView title={label} options={options} />;
+          case 'baseNumber':
+            return <NumberView title={label} options={options} />;
           case 'baseAmount':
             return <AmountView title={label} options={options} />;
           case 'baseRadio':
