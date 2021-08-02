@@ -57,6 +57,17 @@ const AmountConfig: FC<AmountConfigProps> = (props) => {
    * @desc 重新渲染
    */
   useEffect(() => {
+    const arr: string[] = [];
+    if (!!initOptions?.isRequired) {
+      arr.push('isRequired');
+    }
+    if (!!initOptions?.isPreview) {
+      arr.push('isPreview');
+    }
+    if (!!initOptions?.isStatistics) {
+      arr.push('isStatistics');
+    }
+
     form.setFieldsValue({
       label: initWidgetData?.label,
       unit: initOptions?.unit,
@@ -64,9 +75,7 @@ const AmountConfig: FC<AmountConfigProps> = (props) => {
       placeholder: initOptions?.placeholder,
       lowerLimit: initOptions?.lowerLimit,
       upperLimit: initOptions?.upperLimit,
-      isRequired: !!initOptions?.isRequired,
-      isPreview: !!initOptions?.isPreview,
-      isStatistics: !!initOptions?.isStatistics,
+      otherOptions: arr,
     });
   }, [activeIndex]);
 
@@ -142,7 +151,7 @@ const AmountConfig: FC<AmountConfigProps> = (props) => {
         </div>
 
         <div style={{ paddingBottom: 8 }}>其他</div>
-        <Form.Item label="" name="otherOptions" valuePropName="checked">
+        <Form.Item label="" name="otherOptions">
           <Checkbox.Group style={{ width: 312 }}>
             <Checkbox value="isRequired">必填</Checkbox>
             <Checkbox value="isPreview">预览</Checkbox>

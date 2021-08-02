@@ -16,7 +16,7 @@ const initialData = {
           options: {
             defaultValue: '',
             isRequired: 0,
-            isDisabled: 0,
+            isPreview: 0,
             placeholder: '请输入单行文本',
           },
           randomCode: '',
@@ -29,7 +29,7 @@ const initialData = {
           options: {
             defaultValue: '',
             isRequired: 0,
-            isDisabled: 0,
+            isPreview: 0,
             placeholder: '请输入多行文本',
           },
           randomCode: '',
@@ -156,24 +156,9 @@ const initialData = {
           type: 'datePicker',
           icon: 'dotChartOutlined',
           options: {
-            format: 'YYYY-MM-DD',
             isRequired: 0,
-            isDisabled: 0,
-            elements: [
-              { id: 1, elemTitle: '年-月-日', elemName: '字段1', elemVal: 'YYYY-MM-DD' },
-              {
-                id: 2,
-                elemTitle: '年-月-日 时:分',
-                elemName: '字段2',
-                elemVal: 'YYYY-MM-DD HH:mm',
-              },
-              {
-                id: 3,
-                elemTitle: '年-月-日 时:分:秒',
-                elemName: '字段2',
-                elemVal: 'YYYY-MM-DD HH:mm:ss',
-              },
-            ],
+            isPreview: 0,
+            placeholder: '请选择日期',
           },
           randomCode: '',
         },

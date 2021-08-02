@@ -21,28 +21,28 @@ const LeftComponent: FC<LeftProps> = (props) => {
         <Tabs.TabPane tab="控件" key="widgetsList">
           {Array.isArray(widgetsData) &&
             widgetsData.map((category) => (
-              <>
+              <React.Fragment key={category.id}>
                 <h3 className="leftTitle">{category.title}</h3>
 
                 <div className="widgetsListWrap">
                   {Array.isArray(category.items) &&
                     category.items.map((item) => <Widget key={item.id} widgetData={item} />)}
                 </div>
-              </>
+              </React.Fragment>
             ))}
         </Tabs.TabPane>
 
         <Tabs.TabPane tab="控件组" key="widgetsGroupList">
           {Array.isArray(widgetGroupsData) &&
             widgetGroupsData.map((category) => (
-              <>
+              <React.Fragment key={category.id}>
                 <h3 className="leftTitle">{category.title}</h3>
 
                 <div className="widgetsListWrap">
                   {Array.isArray(category?.items) &&
                     category?.items.map((item) => <Widget key={item.id} widgetData={item} />)}
                 </div>
-              </>
+              </React.Fragment>
             ))}
         </Tabs.TabPane>
       </Tabs>

@@ -52,10 +52,18 @@ const InputConfig: FC<InputConfigProps> = (props) => {
    * @desc 重新渲染
    */
   useEffect(() => {
+    const arr: string[] = [];
+    if (!!initOptions?.isRequired) {
+      arr.push('isRequired');
+    }
+    if (!!initOptions?.isPreview) {
+      arr.push('isPreview');
+    }
+
     form.setFieldsValue({
       label: initWidgetData?.label,
-      isRequired: !!initOptions?.isRequired,
       placeholder: initOptions?.placeholder,
+      otherOptions: arr,
     });
   }, [activeIndex]);
 
@@ -87,7 +95,7 @@ const InputConfig: FC<InputConfigProps> = (props) => {
         </Form.Item>
 
         <div>其他</div>
-        <Form.Item label="" name="otherOptions" valuePropName="checked">
+        <Form.Item label="" name="otherOptions">
           <Checkbox.Group style={{ width: 312 }}>
             <Checkbox value="isRequired">必填</Checkbox>
             <Checkbox value="isPreview">预览</Checkbox>

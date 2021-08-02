@@ -1,9 +1,9 @@
 import React, { FC, useEffect } from 'react';
-import { Form, Input, Select, Radio } from 'antd';
+import { Form, Input, Checkbox } from 'antd';
 import _store from '@/utils/dva';
 
 import { cloneMidList } from '@/utils/util';
-import { Widget, WidgetOptions, optionsElement } from '@/pages/index.d';
+import { Widget, WidgetOptions } from '@/pages/index.d';
 
 interface DatePickerConfigProps {
   activeIndex: number;
@@ -19,14 +19,13 @@ const DatePickerConfig: FC<DatePickerConfigProps> = (props) => {
   const initWidgetData: Widget = initMiddleArr[activeIndex];
   const { options: initOptions }: { options: WidgetOptions } = initWidgetData;
 
-  const { elements: initElements } = initOptions;
-
   /**
    * @desc 表单项值改变，更新 midList
    * @return { void }
    */
   const handleFormChange = (): void => {
     const formData = form.getFieldsValue();
+    const { otherOptions = [] }: { otherOptions: string[] } = formData;
     const middleArr = cloneMidList();
     const widgetData: Widget = middleArr[activeIndex];
 
@@ -35,9 +34,9 @@ const DatePickerConfig: FC<DatePickerConfigProps> = (props) => {
       label: formData.label,
       options: {
         ...widgetData.options,
-        format: formData.format,
-        isRequired: formData.isRequired,
-        isDisabled: formData.isDisabled,
+        placeholder: formData.placeholder,
+        isRequired: otherOptions.includes('isRequired') ? 1 : 0,
+        isPreview: otherOptions.includes('isPreview') ? 1 : 0,
       },
     };
 
@@ -53,11 +52,18 @@ const DatePickerConfig: FC<DatePickerConfigProps> = (props) => {
    * @desc 重新渲染
    */
   useEffect(() => {
+    const arr: string[] = [];
+    if (!!initOptions?.isRequired) {
+      arr.push('isRequired');
+    }
+    if (!!initOptions?.isPreview) {
+      arr.push('isPreview');
+    }
+
     form.setFieldsValue({
       label: initWidgetData?.label,
-      isRequired: initOptions?.isRequired,
-      isDisabled: initOptions?.isDisabled,
-      format: initOptions?.format,
+      placeholder: initOptions?.placeholder,
+      otherOptions: arr,
     });
   }, [activeIndex]);
 
@@ -72,76 +78,28 @@ const DatePickerConfig: FC<DatePickerConfigProps> = (props) => {
         wrapperCol={{ span: 14 }}
       >
         <Form.Item
-          label="标题"
+          label="控件名称"
           name="label"
           rules={[
             {
               required: true,
-              message: '请输入标题',
+              message: '请输入控件名称',
             },
           ]}
         >
-          <Input />
+          <Input style={{ width: 312 }} />
         </Form.Item>
 
-        <Form.Item
-          label="是否必填"
-          name="isRequired"
-          rules={[
-            {
-              required: true,
-              message: '请选择是否必填',
-            },
-          ]}
-        >
-          <Radio.Group>
-            <Radio key={1} value={1}>
-              是
-            </Radio>
-            <Radio key={0} value={0}>
-              否
-            </Radio>
-          </Radio.Group>
+        <Form.Item label="提示文字" name="placeholder">
+          <Input style={{ width: 312 }} />
         </Form.Item>
 
-        <Form.Item
-          label="是否禁用"
-          name="isDisabled"
-          rules={[
-            {
-              required: true,
-              message: '请选择是否禁用',
-            },
-          ]}
-        >
-          <Radio.Group>
-            <Radio key={1} value={1}>
-              是
-            </Radio>
-            <Radio key={0} value={0}>
-              否
-            </Radio>
-          </Radio.Group>
-        </Form.Item>
-
-        <Form.Item
-          label="时间格式"
-          name="format"
-          rules={[
-            {
-              required: true,
-              message: '请选择时间格式',
-            },
-          ]}
-        >
-          <Select>
-            {Array.isArray(initElements) &&
-              initElements.map((item) => (
-                <Select.Option key={item.id} value={item.elemVal}>
-                  {item.elemTitle}
-                </Select.Option>
-              ))}
-          </Select>
+        <div>其他</div>
+        <Form.Item label="" name="otherOptions">
+          <Checkbox.Group style={{ width: 312 }}>
+            <Checkbox value="isRequired">必填</Checkbox>
+            <Checkbox value="isPreview">预览</Checkbox>
+          </Checkbox.Group>
         </Form.Item>
       </Form>
     </>
