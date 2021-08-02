@@ -44,13 +44,13 @@ export interface Widgets {
 }
 
 export interface InitialDataType {
-  widgets: Widgets;
-  widgetGroups: Widgets;
+  widgetsList: Widgets[];
+  widgetsGroupList: Widgets[];
 }
 
 export interface FormDesignModelState {
-  widgets: Widgets;
-  widgetGroups: Widgets;
+  widgetsList: Widgets[];
+  widgetsGroupList: Widgets[];
   midList: Widget[];
   activeIdx: number;
   isDroped: string;

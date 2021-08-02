@@ -8,36 +8,42 @@ import { Widgets } from '@/pages/index.d';
 import Widget from './Widget';
 
 interface LeftProps {
-  widgetsData: Widgets;
-  widgetGroupsData: Widgets;
+  widgetsData: Widgets[];
+  widgetGroupsData: Widgets[];
 }
 
 const LeftComponent: FC<LeftProps> = (props) => {
   const { widgetsData, widgetGroupsData } = props;
-  const { items: singleItem } = widgetsData;
-  const { items: groupItem } = widgetGroupsData;
 
   return (
     <div className="leftWrap">
-      <Tabs defaultActiveKey={widgetsData.id} size="large" centered>
-        <Tabs.TabPane tab="控件" key={widgetsData.id}>
-          <h3 className="leftTitle">{widgetsData.title}</h3>
+      <Tabs defaultActiveKey="widgetsList" size="large" centered>
+        <Tabs.TabPane tab="控件" key="widgetsList">
+          {Array.isArray(widgetsData) &&
+            widgetsData.map((category) => (
+              <>
+                <h3 className="leftTitle">{category.title}</h3>
 
-          <div className="widgetsListWrap">
-            {singleItem.map((item) => (
-              <Widget key={item.id} widgetData={item} />
+                <div className="widgetsListWrap">
+                  {Array.isArray(category.items) &&
+                    category.items.map((item) => <Widget key={item.id} widgetData={item} />)}
+                </div>
+              </>
             ))}
-          </div>
         </Tabs.TabPane>
 
-        <Tabs.TabPane tab="控件组" key={widgetGroupsData.id}>
-          <h3 className="leftTitle">{widgetGroupsData.title}</h3>
+        <Tabs.TabPane tab="控件组" key="widgetsGroupList">
+          {Array.isArray(widgetGroupsData) &&
+            widgetGroupsData.map((category) => (
+              <>
+                <h3 className="leftTitle">{category.title}</h3>
 
-          <div className="widgetsListWrap">
-            {groupItem.map((item) => (
-              <Widget key={item.id} widgetData={item} />
+                <div className="widgetsListWrap">
+                  {Array.isArray(category?.items) &&
+                    category?.items.map((item) => <Widget key={item.id} widgetData={item} />)}
+                </div>
+              </>
             ))}
-          </div>
         </Tabs.TabPane>
       </Tabs>
     </div>

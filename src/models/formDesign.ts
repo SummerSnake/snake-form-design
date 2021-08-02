@@ -15,8 +15,8 @@ export interface FormDesignModalType {
 const FormDesignModal: FormDesignModalType = {
   namespace: 'formDesign',
   state: {
-    widgets: widgetsData.widgets,
-    widgetGroups: widgetsData.widgetGroups,
+    widgetsList: widgetsData.widgetsList,
+    widgetsGroupList: widgetsData.widgetsGroupList,
     midList: [],
     activeIdx: -1,
     isDroped: '',
@@ -31,8 +31,8 @@ const FormDesignModal: FormDesignModalType = {
     },
     reset() {
       return {
-        widgets: widgetsData.widgets,
-        widgetGroups: widgetsData.widgetGroups,
+        widgetsList: widgetsData.widgetsList,
+        widgetsGroupList: widgetsData.widgetsGroupList,
         midList: [],
         activeIdx: -1,
         isDroped: '',

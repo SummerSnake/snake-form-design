@@ -18,15 +18,15 @@ interface FormDesignProps {
 
 const FormDesignPage: FC<FormDesignProps> = (props) => {
   const { formDesign, dispatch, dataSource, height } = props;
-  const { widgets, widgetGroups, midList = [], activeIdx = 0, isDroped = '' } = formDesign;
+  const { widgetsList, widgetsGroupList, midList = [], activeIdx = 0, isDroped = '' } = formDesign;
 
   useEffect(() => {
     if (dataSource) {
       dispatch({
         type: 'formDesign/save',
         payload: {
-          widgets: dataSource?.widgets,
-          widgetGroups: dataSource?.widgetGroups,
+          widgets: dataSource?.widgetsList,
+          widgetGroups: dataSource?.widgetsGroupList,
         },
       });
     }
@@ -36,7 +36,7 @@ const FormDesignPage: FC<FormDesignProps> = (props) => {
     <div className="formDesignWrap">
       <DndProvider backend={HTML5Backend}>
         <div className="formDesignPanel" style={{ height }}>
-          <Left widgetsData={widgets} widgetGroupsData={widgetGroups} />
+          <Left widgetsData={widgetsList} widgetGroupsData={widgetsGroupList} />
           <Middle middleList={midList} activeIdx={activeIdx} />
           <Right middleList={midList} activeIdx={activeIdx} isDroped={isDroped} />
         </div>
