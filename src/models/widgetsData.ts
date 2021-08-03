@@ -132,6 +132,23 @@ const initialData = {
           },
           randomCode: '',
         },
+        {
+          id: 'baseAttrMultipleSelect',
+          label: '属性选择(多选)',
+          type: 'select',
+          icon: 'sketch',
+          options: {
+            isRequired: 0,
+            isPreview: 0,
+            placeholder: '请选择属性',
+            selectVal: 1,
+            elements: [
+              { id: 1, elemTitle: '属性11' },
+              { id: 2, elemTitle: '属性22' },
+            ],
+          },
+          randomCode: '',
+        },
       ],
     },
     {

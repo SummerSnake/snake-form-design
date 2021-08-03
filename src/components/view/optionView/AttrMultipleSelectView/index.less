@@ -1,0 +1,26 @@
+@import '@/styles/mixin.less';
+
+.attrMultipleSelectWrap {
+  position: relative;
+  padding: 10px 12px;
+  font-size: @txtSize;
+  background-color: #fff;
+  .attrMultipleSelectTitle {
+    padding-bottom: 3px;
+    color: @titleColor;
+    .requiredStar {
+      .sc(19px, @requireColor);
+      vertical-align: middle;
+    }
+  }
+  .attrMultipleSelectPlaceholder {
+    color: @placeholderColor;
+  }
+  .attrMultipleSelectArrow {
+    position: absolute;
+    top: 50%;
+    right: 10px;
+    transform: translateY(-50%);
+    color: #666;
+  }
+}

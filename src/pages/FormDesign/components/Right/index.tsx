@@ -16,6 +16,7 @@ import {
   RadioConfig,
   CheckboxConfig,
   AttrSingleSelectConfig,
+  AttrMultipleSelectConfig,
   DatePickerConfig,
   TimePickerConfig,
   UploadConfig,
@@ -61,6 +62,8 @@ const RightComponent: FC<RightProps> = (props) => {
               return <CheckboxConfig activeIndex={activeIdx} />;
             case 'baseAttrSingleSelect':
               return <AttrSingleSelectConfig activeIndex={activeIdx} />;
+            case 'baseAttrMultipleSelect':
+              return <AttrMultipleSelectConfig activeIndex={activeIdx} />;
 
             case 'baseDatePicker':
               return <DatePickerConfig activeIndex={activeIdx} />;

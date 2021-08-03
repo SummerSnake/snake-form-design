@@ -4,9 +4,9 @@ import _store from '@/utils/dva';
 import { deleteActiveItem } from '@/utils/util';
 import { Widget } from '@/pages/index.d';
 
-import TitleView from './txtView/TitleView';
 import SingleTxtView from './txtView/SingleTxtView';
 import MultipleTxtView from './txtView/MultipleTxtView';
+import TitleView from './txtView/TitleView';
 
 import NumberView from './numView/NumberView';
 import AmountView from './numView/AmountView';
@@ -14,6 +14,7 @@ import AmountView from './numView/AmountView';
 import RadioView from './optionView/RadioView';
 import CheckboxView from './optionView/CheckboxView';
 import AttrSingleSelectView from './optionView/AttrSingleSelectView';
+import AttrMultipleSelectView from './optionView/AttrMultipleSelectView';
 
 import DatePickerView from './dateView/DatePickerView';
 import TimePickerView from './dateView/TimePickerView';
@@ -67,12 +68,12 @@ const ViewComponent: FC<ViewProps> = (props) => {
 
       {(() => {
         switch (viewInfo.id) {
-          case 'baseTitle':
-            return <TitleView title={label} />;
           case 'baseInput':
             return <SingleTxtView title={label} options={options} />;
           case 'baseTextarea':
             return <MultipleTxtView title={label} options={options} />;
+          case 'baseTitle':
+            return <TitleView title={label} />;
 
           case 'baseNumber':
             return <NumberView title={label} options={options} />;
@@ -85,6 +86,8 @@ const ViewComponent: FC<ViewProps> = (props) => {
             return <CheckboxView title={label} options={options} />;
           case 'baseAttrSingleSelect':
             return <AttrSingleSelectView title={label} options={options} />;
+          case 'baseAttrMultipleSelect':
+            return <AttrMultipleSelectView title={label} options={options} />;
 
           case 'baseDatePicker':
             return <DatePickerView title={label} options={options} />;
