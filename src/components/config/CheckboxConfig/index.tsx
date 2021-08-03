@@ -5,7 +5,7 @@ import { v4 as uuidv4 } from 'uuid';
 import _store from '@/utils/dva';
 
 import { cloneMidList } from '@/utils/util';
-import { Widget, WidgetOptions, optionsElement } from '@/pages/index.d';
+import { Widget, WidgetOptions, OptionsElement } from '@/pages/index.d';
 
 interface CheckboxConfigProps {
   activeIndex: number;
@@ -21,13 +21,13 @@ const CheckboxConfig: FC<CheckboxConfigProps> = (props) => {
   const initWidgetData: Widget = initMiddleArr[activeIndex];
   const { options: initOptions }: { options: WidgetOptions } = initWidgetData;
 
-  const [initElements, setInitElements] = useState<optionsElement[]>(initOptions?.elements || []);
+  const [initElements, setInitElements] = useState<OptionsElement[]>(initOptions?.elements || []);
 
   /**
    * @desc 获取当前控件自定义元素列表
-   * @return { optionsElement[] }
+   * @return { OptionsElement[] }
    */
-  const getElementsList = (): optionsElement[] => {
+  const getElementsList = (): OptionsElement[] => {
     const middleArr = cloneMidList();
     const widgetData: Widget = middleArr[activeIndex];
     const { options }: { options: WidgetOptions } = widgetData;

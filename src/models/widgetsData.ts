@@ -121,6 +121,24 @@ const initialData = {
           },
           randomCode: '',
         },
+        {
+          id: 'baseAttrSingleSelect',
+          label: '属性选择(单选)',
+          type: 'select',
+          icon: 'sketch',
+          options: {
+            defaultValue: '',
+            isRequired: 0,
+            isPreview: 0,
+            placeholder: '请选择属性',
+            selectVal: 1,
+            elements: [
+              { id: 1, elemTitle: '属性1' },
+              { id: 2, elemTitle: '属性2' },
+            ],
+          },
+          randomCode: '',
+        },
       ],
     },
     {

@@ -8,6 +8,7 @@ import RadioConfig from './RadioConfig';
 import MultipleTxtConfig from './MultipleTxtConfig';
 import UploadConfig from './UploadConfig';
 import TitleConfig from './TitleConfig';
+import AttrSingleSelectConfig from './AttrSingleSelectConfig';
 
 export {
   NumberConfig,
@@ -20,4 +21,5 @@ export {
   MultipleTxtConfig,
   UploadConfig,
   TitleConfig,
+  AttrSingleSelectConfig,
 };

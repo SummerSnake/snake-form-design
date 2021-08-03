@@ -1,4 +1,4 @@
-export interface optionsElement {
+export interface OptionsElement {
   id: number; // 主键
   elemTitle: string; // 标题 => 前端显示名称
 }
@@ -10,7 +10,9 @@ export interface WidgetOptions {
   isPreview?: number; // 是否预览  0.否  1.是
   isStatistics?: number; // 是否汇总  0.否  1.是
   placeholder?: string; // 提示文字
-  elements?: optionsElement[]; // 自定义元素 => 单选、多选可选项
+  elements?: OptionsElement[]; // 自定义元素 => 单选、多选可选项
+
+  selectVal?: number | undefined; // 选中属性 => 属性选择
 
   unit?: string; // 单位 => 数字
 

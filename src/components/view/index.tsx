@@ -14,6 +14,7 @@ import TimePickerView from './TimePickerView';
 import CheckboxView from './CheckboxView';
 import RadioView from './RadioView';
 import UploadView from './UploadView';
+import AttrSingleSelectView from './AttrSingleSelectView';
 import GroupView from './GroupView';
 
 interface ViewProps {
@@ -72,6 +73,8 @@ const ViewComponent: FC<ViewProps> = (props) => {
             return <RadioView title={label} options={options} />;
           case 'baseCheckbox':
             return <CheckboxView title={label} options={options} />;
+          case 'baseAttrSingleSelect':
+            return <AttrSingleSelectView title={label} options={options} />;
           case 'baseDatePicker':
             return <DatePickerView title={label} options={options} />;
           case 'baseTimePicker':
