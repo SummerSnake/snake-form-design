@@ -15,6 +15,7 @@ import {
   RadioConfig,
   CheckboxConfig,
   DatePickerConfig,
+  TimePickerConfig,
   UploadConfig,
   TitleConfig,
 } from '@/components/config';
@@ -54,6 +55,8 @@ const RightComponent: FC<RightProps> = (props) => {
               return <CheckboxConfig activeIndex={activeIdx} />;
             case 'baseDatePicker':
               return <DatePickerConfig activeIndex={activeIdx} />;
+            case 'baseTimePicker':
+              return <TimePickerConfig activeIndex={activeIdx} />;
             case 'baseUpload':
               return <UploadConfig activeIndex={activeIdx} />;
             case 'baseTitle':

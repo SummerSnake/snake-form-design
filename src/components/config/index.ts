@@ -2,6 +2,7 @@ import NumberConfig from './NumberConfig';
 import AmountConfig from './AmountConfig';
 import CheckboxConfig from './CheckboxConfig';
 import DatePickerConfig from './DatePickerConfig';
+import TimePickerConfig from './TimePickerConfig';
 import SingleTxtConfig from './SingleTxtConfig';
 import RadioConfig from './RadioConfig';
 import MultipleTxtConfig from './MultipleTxtConfig';
@@ -13,6 +14,7 @@ export {
   AmountConfig,
   CheckboxConfig,
   DatePickerConfig,
+  TimePickerConfig,
   SingleTxtConfig,
   RadioConfig,
   MultipleTxtConfig,

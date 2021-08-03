@@ -139,6 +139,18 @@ const initialData = {
           },
           randomCode: '',
         },
+        {
+          id: 'baseTimePicker',
+          label: '时间',
+          type: 'timePicker',
+          icon: 'dotChartOutlined',
+          options: {
+            isRequired: 0,
+            isPreview: 0,
+            placeholder: '请选择时间',
+          },
+          randomCode: '',
+        },
       ],
     },
     {

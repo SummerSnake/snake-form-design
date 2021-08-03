@@ -10,6 +10,7 @@ import MultipleTxtView from './MultipleTxtView';
 import NumberView from './NumberView';
 import AmountView from './AmountView';
 import DatePickerView from './DatePickerView';
+import TimePickerView from './TimePickerView';
 import CheckboxView from './CheckboxView';
 import RadioView from './RadioView';
 import UploadView from './UploadView';
@@ -73,6 +74,8 @@ const ViewComponent: FC<ViewProps> = (props) => {
             return <CheckboxView title={label} options={options} />;
           case 'baseDatePicker':
             return <DatePickerView title={label} options={options} />;
+          case 'baseTimePicker':
+            return <TimePickerView title={label} options={options} />;
           case 'baseUpload':
             return <UploadView title={label} required={isRequired} />;
           case 'baseTitle':
