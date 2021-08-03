@@ -4,18 +4,23 @@ import _store from '@/utils/dva';
 import { deleteActiveItem } from '@/utils/util';
 import { Widget } from '@/pages/index.d';
 
-import TitleView from './TitleView';
-import SingleTxtView from './SingleTxtView';
-import MultipleTxtView from './MultipleTxtView';
-import NumberView from './NumberView';
-import AmountView from './AmountView';
-import DatePickerView from './DatePickerView';
-import TimePickerView from './TimePickerView';
-import CheckboxView from './CheckboxView';
-import RadioView from './RadioView';
-import UploadView from './UploadView';
-import AttrSingleSelectView from './AttrSingleSelectView';
-import GroupView from './GroupView';
+import TitleView from './txtView/TitleView';
+import SingleTxtView from './txtView/SingleTxtView';
+import MultipleTxtView from './txtView/MultipleTxtView';
+
+import NumberView from './numView/NumberView';
+import AmountView from './numView/AmountView';
+
+import RadioView from './optionView/RadioView';
+import CheckboxView from './optionView/CheckboxView';
+import AttrSingleSelectView from './optionView/AttrSingleSelectView';
+
+import DatePickerView from './dateView/DatePickerView';
+import TimePickerView from './dateView/TimePickerView';
+
+import UploadView from './otherView/UploadView';
+
+import GroupView from './groupView';
 
 interface ViewProps {
   viewInfo: Widget;
@@ -61,28 +66,33 @@ const ViewComponent: FC<ViewProps> = (props) => {
 
       {(() => {
         switch (viewInfo.id) {
+          case 'baseTitle':
+            return <TitleView title={label} />;
           case 'baseInput':
             return <SingleTxtView title={label} options={options} />;
           case 'baseTextarea':
             return <MultipleTxtView title={label} options={options} />;
+
           case 'baseNumber':
             return <NumberView title={label} options={options} />;
           case 'baseAmount':
             return <AmountView title={label} options={options} />;
+
           case 'baseRadio':
             return <RadioView title={label} options={options} />;
           case 'baseCheckbox':
             return <CheckboxView title={label} options={options} />;
           case 'baseAttrSingleSelect':
             return <AttrSingleSelectView title={label} options={options} />;
+
           case 'baseDatePicker':
             return <DatePickerView title={label} options={options} />;
           case 'baseTimePicker':
             return <TimePickerView title={label} options={options} />;
+
           case 'baseUpload':
             return <UploadView title={label} required={isRequired} />;
-          case 'baseTitle':
-            return <TitleView title={label} />;
+
           case 'expense':
             return <GroupView itemInfo={viewInfo} />;
           default:

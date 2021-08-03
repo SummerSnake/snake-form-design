@@ -3,7 +3,7 @@ import { v4 as uuidv4 } from 'uuid';
 
 import { Widget, WidgetOptions } from '@/pages/index.d';
 
-import SingleTxtView from '../SingleTxtView';
+import SingleTxtView from '../txtView/SingleTxtView';
 
 const viewMap = {
   baseInput: (label: string, options: WidgetOptions) => (

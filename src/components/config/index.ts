@@ -1,25 +1,29 @@
-import NumberConfig from './NumberConfig';
-import AmountConfig from './AmountConfig';
-import CheckboxConfig from './CheckboxConfig';
-import DatePickerConfig from './DatePickerConfig';
-import TimePickerConfig from './TimePickerConfig';
-import SingleTxtConfig from './SingleTxtConfig';
-import RadioConfig from './RadioConfig';
-import MultipleTxtConfig from './MultipleTxtConfig';
-import UploadConfig from './UploadConfig';
-import TitleConfig from './TitleConfig';
-import AttrSingleSelectConfig from './AttrSingleSelectConfig';
+import TitleConfig from './txtConfig/TitleConfig';
+import SingleTxtConfig from './txtConfig/SingleTxtConfig';
+import MultipleTxtConfig from './txtConfig/MultipleTxtConfig';
+
+import NumberConfig from './numConfig/NumberConfig';
+import AmountConfig from './numConfig/AmountConfig';
+
+import RadioConfig from './optionConfig/RadioConfig';
+import CheckboxConfig from './optionConfig/CheckboxConfig';
+import AttrSingleSelectConfig from './optionConfig/AttrSingleSelectConfig';
+
+import DatePickerConfig from './dateConfig/DatePickerConfig';
+import TimePickerConfig from './dateConfig/TimePickerConfig';
+
+import UploadConfig from './otherConfig/UploadConfig';
 
 export {
+  TitleConfig,
+  SingleTxtConfig,
+  MultipleTxtConfig,
   NumberConfig,
   AmountConfig,
+  RadioConfig,
   CheckboxConfig,
+  AttrSingleSelectConfig,
   DatePickerConfig,
   TimePickerConfig,
-  SingleTxtConfig,
-  RadioConfig,
-  MultipleTxtConfig,
   UploadConfig,
-  TitleConfig,
-  AttrSingleSelectConfig,
 };

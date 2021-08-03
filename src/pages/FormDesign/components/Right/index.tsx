@@ -8,17 +8,17 @@ import { cloneMidList } from '@/utils/util';
 import { Widget } from '@/pages/index.d';
 
 import {
+  TitleConfig,
   SingleTxtConfig,
   MultipleTxtConfig,
   NumberConfig,
   AmountConfig,
   RadioConfig,
   CheckboxConfig,
+  AttrSingleSelectConfig,
   DatePickerConfig,
   TimePickerConfig,
   UploadConfig,
-  AttrSingleSelectConfig,
-  TitleConfig,
 } from '@/components/config';
 
 interface RightProps {
@@ -42,28 +42,32 @@ const RightComponent: FC<RightProps> = (props) => {
       {(() => {
         if (Array.isArray(midList) && midList[activeIdx])
           switch (midList[activeIdx].id) {
+            case 'baseTitle':
+              return <TitleConfig activeIndex={activeIdx} />;
             case 'baseInput':
               return <SingleTxtConfig activeIndex={activeIdx} />;
             case 'baseTextarea':
               return <MultipleTxtConfig activeIndex={activeIdx} />;
+
             case 'baseNumber':
               return <NumberConfig activeIndex={activeIdx} />;
             case 'baseAmount':
               return <AmountConfig activeIndex={activeIdx} />;
+
             case 'baseRadio':
               return <RadioConfig activeIndex={activeIdx} />;
             case 'baseCheckbox':
               return <CheckboxConfig activeIndex={activeIdx} />;
             case 'baseAttrSingleSelect':
               return <AttrSingleSelectConfig activeIndex={activeIdx} />;
+
             case 'baseDatePicker':
               return <DatePickerConfig activeIndex={activeIdx} />;
             case 'baseTimePicker':
               return <TimePickerConfig activeIndex={activeIdx} />;
+
             case 'baseUpload':
               return <UploadConfig activeIndex={activeIdx} />;
-            case 'baseTitle':
-              return <TitleConfig activeIndex={activeIdx} />;
             default:
               return null;
           }
