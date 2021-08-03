@@ -164,8 +164,7 @@ const initialData = {
           icon: 'toTopOutlined',
           options: {
             isRequired: 0,
-            limitSize: 10240,
-            limitNum: 1,
+            isPreview: 0,
           },
           randomCode: '',
         },

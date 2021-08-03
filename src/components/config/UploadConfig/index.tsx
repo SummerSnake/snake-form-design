@@ -1,5 +1,5 @@
 import React, { FC, useEffect } from 'react';
-import { Form, Input, Radio } from 'antd';
+import { Form, Input, Checkbox } from 'antd';
 import _store from '@/utils/dva';
 
 import { cloneMidList } from '@/utils/util';
@@ -25,6 +25,7 @@ const UploadConfig: FC<UploadConfigProps> = (props) => {
    */
   const handleFormChange = (): void => {
     const formData = form.getFieldsValue();
+    const { otherOptions = [] }: { otherOptions: string[] } = formData;
     const middleArr = cloneMidList();
     const widgetData: Widget = middleArr[activeIndex];
 
@@ -33,10 +34,8 @@ const UploadConfig: FC<UploadConfigProps> = (props) => {
       label: formData.label,
       options: {
         ...widgetData.options,
-        defaultValue: formData.defaultValue,
-        isRequired: formData.isRequired,
-        isDisabled: formData.isDisabled,
-        placeholder: formData.placeholder,
+        isRequired: otherOptions.includes('isRequired') ? 1 : 0,
+        isPreview: otherOptions.includes('isPreview') ? 1 : 0,
       },
     };
 
@@ -52,11 +51,17 @@ const UploadConfig: FC<UploadConfigProps> = (props) => {
    * @desc 重新渲染
    */
   useEffect(() => {
+    const arr: string[] = [];
+    if (!!initOptions?.isRequired) {
+      arr.push('isRequired');
+    }
+    if (!!initOptions?.isPreview) {
+      arr.push('isPreview');
+    }
+
     form.setFieldsValue({
       label: initWidgetData?.label,
-      isRequired: initOptions?.isRequired,
-      limitSize: initOptions?.limitSize,
-      limitNum: initOptions?.limitNum,
+      otherOptions: arr,
     });
   }, [activeIndex]);
 
@@ -71,62 +76,24 @@ const UploadConfig: FC<UploadConfigProps> = (props) => {
         wrapperCol={{ span: 14 }}
       >
         <Form.Item
-          label="标题"
+          label="控件名称"
           name="label"
           rules={[
             {
               required: true,
-              message: '请输入标题',
+              message: '请输入控件名称',
             },
           ]}
         >
-          <Input />
+          <Input style={{ width: 312 }} />
         </Form.Item>
 
-        <Form.Item
-          label="是否必填"
-          name="isRequired"
-          rules={[
-            {
-              required: true,
-              message: '请选择是否必填',
-            },
-          ]}
-        >
-          <Radio.Group>
-            <Radio key={1} value={1}>
-              是
-            </Radio>
-            <Radio key={0} value={0}>
-              否
-            </Radio>
-          </Radio.Group>
-        </Form.Item>
-
-        <Form.Item
-          label="大小限制"
-          name="limitSize"
-          rules={[
-            {
-              required: true,
-              message: '请输入大小限制',
-            },
-          ]}
-        >
-          <Input />
-        </Form.Item>
-
-        <Form.Item
-          label="数量限制"
-          name="limitNum"
-          rules={[
-            {
-              required: true,
-              message: '请输入数量限制',
-            },
-          ]}
-        >
-          <Input />
+        <div>其他</div>
+        <Form.Item label="" name="otherOptions">
+          <Checkbox.Group style={{ width: 312 }}>
+            <Checkbox value="isRequired">必填</Checkbox>
+            <Checkbox value="isPreview">预览</Checkbox>
+          </Checkbox.Group>
         </Form.Item>
       </Form>
     </>

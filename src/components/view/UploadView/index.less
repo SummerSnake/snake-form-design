@@ -1,11 +1,11 @@
 @import '@/styles/mixin.less';
 
 .uploadWrap {
-  padding: 11px 12px;
-  font-size: @titleSize;
+  padding: 10px 12px;
+  font-size: @txtSize;
   background-color: #fff;
   .uploadTitle {
-    padding-bottom: 12px;
+    padding-bottom: 7px;
     color: @titleColor;
     .requiredStar {
       .sc(19px, @requireColor);
@@ -13,10 +13,11 @@
     }
   }
   .uploadPlaceholder {
-    .wh(55px, 55px);
+    .wh(48px, 48px);
     .flexCenter;
     box-sizing: border-box;
     border: 1px solid @borderColor;
+    border-radius: 6px;
     .placeholderIcon {
       .sc(26px, #8691a3);
     }
