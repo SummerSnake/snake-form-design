@@ -13,6 +13,7 @@ import DatePickerConfig from './dateConfig/DatePickerConfig';
 import TimePickerConfig from './dateConfig/TimePickerConfig';
 
 import UploadConfig from './otherConfig/UploadConfig';
+import CommentConfig from './otherConfig/CommentConfig';
 
 export {
   TitleConfig,
@@ -26,4 +27,5 @@ export {
   DatePickerConfig,
   TimePickerConfig,
   UploadConfig,
+  CommentConfig,
 };

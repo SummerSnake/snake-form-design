@@ -1,0 +1,32 @@
+@import '@/styles/mixin.less';
+
+.commentWrap {
+  .sc(@titleSize, @titleColor);
+  padding: 10px 0;
+  font-size: @txtSize;
+  background-color: #fff;
+  .commentTitle {
+    padding: 0 12px 7px;
+    .requiredStar {
+      .sc(19px, @requireColor);
+      vertical-align: middle;
+    }
+    .deleteBtn {
+      float: right;
+      padding-right: 8px;
+    }
+  }
+  .starList {
+    display: flex;
+    .starItem {
+      display: flex;
+      flex-flow: column;
+      flex: 1;
+      text-align: center;
+      .starIcon {
+        .sc(@titleSize, #444c59);
+        margin-bottom: 2px;
+      }
+    }
+  }
+}

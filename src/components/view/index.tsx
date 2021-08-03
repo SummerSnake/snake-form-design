@@ -19,6 +19,7 @@ import DatePickerView from './dateView/DatePickerView';
 import TimePickerView from './dateView/TimePickerView';
 
 import UploadView from './otherView/UploadView';
+import CommentView from './otherView/CommentView';
 
 import GroupView from './groupView';
 
@@ -92,6 +93,8 @@ const ViewComponent: FC<ViewProps> = (props) => {
 
           case 'baseUpload':
             return <UploadView title={label} required={isRequired} />;
+          case 'baseComment':
+            return <CommentView title={label} required={isRequired} />;
 
           case 'expense':
             return <GroupView itemInfo={viewInfo} />;

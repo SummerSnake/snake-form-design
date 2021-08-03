@@ -4,9 +4,7 @@ export interface OptionsElement {
 }
 
 export interface WidgetOptions {
-  defaultValue?: string | number; // 默认值
   isRequired?: number; // 是否必填  0.否  1.是
-  isDisabled?: number; // 是否禁用  0.否  1.是
   isPreview?: number; // 是否预览  0.否  1.是
   isStatistics?: number; // 是否汇总  0.否  1.是
   placeholder?: string; // 提示文字

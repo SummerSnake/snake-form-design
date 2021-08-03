@@ -26,7 +26,6 @@ const GroupViewComponent: FC<FormItemsProps> = (props) => {
           ? 'fileList'
           : 'value'
       }
-      initialValue={widgetData.type === 'switch' ? !!options?.defaultValue : options?.defaultValue}
       rules={[
         {
           required: !!options.isRequired,
@@ -37,17 +36,15 @@ const GroupViewComponent: FC<FormItemsProps> = (props) => {
       {(() => {
         switch (widgetData?.type) {
           case 'input':
-            return <Input placeholder={options?.placeholder} disabled={!!options?.isDisabled} />;
+            return <Input placeholder={options?.placeholder} />;
           case 'textarea':
-            return (
-              <Input.TextArea placeholder={options?.placeholder} disabled={!!options?.isDisabled} />
-            );
+            return <Input.TextArea placeholder={options?.placeholder} />;
           case 'radio':
             return (
-              <Radio.Group disabled={!!options?.isDisabled}>
+              <Radio.Group>
                 {Array.isArray(elements) &&
                   elements.map((item) => (
-                    <Radio key={item.id} value={item.elemVal}>
+                    <Radio key={item.id} value={item.id}>
                       {item.elemTitle}
                     </Radio>
                   ))}
@@ -55,10 +52,10 @@ const GroupViewComponent: FC<FormItemsProps> = (props) => {
             );
           case 'checkbox':
             return (
-              <Checkbox.Group disabled={!!options?.isDisabled}>
+              <Checkbox.Group>
                 {Array.isArray(elements) &&
                   elements.map((item) => (
-                    <Checkbox key={item.id} value={item.elemVal}>
+                    <Checkbox key={item.id} value={item.id}>
                       {item.elemTitle}
                     </Checkbox>
                   ))}
@@ -66,23 +63,21 @@ const GroupViewComponent: FC<FormItemsProps> = (props) => {
             );
           case 'select':
             return (
-              <Select disabled={!!options?.isDisabled}>
+              <Select>
                 {Array.isArray(elements) &&
                   elements.map((item) => (
-                    <Select.Option key={item.id} value={item.elemVal}>
+                    <Select.Option key={item.id} value={item.id}>
                       {item.elemTitle}
                     </Select.Option>
                   ))}
               </Select>
             );
           case 'datePicker':
-            return (
-              <DatePicker placeholder={options?.placeholder} disabled={!!options?.isDisabled} />
-            );
+            return <DatePicker placeholder={options?.placeholder} />;
           case 'switch':
-            return <Switch disabled={!!options?.isDisabled} />;
+            return <Switch />;
           case 'upload':
-            return <Upload disabled={!!options?.isDisabled} />;
+            return <Upload />;
           default:
             return null;
         }

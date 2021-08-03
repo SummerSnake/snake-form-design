@@ -72,7 +72,7 @@ const DatePickerConfig: FC<DatePickerConfigProps> = (props) => {
       <Form
         form={form}
         id="DatePickerConfig"
-        layout="horizontal"
+        layout="vertical"
         onValuesChange={handleFormChange}
         labelCol={{ span: 6 }}
         wrapperCol={{ span: 14 }}

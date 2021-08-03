@@ -5,11 +5,11 @@ import _store from '@/utils/dva';
 import { cloneMidList } from '@/utils/util';
 import { Widget, WidgetOptions } from '@/pages/index.d';
 
-interface TimepickerConfigProps {
+interface CommentConfigProps {
   activeIndex: number;
 }
 
-const TimepickerConfig: FC<TimepickerConfigProps> = (props) => {
+const CommentConfig: FC<CommentConfigProps> = (props) => {
   const { dispatch } = _store;
 
   const [form] = Form.useForm();
@@ -34,7 +34,6 @@ const TimepickerConfig: FC<TimepickerConfigProps> = (props) => {
       label: formData.label,
       options: {
         ...widgetData.options,
-        placeholder: formData.placeholder,
         isRequired: otherOptions.includes('isRequired') ? 1 : 0,
         isPreview: otherOptions.includes('isPreview') ? 1 : 0,
       },
@@ -62,7 +61,6 @@ const TimepickerConfig: FC<TimepickerConfigProps> = (props) => {
 
     form.setFieldsValue({
       label: initWidgetData?.label,
-      placeholder: initOptions?.placeholder,
       otherOptions: arr,
     });
   }, [activeIndex]);
@@ -71,9 +69,9 @@ const TimepickerConfig: FC<TimepickerConfigProps> = (props) => {
     <>
       <Form
         form={form}
-        id="TimepickerConfig"
+        id="CommentConfig"
         layout="vertical"
-        onValuesChange={handleFormChange}
+        onFieldsChange={handleFormChange}
         labelCol={{ span: 6 }}
         wrapperCol={{ span: 14 }}
       >
@@ -90,10 +88,6 @@ const TimepickerConfig: FC<TimepickerConfigProps> = (props) => {
           <Input style={{ width: 312 }} />
         </Form.Item>
 
-        <Form.Item label="提示文字" name="placeholder">
-          <Input style={{ width: 312 }} />
-        </Form.Item>
-
         <div>其他</div>
         <Form.Item label="" name="otherOptions">
           <Checkbox.Group style={{ width: 312 }}>
@@ -106,4 +100,4 @@ const TimepickerConfig: FC<TimepickerConfigProps> = (props) => {
   );
 };
 
-export default React.memo(TimepickerConfig);
+export default React.memo(CommentConfig);

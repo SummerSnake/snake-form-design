@@ -19,6 +19,7 @@ import {
   DatePickerConfig,
   TimePickerConfig,
   UploadConfig,
+  CommentConfig,
 } from '@/components/config';
 
 interface RightProps {
@@ -68,6 +69,8 @@ const RightComponent: FC<RightProps> = (props) => {
 
             case 'baseUpload':
               return <UploadConfig activeIndex={activeIdx} />;
+            case 'baseComment':
+              return <CommentConfig activeIndex={activeIdx} />;
             default:
               return null;
           }

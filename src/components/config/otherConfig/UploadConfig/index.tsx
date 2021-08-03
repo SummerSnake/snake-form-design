@@ -70,7 +70,7 @@ const UploadConfig: FC<UploadConfigProps> = (props) => {
       <Form
         form={form}
         id="UploadConfig"
-        layout="horizontal"
+        layout="vertical"
         onFieldsChange={handleFormChange}
         labelCol={{ span: 6 }}
         wrapperCol={{ span: 14 }}

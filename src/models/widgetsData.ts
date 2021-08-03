@@ -14,7 +14,6 @@ const initialData = {
           type: 'input',
           icon: 'fileTextOutlined',
           options: {
-            defaultValue: '',
             isRequired: 0,
             isPreview: 0,
             placeholder: '请输入单行文本',
@@ -27,7 +26,6 @@ const initialData = {
           type: 'textarea',
           icon: 'fileZipOutlined',
           options: {
-            defaultValue: '',
             isRequired: 0,
             isPreview: 0,
             placeholder: '请输入多行文本',
@@ -56,7 +54,6 @@ const initialData = {
           type: 'input',
           icon: 'fileTextOutlined',
           options: {
-            defaultValue: '',
             isRequired: 0,
             isPreview: 0,
             isStatistics: 0,
@@ -74,7 +71,6 @@ const initialData = {
           type: 'input',
           icon: 'fileTextOutlined',
           options: {
-            defaultValue: '',
             currency: 1,
             isRequired: 0,
             isPreview: 0,
@@ -99,7 +95,6 @@ const initialData = {
           type: 'radio',
           icon: 'slack',
           options: {
-            defaultValue: '',
             isRequired: 0,
             isPreview: 0,
             placeholder: '请选择',
@@ -113,7 +108,6 @@ const initialData = {
           type: 'checkbox',
           icon: 'sketch',
           options: {
-            defaultValue: '',
             isRequired: 0,
             isPreview: 0,
             placeholder: '请选择',
@@ -127,7 +121,6 @@ const initialData = {
           type: 'select',
           icon: 'sketch',
           options: {
-            defaultValue: '',
             isRequired: 0,
             isPreview: 0,
             placeholder: '请选择属性',
@@ -186,6 +179,17 @@ const initialData = {
           },
           randomCode: '',
         },
+        {
+          id: 'baseComment',
+          label: '评分',
+          type: 'comment',
+          icon: 'fileTextOutlined',
+          options: {
+            isRequired: 0,
+            isPreview: 0,
+          },
+          randomCode: '',
+        },
       ],
     },
   ],
@@ -202,9 +206,7 @@ const initialData = {
           type: 'group',
           icon: '',
           options: {
-            defaultValue: '',
             isRequired: 0,
-            isDisabled: 0,
             placeholder: '请输入民族',
           },
           widgetsList: [
@@ -214,9 +216,7 @@ const initialData = {
               type: 'input',
               icon: 'fileTextOutlined',
               options: {
-                defaultValue: '',
                 isRequired: 1,
-                isDisabled: 0,
                 placeholder: '请输入单行文本',
               },
               randomCode: 'group_item_01',
@@ -227,27 +227,21 @@ const initialData = {
               type: 'textarea',
               icon: 'fileZipOutlined',
               options: {
-                defaultValue: '',
                 isRequired: 0,
-                isDisabled: 0,
                 placeholder: '请输入多行文本',
               },
               randomCode: 'group_item_02',
             },
             {
               id: 'baseRadio',
-              label: '单选框组',
+              label: '单选',
               type: 'radio',
               icon: 'slack',
               options: {
-                defaultValue: '',
                 isRequired: 0,
-                isDisabled: 0,
-                elements: [
-                  { id: 1, elemTitle: '标题1', elemName: '字段1', elemVal: '值1' },
-                  { id: 2, elemTitle: '标题2', elemName: '字段2', elemVal: '值2' },
-                  { id: 3, elemTitle: '标题3', elemName: '字段3', elemVal: '值3' },
-                ],
+                isPreview: 0,
+                placeholder: '请选择',
+                elements: [{ id: 1, elemTitle: '' }],
               },
               randomCode: 'group_item_03',
             },
