@@ -1,7 +1,7 @@
 import React, { FC, useEffect } from 'react';
 import { Form, Input, Radio, Checkbox } from 'antd';
-import _store from '@/utils/dva';
 
+import _store from '@/utils/dva';
 import { cloneMidList } from '@/utils/util';
 import { Widget, WidgetOptions } from '@/pages/index.d';
 

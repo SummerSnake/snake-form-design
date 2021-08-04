@@ -1,5 +1,5 @@
 import React, { FC } from 'react';
-import { StarOutlined } from '@ant-design/icons';
+import Icons from '@/utils/icon';
 import './index.less';
 
 interface CommentViewProps {
@@ -24,7 +24,7 @@ const CommentViewComponent: FC<CommentViewProps> = (props) => {
       <div className="starList">
         {[1, 2, 3, 4, 5].map((item) => (
           <div className="starItem">
-            <StarOutlined className="starIcon" />
+            <span className="starIcon">{Icons.commentIcon()}</span>
             <span>{item}</span>
           </div>
         ))}

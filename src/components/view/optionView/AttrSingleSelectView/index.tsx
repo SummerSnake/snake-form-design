@@ -1,5 +1,5 @@
 import React, { FC } from 'react';
-import { RightOutlined } from '@ant-design/icons';
+import Icons from '@/utils/icon';
 import { WidgetOptions } from '@/pages/index.d';
 import './index.less';
 
@@ -25,7 +25,7 @@ const AttrSingleSelectViewComponent: FC<AttrSingleSelectViewProps> = (props) => 
 
       <div className="attrSingleSelectPlaceholder">{options?.placeholder}</div>
 
-      <RightOutlined className="attrSingleSelectArrow" />
+      <span className="attrSingleSelectArrow">{Icons.rightArrowIcon({ color: '#666' })}</span>
     </div>
   );
 };

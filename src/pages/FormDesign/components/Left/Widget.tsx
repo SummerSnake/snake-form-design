@@ -2,39 +2,16 @@
  * @Author: SummerSnake
  * @Description: 单个控件
  */
-import React, { FC, ReactElement } from 'react';
-import {
-  FileTextOutlined,
-  FileZipOutlined,
-  SketchOutlined,
-  SlackOutlined,
-  OrderedListOutlined,
-  DotChartOutlined,
-  HeartOutlined,
-  ToTopOutlined,
-} from '@ant-design/icons';
+import React, { FC } from 'react';
 import { useDrag, DragSourceMonitor } from 'react-dnd';
 
+import Icons from '@/utils/icon';
 import { handleDrop, deletePlaceholder } from '@/utils/util';
 import { Widget } from '@/pages/index.d';
 
-interface ICONSTYPE {
-  [key: string]: ReactElement;
-}
 interface WidgetProps {
   widgetData: Widget;
 }
-
-const Icons = {
-  fileTextOutlined: <FileTextOutlined />,
-  fileZipOutlined: <FileZipOutlined />,
-  sketch: <SketchOutlined />,
-  slack: <SlackOutlined />,
-  orderedListOutlined: <OrderedListOutlined />,
-  dotChartOutlined: <DotChartOutlined />,
-  heartOutlined: <HeartOutlined />,
-  toTopOutlined: <ToTopOutlined />,
-};
 
 const WidgetComponent: FC<WidgetProps> = (props) => {
   const { widgetData } = props;
@@ -59,7 +36,7 @@ const WidgetComponent: FC<WidgetProps> = (props) => {
   return (
     <div ref={drager} className="widgetWrap" style={{ opacity }}>
       <span>{widgetData.label}</span>
-      <span className="widgetIcon">{(Icons as ICONSTYPE)[widgetData.icon]}</span>
+      {Icons[widgetData.icon] && <span className="widgetIcon">{Icons[widgetData.icon]()}</span>}
     </div>
   );
 };

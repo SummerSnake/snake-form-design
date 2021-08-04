@@ -12,7 +12,7 @@ const initialData = {
           id: 'baseInput',
           label: '单行文本',
           type: 'input',
-          icon: 'fileTextOutlined',
+          icon: 'singleTxtIcon',
           options: {
             isRequired: 0,
             isPreview: 0,
@@ -24,7 +24,7 @@ const initialData = {
           id: 'baseTextarea',
           label: '多行文本',
           type: 'textarea',
-          icon: 'fileZipOutlined',
+          icon: 'multipleTxtIcon',
           options: {
             isRequired: 0,
             isPreview: 0,
@@ -36,7 +36,7 @@ const initialData = {
           id: 'baseTitle',
           label: '说明',
           type: 'text',
-          icon: 'toTopOutlined',
+          icon: 'txtIcon',
           options: {
             placeholder: '说明',
           },
@@ -52,7 +52,7 @@ const initialData = {
           id: 'baseNumber',
           label: '数字',
           type: 'input',
-          icon: 'fileTextOutlined',
+          icon: 'numberIcon',
           options: {
             isRequired: 0,
             isPreview: 0,
@@ -69,7 +69,7 @@ const initialData = {
           id: 'baseAmount',
           label: '金额',
           type: 'input',
-          icon: 'fileTextOutlined',
+          icon: 'amountIcon',
           options: {
             currency: 1,
             isRequired: 0,
@@ -93,7 +93,7 @@ const initialData = {
           id: 'baseRadio',
           label: '单选',
           type: 'radio',
-          icon: 'slack',
+          icon: 'radioIcon',
           options: {
             isRequired: 0,
             isPreview: 0,
@@ -106,7 +106,7 @@ const initialData = {
           id: 'baseCheckbox',
           label: '多选',
           type: 'checkbox',
-          icon: 'sketch',
+          icon: 'checkboxIcon',
           options: {
             isRequired: 0,
             isPreview: 0,
@@ -119,7 +119,7 @@ const initialData = {
           id: 'baseAttrSingleSelect',
           label: '属性选择(单选)',
           type: 'select',
-          icon: 'sketch',
+          icon: 'radioIcon',
           options: {
             isRequired: 0,
             isPreview: 0,
@@ -136,7 +136,7 @@ const initialData = {
           id: 'baseAttrMultipleSelect',
           label: '属性选择(多选)',
           type: 'select',
-          icon: 'sketch',
+          icon: 'checkboxIcon',
           options: {
             isRequired: 0,
             isPreview: 0,
@@ -159,7 +159,7 @@ const initialData = {
           id: 'baseDatePicker',
           label: '日期',
           type: 'datePicker',
-          icon: 'dotChartOutlined',
+          icon: 'dateIcon',
           options: {
             isRequired: 0,
             isPreview: 0,
@@ -170,8 +170,8 @@ const initialData = {
         {
           id: 'baseTimePicker',
           label: '时间',
-          type: 'timePicker',
-          icon: 'dotChartOutlined',
+          type: 'time',
+          icon: 'timeIcon',
           options: {
             isRequired: 0,
             isPreview: 0,
@@ -189,7 +189,7 @@ const initialData = {
           id: 'baseIdNo',
           label: '身份证号',
           type: 'input',
-          icon: 'toTopOutlined',
+          icon: 'idNoIcon',
           options: {
             isRequired: 0,
             isPreview: 0,
@@ -201,7 +201,7 @@ const initialData = {
           id: 'basePhone',
           label: '手机号',
           type: 'input',
-          icon: 'toTopOutlined',
+          icon: 'phoneIcon',
           options: {
             isRequired: 0,
             isPreview: 0,
@@ -219,7 +219,7 @@ const initialData = {
           id: 'baseUpload',
           label: '图片',
           type: 'upload',
-          icon: 'toTopOutlined',
+          icon: 'uploadIcon',
           options: {
             isRequired: 0,
             isPreview: 0,
@@ -230,7 +230,7 @@ const initialData = {
           id: 'baseComment',
           label: '评分',
           type: 'comment',
-          icon: 'fileTextOutlined',
+          icon: 'commentIcon',
           options: {
             isRequired: 0,
             isPreview: 0,

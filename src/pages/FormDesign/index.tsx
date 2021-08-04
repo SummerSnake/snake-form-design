@@ -4,6 +4,8 @@ import { DndProvider } from 'react-dnd';
 import { HTML5Backend } from 'react-dnd-html5-backend';
 import { FormDesignModelState, InitialDataType } from '@/pages/index.d';
 
+import '@/styles/iconfont.less';
+
 import Left from './components/Left';
 import Middle from './components/Middle';
 import Right from './components/Right';

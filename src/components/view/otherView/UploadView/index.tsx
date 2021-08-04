@@ -1,5 +1,5 @@
 import React, { FC } from 'react';
-import { PlusOutlined } from '@ant-design/icons';
+import Icons from '@/utils/icon';
 import './index.less';
 
 interface UploadViewProps {
@@ -19,9 +19,7 @@ const UploadViewComponent: FC<UploadViewProps> = (props) => {
         </i>
       </div>
 
-      <div className="uploadPlaceholder">
-        <PlusOutlined className="placeholderIcon" />
-      </div>
+      <div className="uploadPlaceholder">{Icons.plusIcon({ fontSize: 26, color: '#8691a3' })}</div>
     </div>
   );
 };

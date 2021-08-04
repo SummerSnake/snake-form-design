@@ -1,9 +1,9 @@
 import React, { FC, useState, useEffect } from 'react';
 import { Form, Input, Checkbox } from 'antd';
-import { PlusOutlined, DeleteOutlined } from '@ant-design/icons';
 import { v4 as uuidv4 } from 'uuid';
-import _store from '@/utils/dva';
 
+import _store from '@/utils/dva';
+import Icons from '@/utils/icon';
 import { cloneMidList } from '@/utils/util';
 import { Widget, WidgetOptions, OptionsElement } from '@/pages/index.d';
 
@@ -217,18 +217,18 @@ const CheckboxConfig: FC<CheckboxConfigProps> = (props) => {
                   />
                 </Form.Item>
 
-                <DeleteOutlined
+                <span
                   style={{
                     position: 'absolute',
-                    bottom: '7px',
+                    bottom: 3,
                     right: '0',
                     cursor: 'pointer',
-                    color: '#ff7875',
-                    fontSize: 18,
                     visibility: initElements.length > 1 ? 'visible' : 'hidden',
                   }}
                   onClick={() => handleUpdateElements('reduce', index)}
-                />
+                >
+                  {Icons.deleteIcon({ color: '#ff7875' })}
+                </span>
               </div>
             ))}
 
@@ -236,7 +236,10 @@ const CheckboxConfig: FC<CheckboxConfigProps> = (props) => {
             onClick={() => handleUpdateElements('add', 0)}
             style={{ marginBottom: 20, cursor: 'pointer', color: '#40a9ff' }}
           >
-            <PlusOutlined style={{ fontSize: 18, verticalAlign: 'middle', marginRight: 4 }} />
+            <span style={{ verticalAlign: 'middle', marginRight: 4 }}>
+              {Icons.plusIcon({ fontSize: 18, color: '#108ee9' })}
+            </span>
+
             <span style={{ verticalAlign: 'middle' }}>添加条件</span>
           </div>
         </>
