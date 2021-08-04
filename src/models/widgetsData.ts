@@ -35,7 +35,7 @@ const initialData = {
         {
           id: 'baseTitle',
           label: '说明',
-          type: 'div',
+          type: 'text',
           icon: 'toTopOutlined',
           options: {
             placeholder: '说明',
@@ -194,6 +194,18 @@ const initialData = {
             isRequired: 0,
             isPreview: 0,
             placeholder: '请输入身份证号',
+          },
+          randomCode: '',
+        },
+        {
+          id: 'basePhone',
+          label: '手机号',
+          type: 'input',
+          icon: 'toTopOutlined',
+          options: {
+            isRequired: 0,
+            isPreview: 0,
+            placeholder: '请输入手机号',
           },
           randomCode: '',
         },

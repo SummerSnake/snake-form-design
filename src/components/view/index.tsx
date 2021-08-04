@@ -20,6 +20,7 @@ import DatePickerView from './dateView/DatePickerView';
 import TimePickerView from './dateView/TimePickerView';
 
 import IdNoView from './specialNumView/IdNoView';
+import PhoneView from './specialNumView/PhoneView';
 
 import UploadView from './otherView/UploadView';
 import CommentView from './otherView/CommentView';
@@ -98,6 +99,8 @@ const ViewComponent: FC<ViewProps> = (props) => {
 
           case 'baseIdNo':
             return <IdNoView title={label} options={options} />;
+          case 'basePhone':
+            return <PhoneView title={label} options={options} />;
 
           case 'baseUpload':
             return <UploadView title={label} required={isRequired} />;

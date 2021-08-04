@@ -1,0 +1,18 @@
+@import '@/styles/mixin.less';
+
+.phoneWrap {
+  padding: 10px 12px;
+  font-size: @txtSize;
+  background-color: #fff;
+  .phoneTitle {
+    padding-bottom: 3px;
+    color: @titleColor;
+    .requiredStar {
+      .sc(19px, @requireColor);
+      vertical-align: middle;
+    }
+  }
+  .phonePlaceholder {
+    color: @placeholderColor;
+  }
+}

@@ -20,6 +20,7 @@ import {
   DatePickerConfig,
   TimePickerConfig,
   IdNoConfig,
+  PhoneConfig,
   UploadConfig,
   CommentConfig,
 } from '@/components/config';
@@ -73,6 +74,8 @@ const RightComponent: FC<RightProps> = (props) => {
 
             case 'baseIdNo':
               return <IdNoConfig activeIndex={activeIdx} />;
+            case 'basePhone':
+              return <PhoneConfig activeIndex={activeIdx} />;
 
             case 'baseUpload':
               return <UploadConfig activeIndex={activeIdx} />;
