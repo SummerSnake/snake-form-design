@@ -1,0 +1,22 @@
+@import '@/styles/mixin.less';
+
+.multipleDepartmentWrap {
+  padding: 10px 12px;
+  font-size: @txtSize;
+  background-color: #fff;
+  .multipleDepartmentTitle {
+    padding-bottom: 7px;
+    color: @titleColor;
+    .requiredStar {
+      .sc(19px, @requireColor);
+      vertical-align: middle;
+    }
+  }
+  .multipleDepartmentPlaceholder {
+    .wh(33px, 33px);
+    .flexCenter;
+    box-sizing: border-box;
+    border: 1px solid @primaryColor;
+    border-radius: 50%;
+  }
+}

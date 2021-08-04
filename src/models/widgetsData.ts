@@ -226,6 +226,17 @@ const initialData = {
           },
           randomCode: '',
         },
+        {
+          id: 'baseMultipleDepartment',
+          label: '部门 (多部门)',
+          type: 'upload',
+          icon: 'departmentIcon',
+          options: {
+            isRequired: 0,
+            isPreview: 0,
+          },
+          randomCode: '',
+        },
       ],
     },
     {

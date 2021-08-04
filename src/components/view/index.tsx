@@ -23,6 +23,7 @@ import IdNoView from './specialNumView/IdNoView';
 import PhoneView from './specialNumView/PhoneView';
 
 import SingleDepartmentView from './organizationView/SingleDepartmentView';
+import MultipleDepartmentView from './organizationView/MultipleDepartmentView';
 
 import UploadView from './otherView/UploadView';
 import CommentView from './otherView/CommentView';
@@ -106,6 +107,8 @@ const ViewComponent: FC<ViewProps> = (props) => {
 
           case 'baseSingleDepartment':
             return <SingleDepartmentView title={label} required={isRequired} />;
+          case 'baseMultipleDepartment':
+            return <MultipleDepartmentView title={label} required={isRequired} />;
 
           case 'baseUpload':
             return <UploadView title={label} required={isRequired} />;

@@ -17,6 +17,7 @@ import IdNoConfig from './specialNumConfig/IdNoConfig';
 import PhoneConfig from './specialNumConfig/PhoneConfig';
 
 import SingleDepartmentConfig from './organizationConfig/SingleDepartmentConfig';
+import MultipleDepartmentConfig from './organizationConfig/MultipleDepartmentConfig';
 
 import UploadConfig from './otherConfig/UploadConfig';
 import CommentConfig from './otherConfig/CommentConfig';
@@ -36,6 +37,7 @@ export {
   IdNoConfig,
   PhoneConfig,
   SingleDepartmentConfig,
+  MultipleDepartmentConfig,
   UploadConfig,
   CommentConfig,
 };
