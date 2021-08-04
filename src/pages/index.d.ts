@@ -14,6 +14,8 @@ export interface WidgetOptions {
 
   unit?: string; // 单位 => 数字
 
+  isSelf?: number; // 可选自己 => 成员
+
   currency?: number; // 币种 => 金额  1.人民币  2.美元
   decimal?: number; // 小数位数 => 金额  0.整数  1.1位  2.2位
   isUppercase?: number; // 是否显示大写数字 => 金额  0.否  1.是

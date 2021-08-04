@@ -18,6 +18,7 @@ import PhoneConfig from './specialNumConfig/PhoneConfig';
 
 import SingleDepartmentConfig from './organizationConfig/SingleDepartmentConfig';
 import MultipleDepartmentConfig from './organizationConfig/MultipleDepartmentConfig';
+import SingleMemberConfig from './organizationConfig/SingleMemberConfig';
 
 import UploadConfig from './otherConfig/UploadConfig';
 import CommentConfig from './otherConfig/CommentConfig';
@@ -38,6 +39,7 @@ export {
   PhoneConfig,
   SingleDepartmentConfig,
   MultipleDepartmentConfig,
+  SingleMemberConfig,
   UploadConfig,
   CommentConfig,
 };

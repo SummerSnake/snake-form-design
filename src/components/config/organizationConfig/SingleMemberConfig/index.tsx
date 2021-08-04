@@ -5,11 +5,11 @@ import _store from '@/utils/dva';
 import { cloneMidList } from '@/utils/util';
 import { Widget, WidgetOptions } from '@/pages/index.d';
 
-interface MultipleDepartmentConfigProps {
+interface SingleMemberConfigProps {
   activeIndex: number;
 }
 
-const MultipleDepartmentConfig: FC<MultipleDepartmentConfigProps> = (props) => {
+const SingleMemberConfig: FC<SingleMemberConfigProps> = (props) => {
   const { dispatch } = _store;
 
   const [form] = Form.useForm();
@@ -34,6 +34,7 @@ const MultipleDepartmentConfig: FC<MultipleDepartmentConfigProps> = (props) => {
       label: formData.label,
       options: {
         ...widgetData.options,
+        isSelf: formData.isSelf ? 1 : 0,
         isRequired: otherOptions.includes('isRequired') ? 1 : 0,
         isPreview: otherOptions.includes('isPreview') ? 1 : 0,
       },
@@ -61,6 +62,7 @@ const MultipleDepartmentConfig: FC<MultipleDepartmentConfigProps> = (props) => {
 
     form.setFieldsValue({
       label: initWidgetData?.label,
+      isSelf: !!initOptions?.isSelf,
       otherOptions: arr,
     });
   }, [activeIndex]);
@@ -69,14 +71,14 @@ const MultipleDepartmentConfig: FC<MultipleDepartmentConfigProps> = (props) => {
     <>
       <Form
         form={form}
-        id="MultipleDepartmentConfig"
+        id="SingleMemberConfig"
         layout="vertical"
         onFieldsChange={handleFormChange}
         labelCol={{ span: 6 }}
         wrapperCol={{ span: 14 }}
       >
         <div className="configTitleWrap">
-          <p className="configTitle">部门 (多部门)</p>
+          <p className="configTitle">成员 (单成员)</p>
         </div>
 
         <Form.Item
@@ -92,6 +94,10 @@ const MultipleDepartmentConfig: FC<MultipleDepartmentConfigProps> = (props) => {
           <Input style={{ width: 312 }} />
         </Form.Item>
 
+        <Form.Item label="" name="isSelf" valuePropName="checked">
+          <Checkbox style={{ width: 312 }}>可选自己</Checkbox>
+        </Form.Item>
+
         <div>其他</div>
         <Form.Item label="" name="otherOptions">
           <Checkbox.Group style={{ width: 312 }}>
@@ -104,4 +110,4 @@ const MultipleDepartmentConfig: FC<MultipleDepartmentConfigProps> = (props) => {
   );
 };
 
-export default React.memo(MultipleDepartmentConfig);
+export default React.memo(SingleMemberConfig);

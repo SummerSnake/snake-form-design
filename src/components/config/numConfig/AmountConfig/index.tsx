@@ -123,7 +123,7 @@ const AmountConfig: FC<AmountConfigProps> = (props) => {
           </Select>
         </Form.Item>
 
-        <Form.Item label="" name="isUppercase" valuePropName="checked">
+        <Form.Item label="选项类型" name="isUppercase" valuePropName="checked">
           <Checkbox style={{ width: 312 }}>
             <div style={{ whiteSpace: 'nowrap' }}>
               <span>显示大写数字</span>

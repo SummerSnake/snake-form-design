@@ -23,6 +23,7 @@ import {
   PhoneConfig,
   SingleDepartmentConfig,
   MultipleDepartmentConfig,
+  SingleMemberConfig,
   UploadConfig,
   CommentConfig,
 } from '@/components/config';
@@ -83,6 +84,8 @@ const RightComponent: FC<RightProps> = (props) => {
               return <SingleDepartmentConfig activeIndex={activeIdx} />;
             case 'baseMultipleDepartment':
               return <MultipleDepartmentConfig activeIndex={activeIdx} />;
+            case 'baseSingleMember':
+              return <SingleMemberConfig activeIndex={activeIdx} />;
 
             case 'baseUpload':
               return <UploadConfig activeIndex={activeIdx} />;

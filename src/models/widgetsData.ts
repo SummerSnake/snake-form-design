@@ -237,6 +237,18 @@ const initialData = {
           },
           randomCode: '',
         },
+        {
+          id: 'baseSingleMember',
+          label: '成员 (单成员)',
+          type: 'upload',
+          icon: 'memberIcon',
+          options: {
+            isRequired: 0,
+            isPreview: 0,
+            isSelf: 0,
+          },
+          randomCode: '',
+        },
       ],
     },
     {
