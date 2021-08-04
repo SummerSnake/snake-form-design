@@ -79,6 +79,10 @@ const AttrSingleSelect: FC<AttrSingleSelectProps> = (props) => {
         labelCol={{ span: 6 }}
         wrapperCol={{ span: 14 }}
       >
+        <div className="configTitleWrap">
+          <p className="configTitle">属性选择(单选)</p>
+        </div>
+
         <Form.Item
           label="控件名称"
           name="label"

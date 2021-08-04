@@ -77,6 +77,10 @@ const MultipleTxtConfig: FC<MultipleTxtConfigProps> = (props) => {
         labelCol={{ span: 6 }}
         wrapperCol={{ span: 14 }}
       >
+        <div className="configTitleWrap">
+          <p className="configTitle">多行文本</p>
+        </div>
+
         <Form.Item
           label="控件名称"
           name="label"

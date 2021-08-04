@@ -61,6 +61,10 @@ const TitleConfig: FC<TitleConfigProps> = (props) => {
         labelCol={{ span: 6 }}
         wrapperCol={{ span: 14 }}
       >
+        <div className="configTitleWrap">
+          <p className="configTitle">说明</p>
+        </div>
+
         <Form.Item
           label="控件名称"
           name="placeholder"

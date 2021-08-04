@@ -173,6 +173,10 @@ const CheckboxConfig: FC<CheckboxConfigProps> = (props) => {
         labelCol={{ span: 6 }}
         wrapperCol={{ span: 14 }}
       >
+        <div className="configTitleWrap">
+          <p className="configTitle">多选</p>
+        </div>
+
         <Form.Item
           label="控件名称"
           name="label"

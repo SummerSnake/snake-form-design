@@ -13,6 +13,8 @@ import AttrMultipleSelectConfig from './optionConfig/AttrMultipleSelectConfig';
 import DatePickerConfig from './dateConfig/DatePickerConfig';
 import TimePickerConfig from './dateConfig/TimePickerConfig';
 
+import IdNoConfig from './specialNumConfig/IdNoConfig';
+
 import UploadConfig from './otherConfig/UploadConfig';
 import CommentConfig from './otherConfig/CommentConfig';
 
@@ -28,6 +30,7 @@ export {
   AttrMultipleSelectConfig,
   DatePickerConfig,
   TimePickerConfig,
+  IdNoConfig,
   UploadConfig,
   CommentConfig,
 };

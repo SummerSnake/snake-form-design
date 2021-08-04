@@ -19,6 +19,8 @@ import AttrMultipleSelectView from './optionView/AttrMultipleSelectView';
 import DatePickerView from './dateView/DatePickerView';
 import TimePickerView from './dateView/TimePickerView';
 
+import IdNoView from './specialNumView/IdNoView';
+
 import UploadView from './otherView/UploadView';
 import CommentView from './otherView/CommentView';
 
@@ -93,6 +95,9 @@ const ViewComponent: FC<ViewProps> = (props) => {
             return <DatePickerView title={label} options={options} />;
           case 'baseTimePicker':
             return <TimePickerView title={label} options={options} />;
+
+          case 'baseIdNo':
+            return <IdNoView title={label} options={options} />;
 
           case 'baseUpload':
             return <UploadView title={label} required={isRequired} />;

@@ -5,11 +5,11 @@ import _store from '@/utils/dva';
 import { cloneMidList } from '@/utils/util';
 import { Widget, WidgetOptions } from '@/pages/index.d';
 
-interface SingleTxtConfigProps {
+interface IdNoConfigProps {
   activeIndex: number;
 }
 
-const SingleTxtConfig: FC<SingleTxtConfigProps> = (props) => {
+const IdNoConfig: FC<IdNoConfigProps> = (props) => {
   const { dispatch } = _store;
 
   const [form] = Form.useForm();
@@ -71,14 +71,15 @@ const SingleTxtConfig: FC<SingleTxtConfigProps> = (props) => {
     <>
       <Form
         form={form}
-        id="SingleTxtConfig"
+        id="IdNoConfig"
         layout="vertical"
         onFieldsChange={handleFormChange}
         labelCol={{ span: 6 }}
         wrapperCol={{ span: 14 }}
       >
         <div className="configTitleWrap">
-          <p className="configTitle">单行文本</p>
+          <p className="configTitle">身份证号</p>
+          <p className="titleSubTxt">将自动验证身份证号码正确性</p>
         </div>
 
         <Form.Item
@@ -110,4 +111,4 @@ const SingleTxtConfig: FC<SingleTxtConfigProps> = (props) => {
   );
 };
 
-export default React.memo(SingleTxtConfig);
+export default React.memo(IdNoConfig);

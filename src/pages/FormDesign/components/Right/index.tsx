@@ -19,6 +19,7 @@ import {
   AttrMultipleSelectConfig,
   DatePickerConfig,
   TimePickerConfig,
+  IdNoConfig,
   UploadConfig,
   CommentConfig,
 } from '@/components/config';
@@ -69,6 +70,9 @@ const RightComponent: FC<RightProps> = (props) => {
               return <DatePickerConfig activeIndex={activeIdx} />;
             case 'baseTimePicker':
               return <TimePickerConfig activeIndex={activeIdx} />;
+
+            case 'baseIdNo':
+              return <IdNoConfig activeIndex={activeIdx} />;
 
             case 'baseUpload':
               return <UploadConfig activeIndex={activeIdx} />;

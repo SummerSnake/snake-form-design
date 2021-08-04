@@ -178,6 +178,16 @@
       &::-webkit-scrollbar {
         display: none;
       }
+      .configTitleWrap {
+        margin-bottom: 28px;
+        .configTitle {
+          .sc(@titleSize, @titleColor);
+          margin-bottom: 0;
+        }
+        .titleSubTxt {
+          .sc(@txtSize, @txtColor);
+        }
+      }
     }
   }
 }

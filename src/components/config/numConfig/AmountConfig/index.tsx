@@ -91,6 +91,10 @@ const AmountConfig: FC<AmountConfigProps> = (props) => {
         labelCol={{ span: 6 }}
         wrapperCol={{ span: 14 }}
       >
+        <div className="configTitleWrap">
+          <p className="configTitle">金额</p>
+        </div>
+
         <Form.Item
           label="控件名称"
           name="label"

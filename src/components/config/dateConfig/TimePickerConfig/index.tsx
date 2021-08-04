@@ -77,6 +77,10 @@ const TimepickerConfig: FC<TimepickerConfigProps> = (props) => {
         labelCol={{ span: 6 }}
         wrapperCol={{ span: 14 }}
       >
+        <div className="configTitleWrap">
+          <p className="configTitle">时间</p>
+        </div>
+
         <Form.Item
           label="控件名称"
           name="label"

@@ -182,6 +182,24 @@ const initialData = {
       ],
     },
     {
+      id: 'specialNumWidgets',
+      title: '特殊数值',
+      items: [
+        {
+          id: 'baseIdNo',
+          label: '身份证号',
+          type: 'input',
+          icon: 'toTopOutlined',
+          options: {
+            isRequired: 0,
+            isPreview: 0,
+            placeholder: '请输入身份证号',
+          },
+          randomCode: '',
+        },
+      ],
+    },
+    {
       id: 'otherWidgets',
       title: '其他',
       items: [
