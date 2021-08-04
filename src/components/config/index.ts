@@ -16,6 +16,8 @@ import TimePickerConfig from './dateConfig/TimePickerConfig';
 import IdNoConfig from './specialNumConfig/IdNoConfig';
 import PhoneConfig from './specialNumConfig/PhoneConfig';
 
+import SingleDepartmentConfig from './organizationConfig/SingleDepartmentConfig';
+
 import UploadConfig from './otherConfig/UploadConfig';
 import CommentConfig from './otherConfig/CommentConfig';
 
@@ -33,6 +35,7 @@ export {
   TimePickerConfig,
   IdNoConfig,
   PhoneConfig,
+  SingleDepartmentConfig,
   UploadConfig,
   CommentConfig,
 };

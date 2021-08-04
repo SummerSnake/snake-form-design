@@ -117,7 +117,7 @@ const initialData = {
         },
         {
           id: 'baseAttrSingleSelect',
-          label: '属性选择(单选)',
+          label: '属性选择 (单选)',
           type: 'select',
           icon: 'radioIcon',
           options: {
@@ -134,7 +134,7 @@ const initialData = {
         },
         {
           id: 'baseAttrMultipleSelect',
-          label: '属性选择(多选)',
+          label: '属性选择 (多选)',
           type: 'select',
           icon: 'checkboxIcon',
           options: {
@@ -206,6 +206,23 @@ const initialData = {
             isRequired: 0,
             isPreview: 0,
             placeholder: '请输入手机号',
+          },
+          randomCode: '',
+        },
+      ],
+    },
+    {
+      id: 'organizationWidgets',
+      title: '部门和成员',
+      items: [
+        {
+          id: 'baseSingleDepartment',
+          label: '部门 (单部门)',
+          type: 'upload',
+          icon: 'departmentIcon',
+          options: {
+            isRequired: 0,
+            isPreview: 0,
           },
           randomCode: '',
         },
