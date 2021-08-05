@@ -20,6 +20,7 @@ import SingleDepartmentConfig from './organizationConfig/SingleDepartmentConfig'
 import MultipleDepartmentConfig from './organizationConfig/MultipleDepartmentConfig';
 import SingleMemberConfig from './organizationConfig/SingleMemberConfig';
 import MultipleMemberConfig from './organizationConfig/MultipleMemberConfig';
+import OrganizeRangeConfig from './organizationConfig/OrganizeRangeConfig';
 
 import UploadConfig from './otherConfig/UploadConfig';
 import CommentConfig from './otherConfig/CommentConfig';
@@ -42,6 +43,7 @@ export {
   MultipleDepartmentConfig,
   SingleMemberConfig,
   MultipleMemberConfig,
+  OrganizeRangeConfig,
   UploadConfig,
   CommentConfig,
 };

@@ -261,6 +261,18 @@ const initialData = {
           },
           randomCode: '',
         },
+        {
+          id: 'baseOrganizeRange',
+          label: '组织范围',
+          type: 'upload',
+          icon: 'organizeRangeIcon',
+          options: {
+            isRequired: 0,
+            isPreview: 0,
+            isSelf: 0,
+          },
+          randomCode: '',
+        },
       ],
     },
     {

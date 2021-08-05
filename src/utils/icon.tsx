@@ -85,7 +85,7 @@ const Icons = {
     </i>
   ),
 
-  organizeIcon: (styles?: React.CSSProperties | undefined) => (
+  organizeRangeIcon: (styles?: React.CSSProperties | undefined) => (
     <i className="iconX" style={{ ...styles }}>
       &#xe642;
     </i>

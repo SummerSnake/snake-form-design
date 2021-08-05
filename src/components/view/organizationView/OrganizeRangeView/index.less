@@ -1,0 +1,22 @@
+@import '@/styles/mixin.less';
+
+.organizeRangeWrap {
+  padding: 10px 12px;
+  font-size: @txtSize;
+  background-color: #fff;
+  .organizeRangeTitle {
+    padding-bottom: 7px;
+    color: @titleColor;
+    .requiredStar {
+      .sc(19px, @requireColor);
+      vertical-align: middle;
+    }
+  }
+  .organizeRangePlaceholder {
+    .wh(33px, 33px);
+    .flexCenter;
+    box-sizing: border-box;
+    border: 1px solid @primaryColor;
+    border-radius: 50%;
+  }
+}
