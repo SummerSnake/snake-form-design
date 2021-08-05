@@ -273,6 +273,17 @@ const initialData = {
           randomCode: '',
         },
         {
+          id: 'baseMultipleCompany',
+          label: '内部公司(多公司)',
+          type: 'upload',
+          icon: 'companyIcon',
+          options: {
+            isRequired: 0,
+            isPreview: 0,
+          },
+          randomCode: '',
+        },
+        {
           id: 'baseOrganizeRange',
           label: '组织范围',
           type: 'upload',

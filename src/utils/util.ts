@@ -44,7 +44,7 @@ export const setErrorMsg = (form: FormInstance, widgetData: Widget): void => {
 
       if (Array.isArray(errorFields)) {
         const { dispatch } = _store;
-        let errorArr = cloneErrorList();
+        const errorArr = cloneErrorList();
         // 取出当前控件的 randomCode
         const { randomCode } = widgetData;
         const index = errorArr.indexOf(randomCode);

@@ -27,6 +27,7 @@ import MultipleDepartmentView from './organizationView/MultipleDepartmentView';
 import SingleMemberView from './organizationView/SingleMemberView';
 import MultipleMemberView from './organizationView/MultipleMemberView';
 import SingleCompanyView from './organizationView/SingleCompanyView';
+import MultipleCompanyView from './organizationView/MultipleCompanyView';
 import OrganizeRangeView from './organizationView/OrganizeRangeView';
 
 import UploadView from './otherView/UploadView';
@@ -44,7 +45,6 @@ const ViewComponent: FC<ViewProps> = (props) => {
   const { dispatch } = _store;
   const { viewInfo, widgetIdx, isActive } = props;
   const { label, options } = viewInfo;
-  const { isRequired = 0 } = options;
   const errorArr = cloneErrorList();
 
   /**
@@ -127,6 +127,8 @@ const ViewComponent: FC<ViewProps> = (props) => {
             return <MultipleMemberView title={label} options={options} />;
           case 'baseSingleCompany':
             return <SingleCompanyView title={label} options={options} />;
+          case 'baseMultipleCompany':
+            return <MultipleCompanyView title={label} options={options} />;
           case 'baseOrganizeRange':
             return <OrganizeRangeView title={label} options={options} />;
 
