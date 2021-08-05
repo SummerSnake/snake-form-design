@@ -49,6 +49,7 @@ export interface FormDesignModelState {
   widgetsList: Widgets[];
   widgetsGroupList: Widgets[];
   midList: Widget[];
+  errorList: string[];
   activeIdx: number;
   isDroped: string;
 }

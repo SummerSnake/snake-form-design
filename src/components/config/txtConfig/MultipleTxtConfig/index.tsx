@@ -2,7 +2,7 @@ import React, { FC, useEffect } from 'react';
 import { Form, Input, Checkbox } from 'antd';
 
 import _store from '@/utils/dva';
-import { cloneMidList } from '@/utils/util';
+import { cloneMidList, setErrorMsg } from '@/utils/util';
 import { Widget, WidgetOptions } from '@/pages/index.d';
 
 interface MultipleTxtConfigProps {
@@ -46,6 +46,8 @@ const MultipleTxtConfig: FC<MultipleTxtConfigProps> = (props) => {
         midList: [...middleArr],
       },
     });
+
+    setErrorMsg(form, initWidgetData);
   };
 
   /**
@@ -65,6 +67,8 @@ const MultipleTxtConfig: FC<MultipleTxtConfigProps> = (props) => {
       placeholder: initOptions?.placeholder,
       otherOptions: arr,
     });
+
+    setErrorMsg(form, initWidgetData);
   }, [activeIndex]);
 
   return (
@@ -73,7 +77,7 @@ const MultipleTxtConfig: FC<MultipleTxtConfigProps> = (props) => {
         form={form}
         id="MultipleTxtConfig"
         layout="vertical"
-        onFieldsChange={handleFormChange}
+        onValuesChange={handleFormChange}
         labelCol={{ span: 6 }}
         wrapperCol={{ span: 14 }}
       >

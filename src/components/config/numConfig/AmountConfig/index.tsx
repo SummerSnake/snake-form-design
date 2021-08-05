@@ -2,7 +2,7 @@ import React, { FC, useEffect } from 'react';
 import { Form, Input, Radio, Select, Checkbox } from 'antd';
 
 import _store from '@/utils/dva';
-import { cloneMidList } from '@/utils/util';
+import { cloneMidList, setErrorMsg } from '@/utils/util';
 import { Widget, WidgetOptions } from '@/pages/index.d';
 
 interface AmountConfigProps {
@@ -52,6 +52,8 @@ const AmountConfig: FC<AmountConfigProps> = (props) => {
         midList: [...middleArr],
       },
     });
+
+    setErrorMsg(form, initWidgetData);
   };
 
   /**
@@ -79,6 +81,8 @@ const AmountConfig: FC<AmountConfigProps> = (props) => {
       upperLimit: initOptions?.upperLimit,
       otherOptions: arr,
     });
+
+    setErrorMsg(form, initWidgetData);
   }, [activeIndex]);
 
   return (
@@ -87,7 +91,7 @@ const AmountConfig: FC<AmountConfigProps> = (props) => {
         form={form}
         id="AmountConfig"
         layout="vertical"
-        onFieldsChange={handleFormChange}
+        onValuesChange={handleFormChange}
         labelCol={{ span: 6 }}
         wrapperCol={{ span: 14 }}
       >

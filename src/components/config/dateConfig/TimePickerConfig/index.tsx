@@ -2,7 +2,7 @@ import React, { FC, useEffect } from 'react';
 import { Form, Input, Checkbox } from 'antd';
 
 import _store from '@/utils/dva';
-import { cloneMidList } from '@/utils/util';
+import { cloneMidList, setErrorMsg } from '@/utils/util';
 import { Widget, WidgetOptions } from '@/pages/index.d';
 
 interface TimepickerConfigProps {
@@ -46,6 +46,8 @@ const TimepickerConfig: FC<TimepickerConfigProps> = (props) => {
         midList: [...middleArr],
       },
     });
+
+    setErrorMsg(form, initWidgetData);
   };
 
   /**
@@ -65,6 +67,8 @@ const TimepickerConfig: FC<TimepickerConfigProps> = (props) => {
       placeholder: initOptions?.placeholder,
       otherOptions: arr,
     });
+
+    setErrorMsg(form, initWidgetData);
   }, [activeIndex]);
 
   return (

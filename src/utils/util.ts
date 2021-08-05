@@ -1,4 +1,5 @@
 import { v4 as uuidv4 } from 'uuid';
+import { FormInstance } from 'antd/lib/form';
 import { Widget, FormDesignModelState } from '@/pages/index.d';
 import _store from '@/utils/dva';
 
@@ -12,6 +13,69 @@ export const cloneMidList = (): Widget[] => {
   const { midList }: { midList: Widget[] } = formDesign;
 
   return JSON.parse(JSON.stringify(midList));
+};
+
+/**
+ * @desc errorList 深拷贝
+ * @return { ErrorMap[] }
+ */
+export const cloneErrorList = (): string[] => {
+  const { getState } = _store;
+  const { formDesign }: { formDesign: FormDesignModelState } = getState();
+  const { errorList }: { errorList: string[] } = formDesign;
+
+  return JSON.parse(JSON.stringify(errorList));
+};
+
+/**
+ * @desc 表单校验，存储报错信息
+ * @return { void }
+ */
+export const setErrorMsg = (form: FormInstance, widgetData: Widget): void => {
+  if (!form) {
+    return;
+  }
+
+  form
+    .validateFields()
+    .then()
+    .catch((error) => {
+      const { errorFields } = error;
+
+      if (Array.isArray(errorFields)) {
+        const { dispatch } = _store;
+        let errorArr = cloneErrorList();
+        // 取出当前控件的 randomCode
+        const { randomCode } = widgetData;
+        const index = errorArr.indexOf(randomCode);
+
+        // 无错误信息将当前组件从 errorList 中删除
+        if (errorFields.length === 0 && index > -1) {
+          errorArr.splice(index, 1);
+
+          dispatch({
+            type: 'formDesign/save',
+            payload: {
+              errorList: [...errorArr],
+            },
+          });
+
+          return;
+        }
+
+        // errorList 不存在当前控件报错信息，将当前组件推入数组，存在则忽略
+        if (errorFields.length > 0 && index === -1) {
+          errorArr.push(randomCode);
+
+          dispatch({
+            type: 'formDesign/save',
+            payload: {
+              errorList: [...errorArr],
+            },
+          });
+        }
+      }
+    });
 };
 
 /**
@@ -150,23 +214,31 @@ export const deletePlaceholder = (): void => {
 /**
  * @desc 中间布局面板 => 移除当前项
  * @param { number } index
+ * @param { string } randomCode
  * @return { void }
  */
-export const deleteActiveItem = (index: number): void => {
+export const deleteActiveItem = (index: number, randomCode: string): void => {
   if (index < 0) {
     return;
   }
 
   const { dispatch } = _store;
   const midArr: Widget[] = cloneMidList();
+  const errorArr: string[] = cloneErrorList();
+  const errorIdx: number = errorArr.indexOf(randomCode);
 
   // 移除当前项
   midArr.splice(index, 1);
+  // 移除错误信息
+  if (errorIdx > -1) {
+    errorArr.splice(errorIdx, 1);
+  }
 
   dispatch({
     type: 'formDesign/save',
     payload: {
       midList: [...midArr],
+      errorList: [...errorArr],
       activeIdx: -1,
     },
   });

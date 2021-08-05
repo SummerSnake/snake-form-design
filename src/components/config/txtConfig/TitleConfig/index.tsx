@@ -2,7 +2,7 @@ import React, { FC, useEffect } from 'react';
 import { Form, Input } from 'antd';
 
 import _store from '@/utils/dva';
-import { cloneMidList } from '@/utils/util';
+import { setErrorMsg, cloneMidList } from '@/utils/util';
 import { Widget, WidgetOptions } from '@/pages/index.d';
 
 interface TitleConfigProps {
@@ -39,6 +39,8 @@ const TitleConfig: FC<TitleConfigProps> = (props) => {
         midList: [...middleArr],
       },
     });
+
+    setErrorMsg(form, initWidgetData);
   };
 
   /**
@@ -49,6 +51,8 @@ const TitleConfig: FC<TitleConfigProps> = (props) => {
       label: initWidgetData?.label,
       placeholder: initOptions?.placeholder,
     });
+
+    setErrorMsg(form, initWidgetData);
   }, [activeIndex]);
 
   return (
@@ -57,7 +61,7 @@ const TitleConfig: FC<TitleConfigProps> = (props) => {
         form={form}
         id="TitleConfig"
         layout="vertical"
-        onFieldsChange={handleFormChange}
+        onValuesChange={handleFormChange}
         labelCol={{ span: 6 }}
         wrapperCol={{ span: 14 }}
       >

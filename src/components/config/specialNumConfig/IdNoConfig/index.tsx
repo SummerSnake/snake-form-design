@@ -2,7 +2,7 @@ import React, { FC, useEffect } from 'react';
 import { Form, Input, Checkbox } from 'antd';
 
 import _store from '@/utils/dva';
-import { cloneMidList } from '@/utils/util';
+import { cloneMidList, setErrorMsg } from '@/utils/util';
 import { Widget, WidgetOptions } from '@/pages/index.d';
 
 interface IdNoConfigProps {
@@ -46,6 +46,8 @@ const IdNoConfig: FC<IdNoConfigProps> = (props) => {
         midList: [...middleArr],
       },
     });
+
+    setErrorMsg(form, initWidgetData);
   };
 
   /**
@@ -65,6 +67,8 @@ const IdNoConfig: FC<IdNoConfigProps> = (props) => {
       placeholder: initOptions?.placeholder,
       otherOptions: arr,
     });
+
+    setErrorMsg(form, initWidgetData);
   }, [activeIndex]);
 
   return (
@@ -73,7 +77,7 @@ const IdNoConfig: FC<IdNoConfigProps> = (props) => {
         form={form}
         id="IdNoConfig"
         layout="vertical"
-        onFieldsChange={handleFormChange}
+        onValuesChange={handleFormChange}
         labelCol={{ span: 6 }}
         wrapperCol={{ span: 14 }}
       >

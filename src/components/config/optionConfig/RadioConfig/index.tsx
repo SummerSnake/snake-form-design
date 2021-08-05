@@ -4,7 +4,7 @@ import { v4 as uuidv4 } from 'uuid';
 
 import _store from '@/utils/dva';
 import Icons from '@/utils/icon';
-import { cloneMidList } from '@/utils/util';
+import { cloneMidList, setErrorMsg } from '@/utils/util';
 import { Widget, WidgetOptions, OptionsElement } from '@/pages/index.d';
 
 interface RadioConfigProps {
@@ -140,6 +140,8 @@ const RadioConfig: FC<RadioConfigProps> = (props) => {
         midList: [...middleArr],
       },
     });
+
+    setErrorMsg(form, initWidgetData);
   };
 
   /**
@@ -161,6 +163,8 @@ const RadioConfig: FC<RadioConfigProps> = (props) => {
       placeholder: initOptions?.placeholder,
       otherOptions: arr,
     });
+
+    setErrorMsg(form, initWidgetData);
   }, [activeIndex]);
 
   return (

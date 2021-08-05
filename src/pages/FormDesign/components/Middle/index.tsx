@@ -3,8 +3,10 @@
  * @Description: 中间布局面板
  */
 import React, { FC, useState } from 'react';
+import { message } from 'antd';
 import { useDrop } from 'react-dnd';
 
+import { cloneErrorList } from '@/utils/util';
 import { Widget } from '@/pages/index.d';
 import Preview from '@/components/preview';
 import MiddleItem from './MiddleItem';
@@ -30,7 +32,20 @@ const MiddleComponent: FC<MiddleProps> = (props) => {
     <div className="middleWrap">
       <p className="middleTitle">
         <span>信息采集表</span>
-        <span className="previewBtn" onClick={() => setIsModalShow(1)}>
+        <span
+          className="previewBtn"
+          onClick={() => {
+            const errorArr = cloneErrorList();
+            const len = errorArr.length;
+
+            if (len > 0) {
+              message.error(`${len}条错误`);
+              return false;
+            }
+
+            setIsModalShow(1);
+          }}
+        >
           预览
         </span>
       </p>

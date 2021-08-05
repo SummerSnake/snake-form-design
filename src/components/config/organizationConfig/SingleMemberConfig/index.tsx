@@ -2,7 +2,7 @@ import React, { FC, useEffect } from 'react';
 import { Form, Input, Checkbox } from 'antd';
 
 import _store from '@/utils/dva';
-import { cloneMidList } from '@/utils/util';
+import { cloneMidList, setErrorMsg } from '@/utils/util';
 import { Widget, WidgetOptions } from '@/pages/index.d';
 
 interface SingleMemberConfigProps {
@@ -46,6 +46,8 @@ const SingleMemberConfig: FC<SingleMemberConfigProps> = (props) => {
         midList: [...middleArr],
       },
     });
+
+    setErrorMsg(form, initWidgetData);
   };
 
   /**
@@ -65,6 +67,8 @@ const SingleMemberConfig: FC<SingleMemberConfigProps> = (props) => {
       isSelf: !!initOptions?.isSelf,
       otherOptions: arr,
     });
+
+    setErrorMsg(form, initWidgetData);
   }, [activeIndex]);
 
   return (
@@ -73,7 +77,7 @@ const SingleMemberConfig: FC<SingleMemberConfigProps> = (props) => {
         form={form}
         id="SingleMemberConfig"
         layout="vertical"
-        onFieldsChange={handleFormChange}
+        onValuesChange={handleFormChange}
         labelCol={{ span: 6 }}
         wrapperCol={{ span: 14 }}
       >

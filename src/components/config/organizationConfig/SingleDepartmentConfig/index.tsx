@@ -2,7 +2,7 @@ import React, { FC, useEffect } from 'react';
 import { Form, Input, Checkbox } from 'antd';
 
 import _store from '@/utils/dva';
-import { cloneMidList } from '@/utils/util';
+import { cloneMidList, setErrorMsg } from '@/utils/util';
 import { Widget, WidgetOptions } from '@/pages/index.d';
 
 interface SingleDepartmentConfigProps {
@@ -45,6 +45,8 @@ const SingleDepartmentConfig: FC<SingleDepartmentConfigProps> = (props) => {
         midList: [...middleArr],
       },
     });
+
+    setErrorMsg(form, initWidgetData);
   };
 
   /**
@@ -63,6 +65,8 @@ const SingleDepartmentConfig: FC<SingleDepartmentConfigProps> = (props) => {
       label: initWidgetData?.label,
       otherOptions: arr,
     });
+
+    setErrorMsg(form, initWidgetData);
   }, [activeIndex]);
 
   return (
@@ -71,7 +75,7 @@ const SingleDepartmentConfig: FC<SingleDepartmentConfigProps> = (props) => {
         form={form}
         id="SingleDepartmentConfig"
         layout="vertical"
-        onFieldsChange={handleFormChange}
+        onValuesChange={handleFormChange}
         labelCol={{ span: 6 }}
         wrapperCol={{ span: 14 }}
       >

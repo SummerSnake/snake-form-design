@@ -23,7 +23,7 @@ const CommentViewComponent: FC<CommentViewProps> = (props) => {
 
       <div className="starList">
         {[1, 2, 3, 4, 5].map((item) => (
-          <div className="starItem">
+          <div key={item} className="starItem">
             <span className="starIcon">{Icons.commentIcon()}</span>
             <span>{item}</span>
           </div>

@@ -1,7 +1,7 @@
 import React, { FC } from 'react';
 import _store from '@/utils/dva';
 
-import { deleteActiveItem } from '@/utils/util';
+import { cloneErrorList, deleteActiveItem } from '@/utils/util';
 import { Widget } from '@/pages/index.d';
 
 import SingleTxtView from './txtView/SingleTxtView';
@@ -42,6 +42,7 @@ const ViewComponent: FC<ViewProps> = (props) => {
   const { viewInfo, widgetIdx, isActive } = props;
   const { label, options } = viewInfo;
   const { isRequired = 0 } = options;
+  const errorArr = cloneErrorList();
 
   /**
    * @desc 修改当前选择项下标
@@ -60,11 +61,18 @@ const ViewComponent: FC<ViewProps> = (props) => {
    */
   const handleDeleteWidget = (e: React.MouseEvent<HTMLDivElement>) => {
     e.stopPropagation();
-    deleteActiveItem(widgetIdx);
+    deleteActiveItem(widgetIdx, viewInfo?.randomCode);
   };
 
+  // 选中时 border、表单报错时 border
+  const widgetWrapClass = !!isActive
+    ? 'widgetWrapActive'
+    : !!errorArr.includes(viewInfo?.randomCode)
+    ? 'widgetWrapError'
+    : null;
+
   return (
-    <div className={`widgetWrap ${!!isActive && 'widgetWrapActive'}`} onClick={handleActive}>
+    <div className={`widgetWrap ${widgetWrapClass}`} onClick={handleActive}>
       <div
         className="deleteBtnWrap"
         style={{ visibility: isActive ? 'visible' : 'hidden' }}

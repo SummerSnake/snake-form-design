@@ -2,7 +2,7 @@ import React, { FC, useEffect } from 'react';
 import { Form, Input, Checkbox, Select } from 'antd';
 
 import _store from '@/utils/dva';
-import { cloneMidList } from '@/utils/util';
+import { cloneMidList, setErrorMsg } from '@/utils/util';
 import { Widget, WidgetOptions } from '@/pages/index.d';
 
 interface AttrMultipleSelectProps {
@@ -47,6 +47,8 @@ const AttrMultipleSelect: FC<AttrMultipleSelectProps> = (props) => {
         midList: [...middleArr],
       },
     });
+
+    setErrorMsg(form, initWidgetData);
   };
 
   /**
@@ -67,6 +69,8 @@ const AttrMultipleSelect: FC<AttrMultipleSelectProps> = (props) => {
       selectVal: initOptions?.selectVal,
       otherOptions: arr,
     });
+
+    setErrorMsg(form, initWidgetData);
   }, [activeIndex]);
 
   return (
@@ -75,7 +79,7 @@ const AttrMultipleSelect: FC<AttrMultipleSelectProps> = (props) => {
         form={form}
         id="AttrMultipleSelect"
         layout="vertical"
-        onFieldsChange={handleFormChange}
+        onValuesChange={handleFormChange}
         labelCol={{ span: 6 }}
         wrapperCol={{ span: 14 }}
       >
