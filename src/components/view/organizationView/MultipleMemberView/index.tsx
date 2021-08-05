@@ -3,17 +3,17 @@ import Icons from '@/utils/icon';
 import { WidgetOptions } from '@/pages/index.d';
 import './index.less';
 
-interface MultipleDepartmentProps {
+interface MultipleMemberProps {
   title: string;
   options: WidgetOptions;
 }
 
-const MultipleDepartmentComponent: FC<MultipleDepartmentProps> = (props) => {
+const MultipleMemberComponent: FC<MultipleMemberProps> = (props) => {
   const { title, options } = props;
 
   return (
-    <div className="multipleDepartmentWrap">
-      <div className="multipleDepartmentTitle">
+    <div className="multipleMemberWrap">
+      <div className="multipleMemberTitle">
         <span>{title}</span>
         <i
           className="requiredStar"
@@ -23,11 +23,11 @@ const MultipleDepartmentComponent: FC<MultipleDepartmentProps> = (props) => {
         </i>
       </div>
 
-      <div className="multipleDepartmentPlaceholder">
+      <div className="multipleMemberPlaceholder">
         {Icons.plusIcon({ fontSize: 15, color: '#108ee9' })}
       </div>
     </div>
   );
 };
 
-export default React.memo(MultipleDepartmentComponent);
+export default React.memo(MultipleMemberComponent);

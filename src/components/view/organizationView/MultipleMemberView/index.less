@@ -1,0 +1,22 @@
+@import '@/styles/mixin.less';
+
+.multipleMemberWrap {
+  padding: 10px 12px;
+  font-size: @txtSize;
+  background-color: #fff;
+  .multipleMemberTitle {
+    padding-bottom: 7px;
+    color: @titleColor;
+    .requiredStar {
+      .sc(19px, @requireColor);
+      vertical-align: middle;
+    }
+  }
+  .multipleMemberPlaceholder {
+    .wh(33px, 33px);
+    .flexCenter;
+    box-sizing: border-box;
+    border: 1px solid @primaryColor;
+    border-radius: 50%;
+  }
+}

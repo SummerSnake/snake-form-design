@@ -24,6 +24,7 @@ import {
   SingleDepartmentConfig,
   MultipleDepartmentConfig,
   SingleMemberConfig,
+  MultipleMemberConfig,
   UploadConfig,
   CommentConfig,
 } from '@/components/config';
@@ -86,6 +87,8 @@ const RightComponent: FC<RightProps> = (props) => {
               return <MultipleDepartmentConfig activeIndex={activeIdx} />;
             case 'baseSingleMember':
               return <SingleMemberConfig activeIndex={activeIdx} />;
+            case 'baseMultipleMember':
+              return <MultipleMemberConfig activeIndex={activeIdx} />;
 
             case 'baseUpload':
               return <UploadConfig activeIndex={activeIdx} />;

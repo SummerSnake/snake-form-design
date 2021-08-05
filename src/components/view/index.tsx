@@ -25,6 +25,7 @@ import PhoneView from './specialNumView/PhoneView';
 import SingleDepartmentView from './organizationView/SingleDepartmentView';
 import MultipleDepartmentView from './organizationView/MultipleDepartmentView';
 import SingleMemberView from './organizationView/SingleMemberView';
+import MultipleMemberView from './organizationView/MultipleMemberView';
 
 import UploadView from './otherView/UploadView';
 import CommentView from './otherView/CommentView';
@@ -115,16 +116,18 @@ const ViewComponent: FC<ViewProps> = (props) => {
             return <PhoneView title={label} options={options} />;
 
           case 'baseSingleDepartment':
-            return <SingleDepartmentView title={label} required={isRequired} />;
+            return <SingleDepartmentView title={label} options={options} />;
           case 'baseMultipleDepartment':
-            return <MultipleDepartmentView title={label} required={isRequired} />;
+            return <MultipleDepartmentView title={label} options={options} />;
           case 'baseSingleMember':
-            return <SingleMemberView title={label} required={isRequired} />;
+            return <SingleMemberView title={label} options={options} />;
+          case 'baseMultipleMember':
+            return <MultipleMemberView title={label} options={options} />;
 
           case 'baseUpload':
-            return <UploadView title={label} required={isRequired} />;
+            return <UploadView title={label} options={options} />;
           case 'baseComment':
-            return <CommentView title={label} required={isRequired} />;
+            return <CommentView title={label} options={options} />;
 
           case 'expense':
             return <GroupView itemInfo={viewInfo} />;

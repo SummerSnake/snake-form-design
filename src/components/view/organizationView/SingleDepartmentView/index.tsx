@@ -1,20 +1,24 @@
 import React, { FC } from 'react';
 import Icons from '@/utils/icon';
+import { WidgetOptions } from '@/pages/index.d';
 import './index.less';
 
 interface SingleDepartmentProps {
   title: string;
-  required: number;
+  options: WidgetOptions;
 }
 
 const SingleDepartmentComponent: FC<SingleDepartmentProps> = (props) => {
-  const { title, required } = props;
+  const { title, options } = props;
 
   return (
     <div className="singleDepartmentWrap">
       <div className="singleDepartmentTitle">
         <span>{title}</span>
-        <i className="requiredStar" style={{ visibility: required ? 'visible' : 'hidden' }}>
+        <i
+          className="requiredStar"
+          style={{ visibility: options?.isRequired ? 'visible' : 'hidden' }}
+        >
           *
         </i>
       </div>
