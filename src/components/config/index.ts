@@ -25,6 +25,7 @@ import MultipleCompanyConfig from './organizationConfig/MultipleCompanyConfig';
 import OrganizeRangeConfig from './organizationConfig/OrganizeRangeConfig';
 
 import UploadConfig from './otherConfig/UploadConfig';
+import AppendixConfig from './otherConfig/AppendixConfig';
 import CommentConfig from './otherConfig/CommentConfig';
 
 export {
@@ -49,5 +50,6 @@ export {
   MultipleCompanyConfig,
   OrganizeRangeConfig,
   UploadConfig,
+  AppendixConfig,
   CommentConfig,
 };

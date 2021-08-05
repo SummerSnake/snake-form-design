@@ -312,6 +312,17 @@ const initialData = {
           randomCode: '',
         },
         {
+          id: 'baseAppendix',
+          label: '附件',
+          type: 'upload',
+          icon: 'appendixIcon',
+          options: {
+            isRequired: 0,
+            isPreview: 0,
+          },
+          randomCode: '',
+        },
+        {
           id: 'baseComment',
           label: '评分',
           type: 'comment',

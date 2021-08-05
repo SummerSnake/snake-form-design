@@ -31,6 +31,7 @@ import MultipleCompanyView from './organizationView/MultipleCompanyView';
 import OrganizeRangeView from './organizationView/OrganizeRangeView';
 
 import UploadView from './otherView/UploadView';
+import AppendixView from './otherView/AppendixView';
 import CommentView from './otherView/CommentView';
 
 import GroupView from './groupView';
@@ -134,6 +135,8 @@ const ViewComponent: FC<ViewProps> = (props) => {
 
           case 'baseUpload':
             return <UploadView title={label} options={options} />;
+          case 'baseAppendix':
+            return <AppendixView title={label} options={options} />;
           case 'baseComment':
             return <CommentView title={label} options={options} />;
 
