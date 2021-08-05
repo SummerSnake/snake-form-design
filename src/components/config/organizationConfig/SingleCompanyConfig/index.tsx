@@ -5,11 +5,11 @@ import _store from '@/utils/dva';
 import { cloneMidList, setErrorMsg } from '@/utils/util';
 import { Widget, WidgetOptions } from '@/pages/index.d';
 
-interface OrganizeRangeConfigProps {
+interface SingleCompanyConfigProps {
   activeIndex: number;
 }
 
-const OrganizeRangeConfig: FC<OrganizeRangeConfigProps> = (props) => {
+const SingleCompanyConfig: FC<SingleCompanyConfigProps> = (props) => {
   const { dispatch } = _store;
 
   const [form] = Form.useForm();
@@ -73,14 +73,14 @@ const OrganizeRangeConfig: FC<OrganizeRangeConfigProps> = (props) => {
     <>
       <Form
         form={form}
-        id="OrganizeRangeConfig"
+        id="SingleCompanyConfig"
         layout="vertical"
         onValuesChange={handleFormChange}
         labelCol={{ span: 6 }}
         wrapperCol={{ span: 14 }}
       >
         <div className="configTitleWrap">
-          <p className="configTitle">组织范围</p>
+          <p className="configTitle">成员 (单成员)</p>
         </div>
 
         <Form.Item
@@ -108,4 +108,4 @@ const OrganizeRangeConfig: FC<OrganizeRangeConfigProps> = (props) => {
   );
 };
 
-export default React.memo(OrganizeRangeConfig);
+export default React.memo(SingleCompanyConfig);

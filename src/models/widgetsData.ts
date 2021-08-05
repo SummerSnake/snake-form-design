@@ -117,7 +117,7 @@ const initialData = {
         },
         {
           id: 'baseAttrSingleSelect',
-          label: '属性选择 (单选)',
+          label: '属性选择(单选)',
           type: 'select',
           icon: 'radioIcon',
           options: {
@@ -134,7 +134,7 @@ const initialData = {
         },
         {
           id: 'baseAttrMultipleSelect',
-          label: '属性选择 (多选)',
+          label: '属性选择(多选)',
           type: 'select',
           icon: 'checkboxIcon',
           options: {
@@ -217,7 +217,7 @@ const initialData = {
       items: [
         {
           id: 'baseSingleDepartment',
-          label: '部门 (单部门)',
+          label: '部门(单部门)',
           type: 'upload',
           icon: 'departmentIcon',
           options: {
@@ -228,7 +228,7 @@ const initialData = {
         },
         {
           id: 'baseMultipleDepartment',
-          label: '部门 (多部门)',
+          label: '部门(多部门)',
           type: 'upload',
           icon: 'departmentIcon',
           options: {
@@ -239,7 +239,7 @@ const initialData = {
         },
         {
           id: 'baseSingleMember',
-          label: '成员 (单成员)',
+          label: '成员(单成员)',
           type: 'upload',
           icon: 'memberIcon',
           options: {
@@ -251,13 +251,24 @@ const initialData = {
         },
         {
           id: 'baseMultipleMember',
-          label: '成员 (多成员)',
+          label: '成员(多成员)',
           type: 'upload',
           icon: 'memberIcon',
           options: {
             isRequired: 0,
             isPreview: 0,
             isSelf: 0,
+          },
+          randomCode: '',
+        },
+        {
+          id: 'baseSingleCompany',
+          label: '内部公司(单公司)',
+          type: 'upload',
+          icon: 'companyIcon',
+          options: {
+            isRequired: 0,
+            isPreview: 0,
           },
           randomCode: '',
         },
@@ -269,7 +280,6 @@ const initialData = {
           options: {
             isRequired: 0,
             isPreview: 0,
-            isSelf: 0,
           },
           randomCode: '',
         },

@@ -25,6 +25,7 @@ import {
   MultipleDepartmentConfig,
   SingleMemberConfig,
   MultipleMemberConfig,
+  SingleCompanyConfig,
   OrganizeRangeConfig,
   UploadConfig,
   CommentConfig,
@@ -90,6 +91,8 @@ const RightComponent: FC<RightProps> = (props) => {
               return <SingleMemberConfig activeIndex={activeIdx} />;
             case 'baseMultipleMember':
               return <MultipleMemberConfig activeIndex={activeIdx} />;
+            case 'baseSingleCompany':
+              return <SingleCompanyConfig activeIndex={activeIdx} />;
             case 'baseOrganizeRange':
               return <OrganizeRangeConfig activeIndex={activeIdx} />;
 

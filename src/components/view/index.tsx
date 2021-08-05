@@ -26,6 +26,7 @@ import SingleDepartmentView from './organizationView/SingleDepartmentView';
 import MultipleDepartmentView from './organizationView/MultipleDepartmentView';
 import SingleMemberView from './organizationView/SingleMemberView';
 import MultipleMemberView from './organizationView/MultipleMemberView';
+import SingleCompanyView from './organizationView/SingleCompanyView';
 import OrganizeRangeView from './organizationView/OrganizeRangeView';
 
 import UploadView from './otherView/UploadView';
@@ -124,6 +125,8 @@ const ViewComponent: FC<ViewProps> = (props) => {
             return <SingleMemberView title={label} options={options} />;
           case 'baseMultipleMember':
             return <MultipleMemberView title={label} options={options} />;
+          case 'baseSingleCompany':
+            return <SingleCompanyView title={label} options={options} />;
           case 'baseOrganizeRange':
             return <OrganizeRangeView title={label} options={options} />;
 
