@@ -80,7 +80,7 @@ const MultipleCompanyConfig: FC<MultipleCompanyConfigProps> = (props) => {
         wrapperCol={{ span: 14 }}
       >
         <div className="configTitleWrap">
-          <p className="configTitle">成员 (单成员)</p>
+          <p className="configTitle">内部公司 (多公司)</p>
         </div>
 
         <Form.Item

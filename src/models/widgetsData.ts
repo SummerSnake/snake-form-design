@@ -323,6 +323,18 @@ const initialData = {
           randomCode: '',
         },
         {
+          id: 'baseRegion',
+          label: '省市区',
+          type: 'select',
+          icon: 'regionIcon',
+          options: {
+            isRequired: 0,
+            isPreview: 0,
+            placeholder: '请选择',
+          },
+          randomCode: '',
+        },
+        {
           id: 'baseComment',
           label: '评分',
           type: 'comment',

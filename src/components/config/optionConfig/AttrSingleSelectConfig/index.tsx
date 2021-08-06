@@ -97,11 +97,11 @@ const AttrSingleSelect: FC<AttrSingleSelectProps> = (props) => {
             },
           ]}
         >
-          <Input style={{ width: 312 }} />
+          <Input maxLength={10} style={{ width: 312 }} />
         </Form.Item>
 
         <Form.Item label="提示文字" name="placeholder">
-          <Input style={{ width: 312 }} />
+          <Input maxLength={10} style={{ width: 312 }} />
         </Form.Item>
 
         <Form.Item

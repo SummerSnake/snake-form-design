@@ -1,0 +1,25 @@
+@import '@/styles/mixin.less';
+
+.regionWrap {
+  position: relative;
+  padding: 10px 12px;
+  font-size: @txtSize;
+  background-color: #fff;
+  .regionTitle {
+    padding-bottom: 3px;
+    color: @titleColor;
+    .requiredStar {
+      .sc(19px, @requireColor);
+      vertical-align: middle;
+    }
+  }
+  .regionPlaceholder {
+    color: @placeholderColor;
+  }
+  .regionArrow {
+    position: absolute;
+    top: 50%;
+    right: 10px;
+    transform: translateY(-50%);
+  }
+}

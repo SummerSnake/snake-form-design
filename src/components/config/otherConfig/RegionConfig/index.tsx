@@ -5,11 +5,11 @@ import _store from '@/utils/dva';
 import { cloneMidList, setErrorMsg } from '@/utils/util';
 import { Widget, WidgetOptions } from '@/pages/index.d';
 
-interface AppendixConfigProps {
+interface RegionConfigProps {
   activeIndex: number;
 }
 
-const AppendixConfig: FC<AppendixConfigProps> = (props) => {
+const RegionConfig: FC<RegionConfigProps> = (props) => {
   const { dispatch } = _store;
 
   const [form] = Form.useForm();
@@ -34,6 +34,7 @@ const AppendixConfig: FC<AppendixConfigProps> = (props) => {
       label: formData.label,
       options: {
         ...widgetData.options,
+        placeholder: formData.placeholder,
         isRequired: otherOptions.includes('isRequired') ? 1 : 0,
         isPreview: otherOptions.includes('isPreview') ? 1 : 0,
       },
@@ -63,6 +64,7 @@ const AppendixConfig: FC<AppendixConfigProps> = (props) => {
 
     form.setFieldsValue({
       label: initWidgetData?.label,
+      placeholder: initOptions?.placeholder,
       otherOptions: arr,
     });
 
@@ -73,14 +75,14 @@ const AppendixConfig: FC<AppendixConfigProps> = (props) => {
     <>
       <Form
         form={form}
-        id="AppendixConfig"
+        id="RegionConfig"
         layout="vertical"
         onValuesChange={handleFormChange}
         labelCol={{ span: 6 }}
         wrapperCol={{ span: 14 }}
       >
         <div className="configTitleWrap">
-          <p className="configTitle">附件</p>
+          <p className="configTitle">省市区</p>
         </div>
 
         <Form.Item
@@ -96,6 +98,10 @@ const AppendixConfig: FC<AppendixConfigProps> = (props) => {
           <Input maxLength={10} style={{ width: 312 }} />
         </Form.Item>
 
+        <Form.Item label="提示文字" name="placeholder">
+          <Input maxLength={10} style={{ width: 312 }} />
+        </Form.Item>
+
         <div>其他</div>
         <Form.Item label="" name="otherOptions">
           <Checkbox.Group style={{ width: 312 }}>
@@ -108,4 +114,4 @@ const AppendixConfig: FC<AppendixConfigProps> = (props) => {
   );
 };
 
-export default React.memo(AppendixConfig);
+export default React.memo(RegionConfig);

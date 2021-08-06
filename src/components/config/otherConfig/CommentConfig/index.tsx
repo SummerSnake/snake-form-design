@@ -93,7 +93,7 @@ const CommentConfig: FC<CommentConfigProps> = (props) => {
             },
           ]}
         >
-          <Input style={{ width: 312 }} />
+          <Input maxLength={10} style={{ width: 312 }} />
         </Form.Item>
 
         <div>其他</div>

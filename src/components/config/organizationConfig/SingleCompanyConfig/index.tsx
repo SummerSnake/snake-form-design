@@ -80,7 +80,7 @@ const SingleCompanyConfig: FC<SingleCompanyConfigProps> = (props) => {
         wrapperCol={{ span: 14 }}
       >
         <div className="configTitleWrap">
-          <p className="configTitle">成员 (单成员)</p>
+          <p className="configTitle">内部公司 (单公司)</p>
         </div>
 
         <Form.Item
@@ -93,7 +93,7 @@ const SingleCompanyConfig: FC<SingleCompanyConfigProps> = (props) => {
             },
           ]}
         >
-          <Input style={{ width: 312 }} />
+          <Input maxLength={10} style={{ width: 312 }} />
         </Form.Item>
 
         <div>其他</div>

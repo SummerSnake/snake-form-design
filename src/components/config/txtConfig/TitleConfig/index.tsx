@@ -79,7 +79,7 @@ const TitleConfig: FC<TitleConfigProps> = (props) => {
             },
           ]}
         >
-          <Input disabled />
+          <Input disabled style={{ width: 312 }} />
         </Form.Item>
 
         <Form.Item
@@ -92,7 +92,7 @@ const TitleConfig: FC<TitleConfigProps> = (props) => {
             },
           ]}
         >
-          <Input />
+          <Input maxLength={10} style={{ width: 312 }} />
         </Form.Item>
       </Form>
     </>

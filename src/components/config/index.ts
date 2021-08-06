@@ -26,6 +26,7 @@ import OrganizeRangeConfig from './organizationConfig/OrganizeRangeConfig';
 
 import UploadConfig from './otherConfig/UploadConfig';
 import AppendixConfig from './otherConfig/AppendixConfig';
+import RegionConfig from './otherConfig/RegionConfig';
 import CommentConfig from './otherConfig/CommentConfig';
 
 export {
@@ -51,5 +52,6 @@ export {
   OrganizeRangeConfig,
   UploadConfig,
   AppendixConfig,
+  RegionConfig,
   CommentConfig,
 };
