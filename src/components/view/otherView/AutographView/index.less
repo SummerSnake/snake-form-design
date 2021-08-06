@@ -1,0 +1,21 @@
+@import '@/styles/mixin.less';
+
+.autographWrap {
+  padding: 10px 12px;
+  font-size: @txtSize;
+  background-color: #fff;
+  .autographTitle {
+    padding-bottom: 6px;
+    color: @titleColor;
+    .requiredStar {
+      .sc(19px, @requireColor);
+      vertical-align: middle;
+    }
+  }
+  .autographPlaceholder {
+    .hl(110px, 110px);
+    color: @primaryColor;
+    text-align: center;
+    background-color: #f7f7f7;
+  }
+}

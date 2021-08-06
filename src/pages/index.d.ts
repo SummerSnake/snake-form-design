@@ -22,6 +22,8 @@ export interface WidgetOptions {
 
   lowerLimit?: string; // 范围 => 金额  下限
   upperLimit?: string; // 范围 => 金额  上限
+
+  autographType?: number; // 签名方式 => 手写签名  1.使用上次签名 2.每次重新签名
 }
 
 export interface Widget {

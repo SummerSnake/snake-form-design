@@ -35,6 +35,7 @@ import AppendixView from './otherView/AppendixView';
 import RegionView from './otherView/RegionView';
 import LocationView from './otherView/LocationView';
 import PositionView from './otherView/PositionView';
+import AutographView from './otherView/AutographView';
 import CommentView from './otherView/CommentView';
 
 import GroupView from './groupView';
@@ -146,6 +147,8 @@ const ViewComponent: FC<ViewProps> = (props) => {
             return <LocationView title={label} options={options} />;
           case 'basePosition':
             return <PositionView title={label} options={options} />;
+          case 'baseAutograph':
+            return <AutographView title={label} options={options} />;
           case 'baseComment':
             return <CommentView title={label} options={options} />;
 

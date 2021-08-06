@@ -2,22 +2,18 @@ import React, { FC } from 'react';
 import { WidgetOptions } from '@/pages/index.d';
 import './index.less';
 
-interface NumberViewProps {
+interface AutographViewProps {
   title: string;
   options: WidgetOptions;
 }
 
-const NumberViewComponent: FC<NumberViewProps> = (props) => {
+const AutographViewComponent: FC<AutographViewProps> = (props) => {
   const { title, options } = props;
 
   return (
-    <div className="numberWrap">
-      <div className="numberTitle">
-        <span>
-          {title}
-          {options?.unit ? `(${options?.unit})` : ''}
-        </span>
-
+    <div className="autographWrap">
+      <div className="autographTitle">
+        <span>{title}</span>
         <i
           className="requiredStar"
           style={{ visibility: options?.isRequired ? 'visible' : 'hidden' }}
@@ -26,9 +22,9 @@ const NumberViewComponent: FC<NumberViewProps> = (props) => {
         </i>
       </div>
 
-      <div className="numberPlaceholder">{options?.placeholder}</div>
+      <div className="autographPlaceholder">{options?.placeholder}</div>
     </div>
   );
 };
 
-export default React.memo(NumberViewComponent);
+export default React.memo(AutographViewComponent);

@@ -357,6 +357,19 @@ const initialData = {
           randomCode: '',
         },
         {
+          id: 'baseAutograph',
+          label: '手写签名',
+          type: 'autograph',
+          icon: 'autographIcon',
+          options: {
+            autographType: 1,
+            isRequired: 0,
+            isPreview: 0,
+            placeholder: '点击签名',
+          },
+          randomCode: '',
+        },
+        {
           id: 'baseComment',
           label: '评分',
           type: 'comment',

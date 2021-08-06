@@ -29,6 +29,7 @@ import AppendixConfig from './otherConfig/AppendixConfig';
 import RegionConfig from './otherConfig/RegionConfig';
 import LocationConfig from './otherConfig/LocationConfig';
 import PositionConfig from './otherConfig/PositionConfig';
+import AutographConfig from './otherConfig/AutographConfig';
 import CommentConfig from './otherConfig/CommentConfig';
 
 export {
@@ -57,5 +58,6 @@ export {
   RegionConfig,
   LocationConfig,
   PositionConfig,
+  AutographConfig,
   CommentConfig,
 };

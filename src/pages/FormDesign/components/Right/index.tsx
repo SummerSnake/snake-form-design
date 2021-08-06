@@ -33,6 +33,7 @@ import {
   RegionConfig,
   LocationConfig,
   PositionConfig,
+  AutographConfig,
   CommentConfig,
 } from '@/components/config';
 
@@ -115,6 +116,8 @@ const RightComponent: FC<RightProps> = (props) => {
               return <PositionConfig activeIndex={activeIdx} />;
             case 'baseComment':
               return <CommentConfig activeIndex={activeIdx} />;
+            case 'baseAutograph':
+              return <AutographConfig activeIndex={activeIdx} />;
             default:
               return null;
           }
