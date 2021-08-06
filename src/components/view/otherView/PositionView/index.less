@@ -1,0 +1,26 @@
+@import '@/styles/mixin.less';
+
+.positionWrap {
+  height: 72px;
+  padding: 10px 12px;
+  font-size: @txtSize;
+  background-color: #fff;
+  .positionTitle {
+    display: flex;
+    padding-bottom: 7px;
+    color: @titleColor;
+    .titleLeft {
+      flex: 1;
+      .requiredStar {
+        .sc(19px, @requireColor);
+        vertical-align: middle;
+      }
+    }
+    .titleRight {
+      flex: 1;
+      padding-right: 8px;
+      color: @primaryColor;
+      text-align: right;
+    }
+  }
+}

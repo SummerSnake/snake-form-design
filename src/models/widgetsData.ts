@@ -337,7 +337,18 @@ const initialData = {
         {
           id: 'baseLocation',
           label: '当前地址',
-          type: 'location',
+          type: 'address',
+          icon: 'locationIcon',
+          options: {
+            isRequired: 0,
+            isPreview: 0,
+          },
+          randomCode: '',
+        },
+        {
+          id: 'basePosition',
+          label: '位置',
+          type: 'address',
           icon: 'locationIcon',
           options: {
             isRequired: 0,

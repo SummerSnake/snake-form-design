@@ -32,6 +32,7 @@ import {
   AppendixConfig,
   RegionConfig,
   LocationConfig,
+  PositionConfig,
   CommentConfig,
 } from '@/components/config';
 
@@ -110,6 +111,8 @@ const RightComponent: FC<RightProps> = (props) => {
               return <RegionConfig activeIndex={activeIdx} />;
             case 'baseLocation':
               return <LocationConfig activeIndex={activeIdx} />;
+            case 'basePosition':
+              return <PositionConfig activeIndex={activeIdx} />;
             case 'baseComment':
               return <CommentConfig activeIndex={activeIdx} />;
             default:

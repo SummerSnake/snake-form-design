@@ -28,6 +28,7 @@ import UploadConfig from './otherConfig/UploadConfig';
 import AppendixConfig from './otherConfig/AppendixConfig';
 import RegionConfig from './otherConfig/RegionConfig';
 import LocationConfig from './otherConfig/LocationConfig';
+import PositionConfig from './otherConfig/PositionConfig';
 import CommentConfig from './otherConfig/CommentConfig';
 
 export {
@@ -55,5 +56,6 @@ export {
   AppendixConfig,
   RegionConfig,
   LocationConfig,
+  PositionConfig,
   CommentConfig,
 };

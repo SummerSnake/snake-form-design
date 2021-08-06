@@ -5,11 +5,11 @@ import _store from '@/utils/dva';
 import { cloneMidList, setErrorMsg } from '@/utils/util';
 import { Widget, WidgetOptions } from '@/pages/index.d';
 
-interface LocationConfigProps {
+interface PositionConfigProps {
   activeIndex: number;
 }
 
-const LocationConfig: FC<LocationConfigProps> = (props) => {
+const PositionConfig: FC<PositionConfigProps> = (props) => {
   const { dispatch } = _store;
 
   const [form] = Form.useForm();
@@ -73,14 +73,14 @@ const LocationConfig: FC<LocationConfigProps> = (props) => {
     <>
       <Form
         form={form}
-        id="LocationConfig"
+        id="PositionConfig"
         layout="vertical"
         onValuesChange={handleFormChange}
         labelCol={{ span: 6 }}
         wrapperCol={{ span: 14 }}
       >
         <div className="configTitleWrap">
-          <p className="configTitle">当前地址</p>
+          <p className="configTitle">位置</p>
         </div>
 
         <Form.Item
@@ -108,4 +108,4 @@ const LocationConfig: FC<LocationConfigProps> = (props) => {
   );
 };
 
-export default React.memo(LocationConfig);
+export default React.memo(PositionConfig);
