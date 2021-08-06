@@ -2,19 +2,18 @@ import React, { FC } from 'react';
 import { WidgetOptions } from '@/pages/index.d';
 import './index.less';
 
-interface NumberViewProps {
+interface LocationViewProps {
   title: string;
   options: WidgetOptions;
 }
 
-const NumberViewComponent: FC<NumberViewProps> = (props) => {
+const LocationViewComponent: FC<LocationViewProps> = (props) => {
   const { title, options } = props;
 
   return (
-    <div className="numberWrap">
-      <div className="numberTitle">
-        <span>{`${title}(${options?.unit})`}</span>
-
+    <div className="locationWrap">
+      <div className="locationTitle">
+        <span>{title}</span>
         <i
           className="requiredStar"
           style={{ visibility: options?.isRequired ? 'visible' : 'hidden' }}
@@ -22,10 +21,8 @@ const NumberViewComponent: FC<NumberViewProps> = (props) => {
           *
         </i>
       </div>
-
-      <div className="numberPlaceholder">{options?.placeholder}</div>
     </div>
   );
 };
 
-export default React.memo(NumberViewComponent);
+export default React.memo(LocationViewComponent);

@@ -1,0 +1,16 @@
+@import '@/styles/mixin.less';
+
+.locationWrap {
+  height: 72px;
+  padding: 10px 12px;
+  font-size: @txtSize;
+  background-color: #fff;
+  .locationTitle {
+    padding-bottom: 7px;
+    color: @titleColor;
+    .requiredStar {
+      .sc(19px, @requireColor);
+      vertical-align: middle;
+    }
+  }
+}

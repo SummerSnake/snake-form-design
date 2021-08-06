@@ -31,6 +31,7 @@ import {
   UploadConfig,
   AppendixConfig,
   RegionConfig,
+  LocationConfig,
   CommentConfig,
 } from '@/components/config';
 
@@ -107,6 +108,8 @@ const RightComponent: FC<RightProps> = (props) => {
               return <AppendixConfig activeIndex={activeIdx} />;
             case 'baseRegion':
               return <RegionConfig activeIndex={activeIdx} />;
+            case 'baseLocation':
+              return <LocationConfig activeIndex={activeIdx} />;
             case 'baseComment':
               return <CommentConfig activeIndex={activeIdx} />;
             default:

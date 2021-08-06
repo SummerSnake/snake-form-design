@@ -116,7 +116,7 @@ const AmountConfig: FC<AmountConfigProps> = (props) => {
         </Form.Item>
 
         <Form.Item label="单位" name="unit">
-          <Input style={{ width: 312 }} />
+          <Input maxLength={10} style={{ width: 312 }} />
         </Form.Item>
 
         <Form.Item
