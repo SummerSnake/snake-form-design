@@ -32,6 +32,7 @@ import OrganizeRangeView from './organizationView/OrganizeRangeView';
 
 import UploadView from './otherView/UploadView';
 import AppendixView from './otherView/AppendixView';
+import AssociateView from './otherView/AssociateView';
 import RegionView from './otherView/RegionView';
 import LocationView from './otherView/LocationView';
 import PositionView from './otherView/PositionView';
@@ -141,6 +142,8 @@ const ViewComponent: FC<ViewProps> = (props) => {
             return <UploadView title={label} options={options} />;
           case 'baseAppendix':
             return <AppendixView title={label} options={options} />;
+          case 'baseAssociate':
+            return <AssociateView title={label} options={options} />;
           case 'baseRegion':
             return <RegionView title={label} options={options} />;
           case 'baseLocation':

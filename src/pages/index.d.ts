@@ -23,6 +23,8 @@ export interface WidgetOptions {
   lowerLimit?: string; // 范围 => 金额  下限
   upperLimit?: string; // 范围 => 金额  上限
 
+  isOnlyRelatedComplete?: number; // 仅关联已完成的流程 => 关联流程  0.否 1.是
+
   autographType?: number; // 签名方式 => 手写签名  1.使用上次签名 2.每次重新签名
 }
 

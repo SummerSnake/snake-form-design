@@ -1,0 +1,19 @@
+@import '@/styles/mixin.less';
+
+.associateWrap {
+  padding: 10px 12px;
+  font-size: @txtSize;
+  background-color: #fff;
+  .associateTitle {
+    padding-bottom: 13px;
+    color: @titleColor;
+    .requiredStar {
+      .sc(19px, @requireColor);
+      vertical-align: middle;
+    }
+  }
+  .associatePlaceholder {
+    .sc(@txtSize, @primaryColor);
+    text-align: center;
+  }
+}

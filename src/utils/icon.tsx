@@ -145,6 +145,12 @@ const Icons = {
     </i>
   ),
 
+  reduceIcon: (styles?: React.CSSProperties | undefined) => (
+    <i className="iconX" style={{ ...styles }}>
+      &#xe617;
+    </i>
+  ),
+
   rightArrowIcon: (styles?: React.CSSProperties | undefined) => (
     <i className="iconX" style={{ ...styles }}>
       &#xe6a3;

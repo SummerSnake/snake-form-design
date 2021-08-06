@@ -323,6 +323,22 @@ const initialData = {
           randomCode: '',
         },
         {
+          id: 'baseAssociate',
+          label: '关联流程',
+          type: 'associate',
+          icon: 'associateIcon',
+          options: {
+            isRequired: 0,
+            isPreview: 0,
+            isOnlyRelatedComplete: 0,
+            elements: [
+              { id: 1, elemTitle: '属性11' },
+              { id: 2, elemTitle: '属性22' },
+            ],
+          },
+          randomCode: '',
+        },
+        {
           id: 'baseRegion',
           label: '省市区',
           type: 'select',
