@@ -2,7 +2,7 @@ import React, { FC, useEffect } from 'react';
 import { connect } from 'react-redux';
 import { DndProvider } from 'react-dnd';
 import { HTML5Backend } from 'react-dnd-html5-backend';
-import { FormDesignModelState, InitialDataType, Widget } from '@/pages/index.d';
+import { FormDesignModelState, DataSourceType, TreeDataType, Widget } from '@/pages/index.d';
 
 import '@/styles/iconfont.less';
 
@@ -15,12 +15,13 @@ interface FormDesignProps {
   formDesign: FormDesignModelState;
   dispatch: Function;
   getWidgetsList: (widgetsList: Widget[]) => void;
-  dataSource?: InitialDataType;
+  dataSource: DataSourceType;
+  treeData: TreeDataType[];
   height?: string;
 }
 
 const FormDesignPage: FC<FormDesignProps> = (props) => {
-  const { formDesign, dispatch, dataSource, height, getWidgetsList } = props;
+  const { formDesign, dispatch, dataSource, treeData, height, getWidgetsList } = props;
   const { widgetsList, widgetsGroupList, midList = [], activeIdx = 0, isDroped = '' } = formDesign;
 
   useEffect(() => {
@@ -45,7 +46,12 @@ const FormDesignPage: FC<FormDesignProps> = (props) => {
             activeIdx={activeIdx}
             callback={() => getWidgetsList(midList)}
           />
-          <Right middleList={midList} activeIdx={activeIdx} isDroped={isDroped} />
+          <Right
+            treeData={treeData}
+            middleList={midList}
+            activeIdx={activeIdx}
+            isDroped={isDroped}
+          />
         </div>
       </DndProvider>
     </div>

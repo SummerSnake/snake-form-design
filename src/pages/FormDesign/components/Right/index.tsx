@@ -5,7 +5,7 @@
 import React, { FC, useState, useEffect } from 'react';
 
 import { cloneMidList } from '@/utils/util';
-import { Widget } from '@/pages/index.d';
+import { TreeDataType, Widget } from '@/pages/index.d';
 
 import {
   TitleConfig,
@@ -39,13 +39,14 @@ import {
 } from '@/components/config';
 
 interface RightProps {
+  treeData: TreeDataType[];
   middleList: Widget[];
   activeIdx: number;
   isDroped: string;
 }
 
 const RightComponent: FC<RightProps> = (props) => {
-  const { middleList = [], activeIdx, isDroped } = props;
+  const { treeData, middleList = [], activeIdx, isDroped } = props;
   const [midList, setMidList] = useState<Widget[]>(middleList);
 
   // 更新右侧配置面板
@@ -110,7 +111,7 @@ const RightComponent: FC<RightProps> = (props) => {
             case 'baseAppendix':
               return <AppendixConfig activeIndex={activeIdx} />;
             case 'baseAssociate':
-              return <AssociateConfig activeIndex={activeIdx} />;
+              return <AssociateConfig activeIndex={activeIdx} treeData={treeData} />;
             case 'baseRegion':
               return <RegionConfig activeIndex={activeIdx} />;
             case 'baseLocation':

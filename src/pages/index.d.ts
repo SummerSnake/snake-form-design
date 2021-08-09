@@ -1,5 +1,5 @@
 export interface OptionsElement {
-  id: number; // 主键
+  id: string; // 主键
   title: string; // 标题 => 前端显示名称
 }
 
@@ -44,7 +44,7 @@ export interface Widgets {
   items: Widget[]; // 控件列表 => 类目所包含控件列表
 }
 
-export interface InitialDataType {
+export interface DataSourceType {
   widgetsList: Widgets[];
   widgetsGroupList: Widgets[];
 }
@@ -58,8 +58,15 @@ export interface FormDesignModelState {
   isDroped: string;
 }
 
+export interface TreeDataType {
+  key: string;
+  title: string;
+  children?: TreeDataType[];
+}
+
 export interface SnakeFormDesignProps {
+  dataSource: DataSourceType;
+  treeData: TreeDataType[];
   getWidgetsList: (widgetsList: Widget[]) => void;
   height?: string;
-  dataSource?: InitialDataType;
 }

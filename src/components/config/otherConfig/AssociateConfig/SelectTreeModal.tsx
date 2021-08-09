@@ -2,26 +2,22 @@ import React, { FC, useState } from 'react';
 import { Modal, Input, Tree, Empty, message } from 'antd';
 
 import Icons from '@/utils/icon';
+import { TreeDataType } from '@/pages/index.d';
 import './index.less';
 
-export interface treeDataType {
-  key: string;
-  title: string;
-  children?: treeDataType[];
-}
 interface SelectTreeModalProps {
   isShow: boolean;
-  onSubmit: (selectedNodes?: treeDataType[]) => void;
-  treeData: treeDataType[];
-  checkedNodes?: treeDataType[];
+  onSubmit: (selectedNodes?: TreeDataType[]) => void;
+  treeData: TreeDataType[];
+  checkedNodes?: TreeDataType[];
 }
 
 const SelectTreeModal: FC<SelectTreeModalProps> = (props) => {
   const { isShow, onSubmit, treeData, checkedNodes = [] } = props;
 
-  const [selectedNodes, setSelectedNodes] = useState<treeDataType[]>(checkedNodes); // 选中项数组
+  const [selectedNodes, setSelectedNodes] = useState<TreeDataType[]>(checkedNodes); // 选中项数组
   const [searchTxt, setSearchTxt] = useState<string>(''); // 搜索值
-  const [searchList, setSearchList] = useState<treeDataType[]>(checkedNodes || []); // 搜索结果列表
+  const [searchList, setSearchList] = useState<TreeDataType[]>([]); // 搜索结果列表
 
   const checkedKeys = selectedNodes.map((item) => item.key);
 
@@ -33,9 +29,10 @@ const SelectTreeModal: FC<SelectTreeModalProps> = (props) => {
     const { value = '' } = e?.target;
     setSearchTxt(value);
 
-    const arr: treeDataType[] = JSON.parse(JSON.stringify(searchList));
+    const arr: TreeDataType[] = JSON.parse(JSON.stringify(searchList));
     const titleArr = arr.map((item) => item.title);
     const queue = JSON.parse(JSON.stringify(treeData));
+
     let i = 0;
     while (i < queue.length) {
       if (queue[i]?.title === value) {
@@ -45,8 +42,8 @@ const SelectTreeModal: FC<SelectTreeModalProps> = (props) => {
 
         break;
       }
-      if (Array.isArray(queue[i]?.children) && (queue[i].children as treeDataType[]).length > 0) {
-        queue.push(...(queue[i].children as treeDataType[]));
+      if (Array.isArray(queue[i]?.children) && (queue[i].children as TreeDataType[]).length > 0) {
+        queue.push(...(queue[i].children as TreeDataType[]));
       }
 
       i++;
@@ -59,7 +56,7 @@ const SelectTreeModal: FC<SelectTreeModalProps> = (props) => {
    * @desc 数据为树时 选中节点事件
    * @return { void }
    */
-  const handleSelectTreeNode = (_, checkInfo): void => {
+  const handleSelectTreeNode = (_: any, checkInfo: any): void => {
     if (Array.isArray(selectedNodes) && selectedNodes.length > 4) {
       message.error('最多只能选择5项');
       return;
@@ -72,7 +69,7 @@ const SelectTreeModal: FC<SelectTreeModalProps> = (props) => {
    * @desc 移除选中的节点
    * @return { void }
    */
-  const handleRemoveItem = (node: treeDataType): void => {
+  const handleRemoveItem = (node: TreeDataType): void => {
     const selectedList = selectedNodes.filter((selectedNode) => selectedNode.key !== node.key);
     setSelectedNodes(selectedList);
   };
@@ -81,7 +78,7 @@ const SelectTreeModal: FC<SelectTreeModalProps> = (props) => {
    * @desc 数据为列表时 选中节点事件
    * @return { void }
    */
-  const handleSelectItem = (node: treeDataType): void => {
+  const handleSelectItem = (node: TreeDataType): void => {
     if (Array.isArray(selectedNodes) && selectedNodes.length > 5) {
       message.error('最多只能选择5项');
       return;

@@ -4,10 +4,9 @@ import { Form, Input, Checkbox } from 'antd';
 import _store from '@/utils/dva';
 import Icons from '@/utils/icon';
 import { cloneMidList, setErrorMsg } from '@/utils/util';
-import { Widget, WidgetOptions, OptionsElement } from '@/pages/index.d';
+import { TreeDataType, Widget, WidgetOptions, OptionsElement } from '@/pages/index.d';
 
 import SelectTreeModal from './SelectTreeModal';
-import { treeDataType } from './SelectTreeModal';
 
 const divStyle = (index: number): React.CSSProperties => ({
   display: 'inline-block',
@@ -32,13 +31,14 @@ const spanStyle: CSSProperties = {
 
 interface AssociateConfigProps {
   activeIndex: number;
+  treeData: TreeDataType[];
 }
 
 const AssociateConfig: FC<AssociateConfigProps> = (props) => {
   const { dispatch } = _store;
 
   const [form] = Form.useForm();
-  const { activeIndex }: { activeIndex: number } = props;
+  const { activeIndex, treeData } = props;
 
   const initMiddleArr = cloneMidList();
   const initWidgetData: Widget = initMiddleArr[activeIndex];
@@ -64,15 +64,25 @@ const AssociateConfig: FC<AssociateConfigProps> = (props) => {
    * @desc elements 添加/减少子项
    * @param { string } sign
    * @param { number } index
+   * @param { TreeDataType[] } selectedNodes
    * @return { void }
    */
-  const handleUpdateElements = (sign: string, index: number): void => {
-    const elemArr = getElementsList();
+  const handleUpdateElements = (
+    sign: string,
+    index?: number,
+    selectedNodes?: TreeDataType[]
+  ): void => {
+    let elemArr = getElementsList();
 
     if (sign === 'add') {
-      elemArr.push({ id: elemArr[elemArr.length - 1].id + 1, title: '' });
+      const arr: OptionsElement[] = [];
+      for (let item of selectedNodes as TreeDataType[]) {
+        arr.push({ id: item.key, title: item.title });
+      }
+
+      elemArr = arr;
     } else {
-      elemArr.splice(index, 1);
+      elemArr.splice(index as number, 1);
     }
 
     const middleArr = cloneMidList();
@@ -130,8 +140,11 @@ const AssociateConfig: FC<AssociateConfigProps> = (props) => {
   /**
    * @desc 选择关联流程
    */
-  const handleSelectAssociate = (selectedNodes?: treeDataType[]) => {
-    console.log(selectedNodes);
+  const handleSelectAssociate = (selectedNodes?: TreeDataType[]) => {
+    if (selectedNodes) {
+      handleUpdateElements('add', 0, selectedNodes);
+    }
+
     setIsModalShow(0);
   };
 
@@ -220,54 +233,14 @@ const AssociateConfig: FC<AssociateConfigProps> = (props) => {
         </Form.Item>
       </Form>
 
-      <SelectTreeModal
-        isShow={!!isModalShow}
-        onSubmit={handleSelectAssociate}
-        treeData={[
-          {
-            title: '0-0',
-            key: '0-0',
-            children: [
-              {
-                title: '0-0-0',
-                key: '0-0-0',
-                children: [
-                  { title: '0-0-0-0', key: '0-0-0-0' },
-                  { title: '0-0-0-1', key: '0-0-0-1' },
-                  { title: '0-0-0-2', key: '0-0-0-2' },
-                ],
-              },
-              {
-                title: '0-0-1',
-                key: '0-0-1',
-                children: [
-                  { title: '0-0-1-0', key: '0-0-1-0' },
-                  { title: '0-0-1-1', key: '0-0-1-1' },
-                  { title: '0-0-1-2', key: '0-0-1-2' },
-                ],
-              },
-              {
-                title: '0-0-2',
-                key: '0-0-2',
-              },
-            ],
-          },
-          {
-            title: '0-1',
-            key: '0-1',
-            children: [
-              { title: '0-1-0-0', key: '0-1-0-0' },
-              { title: '0-1-0-1', key: '0-1-0-1' },
-              { title: '0-1-0-2', key: '0-1-0-2' },
-            ],
-          },
-          {
-            title: '0-2',
-            key: '0-2',
-          },
-        ]}
-        checkedNodes={[]}
-      />
+      {!!isModalShow && (
+        <SelectTreeModal
+          isShow={!!isModalShow}
+          onSubmit={handleSelectAssociate}
+          treeData={treeData}
+          checkedNodes={initElements.map((item) => ({ key: item.id, title: item.title }))}
+        />
+      )}
     </>
   );
 };
