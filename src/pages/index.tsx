@@ -7,11 +7,11 @@ import { SnakeFormDesignProps } from '@/pages/index.d';
 import FormDesignPage from './FormDesign';
 
 const SnakeFormDesign: FC<SnakeFormDesignProps> = (props) => {
-  const { height, dataSource } = props;
+  const { height, dataSource, getWidgetsList } = props;
 
   return (
     <Provider store={_store}>
-      <FormDesignPage height={height} dataSource={dataSource} />
+      <FormDesignPage height={height} dataSource={dataSource} getWidgetsList={getWidgetsList} />
     </Provider>
   );
 };

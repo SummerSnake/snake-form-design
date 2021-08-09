@@ -59,6 +59,7 @@ export interface FormDesignModelState {
 }
 
 export interface SnakeFormDesignProps {
+  getWidgetsList: (widgetsList: Widget[]) => void;
   height?: string;
   dataSource?: InitialDataType;
 }

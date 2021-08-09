@@ -6,6 +6,9 @@ import Icons from '@/utils/icon';
 import { cloneMidList, setErrorMsg } from '@/utils/util';
 import { Widget, WidgetOptions, OptionsElement } from '@/pages/index.d';
 
+import SelectTreeModal from './SelectTreeModal';
+import { treeDataType } from './SelectTreeModal';
+
 const divStyle = (index: number): React.CSSProperties => ({
   display: 'inline-block',
   position: 'relative',
@@ -42,6 +45,7 @@ const AssociateConfig: FC<AssociateConfigProps> = (props) => {
   const { options: initOptions }: { options: WidgetOptions } = initWidgetData;
 
   const [initElements, setInitElements] = useState<OptionsElement[]>(initOptions?.elements || []);
+  const [isModalShow, setIsModalShow] = useState(0); // 选择流程弹窗
 
   /**
    * @desc 获取当前控件自定义元素列表
@@ -124,6 +128,14 @@ const AssociateConfig: FC<AssociateConfigProps> = (props) => {
   };
 
   /**
+   * @desc 选择关联流程
+   */
+  const handleSelectAssociate = (selectedNodes?: treeDataType[]) => {
+    console.log(selectedNodes);
+    setIsModalShow(0);
+  };
+
+  /**
    * @desc 重新渲染
    */
   useEffect(() => {
@@ -188,7 +200,7 @@ const AssociateConfig: FC<AssociateConfigProps> = (props) => {
             ))}
 
           <div
-            onClick={() => handleUpdateElements('add', 0)}
+            onClick={() => setIsModalShow(1)}
             style={{ marginBottom: 20, cursor: 'pointer', color: '#40a9ff' }}
           >
             <span style={{ verticalAlign: 'middle', marginRight: 4 }}>
@@ -207,6 +219,84 @@ const AssociateConfig: FC<AssociateConfigProps> = (props) => {
           </Checkbox.Group>
         </Form.Item>
       </Form>
+
+      <SelectTreeModal
+        isShow={!!isModalShow}
+        onSubmit={handleSelectAssociate}
+        treeData={[
+          {
+            title: '0-0',
+            key: '0-0',
+            children: [
+              {
+                title: '0-0-0',
+                key: '0-0-0',
+                children: [
+                  { title: '0-0-0-0', key: '0-0-0-0' },
+                  { title: '0-0-0-1', key: '0-0-0-1' },
+                  { title: '0-0-0-2', key: '0-0-0-2' },
+                ],
+              },
+              {
+                title: '0-0-1',
+                key: '0-0-1',
+                children: [
+                  { title: '0-0-1-0', key: '0-0-1-0' },
+                  { title: '0-0-1-1', key: '0-0-1-1' },
+                  { title: '0-0-1-2', key: '0-0-1-2' },
+                ],
+              },
+              {
+                title: '0-0-2',
+                key: '0-0-2',
+              },
+            ],
+          },
+          {
+            title: '0-1',
+            key: '0-1',
+            children: [
+              { title: '0-1-0-0', key: '0-1-0-0' },
+              { title: '0-1-0-1', key: '0-1-0-1' },
+              { title: '0-1-0-2', key: '0-1-0-2' },
+            ],
+          },
+          {
+            title: '0-2',
+            key: '0-2',
+          },
+        ]}
+        checkedNodes={[
+          {
+            title: '0-0',
+            key: '0-0',
+            children: [
+              {
+                title: '0-0-0',
+                key: '0-0-0',
+                children: [
+                  { title: '0-0-0-0', key: '0-0-0-0' },
+                  { title: '0-0-0-1', key: '0-0-0-1' },
+                  { title: '0-0-0-2', key: '0-0-0-2' },
+                ],
+              },
+              {
+                title: '0-0-1',
+                key: '0-0-1',
+                children: [
+                  { title: '0-0-1-0', key: '0-0-1-0' },
+                  { title: '0-0-1-1', key: '0-0-1-1' },
+                  { title: '0-0-1-2', key: '0-0-1-2' },
+                ],
+              },
+              {
+                title: '0-0-2',
+                key: '0-0-2',
+              },
+            ],
+          },
+        ]}
+      />
     </>
   );
 };

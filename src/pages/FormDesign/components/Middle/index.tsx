@@ -14,10 +14,11 @@ import MiddleItem from './MiddleItem';
 interface MiddleProps {
   middleList: Widget[];
   activeIdx: number;
+  callback?: () => void;
 }
 
 const MiddleComponent: FC<MiddleProps> = (props) => {
-  const { middleList = [], activeIdx = 0 } = props;
+  const { middleList = [], activeIdx = 0, callback } = props;
 
   const [isModalShow, setIsModalShow] = useState<number>(0); // 预览 Modal 开关   0.关闭  1.打开
 
@@ -44,6 +45,7 @@ const MiddleComponent: FC<MiddleProps> = (props) => {
             }
 
             setIsModalShow(1);
+            callback && callback();
           }}
         >
           预览

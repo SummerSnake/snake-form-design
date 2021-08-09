@@ -1,0 +1,76 @@
+.selectTreeModalWrap {
+  border: 1px solid #d9d9d9;
+  border-radius: 4px;
+  display: flex;
+  height: 360px;
+
+  .selectPart {
+    width: 368px;
+    padding: 17px;
+    color: #18263c;
+    border-right: 1px solid #d9d9d9;
+    .selectPartTitle {
+      margin: 17px 0 10px;
+    }
+    .searchResultsContainer {
+      margin-top: 12px;
+      .searchResultsTitle {
+        line-height: 32px;
+        height: 32px;
+        background-color: #f6f6f6;
+        padding-left: 12px;
+      }
+      .searchResults {
+        .searchResultsChildItem {
+          padding-left: 24px;
+          display: flex;
+          align-items: center;
+          height: 80px;
+          cursor: pointer;
+          .searchResultsChildItemBody {
+            margin-left: 17px;
+            display: flex;
+            flex-direction: column;
+            height: 48px;
+            justify-content: space-between;
+          }
+        }
+        .searchResultsParentItem {
+          height: 48px;
+          display: flex;
+          align-items: center;
+          width: 100%;
+          cursor: pointer;
+        }
+        .searchResultsParentItemSelected {
+          background-color: rgb(240, 244, 255);
+          color: #1890ff;
+        }
+      }
+    }
+    .emptyStatus {
+      margin-top: 70px;
+    }
+  }
+
+  .selectedAreaWrap {
+    width: 368px;
+    padding: 17px;
+    color: #18263c;
+    .selectedItem {
+      height: 36px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      color: #18263c;
+      padding: 0 4px;
+      :hover {
+        background-color: rgb(240, 244, 255);
+        color: #1890ff;
+      }
+      .uncheckButton {
+        cursor: pointer;
+      }
+    }
+  }
+}
