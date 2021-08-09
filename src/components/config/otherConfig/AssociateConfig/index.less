@@ -1,51 +1,25 @@
+@import '@/styles/mixin.less';
+
 .selectTreeModalWrap {
-  border: 1px solid #d9d9d9;
-  border-radius: 4px;
   display: flex;
   height: 360px;
-
-  .selectPart {
+  border: 1px solid @borderColor;
+  border-radius: 4px;
+  .treeAreaWrap {
     width: 368px;
-    padding: 17px;
-    color: #18263c;
-    border-right: 1px solid #d9d9d9;
-    .selectPartTitle {
-      margin: 17px 0 10px;
-    }
-    .searchResultsContainer {
-      margin-top: 12px;
-      .searchResultsTitle {
-        line-height: 32px;
-        height: 32px;
-        background-color: #f6f6f6;
-        padding-left: 12px;
+    padding: 15px;
+    color: @titleColor;
+    border-right: 1px solid @borderColor;
+    .searchResultsWrap {
+      padding-left: 15px;
+      .searchResultsItem {
+        display: flex;
+        align-items: center;
+        cursor: pointer;
       }
-      .searchResults {
-        .searchResultsChildItem {
-          padding-left: 24px;
-          display: flex;
-          align-items: center;
-          height: 80px;
-          cursor: pointer;
-          .searchResultsChildItemBody {
-            margin-left: 17px;
-            display: flex;
-            flex-direction: column;
-            height: 48px;
-            justify-content: space-between;
-          }
-        }
-        .searchResultsParentItem {
-          height: 48px;
-          display: flex;
-          align-items: center;
-          width: 100%;
-          cursor: pointer;
-        }
-        .searchResultsParentItemSelected {
-          background-color: rgb(240, 244, 255);
-          color: #1890ff;
-        }
+      .searchResultsItemSelected {
+        background-color: @bgColor;
+        color: @primaryColor;
       }
     }
     .emptyStatus {
@@ -55,20 +29,23 @@
 
   .selectedAreaWrap {
     width: 368px;
-    padding: 17px;
-    color: #18263c;
-    .selectedItem {
-      height: 36px;
+    padding: 15px;
+    color: @titleColor;
+    .selectAreaTitle {
+      padding-bottom: 4px;
+    }
+    .selectedAreaItem {
       display: flex;
       align-items: center;
       justify-content: space-between;
-      color: #18263c;
       padding: 0 4px;
-      :hover {
-        background-color: rgb(240, 244, 255);
-        color: #1890ff;
+      color: @titleColor;
+      &:hover {
+        background-color: @bgColor;
+        color: @primaryColor;
       }
-      .uncheckButton {
+      .removeBtn {
+        text-align: center;
         cursor: pointer;
       }
     }

@@ -1,6 +1,6 @@
 export interface OptionsElement {
   id: number; // 主键
-  elemTitle: string; // 标题 => 前端显示名称
+  title: string; // 标题 => 前端显示名称
 }
 
 export interface WidgetOptions {

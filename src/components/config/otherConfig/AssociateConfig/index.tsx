@@ -70,7 +70,7 @@ const AssociateConfig: FC<AssociateConfigProps> = (props) => {
     const elemArr = getElementsList();
 
     if (sign === 'add') {
-      elemArr.push({ id: elemArr[elemArr.length - 1].id + 1, elemTitle: '' });
+      elemArr.push({ id: elemArr[elemArr.length - 1].id + 1, title: '' });
     } else {
       elemArr.splice(index, 1);
     }
@@ -191,7 +191,7 @@ const AssociateConfig: FC<AssociateConfigProps> = (props) => {
           {Array.isArray(initElements) &&
             initElements.map((item, index) => (
               <div key={item.id} style={divStyle(index)}>
-                <span>{item.elemTitle}</span>
+                <span>{item.title}</span>
 
                 <span style={spanStyle} onClick={() => handleUpdateElements('reduce', index)}>
                   {Icons.reduceIcon({ fontSize: 18, color: '#f04134' })}
@@ -266,36 +266,7 @@ const AssociateConfig: FC<AssociateConfigProps> = (props) => {
             key: '0-2',
           },
         ]}
-        checkedNodes={[
-          {
-            title: '0-0',
-            key: '0-0',
-            children: [
-              {
-                title: '0-0-0',
-                key: '0-0-0',
-                children: [
-                  { title: '0-0-0-0', key: '0-0-0-0' },
-                  { title: '0-0-0-1', key: '0-0-0-1' },
-                  { title: '0-0-0-2', key: '0-0-0-2' },
-                ],
-              },
-              {
-                title: '0-0-1',
-                key: '0-0-1',
-                children: [
-                  { title: '0-0-1-0', key: '0-0-1-0' },
-                  { title: '0-0-1-1', key: '0-0-1-1' },
-                  { title: '0-0-1-2', key: '0-0-1-2' },
-                ],
-              },
-              {
-                title: '0-0-2',
-                key: '0-0-2',
-              },
-            ],
-          },
-        ]}
+        checkedNodes={[]}
       />
     </>
   );

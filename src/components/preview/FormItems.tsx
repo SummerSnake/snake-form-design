@@ -45,7 +45,7 @@ const GroupViewComponent: FC<FormItemsProps> = (props) => {
                 {Array.isArray(elements) &&
                   elements.map((item) => (
                     <Radio key={item.id} value={item.id}>
-                      {item.elemTitle}
+                      {item.title}
                     </Radio>
                   ))}
               </Radio.Group>
@@ -56,7 +56,7 @@ const GroupViewComponent: FC<FormItemsProps> = (props) => {
                 {Array.isArray(elements) &&
                   elements.map((item) => (
                     <Checkbox key={item.id} value={item.id}>
-                      {item.elemTitle}
+                      {item.title}
                     </Checkbox>
                   ))}
               </Checkbox.Group>
@@ -67,7 +67,7 @@ const GroupViewComponent: FC<FormItemsProps> = (props) => {
                 {Array.isArray(elements) &&
                   elements.map((item) => (
                     <Select.Option key={item.id} value={item.id}>
-                      {item.elemTitle}
+                      {item.title}
                     </Select.Option>
                   ))}
               </Select>

@@ -156,6 +156,12 @@ const Icons = {
       &#xe6a3;
     </i>
   ),
+
+  searchIcon: (styles?: React.CSSProperties | undefined) => (
+    <i className="iconX" style={{ ...styles }}>
+      &#xe608;
+    </i>
+  ),
 };
 
 export default Icons;

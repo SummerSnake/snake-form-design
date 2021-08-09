@@ -118,7 +118,7 @@ const AttrSingleSelect: FC<AttrSingleSelectProps> = (props) => {
             {Array.isArray(initOptions?.elements) &&
               initOptions?.elements.map((item) => (
                 <Select.Option key={item?.id} value={item?.id}>
-                  {item?.elemTitle}
+                  {item?.title}
                 </Select.Option>
               ))}
           </Select>

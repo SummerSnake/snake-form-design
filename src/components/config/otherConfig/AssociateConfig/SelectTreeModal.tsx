@@ -1,5 +1,7 @@
-import React, { FC, useCallback, useState } from 'react';
-import { Modal, Input, Tree, Empty } from 'antd';
+import React, { FC, useState } from 'react';
+import { Modal, Input, Tree, Empty, message } from 'antd';
+
+import Icons from '@/utils/icon';
 import './index.less';
 
 export interface treeDataType {
@@ -11,7 +13,7 @@ interface SelectTreeModalProps {
   isShow: boolean;
   onSubmit: (selectedNodes?: treeDataType[]) => void;
   treeData: treeDataType[];
-  checkedNodes: treeDataType[];
+  checkedNodes?: treeDataType[];
 }
 
 const SelectTreeModal: FC<SelectTreeModalProps> = (props) => {
@@ -19,21 +21,29 @@ const SelectTreeModal: FC<SelectTreeModalProps> = (props) => {
 
   const [selectedNodes, setSelectedNodes] = useState<treeDataType[]>(checkedNodes); // 选中项数组
   const [searchTxt, setSearchTxt] = useState<string>(''); // 搜索值
-  const [searchList, setSearchList] = useState<treeDataType[]>([]); // 搜索结果列表
+  const [searchList, setSearchList] = useState<treeDataType[]>(checkedNodes || []); // 搜索结果列表
+
+  const checkedKeys = selectedNodes.map((item) => item.key);
 
   /**
    * @desc 搜索事件
+   * @return { void }
    */
-  const handleSearch = (e: React.ChangeEvent<HTMLInputElement>) => {
+  const handleSearch = (e: React.ChangeEvent<HTMLInputElement>): void => {
     const { value = '' } = e?.target;
     setSearchTxt(value);
 
-    const arr: treeDataType[] = [];
-    const queue = treeData;
+    const arr: treeDataType[] = JSON.parse(JSON.stringify(searchList));
+    const titleArr = arr.map((item) => item.title);
+    const queue = JSON.parse(JSON.stringify(treeData));
     let i = 0;
     while (i < queue.length) {
       if (queue[i]?.title === value) {
-        arr.push(queue[i]);
+        if (!titleArr.includes(value)) {
+          arr.push(queue[i]);
+        }
+
+        break;
       }
       if (Array.isArray(queue[i]?.children) && (queue[i].children as treeDataType[]).length > 0) {
         queue.push(...(queue[i].children as treeDataType[]));
@@ -47,26 +57,36 @@ const SelectTreeModal: FC<SelectTreeModalProps> = (props) => {
 
   /**
    * @desc 数据为树时 选中节点事件
+   * @return { void }
    */
-  const handleSelectTreeNode = useCallback((checkedKeys, e) => {
-    setSelectedNodes(e.checkedNodes);
-  }, []);
+  const handleSelectTreeNode = (_, checkInfo): void => {
+    if (Array.isArray(selectedNodes) && selectedNodes.length > 4) {
+      message.error('最多只能选择5项');
+      return;
+    }
+
+    setSelectedNodes(checkInfo?.checkedNodes);
+  };
 
   /**
    * @desc 移除选中的节点
+   * @return { void }
    */
-  const handleRemoveItem = useCallback(
-    (node) => {
-      const selectedList = selectedNodes.filter((selectedNode) => selectedNode.key !== node.key);
-      setSelectedNodes(selectedList);
-    },
-    [selectedNodes]
-  );
+  const handleRemoveItem = (node: treeDataType): void => {
+    const selectedList = selectedNodes.filter((selectedNode) => selectedNode.key !== node.key);
+    setSelectedNodes(selectedList);
+  };
 
   /**
    * @desc 数据为列表时 选中节点事件
+   * @return { void }
    */
-  const handleSelectItem = (node: treeDataType) => {
+  const handleSelectItem = (node: treeDataType): void => {
+    if (Array.isArray(selectedNodes) && selectedNodes.length > 5) {
+      message.error('最多只能选择5项');
+      return;
+    }
+
     const selectedKeys = selectedNodes.map((item) => item.key);
     const index = selectedKeys.indexOf(node.key);
 
@@ -90,9 +110,16 @@ const SelectTreeModal: FC<SelectTreeModalProps> = (props) => {
       cancelText="取消"
     >
       <div className="selectTreeModalWrap">
-        <div className="selectPart">
-          <Input placeholder="搜索" prefix={<i />} value={searchTxt} onChange={handleSearch} />
-          {Array.isArray(searchList) && searchList.length === 0 ? (
+        <div className="treeAreaWrap">
+          <Input
+            placeholder="搜索"
+            prefix={Icons.searchIcon({ fontSize: 14, color: '#ccc' })}
+            style={{ marginBottom: 12 }}
+            value={searchTxt}
+            onChange={handleSearch}
+          />
+
+          {!searchTxt ? (
             <>
               <Tree
                 checkable
@@ -106,35 +133,17 @@ const SelectTreeModal: FC<SelectTreeModalProps> = (props) => {
           ) : (
             <>
               {Array.isArray(searchList) && searchList.length > 0 ? (
-                <div className="searchResultsContainer">
+                <div className="searchResultsWrap">
                   {searchList.map((item) => (
                     <React.Fragment key={item.key}>
-                      {Array.isArray(item?.children) && item.children.length > 0 ? (
-                        <div
-                          className={`searchResultsParentItem ${
-                            selectedNodes.map((item) => item.key).includes(item.key)
-                              ? 'searchResultsParentItemSelected'
-                              : null
-                          }}`}
-                          onClick={() => handleSelectItem(item)}
-                        >
-                          <i style={{ marginLeft: 24, marginRight: 6 }} />
-                          {item.title}
-                        </div>
-                      ) : (
-                        <div
-                          className={`searchResultsChildItem ${
-                            selectedNodes.map((item) => item.key)?.includes(item.key)
-                              ? 'searchResultsParentItemSelected'
-                              : null
-                          }}`}
-                          onClick={() => handleSelectItem(item)}
-                        >
-                          <div className="searchResultsChildItemBody">
-                            <span>{item.title}</span>
-                          </div>
-                        </div>
-                      )}
+                      <div
+                        className={`searchResultsItem ${
+                          checkedKeys.includes(item.key) && 'searchResultsItemSelected'
+                        }`}
+                        onClick={() => handleSelectItem(item)}
+                      >
+                        <span style={{ paddingLeft: 4 }}>{item.title}</span>
+                      </div>
                     </React.Fragment>
                   ))}
                 </div>
@@ -151,14 +160,14 @@ const SelectTreeModal: FC<SelectTreeModalProps> = (props) => {
         <div className="selectedAreaWrap">
           {selectedNodes.length ? (
             <>
-              <div className="selectPartTitle">{`已选${selectedNodes.length}/5项：`}</div>
+              <div className="selectAreaTitle">{`已选${selectedNodes.length}/5项：`}</div>
               {selectedNodes.map((node) => (
-                <div className="selectedItem" key={node.key}>
-                  <div>
-                    <span style={{ marginRight: '8px' }} />
-                    {node.title}
-                  </div>
-                  <span className="uncheckButton" onClick={() => handleRemoveItem(node)} />
+                <div className="selectedAreaItem" key={node.key}>
+                  <span>{node.title}</span>
+
+                  <span className="removeBtn" onClick={() => handleRemoveItem(node)}>
+                    {Icons.deleteIcon({ fontSize: 14, color: '#ff7875' })}
+                  </span>
                 </div>
               ))}
             </>

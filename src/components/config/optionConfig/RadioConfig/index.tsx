@@ -87,7 +87,7 @@ const RadioConfig: FC<RadioConfigProps> = (props) => {
     const elemArr = getElementsList();
 
     if (sign === 'add') {
-      elemArr.push({ id: elemArr[elemArr.length - 1].id + 1, elemTitle: '' });
+      elemArr.push({ id: elemArr[elemArr.length - 1].id + 1, title: '' });
     } else {
       elemArr.splice(index, 1);
     }
@@ -205,7 +205,7 @@ const RadioConfig: FC<RadioConfigProps> = (props) => {
                 <Form.Item
                   label={index === 0 ? '选项' : ''}
                   name={uuidv4()}
-                  initialValue={item.elemTitle}
+                  initialValue={item.title}
                   style={{ marginBottom: 10 }}
                   rules={[
                     {
@@ -218,7 +218,7 @@ const RadioConfig: FC<RadioConfigProps> = (props) => {
                     placeholder="请输入"
                     maxLength={10}
                     style={{ width: 284 }}
-                    onChange={(e) => handleInputChange('elemTitle', index, e)}
+                    onChange={(e) => handleInputChange('title', index, e)}
                   />
                 </Form.Item>
 
