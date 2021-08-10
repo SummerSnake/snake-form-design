@@ -54,7 +54,7 @@ const MiddleComponent: FC<MiddleProps> = (props) => {
 
       <div ref={droper} className="middleContent">
         {middleList.map((item, index) => (
-          <MiddleItem key={item.randomCode} itemData={item} idx={index} activeIndex={activeIdx} />
+          <MiddleItem key={item.formKey} itemData={item} idx={index} activeIndex={activeIdx} />
         ))}
       </div>
 

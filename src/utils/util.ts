@@ -45,9 +45,9 @@ export const setErrorMsg = (form: FormInstance, widgetData: Widget): void => {
       if (Array.isArray(errorFields)) {
         const { dispatch } = _store;
         const errorArr = cloneErrorList();
-        // 取出当前控件的 randomCode
-        const { randomCode } = widgetData;
-        const index = errorArr.indexOf(randomCode);
+        // 取出当前控件的 formKey
+        const { formKey } = widgetData;
+        const index = errorArr.indexOf(formKey);
 
         // 无错误信息将当前组件从 errorList 中删除
         if (errorFields.length === 0 && index > -1) {
@@ -65,7 +65,7 @@ export const setErrorMsg = (form: FormInstance, widgetData: Widget): void => {
 
         // errorList 不存在当前控件报错信息，将当前组件推入数组，存在则忽略
         if (errorFields.length > 0 && index === -1) {
-          errorArr.push(randomCode);
+          errorArr.push(formKey);
 
           dispatch({
             type: 'formDesign/save',
@@ -91,17 +91,17 @@ export const handleDrop = (widget: Widget): void => {
   const { dispatch } = _store;
   const midArr: Widget[] = cloneMidList();
 
-  const placeholderIndex = midArr.findIndex((item: Widget) => item.randomCode === '-1');
+  const placeholderIndex = midArr.findIndex((item: Widget) => item.formKey === '-1');
   let activeIdx: number = 0;
 
   // 没有 placeholder(放置到白色面板下方区域), 添加至末尾
   if (placeholderIndex === -1) {
-    midArr.push({ ...widget, randomCode: uuidv4() });
+    midArr.push({ ...widget, formKey: uuidv4() });
     activeIdx = midArr.length - 1;
   }
   // 有 placeholder, 替换掉 placeholder
   if (placeholderIndex > -1) {
-    midArr.splice(placeholderIndex, 1, { ...widget, randomCode: uuidv4() });
+    midArr.splice(placeholderIndex, 1, { ...widget, formKey: uuidv4() });
     activeIdx = placeholderIndex;
   }
 
@@ -124,14 +124,14 @@ export const updatePlaceholder = (hoverIndex: number): void => {
   const { dispatch } = _store;
   const midArr: Widget[] = cloneMidList();
 
-  const placeholderIndex = midArr.findIndex((item: Widget) => item.randomCode === '-1');
+  const placeholderIndex = midArr.findIndex((item: Widget) => item.formKey === '-1');
   const placeholder: Widget = {
     id: 'placeholder',
     label: '放这里',
     type: 'placeholder',
     icon: '',
     options: {},
-    randomCode: '-1',
+    formKey: '-1',
   };
 
   // placeholder 不存在，创建 placeholder
@@ -165,9 +165,9 @@ export const reOrder = (widget: Widget): void => {
   const midArr: Widget[] = cloneMidList();
 
   // 当前拖拽元素下标
-  const dragIndex = midArr.findIndex((item: Widget) => item.randomCode === widget.randomCode);
+  const dragIndex = midArr.findIndex((item: Widget) => item.formKey === widget.formKey);
   // placeholder 下标
-  const placeholderIndex = midArr.findIndex((item: Widget) => item.randomCode === '-1');
+  const placeholderIndex = midArr.findIndex((item: Widget) => item.formKey === '-1');
 
   if (dragIndex > -1 && placeholderIndex > -1) {
     // 交换位置
@@ -196,7 +196,7 @@ export const deletePlaceholder = (): void => {
   const midArr: Widget[] = cloneMidList();
 
   // placeholder 下标
-  const placeholderIndex = midArr.findIndex((item: Widget) => item.randomCode === '-1');
+  const placeholderIndex = midArr.findIndex((item: Widget) => item.formKey === '-1');
 
   // 移除 placeholder
   if (placeholderIndex > -1) {
@@ -214,10 +214,10 @@ export const deletePlaceholder = (): void => {
 /**
  * @desc 中间布局面板 => 移除当前项
  * @param { number } index
- * @param { string } randomCode
+ * @param { string } formKey
  * @return { void }
  */
-export const deleteActiveItem = (index: number, randomCode: string): void => {
+export const deleteActiveItem = (index: number, formKey: string): void => {
   if (index < 0) {
     return;
   }
@@ -225,7 +225,7 @@ export const deleteActiveItem = (index: number, randomCode: string): void => {
   const { dispatch } = _store;
   const midArr: Widget[] = cloneMidList();
   const errorArr: string[] = cloneErrorList();
-  const errorIdx: number = errorArr.indexOf(randomCode);
+  const errorIdx: number = errorArr.indexOf(formKey);
 
   // 移除当前项
   midArr.splice(index, 1);

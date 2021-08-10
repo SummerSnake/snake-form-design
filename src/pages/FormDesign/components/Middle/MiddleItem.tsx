@@ -38,7 +38,7 @@ const MiddleItemComponent: FC<MiddleItemProps> = (props) => {
         const { itemData } = item;
 
         // 排序
-        if (itemData?.randomCode) {
+        if (itemData?.formKey) {
           reOrder(itemData);
         }
       } else {
@@ -93,7 +93,7 @@ const MiddleItemComponent: FC<MiddleItemProps> = (props) => {
       // 左侧控件拖拽至中间控件列表，将 dragIndex 设置为 placeholderIndex
       if (!dragIndex) {
         const midArr: Widget[] = cloneMidList();
-        const placeholderIndex = midArr.findIndex((item: Widget) => item.randomCode === '-1');
+        const placeholderIndex = midArr.findIndex((item: Widget) => item.formKey === '-1');
         dragIndex = placeholderIndex;
       }
 
@@ -125,7 +125,7 @@ const MiddleItemComponent: FC<MiddleItemProps> = (props) => {
 
   return (
     <div style={{ opacity }} ref={widgetRef}>
-      {itemData.randomCode === '-1' ? (
+      {itemData.formKey === '-1' ? (
         <div className="placeholderDom">{itemData.label}</div>
       ) : (
         <ViewComponent viewInfo={itemData} widgetIdx={idx} isActive={activeIndex === idx} />

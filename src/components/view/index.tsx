@@ -70,13 +70,13 @@ const ViewComponent: FC<ViewProps> = (props) => {
    */
   const handleDeleteWidget = (e: React.MouseEvent<HTMLDivElement>) => {
     e.stopPropagation();
-    deleteActiveItem(widgetIdx, viewInfo?.randomCode);
+    deleteActiveItem(widgetIdx, viewInfo?.formKey);
   };
 
   // 选中时 border、表单报错时 border
   const widgetWrapClass = !!isActive
     ? 'widgetWrapActive'
-    : !!errorArr.includes(viewInfo?.randomCode)
+    : !!errorArr.includes(viewInfo?.formKey)
     ? 'widgetWrapError'
     : null;
 
