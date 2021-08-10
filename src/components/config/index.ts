@@ -33,6 +33,8 @@ import PositionConfig from './otherConfig/PositionConfig';
 import AutographConfig from './otherConfig/AutographConfig';
 import CommentConfig from './otherConfig/CommentConfig';
 
+import AddressConfig from './groupConfig/AddressConfig';
+
 export {
   SingleTxtConfig,
   MultipleTxtConfig,
@@ -62,4 +64,5 @@ export {
   PositionConfig,
   AutographConfig,
   CommentConfig,
+  AddressConfig,
 };

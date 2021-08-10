@@ -35,7 +35,7 @@ export interface Widget {
   type: string; // 控件标识符 => "Input", "Checkbox"
   options: WidgetOptions; // 控件配置属性
   formKey: string; // 随机串 => 控件唯一标识
-  widgetsList?: Widget[]; // 控件列表 => 控件组所包含控件列表
+  formList?: Widget[]; // 控件列表 => 控件组所包含控件列表
 }
 
 export interface Widgets {

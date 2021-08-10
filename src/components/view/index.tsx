@@ -39,7 +39,7 @@ import PositionView from './otherView/PositionView';
 import AutographView from './otherView/AutographView';
 import CommentView from './otherView/CommentView';
 
-import GroupView from './groupView';
+import AddressView from './groupView/AddressView';
 
 interface ViewProps {
   viewInfo: Widget;
@@ -155,8 +155,8 @@ const ViewComponent: FC<ViewProps> = (props) => {
           case 'baseComment':
             return <CommentView title={label} options={options} />;
 
-          case 'expense':
-            return <GroupView itemInfo={viewInfo} />;
+          case 'baseAddress':
+            return <AddressView itemInfo={viewInfo} />;
           default:
             return null;
         }

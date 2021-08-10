@@ -404,49 +404,35 @@ const initialData = {
       title: '控件组',
       items: [
         {
-          id: 'expense',
-          label: '报销',
+          id: 'baseAddress',
+          label: '地址',
           type: 'group',
-          icon: '',
-          options: {
-            isRequired: 0,
-            placeholder: '请输入民族',
-          },
-          widgetsList: [
+          icon: 'locationIcon',
+          options: {},
+          formList: [
             {
-              id: 'baseInput',
-              label: '单行文本',
-              type: 'input',
-              icon: 'fileTextOutlined',
-              options: {
-                isRequired: 1,
-                placeholder: '请输入单行文本',
-              },
-              formKey: 'group_item_01',
-            },
-            {
-              id: 'baseTextarea',
-              label: '多行文本',
-              type: 'textarea',
-              icon: 'fileZipOutlined',
-              options: {
-                isRequired: 0,
-                placeholder: '请输入多行文本',
-              },
-              formKey: 'group_item_02',
-            },
-            {
-              id: 'baseRadio',
-              label: '单选',
-              type: 'radio',
-              icon: 'slack',
+              id: 'baseRegion',
+              label: '省市区',
+              type: 'select',
+              icon: '',
               options: {
                 isRequired: 0,
                 isPreview: 0,
-                placeholder: '请选择',
-                elements: [{ id: '1', title: '' }],
+                placeholder: '请选择省市区',
               },
-              formKey: 'group_item_03',
+              formKey: 'addr_item_01',
+            },
+            {
+              id: 'baseTextarea',
+              label: '详细地址',
+              type: 'multilineText',
+              icon: '',
+              options: {
+                isRequired: 0,
+                isPreview: 0,
+                placeholder: '请输入详细地址',
+              },
+              formKey: 'addr_item_02',
             },
           ],
           formKey: '',

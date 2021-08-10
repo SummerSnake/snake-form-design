@@ -36,6 +36,7 @@ import {
   PositionConfig,
   AutographConfig,
   CommentConfig,
+  AddressConfig,
 } from '@/components/config';
 
 interface RightProps {
@@ -122,6 +123,8 @@ const RightComponent: FC<RightProps> = (props) => {
               return <CommentConfig activeIndex={activeIdx} />;
             case 'baseAutograph':
               return <AutographConfig activeIndex={activeIdx} />;
+            case 'baseAddress':
+              return <AddressConfig activeIndex={activeIdx} />;
             default:
               return null;
           }
