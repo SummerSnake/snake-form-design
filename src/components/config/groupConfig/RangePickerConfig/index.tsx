@@ -115,7 +115,7 @@ const RangePickerConfig: FC<RangePickerConfigProps> = (props) => {
             initFormList.map((item, index) => (
               <React.Fragment key={item.id}>
                 <Form.Item
-                  label="控件名称"
+                  label={`控件名称${index + 1}`}
                   name={`label${index}`}
                   rules={[
                     {

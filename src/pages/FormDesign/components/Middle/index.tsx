@@ -6,7 +6,7 @@ import React, { FC, useState } from 'react';
 import { message } from 'antd';
 import { useDrop } from 'react-dnd';
 
-import { cloneErrorList } from '@/utils/util';
+import { cloneErrorsList } from '@/utils/util';
 import { Widget } from '@/pages/index.d';
 import Preview from '@/components/preview';
 import MiddleItem from './MiddleItem';
@@ -14,11 +14,10 @@ import MiddleItem from './MiddleItem';
 interface MiddleProps {
   middleList: Widget[];
   activeIdx: number;
-  callback?: () => void;
 }
 
 const MiddleComponent: FC<MiddleProps> = (props) => {
-  const { middleList = [], activeIdx = 0, callback } = props;
+  const { middleList = [], activeIdx = 0 } = props;
 
   const [isModalShow, setIsModalShow] = useState<number>(0); // 预览 Modal 开关   0.关闭  1.打开
 
@@ -36,7 +35,7 @@ const MiddleComponent: FC<MiddleProps> = (props) => {
         <span
           className="previewBtn"
           onClick={() => {
-            const errorArr = cloneErrorList();
+            const errorArr = cloneErrorsList();
             const len = errorArr.length;
 
             if (len > 0) {
@@ -45,7 +44,6 @@ const MiddleComponent: FC<MiddleProps> = (props) => {
             }
 
             setIsModalShow(1);
-            callback && callback();
           }}
         >
           预览

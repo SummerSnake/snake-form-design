@@ -16,15 +16,15 @@ export const cloneMidList = (): Widget[] => {
 };
 
 /**
- * @desc errorList 深拷贝
+ * @desc errorsList 深拷贝
  * @return { ErrorMap[] }
  */
-export const cloneErrorList = (): string[] => {
+export const cloneErrorsList = (): string[] => {
   const { getState } = _store;
   const { formDesign }: { formDesign: FormDesignModelState } = getState();
-  const { errorList }: { errorList: string[] } = formDesign;
+  const { errorsList }: { errorsList: string[] } = formDesign;
 
-  return JSON.parse(JSON.stringify(errorList));
+  return JSON.parse(JSON.stringify(errorsList));
 };
 
 /**
@@ -44,33 +44,33 @@ export const setErrorMsg = (form: FormInstance, widgetData: Widget): void => {
 
       if (Array.isArray(errorFields)) {
         const { dispatch } = _store;
-        const errorArr = cloneErrorList();
+        const errorArr = cloneErrorsList();
         // 取出当前控件的 formKey
         const { formKey } = widgetData;
         const index = errorArr.indexOf(formKey);
 
-        // 无错误信息将当前组件从 errorList 中删除
+        // 无错误信息将当前组件从 errorsList 中删除
         if (errorFields.length === 0 && index > -1) {
           errorArr.splice(index, 1);
 
           dispatch({
             type: 'formDesign/save',
             payload: {
-              errorList: [...errorArr],
+              errorsList: [...errorArr],
             },
           });
 
           return;
         }
 
-        // errorList 不存在当前控件报错信息，将当前组件推入数组，存在则忽略
+        // errorsList 不存在当前控件报错信息，将当前组件推入数组，存在则忽略
         if (errorFields.length > 0 && index === -1) {
           errorArr.push(formKey);
 
           dispatch({
             type: 'formDesign/save',
             payload: {
-              errorList: [...errorArr],
+              errorsList: [...errorArr],
             },
           });
         }
@@ -224,7 +224,7 @@ export const deleteActiveItem = (index: number, formKey: string): void => {
 
   const { dispatch } = _store;
   const midArr: Widget[] = cloneMidList();
-  const errorArr: string[] = cloneErrorList();
+  const errorArr: string[] = cloneErrorsList();
   const errorIdx: number = errorArr.indexOf(formKey);
 
   // 移除当前项
@@ -238,7 +238,7 @@ export const deleteActiveItem = (index: number, formKey: string): void => {
     type: 'formDesign/save',
     payload: {
       midList: [...midArr],
-      errorList: [...errorArr],
+      errorsList: [...errorArr],
       activeIdx: -1,
     },
   });

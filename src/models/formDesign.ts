@@ -18,7 +18,7 @@ const FormDesignModal: FormDesignModalType = {
     widgetsList: widgetsData.widgetsList,
     widgetsGroupList: widgetsData.widgetsGroupList,
     midList: [],
-    errorList: [],
+    errorsList: [],
     activeIdx: -1,
     isDroped: '',
   },
@@ -35,7 +35,7 @@ const FormDesignModal: FormDesignModalType = {
         widgetsList: widgetsData.widgetsList,
         widgetsGroupList: widgetsData.widgetsGroupList,
         midList: [],
-        errorList: [],
+        errorsList: [],
         activeIdx: -1,
         isDroped: '',
       };

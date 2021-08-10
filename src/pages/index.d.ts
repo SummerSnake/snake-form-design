@@ -53,7 +53,7 @@ export interface FormDesignModelState {
   widgetsList: Widgets[];
   widgetsGroupList: Widgets[];
   midList: Widget[];
-  errorList: string[];
+  errorsList: string[];
   activeIdx: number;
   isDroped: string;
 }
@@ -68,5 +68,6 @@ export interface SnakeFormDesignProps {
   dataSource: DataSourceType;
   treeData: TreeDataType[];
   getWidgetsList: (widgetsList: Widget[]) => void;
+  getErrorsList: (errorsList: string[]) => void;
   height?: string;
 }

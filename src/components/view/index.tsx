@@ -1,7 +1,7 @@
 import React, { FC } from 'react';
 import _store from '@/utils/dva';
 
-import { cloneErrorList, deleteActiveItem } from '@/utils/util';
+import { cloneErrorsList, deleteActiveItem } from '@/utils/util';
 import { Widget } from '@/pages/index.d';
 
 import SingleTxtView from './txtView/SingleTxtView';
@@ -52,7 +52,7 @@ const ViewComponent: FC<ViewProps> = (props) => {
   const { dispatch } = _store;
   const { viewInfo, widgetIdx, isActive } = props;
   const { label, options } = viewInfo;
-  const errorArr = cloneErrorList();
+  const errorArr = cloneErrorsList();
 
   /**
    * @desc 修改当前选择项下标
