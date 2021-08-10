@@ -40,6 +40,7 @@ import AutographView from './otherView/AutographView';
 import CommentView from './otherView/CommentView';
 
 import AddressView from './groupView/AddressView';
+import RangePickerView from './groupView/RangePickerView';
 
 interface ViewProps {
   viewInfo: Widget;
@@ -157,6 +158,8 @@ const ViewComponent: FC<ViewProps> = (props) => {
 
           case 'baseAddress':
             return <AddressView itemInfo={viewInfo} />;
+          case 'baseRangePicker':
+            return <RangePickerView itemInfo={viewInfo} />;
           default:
             return null;
         }

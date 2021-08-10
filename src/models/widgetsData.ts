@@ -406,7 +406,7 @@ const initialData = {
         {
           id: 'baseAddress',
           label: '地址',
-          type: 'group',
+          type: 'address',
           icon: 'locationIcon',
           options: {},
           formList: [
@@ -433,6 +433,56 @@ const initialData = {
                 placeholder: '请输入详细地址',
               },
               formKey: 'addr_item_02',
+            },
+          ],
+          formKey: '',
+        },
+        {
+          id: 'baseRangePicker',
+          label: '日期区间',
+          type: 'rangeDate',
+          icon: 'rangePickerIcon',
+          options: {
+            isRequired: 0,
+            isPreview: 0,
+            placeholder: '请选择',
+          },
+          formList: [
+            {
+              id: 'baseDatePicker',
+              label: '开始时间',
+              type: 'date',
+              icon: '',
+              options: {
+                isRequired: 0,
+                isPreview: 0,
+                placeholder: '请选择',
+              },
+              formKey: 'rangePicker_item_01',
+            },
+            {
+              id: 'baseDatePicker',
+              label: '结束时间',
+              type: 'date',
+              icon: '',
+              options: {
+                isRequired: 0,
+                isPreview: 0,
+                placeholder: '请选择',
+              },
+              formKey: 'rangePicker_item_02',
+            },
+            {
+              id: 'baseInput',
+              label: '时长(天)',
+              type: 'text',
+              icon: '',
+              options: {
+                isRequired: 0,
+                isPreview: 0,
+                placeholder: '自动计算',
+              },
+              formKey: 'rangePicker_item_03',
             },
           ],
           formKey: '',

@@ -3,13 +3,13 @@ import { Form, Input, Checkbox } from 'antd';
 
 import _store from '@/utils/dva';
 import { setErrorMsg, cloneMidList } from '@/utils/util';
-import { Widget } from '@/pages/index.d';
+import { Widget, WidgetOptions } from '@/pages/index.d';
 
-interface AddressConfigProps {
+interface RangePickerConfigProps {
   activeIndex: number;
 }
 
-const AddressConfig: FC<AddressConfigProps> = (props) => {
+const RangePickerConfig: FC<RangePickerConfigProps> = (props) => {
   const { dispatch } = _store;
 
   const [form] = Form.useForm();
@@ -17,6 +17,7 @@ const AddressConfig: FC<AddressConfigProps> = (props) => {
 
   const initMiddleArr = cloneMidList();
   const initWidgetData: Widget = initMiddleArr[activeIndex];
+  const { options: initOptions }: { options: WidgetOptions } = initWidgetData;
   const { formList: initFormList } = initWidgetData;
 
   /**
@@ -32,17 +33,15 @@ const AddressConfig: FC<AddressConfigProps> = (props) => {
     if (formList) {
       formList.forEach((item, index) => {
         const label = `label${index}`;
-        const placeholder = `placeholder${index}`;
-        const otherOptions = `otherOptions${index}`;
 
         formList[index] = {
           ...item,
           label: formData[label],
           options: {
-            ...item.options,
-            placeholder: formData[placeholder],
-            isRequired: formData[otherOptions].includes('isRequired') ? 1 : 0,
-            isPreview: formData[otherOptions].includes('isPreview') ? 1 : 0,
+            ...item?.options,
+            placeholder: index < 2 ? formData?.placeholder : item?.options?.placeholder,
+            isRequired: formData?.otherOptions.includes('isRequired') ? 1 : 0,
+            isPreview: formData?.otherOptions.includes('isPreview') ? 1 : 0,
           },
         };
       });
@@ -50,6 +49,11 @@ const AddressConfig: FC<AddressConfigProps> = (props) => {
 
     middleArr[activeIndex] = {
       ...widgetData,
+      options: {
+        ...widgetData?.options,
+        isRequired: formData?.otherOptions.includes('isRequired') ? 1 : 0,
+        isPreview: formData?.otherOptions.includes('isPreview') ? 1 : 0,
+      },
       formList,
     };
 
@@ -68,25 +72,23 @@ const AddressConfig: FC<AddressConfigProps> = (props) => {
    */
   useEffect(() => {
     if (initFormList) {
+      const arr: string[] = [];
+      if (!!initOptions?.isRequired) {
+        arr.push('isRequired');
+      }
+      if (!!initOptions?.isPreview) {
+        arr.push('isPreview');
+      }
+
       initFormList.forEach((item, index) => {
-        const { options } = item;
-
-        const arr: string[] = [];
-        if (!!options?.isRequired) {
-          arr.push('isRequired');
-        }
-        if (!!options?.isPreview) {
-          arr.push('isPreview');
-        }
-
         const label = `label${index}`;
         const placeholder = `placeholder${index}`;
-        const otherOptions = `otherOptions${index}`;
 
         form.setFieldsValue({
           [label]: item.label,
-          [placeholder]: options?.placeholder,
-          [otherOptions]: arr,
+          [placeholder]: initOptions?.placeholder,
+          placeholder: initOptions?.placeholder,
+          otherOptions: arr,
         });
       });
     }
@@ -98,14 +100,14 @@ const AddressConfig: FC<AddressConfigProps> = (props) => {
     <>
       <Form
         form={form}
-        id="AddressConfig"
+        id="RangePickerConfig"
         layout="vertical"
         onValuesChange={handleFormChange}
         labelCol={{ span: 6 }}
         wrapperCol={{ span: 14 }}
       >
         <div className="configTitleWrap">
-          <p className="configTitle">地址</p>
+          <p className="configTitle">日期区间</p>
         </div>
 
         <>
@@ -124,24 +126,24 @@ const AddressConfig: FC<AddressConfigProps> = (props) => {
                 >
                   <Input maxLength={10} style={{ width: 312 }} />
                 </Form.Item>
-
-                <Form.Item label="提示文字" name={`placeholder${index}`}>
-                  <Input maxLength={10} style={{ width: 312 }} />
-                </Form.Item>
-
-                <div>其他</div>
-                <Form.Item label="" name={`otherOptions${index}`}>
-                  <Checkbox.Group style={{ width: 312 }}>
-                    <Checkbox value="isRequired">必填</Checkbox>
-                    <Checkbox value="isPreview">预览</Checkbox>
-                  </Checkbox.Group>
-                </Form.Item>
               </React.Fragment>
             ))}
         </>
+
+        <Form.Item label="提示文字" name="placeholder">
+          <Input maxLength={10} style={{ width: 312 }} />
+        </Form.Item>
+
+        <div>其他</div>
+        <Form.Item label="" name="otherOptions">
+          <Checkbox.Group style={{ width: 312 }}>
+            <Checkbox value="isRequired">必填</Checkbox>
+            <Checkbox value="isPreview">预览</Checkbox>
+          </Checkbox.Group>
+        </Form.Item>
       </Form>
     </>
   );
 };
 
-export default React.memo(AddressConfig);
+export default React.memo(RangePickerConfig);

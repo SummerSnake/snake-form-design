@@ -133,6 +133,12 @@ const Icons = {
     </i>
   ),
 
+  rangePickerIcon: (styles?: React.CSSProperties | undefined) => (
+    <i className="iconX" style={{ ...styles }}>
+      &#xe60d;
+    </i>
+  ),
+
   deleteIcon: (styles?: React.CSSProperties | undefined) => (
     <i className="iconX" style={{ ...styles }}>
       &#xe607;

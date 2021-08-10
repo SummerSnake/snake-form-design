@@ -34,6 +34,7 @@ import AutographConfig from './otherConfig/AutographConfig';
 import CommentConfig from './otherConfig/CommentConfig';
 
 import AddressConfig from './groupConfig/AddressConfig';
+import RangePickerConfig from './groupConfig/RangePickerConfig';
 
 export {
   SingleTxtConfig,
@@ -65,4 +66,5 @@ export {
   AutographConfig,
   CommentConfig,
   AddressConfig,
+  RangePickerConfig,
 };

@@ -37,6 +37,7 @@ import {
   AutographConfig,
   CommentConfig,
   AddressConfig,
+  RangePickerConfig,
 } from '@/components/config';
 
 interface RightProps {
@@ -125,6 +126,8 @@ const RightComponent: FC<RightProps> = (props) => {
               return <AutographConfig activeIndex={activeIdx} />;
             case 'baseAddress':
               return <AddressConfig activeIndex={activeIdx} />;
+            case 'baseRangePicker':
+              return <RangePickerConfig activeIndex={activeIdx} />;
             default:
               return null;
           }
