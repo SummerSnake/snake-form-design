@@ -10,50 +10,60 @@
     .leftWrap {
       .wh(360px, 100%);
       box-sizing: border-box;
-      padding: 0 24px 24px;
+      padding: 0 24px;
       background-color: #fff;
-      overflow: auto;
-      // 隐藏滚动条
-      -ms-overflow-style: none;
-      scrollbar-width: none;
-      &::-webkit-scrollbar {
-        display: none;
-      }
-      .leftTitle {
-        padding-top: 10px;
-        color: @titleColor;
-      }
-      .widgetsListWrap {
-        display: flex;
-        flex-wrap: wrap;
-        justify-content: space-between;
-        // 单个控件
-        .widgetWrap {
-          .wh(148px, 32px);
-          box-sizing: border-box;
-          margin-bottom: 16px;
-          padding-left: 10px;
-          line-height: 32px;
-          border: 1px solid @borderColor;
-          border-radius: 4px;
-          user-select: none;
-          cursor: move;
-          .widgetIcon {
-            float: right;
-            margin-right: 10px;
+      overflow: hidden;
+      .tabPaneDom {
+        .wh(312px, 100%);
+        overflow: auto;
+        // 隐藏滚动条
+        -ms-overflow-style: none;
+        scrollbar-width: none;
+        &::-webkit-scrollbar {
+          display: none;
+        }
+        .leftTitle {
+          padding-top: 10px;
+          color: @titleColor;
+        }
+        .widgetsListWrap {
+          display: flex;
+          flex-wrap: wrap;
+          justify-content: space-between;
+          // 单个控件
+          .widgetWrap {
+            .wh(148px, 32px);
+            box-sizing: border-box;
+            margin-bottom: 16px;
+            padding-left: 10px;
+            line-height: 32px;
+            border: 1px solid @borderColor;
+            border-radius: 4px;
+            user-select: none;
+            cursor: move;
+            .widgetIcon {
+              float: right;
+              margin-right: 10px;
+            }
           }
         }
       }
-      .ant-tabs-nav-list {
-        width: 100%;
-        .ant-tabs-tab {
-          flex: 1;
-          .ant-tabs-tab-btn {
-            margin: 0 auto;
+      .ant-tabs {
+        height: 100%;
+        .ant-tabs-nav-list {
+          width: 100%;
+          .ant-tabs-tab {
+            flex: 1;
+            .ant-tabs-tab-btn {
+              margin: 0 auto;
+            }
+          }
+          .ant-tabs-ink-bar {
+            width: 50%;
           }
         }
-        .ant-tabs-ink-bar {
-          width: 50%;
+        .ant-tabs-content {
+          height: 100%;
         }
       }
     }
