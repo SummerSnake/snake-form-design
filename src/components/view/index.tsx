@@ -86,6 +86,8 @@ const ViewComponent: FC<ViewProps> = (props) => {
       }
 
       deleteActiveItem(widgetIdx, viewInfo?.formKey);
+    } else {
+      deleteActiveItem(widgetIdx, viewInfo?.formKey);
     }
   };
 

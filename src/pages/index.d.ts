@@ -70,6 +70,6 @@ export interface SnakeFormDesignProps {
   treeData: TreeDataType[];
   getWidgetsList: (widgetsList: Widget[]) => void;
   getErrorsList: (errorsList: string[]) => void;
-  getRemoveWidgetId: (id: string) => string;
+  getRemoveWidgetId?: (id: string) => string;
   height?: string;
 }

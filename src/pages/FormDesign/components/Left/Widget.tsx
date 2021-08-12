@@ -34,7 +34,12 @@ const WidgetComponent: FC<WidgetProps> = (props) => {
   }));
 
   return (
-    <div ref={drager} className="widgetWrap" style={{ opacity }}>
+    <div
+      ref={drager}
+      className="widgetWrap"
+      style={{ opacity }}
+      onDoubleClick={() => handleDrop(widgetData)}
+    >
       <span>{widgetData.label}</span>
       {Icons[widgetData.icon] && <span className="widgetIcon">{Icons[widgetData.icon]()}</span>}
     </div>

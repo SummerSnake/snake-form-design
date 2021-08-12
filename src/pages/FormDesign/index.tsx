@@ -20,7 +20,7 @@ interface FormDesignProps {
   treeData: TreeDataType[];
   getWidgetsList: (widgetsList: Widget[]) => void;
   getErrorsList: (errorsList: string[]) => void;
-  getRemoveWidgetId: (id: string) => void;
+  getRemoveWidgetId?: (id: string) => void;
   height?: string;
 }
 
