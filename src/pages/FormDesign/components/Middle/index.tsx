@@ -14,10 +14,11 @@ import MiddleItem from './MiddleItem';
 interface MiddleProps {
   middleList: Widget[];
   activeIdx: number;
+  title: string;
 }
 
 const MiddleComponent: FC<MiddleProps> = (props) => {
-  const { middleList = [], activeIdx = 0 } = props;
+  const { middleList = [], activeIdx = 0, title } = props;
 
   const [isModalShow, setIsModalShow] = useState<number>(0); // 预览 Modal 开关   0.关闭  1.打开
 
@@ -31,7 +32,7 @@ const MiddleComponent: FC<MiddleProps> = (props) => {
   return (
     <div className="middleWrap">
       <p className="middleTitle">
-        <span>信息采集表</span>
+        <span>{title || '未命名'}</span>
         <span
           className="previewBtn"
           onClick={() => {

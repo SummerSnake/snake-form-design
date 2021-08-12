@@ -4,7 +4,7 @@ import { DndProvider } from 'react-dnd';
 import { HTML5Backend } from 'react-dnd-html5-backend';
 
 import { cloneErrorsList, cloneMidList } from '@/utils/util';
-import { FormDesignModelState, DataSourceType, TreeDataType, Widget } from '@/pages/index.d';
+import { FormDesignModelState, SnakeFormDesignProps, Widget } from '@/pages/index.d';
 
 import '@/styles/iconfont.less';
 
@@ -13,15 +13,9 @@ import Middle from './components/Middle';
 import Right from './components/Right';
 import './index.less';
 
-interface FormDesignProps {
+interface FormDesignProps extends SnakeFormDesignProps {
   formDesign: FormDesignModelState;
   dispatch: Function;
-  dataSource: DataSourceType;
-  treeData: TreeDataType[];
-  getWidgetsList: (widgetsList: Widget[]) => void;
-  getErrorsList: (errorsList: string[]) => void;
-  getRemoveWidgetId?: (id: string) => void;
-  height?: string;
 }
 
 const FormDesignPage: FC<FormDesignProps> = (props) => {
@@ -31,6 +25,7 @@ const FormDesignPage: FC<FormDesignProps> = (props) => {
     dataSource,
     treeData,
     height,
+    title = '',
     getWidgetsList,
     getErrorsList,
     getRemoveWidgetId,
@@ -102,7 +97,7 @@ const FormDesignPage: FC<FormDesignProps> = (props) => {
       <DndProvider backend={HTML5Backend}>
         <div className="formDesignPanel" style={{ height }}>
           <Left widgetsData={widgetsList} widgetGroupsData={widgetsGroupList} />
-          <Middle middleList={midList} activeIdx={activeIdx} />
+          <Middle middleList={midList} activeIdx={activeIdx} title={title} />
           <Right
             treeData={treeData}
             middleList={midList}

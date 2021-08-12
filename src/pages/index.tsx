@@ -8,9 +8,10 @@ import FormDesignPage from './FormDesign';
 
 const SnakeFormDesign: FC<SnakeFormDesignProps> = (props) => {
   const {
-    height,
     dataSource,
     treeData = [],
+    height,
+    title,
     getWidgetsList = () => {},
     getErrorsList = () => {},
     getRemoveWidgetId,
@@ -20,6 +21,7 @@ const SnakeFormDesign: FC<SnakeFormDesignProps> = (props) => {
     <Provider store={_store}>
       <FormDesignPage
         height={height}
+        title={title}
         dataSource={dataSource}
         treeData={treeData}
         getWidgetsList={getWidgetsList}

@@ -66,10 +66,11 @@ export interface TreeDataType {
 }
 
 export interface SnakeFormDesignProps {
-  dataSource: DataSourceType;
-  treeData: TreeDataType[];
+  readonly dataSource: DataSourceType;
+  readonly treeData: TreeDataType[];
   getWidgetsList: (widgetsList: Widget[]) => void;
   getErrorsList: (errorsList: string[]) => void;
-  getRemoveWidgetId?: (id: string) => string;
   height?: string;
+  title?: string;
+  getRemoveWidgetId?: (id: string) => string;
 }

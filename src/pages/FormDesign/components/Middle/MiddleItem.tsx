@@ -11,14 +11,12 @@ import { cloneMidList } from '@/utils/util';
 
 import ViewComponent from '@/components/view';
 
-interface MiddleItemProps {
-  itemData: Widget;
-  idx: number;
-  activeIndex: number;
-}
 interface ItemType {
   itemData: Widget;
   idx: number;
+}
+interface MiddleItemProps extends ItemType {
+  activeIndex: number;
 }
 
 const MiddleItemComponent: FC<MiddleItemProps> = (props) => {
