@@ -20,12 +20,22 @@ interface FormDesignProps {
   treeData: TreeDataType[];
   getWidgetsList: (widgetsList: Widget[]) => void;
   getErrorsList: (errorsList: string[]) => void;
+  getRemoveWidgetId: (id: string) => void;
   height?: string;
 }
 
 const FormDesignPage: FC<FormDesignProps> = (props) => {
-  const { formDesign, dispatch, dataSource, treeData, height, getWidgetsList, getErrorsList } =
-    props;
+  const {
+    formDesign,
+    dispatch,
+    dataSource,
+    treeData,
+    height,
+    getWidgetsList,
+    getErrorsList,
+    getRemoveWidgetId,
+  } = props;
+
   const {
     widgetsList,
     widgetsGroupList,
@@ -36,14 +46,17 @@ const FormDesignPage: FC<FormDesignProps> = (props) => {
   } = formDesign;
 
   /**
-   * @desc 放置成功 返回控件列表
+   * @desc midList 更新 返回 midList
    */
   useEffect(() => {
-    if (isDroped) {
+    const placeholderIndex = midList.findIndex((item: Widget) => item.formKey === '-1');
+
+    // 拖拽过程中阻止执行
+    if (midList && placeholderIndex === -1) {
       const widgetsList = cloneMidList();
       getWidgetsList(widgetsList);
     }
-  }, [isDroped]);
+  }, [midList]);
 
   /**
    * @desc 错误信息列表更新 返回错误信息列表
@@ -54,6 +67,20 @@ const FormDesignPage: FC<FormDesignProps> = (props) => {
       getErrorsList(errorsList);
     }
   }, [errorsList]);
+
+  /**
+   * @desc 删除控件返回控件 id
+   */
+  useEffect(() => {
+    if (typeof getRemoveWidgetId === 'function') {
+      dispatch({
+        type: 'formDesign/save',
+        payload: {
+          getRemoveWidgetId,
+        },
+      });
+    }
+  }, [getRemoveWidgetId]);
 
   /**
    * @desc 设置左侧控件列表数据

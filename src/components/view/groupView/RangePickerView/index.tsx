@@ -1,5 +1,4 @@
 import React, { FC, ReactElement } from 'react';
-import { v4 as uuidv4 } from 'uuid';
 
 import { Widget, WidgetOptions } from '@/pages/index.d';
 
@@ -30,7 +29,7 @@ const AddressViewComponent: FC<AddressViewProps> = (props) => {
     <>
       {Array.isArray(formList) &&
         formList.map((item: Widget) => (
-          <div className="groupViewItem" key={uuidv4()}>
+          <div className="groupViewItem" key={item?.formKey}>
             {(viewMap as ViewMapType)[item.id](item.label, item.options)}
           </div>
         ))}

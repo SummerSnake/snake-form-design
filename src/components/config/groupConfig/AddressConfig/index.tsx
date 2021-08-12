@@ -111,7 +111,7 @@ const AddressConfig: FC<AddressConfigProps> = (props) => {
         <>
           {Array.isArray(initFormList) &&
             initFormList.map((item, index) => (
-              <React.Fragment key={item.id}>
+              <React.Fragment key={item?.formKey}>
                 <Form.Item
                   label={`控件名称${index + 1}`}
                   name={`label${index}`}

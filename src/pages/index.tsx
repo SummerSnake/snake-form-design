@@ -13,6 +13,7 @@ const SnakeFormDesign: FC<SnakeFormDesignProps> = (props) => {
     treeData = [],
     getWidgetsList = () => {},
     getErrorsList = () => {},
+    getRemoveWidgetId,
   } = props;
 
   return (
@@ -23,6 +24,7 @@ const SnakeFormDesign: FC<SnakeFormDesignProps> = (props) => {
         treeData={treeData}
         getWidgetsList={getWidgetsList}
         getErrorsList={getErrorsList}
+        getRemoveWidgetId={getRemoveWidgetId}
       />
     </Provider>
   );

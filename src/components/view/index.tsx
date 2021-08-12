@@ -1,8 +1,9 @@
 import React, { FC } from 'react';
-import _store from '@/utils/dva';
+import { message } from 'antd';
 
+import _store from '@/utils/dva';
 import { cloneErrorsList, deleteActiveItem } from '@/utils/util';
-import { Widget } from '@/pages/index.d';
+import { FormDesignModelState, Widget } from '@/pages/index.d';
 
 import SingleTxtView from './txtView/SingleTxtView';
 import MultipleTxtView from './txtView/MultipleTxtView';
@@ -71,7 +72,21 @@ const ViewComponent: FC<ViewProps> = (props) => {
    */
   const handleDeleteWidget = (e: React.MouseEvent<HTMLDivElement>) => {
     e.stopPropagation();
-    deleteActiveItem(widgetIdx, viewInfo?.formKey);
+
+    const { getState } = _store;
+    const { formDesign }: { formDesign: FormDesignModelState } = getState();
+    const { getRemoveWidgetId } = formDesign;
+
+    if (getRemoveWidgetId) {
+      const errorMsg = getRemoveWidgetId(viewInfo?.formKey);
+
+      if (errorMsg) {
+        message.error(errorMsg);
+        return;
+      }
+
+      deleteActiveItem(widgetIdx, viewInfo?.formKey);
+    }
   };
 
   // 选中时 border、表单报错时 border

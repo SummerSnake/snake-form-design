@@ -56,6 +56,7 @@ export interface FormDesignModelState {
   errorsList: string[];
   activeIdx: number;
   isDroped: string;
+  getRemoveWidgetId?: (id: string) => string;
 }
 
 export interface TreeDataType {
@@ -69,5 +70,6 @@ export interface SnakeFormDesignProps {
   treeData: TreeDataType[];
   getWidgetsList: (widgetsList: Widget[]) => void;
   getErrorsList: (errorsList: string[]) => void;
+  getRemoveWidgetId: (id: string) => string;
   height?: string;
 }
