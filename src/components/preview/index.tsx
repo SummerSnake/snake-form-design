@@ -40,9 +40,9 @@ const PreviewComponent: FC<PreviewProps> = (props) => {
             {Array.isArray(midList) &&
               midList.map((item) => (
                 <React.Fragment key={uuidv4()}>
-                  {item?.type === 'group' ? (
-                    Array.isArray(item.widgetsList) &&
-                    item.widgetsList.map((child) => <FormItems key={uuidv4()} widgetData={child} />)
+                  {item?.type === 'address' ? (
+                    Array.isArray(item?.formList) &&
+                    item?.formList.map((child) => <FormItems key={uuidv4()} widgetData={child} />)
                   ) : (
                     <FormItems widgetData={item} />
                   )}

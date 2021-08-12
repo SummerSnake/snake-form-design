@@ -48,6 +48,7 @@ const App = () => (
       getErrorsList={(errorsList) => console.log(errorsList)}
       getRemoveWidgetId={(id) => (function () { return ''; }())}
       height="calc(100vh - 84px)"
+      title="snake-form-design"
     />
   </>
 );
