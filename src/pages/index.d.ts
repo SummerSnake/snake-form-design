@@ -1,5 +1,5 @@
 export interface OptionsElement {
-  id: string; // 主键
+  id: string | number; // 主键
   title: string; // 标题 => 前端显示名称
 }
 
@@ -60,7 +60,7 @@ export interface FormDesignModelState {
 }
 
 export interface TreeDataType {
-  key: string;
+  key: string | number;
   title: string;
   children?: TreeDataType[];
 }

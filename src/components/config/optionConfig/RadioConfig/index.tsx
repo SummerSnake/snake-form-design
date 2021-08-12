@@ -87,7 +87,10 @@ const RadioConfig: FC<RadioConfigProps> = (props) => {
     const elemArr = getElementsList();
 
     if (sign === 'add') {
-      elemArr.push({ id: elemArr[elemArr.length - 1].id + 1, title: '' });
+      elemArr.push({
+        id: ~~elemArr[elemArr.length - 1].id + 1,
+        title: `属性${~~elemArr[elemArr.length - 1].id + 1}`,
+      });
     } else {
       elemArr.splice(index, 1);
     }
