@@ -2,9 +2,9 @@ import React, { FC, useState, useEffect } from 'react';
 import { Form, Input, Checkbox } from 'antd';
 import { v4 as uuidv4 } from 'uuid';
 
-import _store from '@/utils/dva';
-import Icons from '@/utils/icon';
-import { cloneMidList, setErrorMsg } from '@/utils/util';
+import _store from '@utils/dva';
+import Icons from '@utils/icon';
+import { cloneMidList, setErrorMsg } from '@utils/util';
 import { Widget, WidgetOptions, OptionsElement } from '@/pages/index.d';
 
 interface CheckboxConfigProps {

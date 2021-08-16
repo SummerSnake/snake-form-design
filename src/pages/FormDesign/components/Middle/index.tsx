@@ -6,9 +6,9 @@ import React, { FC, useState } from 'react';
 import { message } from 'antd';
 import { useDrop } from 'react-dnd';
 
-import { cloneErrorsList } from '@/utils/util';
+import { cloneErrorsList } from '@utils/util';
 import { Widget } from '@/pages/index.d';
-import Preview from '@/components/preview';
+import Preview from '@components/preview';
 import MiddleItem from './MiddleItem';
 
 interface MiddleProps {

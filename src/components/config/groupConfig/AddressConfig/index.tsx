@@ -1,8 +1,8 @@
 import React, { FC, useEffect } from 'react';
 import { Form, Input, Checkbox } from 'antd';
 
-import _store from '@/utils/dva';
-import { setErrorMsg, cloneMidList } from '@/utils/util';
+import _store from '@utils/dva';
+import { setErrorMsg, cloneMidList } from '@utils/util';
 import { Widget } from '@/pages/index.d';
 
 interface AddressConfigProps {

@@ -3,7 +3,7 @@ import { connect } from 'react-redux';
 import { DndProvider } from 'react-dnd';
 import { HTML5Backend } from 'react-dnd-html5-backend';
 
-import { cloneErrorsList, cloneMidList } from '@/utils/util';
+import { cloneErrorsList, cloneMidList } from '@utils/util';
 import { FormDesignModelState, SnakeFormDesignProps, Widget } from '@/pages/index.d';
 
 import '@/styles/iconfont.less';

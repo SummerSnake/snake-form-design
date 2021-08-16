@@ -1,8 +1,8 @@
 import React, { FC } from 'react';
 import { message } from 'antd';
 
-import _store from '@/utils/dva';
-import { cloneErrorsList, deleteActiveItem } from '@/utils/util';
+import _store from '@utils/dva';
+import { cloneErrorsList, deleteActiveItem } from '@utils/util';
 import { FormDesignModelState, Widget } from '@/pages/index.d';
 
 import SingleTxtView from './txtView/SingleTxtView';

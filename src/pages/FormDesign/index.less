@@ -119,7 +119,7 @@
         // 单个控件
         .widgetWrap {
           position: relative;
-          margin-bottom: 8px;
+          margin: 8px 0;
           border: 1px solid transparent;
           user-select: none;
           cursor: move;
@@ -166,14 +166,27 @@
         .widgetWrapError {
           border: 1px solid #ff4d4f;
         }
-        // 放这里
+        // placeholder
         .placeholderDom {
-          .wh(100%, 42px);
-          .sc(12px, @primaryColor);
-          line-height: 42px;
-          text-align: center;
-          border-top: 1px dashed @primaryColor;
-          border-bottom: 1px dashed @primaryColor;
+          .wh(100%, 1px);
+          position: relative;
+          background-color: @primaryColor;
+          &::before {
+            content: '';
+            position: absolute;
+            top: -6px;
+            left: 0;
+            border: 7px solid transparent;
+            border-left-color: @primaryColor;
+          }
+          &::after {
+            content: '';
+            position: absolute;
+            top: -6px;
+            right: 0;
+            border: 7px solid transparent;
+            border-right-color: @primaryColor;
+          }
         }
       }
     }

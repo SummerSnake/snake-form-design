@@ -1,9 +1,9 @@
 import React, { FC, useState, useEffect, CSSProperties } from 'react';
 import { Form, Input, Checkbox } from 'antd';
 
-import _store from '@/utils/dva';
-import Icons from '@/utils/icon';
-import { cloneMidList, setErrorMsg } from '@/utils/util';
+import _store from '@utils/dva';
+import Icons from '@utils/icon';
+import { cloneMidList, setErrorMsg } from '@utils/util';
 import { TreeDataType, Widget, WidgetOptions, OptionsElement } from '@/pages/index.d';
 
 import SelectTreeModal from './SelectTreeModal';

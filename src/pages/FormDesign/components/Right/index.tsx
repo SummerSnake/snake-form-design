@@ -4,7 +4,7 @@
  */
 import React, { FC, useState, useEffect } from 'react';
 
-import { cloneMidList } from '@/utils/util';
+import { cloneMidList } from '@utils/util';
 import { TreeDataType, Widget } from '@/pages/index.d';
 
 import {
@@ -38,7 +38,7 @@ import {
   CommentConfig,
   AddressConfig,
   RangePickerConfig,
-} from '@/components/config';
+} from '@components/config';
 
 interface RightProps {
   treeData: TreeDataType[];

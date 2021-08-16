@@ -1,7 +1,7 @@
 import React, { FC, useState } from 'react';
 import { Modal, Input, Tree, Empty, message } from 'antd';
 
-import Icons from '@/utils/icon';
+import Icons from '@utils/icon';
 import { TreeDataType } from '@/pages/index.d';
 import './index.less';
 

@@ -1,7 +1,7 @@
 import { v4 as uuidv4 } from 'uuid';
 import { FormInstance } from 'antd/lib/form';
 import { Widget, FormDesignModelState } from '@/pages/index.d';
-import _store from '@/utils/dva';
+import _store from '@utils/dva';
 
 /**
  * @desc midList 深拷贝
@@ -127,7 +127,7 @@ export const updatePlaceholder = (hoverIndex: number): void => {
   const placeholderIndex = midArr.findIndex((item: Widget) => item.formKey === '-1');
   const placeholder: Widget = {
     id: 'placeholder',
-    label: '放这里',
+    label: '',
     type: 'placeholder',
     icon: '',
     options: {},

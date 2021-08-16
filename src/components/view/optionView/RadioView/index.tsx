@@ -1,5 +1,5 @@
 import React, { FC } from 'react';
-import Icons from '@/utils/icon';
+import Icons from '@utils/icon';
 import { WidgetOptions } from '@/pages/index.d';
 import './index.less';
 

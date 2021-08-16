@@ -5,11 +5,11 @@
 import React, { FC, useRef } from 'react';
 import { useDrag, useDrop, DragSourceMonitor, DropTargetMonitor, XYCoord } from 'react-dnd';
 
-import { updatePlaceholder, deletePlaceholder, reOrder } from '@/utils/util';
+import { updatePlaceholder, deletePlaceholder, reOrder } from '@utils/util';
 import { Widget } from '@/pages/index.d';
-import { cloneMidList } from '@/utils/util';
+import { cloneMidList } from '@utils/util';
 
-import ViewComponent from '@/components/view';
+import ViewComponent from '@components/view';
 
 interface ItemType {
   itemData: Widget;

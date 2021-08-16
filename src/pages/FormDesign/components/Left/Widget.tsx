@@ -5,8 +5,8 @@
 import React, { FC } from 'react';
 import { useDrag, DragSourceMonitor } from 'react-dnd';
 
-import Icons from '@/utils/icon';
-import { handleDrop, deletePlaceholder } from '@/utils/util';
+import Icons from '@utils/icon';
+import { handleDrop, deletePlaceholder } from '@utils/util';
 import { Widget } from '@/pages/index.d';
 
 interface WidgetProps {
