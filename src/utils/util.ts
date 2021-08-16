@@ -96,12 +96,12 @@ export const handleDrop = (widget: Widget): void => {
 
   // 没有 placeholder(放置到白色面板下方区域), 添加至末尾
   if (placeholderIndex === -1) {
-    midArr.push({ ...widget, formKey: uuidv4() });
+    midArr.push({ ...widget, formKey: uuidv4().replace(/-/g, '') });
     activeIdx = midArr.length - 1;
   }
   // 有 placeholder, 替换掉 placeholder
   if (placeholderIndex > -1) {
-    midArr.splice(placeholderIndex, 1, { ...widget, formKey: uuidv4() });
+    midArr.splice(placeholderIndex, 1, { ...widget, formKey: uuidv4().replace(/-/g, '') });
     activeIdx = placeholderIndex;
   }
 
