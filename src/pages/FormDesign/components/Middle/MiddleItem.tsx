@@ -92,7 +92,7 @@ const MiddleItemComponent: FC<MiddleItemProps> = (props) => {
       if (!dragIndex) {
         const midArr: Widget[] = cloneMidList();
         const placeholderIndex = midArr.findIndex((item: Widget) => item.formKey === '-1');
-        dragIndex = placeholderIndex;
+        dragIndex = placeholderIndex === -1 ? hoverIndex : placeholderIndex;
       }
 
       // 向下拖动
