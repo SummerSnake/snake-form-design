@@ -126,8 +126,9 @@ const initialData = {
             placeholder: '请选择属性',
             selectVal: 1,
             elements: [
-              { id: 1, title: '属性1' },
-              { id: 2, title: '属性2' },
+              { id: 1, title: '岗位' },
+              { id: 2, title: '职务' },
+              { id: 3, title: '职级' },
             ],
           },
           formKey: '',
@@ -143,8 +144,9 @@ const initialData = {
             placeholder: '请选择属性',
             selectVal: 1,
             elements: [
-              { id: 1, title: '属性11' },
-              { id: 2, title: '属性22' },
+              { id: 1, title: '岗位' },
+              { id: 2, title: '职务' },
+              { id: 3, title: '职级' },
             ],
           },
           formKey: '',
