@@ -56,7 +56,7 @@ export interface FormDesignModelState {
   errorsList: string[];
   activeIdx: number;
   isDroped: string;
-  getRemoveWidgetId?: (id: string) => string;
+  getRemoveWidgetId?: (id: string) => boolean;
 }
 
 export interface TreeDataType {
@@ -72,5 +72,5 @@ export interface SnakeFormDesignProps {
   getErrorsList: (errorsList: string[]) => void;
   height?: string;
   title?: string;
-  getRemoveWidgetId?: (id: string) => string;
+  getRemoveWidgetId?: (id: string) => boolean;
 }

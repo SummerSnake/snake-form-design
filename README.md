@@ -46,7 +46,7 @@ const App = () => (
       treeData={treeData}
       getWidgetsList={(widgetsList) => console.log(widgetsList)}
       getErrorsList={(errorsList) => console.log(errorsList)}
-      getRemoveWidgetId={(id) => (function () { return ''; }())}
+      getRemoveWidgetId={(id) => (function () { return true; }())}
       height="calc(100vh - 84px)"
       title="snake-form-design"
     />
@@ -57,12 +57,12 @@ const App = () => (
 
 # 文档
 
-| 字段              | 必填 | 描述                                                                                               |
-| ----------------- | ---- | -------------------------------------------------------------------------------------------------- |
-| dataSource        | 是   | 原始控件列表数据                                                                                   |
-| treeData          | 是   | 流程组件 - 选择流程 - 树数据                                                                       |
-| getWidgetsList    | 是   | 获取已配置控件列表                                                                                 |
-| getErrorsList     | 是   | 获取已配置控件 - 表单错误数据列表                                                                  |
-| getRemoveWidgetId | 否   | 删除已配置控件 - 输出 '控件 formKey', 接收 字符串 类型返回值，允许删除则为空字符串，否则为报错信息 |
-| height            | 否   | 表单设计器高度，默认 100vh                                                                         |
-| title             | 否   | 表单标题，默认 ‘未命名’                                                                            |
+| 字段              | 必填 | 描述                                                                                           |
+| ----------------- | ---- | ---------------------------------------------------------------------------------------------- |
+| dataSource        | 是   | 原始控件列表数据                                                                               |
+| treeData          | 是   | 流程组件 - 选择流程 - 树数据                                                                   |
+| getWidgetsList    | 是   | 获取已配置控件列表                                                                             |
+| getErrorsList     | 是   | 获取已配置控件 - 表单错误数据列表                                                              |
+| getRemoveWidgetId | 否   | 删除已配置控件 - 输出 '控件 formKey', 接收 boolean 类型返回值，允许删除则为 true，否则为 false |
+| height            | 否   | 表单设计器高度，默认 100vh                                                                     |
+| title             | 否   | 表单标题，默认 ‘未命名’                                                                        |

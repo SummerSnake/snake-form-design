@@ -1,5 +1,4 @@
 import React, { FC } from 'react';
-import { message } from 'antd';
 
 import _store from '@utils/dva';
 import { cloneErrorsList, deleteActiveItem } from '@utils/util';
@@ -78,14 +77,11 @@ const ViewComponent: FC<ViewProps> = (props) => {
     const { getRemoveWidgetId } = formDesign;
 
     if (getRemoveWidgetId) {
-      const errorMsg = getRemoveWidgetId(viewInfo?.formKey);
+      const isDelete = getRemoveWidgetId(viewInfo?.formKey);
 
-      if (errorMsg) {
-        message.error(errorMsg);
-        return;
+      if (isDelete) {
+        deleteActiveItem(widgetIdx, viewInfo?.formKey);
       }
-
-      deleteActiveItem(widgetIdx, viewInfo?.formKey);
     } else {
       deleteActiveItem(widgetIdx, viewInfo?.formKey);
     }
