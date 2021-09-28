@@ -44,6 +44,7 @@ const App = () => (
     <SnakeFormDesign
       dataSource={dataSource}
       treeData={treeData}
+      formList={formList}
       getWidgetsList={(widgetsList) => console.log(widgetsList)}
       getErrorsList={(errorsList) => console.log(errorsList)}
       getRemoveWidgetId={(id) => (function () { return true; }())}
@@ -61,6 +62,7 @@ const App = () => (
 | ----------------- | ---- | ---------------------------------------------------------------------------------------------- |
 | dataSource        | 是   | 原始控件列表数据                                                                               |
 | treeData          | 是   | 流程组件 - 选择流程 - 树数据                                                                   |
+| formList          | 是   | 初始化表单已配置控件列表                                                                       |
 | getWidgetsList    | 是   | 获取已配置控件列表                                                                             |
 | getErrorsList     | 是   | 获取已配置控件 - 表单错误数据列表                                                              |
 | getRemoveWidgetId | 否   | 删除已配置控件 - 输出 '控件 formKey', 接收 boolean 类型返回值，允许删除则为 true，否则为 false |

@@ -24,6 +24,7 @@ const FormDesignPage: FC<FormDesignProps> = (props) => {
     dispatch,
     dataSource,
     treeData,
+    formList,
     height,
     title = '',
     getWidgetsList,
@@ -87,6 +88,14 @@ const FormDesignPage: FC<FormDesignProps> = (props) => {
         payload: {
           widgets: dataSource?.widgetsList,
           widgetGroups: dataSource?.widgetsGroupList,
+        },
+      });
+    }
+    if (Array.isArray(formList)) {
+      dispatch({
+        type: 'formDesign/save',
+        payload: {
+          midList: formList,
         },
       });
     }

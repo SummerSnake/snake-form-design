@@ -68,6 +68,7 @@ export interface TreeDataType {
 export interface SnakeFormDesignProps {
   readonly dataSource: DataSourceType;
   readonly treeData: TreeDataType[];
+  readonly formList: Widget[];
   getWidgetsList: (widgetsList: Widget[]) => void;
   getErrorsList: (errorsList: string[]) => void;
   height?: string;

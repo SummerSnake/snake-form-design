@@ -10,6 +10,7 @@ const SnakeFormDesign: FC<SnakeFormDesignProps> = (props) => {
   const {
     dataSource,
     treeData = [],
+    formList = [],
     height,
     title,
     getWidgetsList = () => {},
@@ -24,6 +25,7 @@ const SnakeFormDesign: FC<SnakeFormDesignProps> = (props) => {
         title={title}
         dataSource={dataSource}
         treeData={treeData}
+        formList={formList}
         getWidgetsList={getWidgetsList}
         getErrorsList={getErrorsList}
         getRemoveWidgetId={getRemoveWidgetId}
