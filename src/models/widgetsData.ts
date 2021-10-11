@@ -340,7 +340,7 @@ const initialData = {
         {
           id: 'baseRegion',
           label: '省市区',
-          type: 'select',
+          type: 'selectArea',
           icon: 'regionIcon',
           options: {
             isRequired: 0,
@@ -415,7 +415,7 @@ const initialData = {
             {
               id: 'baseRegion',
               label: '省市区',
-              type: 'select',
+              type: 'selectArea',
               icon: '',
               options: {
                 isRequired: 0,
