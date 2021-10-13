@@ -225,6 +225,7 @@ const initialData = {
           options: {
             isRequired: 0,
             isPreview: 0,
+            placeholder: '请选择部门',
           },
           formKey: '',
         },
@@ -236,6 +237,7 @@ const initialData = {
           options: {
             isRequired: 0,
             isPreview: 0,
+            placeholder: '请选择部门',
           },
           formKey: '',
         },
@@ -248,6 +250,7 @@ const initialData = {
             isRequired: 0,
             isPreview: 0,
             isSelf: 0,
+            placeholder: '请选择成员',
           },
           formKey: '',
         },
@@ -260,6 +263,7 @@ const initialData = {
             isRequired: 0,
             isPreview: 0,
             isSelf: 0,
+            placeholder: '请选择成员',
           },
           formKey: '',
         },
@@ -271,6 +275,7 @@ const initialData = {
           options: {
             isRequired: 0,
             isPreview: 0,
+            placeholder: '请选择内部公司',
           },
           formKey: '',
         },
@@ -282,6 +287,7 @@ const initialData = {
           options: {
             isRequired: 0,
             isPreview: 0,
+            placeholder: '请选择内部公司',
           },
           formKey: '',
         },
@@ -293,6 +299,7 @@ const initialData = {
           options: {
             isRequired: 0,
             isPreview: 0,
+            placeholder: '请选择组织范围',
           },
           formKey: '',
         },
@@ -310,6 +317,7 @@ const initialData = {
           options: {
             isRequired: 0,
             isPreview: 0,
+            placeholder: '请上传图片',
           },
           formKey: '',
         },
@@ -321,6 +329,7 @@ const initialData = {
           options: {
             isRequired: 0,
             isPreview: 0,
+            placeholder: '请上传附件',
           },
           formKey: '',
         },
@@ -334,6 +343,7 @@ const initialData = {
             isPreview: 0,
             isOnlyRelatedComplete: 0,
             elements: [],
+            placeholder: '请选择关联流程',
           },
           formKey: '',
         },
@@ -345,7 +355,7 @@ const initialData = {
           options: {
             isRequired: 0,
             isPreview: 0,
-            placeholder: '请选择',
+            placeholder: '请选择省市区',
           },
           formKey: '',
         },
@@ -357,6 +367,7 @@ const initialData = {
           options: {
             isRequired: 0,
             isPreview: 0,
+            placeholder: '请选择当前地址',
           },
           formKey: '',
         },
@@ -368,6 +379,7 @@ const initialData = {
           options: {
             isRequired: 0,
             isPreview: 0,
+            placeholder: '请选择位置',
           },
           formKey: '',
         },
@@ -392,6 +404,7 @@ const initialData = {
           options: {
             isRequired: 0,
             isPreview: 0,
+            placeholder: '请选择评分',
           },
           formKey: '',
         },
@@ -458,7 +471,7 @@ const initialData = {
               options: {
                 isRequired: 0,
                 isPreview: 0,
-                placeholder: '请选择',
+                placeholder: '请选择开始时间',
               },
               formKey: 'rangePicker_item_01',
             },
@@ -470,7 +483,7 @@ const initialData = {
               options: {
                 isRequired: 0,
                 isPreview: 0,
-                placeholder: '请选择',
+                placeholder: '请选择结束时间',
               },
               formKey: 'rangePicker_item_02',
             },
