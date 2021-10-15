@@ -95,13 +95,14 @@ const AssociateConfig: FC<AssociateConfigProps> = (props) => {
 
     const middleArr = cloneMidList();
     const widgetData: Widget = middleArr[activeIndex];
+    const idArr = elemArr.map((item) => item?.id);
 
     middleArr[activeIndex] = {
       ...widgetData,
       options: {
         ...widgetData.options,
         elements: [...elemArr],
-        apiParams: elemArr.map((item) => item?.id).join(','),
+        apiParams: JSON.stringify(idArr),
       },
     };
 
