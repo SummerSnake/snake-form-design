@@ -21,6 +21,14 @@ const divStyle = (index: number): React.CSSProperties => ({
   borderRadius: '4px',
 });
 
+const titleStyle: React.CSSProperties = {
+  display: 'inline-block',
+  width: '100px',
+  whiteSpace: 'nowrap',
+  textOverflow: 'ellipsis',
+  overflow: 'hidden',
+};
+
 const spanStyle: CSSProperties = {
   position: 'absolute',
   top: 0,
@@ -93,6 +101,7 @@ const AssociateConfig: FC<AssociateConfigProps> = (props) => {
       options: {
         ...widgetData.options,
         elements: [...elemArr],
+        apiParams: elemArr.map((item) => item?.id).join(','),
       },
     };
 
@@ -204,7 +213,7 @@ const AssociateConfig: FC<AssociateConfigProps> = (props) => {
           {Array.isArray(initElements) &&
             initElements.map((item, index) => (
               <div key={item.id} style={divStyle(index)}>
-                <span>{item.title}</span>
+                <span style={titleStyle}>{item.title}</span>
 
                 <span style={spanStyle} onClick={() => handleUpdateElements('reduce', index)}>
                   {Icons.reduceIcon({ fontSize: 18, color: '#f04134' })}
