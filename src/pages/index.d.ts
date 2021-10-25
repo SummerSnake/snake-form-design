@@ -5,7 +5,7 @@ export interface OptionsElement {
 
 export interface WidgetOptions {
   isRequired?: number; // 是否必填  0.否  1.是
-  isPreview?: number; // 是否预览  0.否  1.是
+  isDisabled?: number; // 是否禁用  0.否  1.是
   isStatistics?: number; // 是否汇总  0.否  1.是
   placeholder?: string; // 提示文字
   elements?: OptionsElement[]; // 自定义元素 => 单选、多选可选项
@@ -24,7 +24,6 @@ export interface WidgetOptions {
   upperLimit?: string; // 范围 => 金额  上限
 
   isOnlyRelatedComplete?: number; // 仅关联已完成的流程 => 关联流程  0.否 1.是
-  apiParams?: string; // 关联的流程 id 列表
 
   autographType?: number; // 签名方式 => 手写签名  1.使用上次签名 2.每次重新签名
 }
@@ -70,9 +69,9 @@ export interface SnakeFormDesignProps {
   readonly dataSource: DataSourceType;
   readonly treeData: TreeDataType[];
   readonly formList: Widget[];
-  getWidgetsList: (widgetsList: Widget[]) => void;
-  getErrorsList: (errorsList: string[]) => void;
   height?: string;
   title?: string;
+  getWidgetsList: (widgetsList: Widget[]) => void;
+  getErrorsList: (errorsList: string[]) => void;
   getRemoveWidgetId?: (id: string) => boolean;
 }

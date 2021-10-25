@@ -41,7 +41,7 @@ const AmountConfig: FC<AmountConfigProps> = (props) => {
         lowerLimit: formData.lowerLimit,
         upperLimit: formData.upperLimit,
         isRequired: otherOptions.includes('isRequired') ? 1 : 0,
-        isPreview: otherOptions.includes('isPreview') ? 1 : 0,
+        isDisabled: otherOptions.includes('isDisabled') ? 1 : 0,
         isStatistics: otherOptions.includes('isStatistics') ? 1 : 0,
       },
     };
@@ -64,8 +64,8 @@ const AmountConfig: FC<AmountConfigProps> = (props) => {
     if (!!initOptions?.isRequired) {
       arr.push('isRequired');
     }
-    if (!!initOptions?.isPreview) {
-      arr.push('isPreview');
+    if (!!initOptions?.isDisabled) {
+      arr.push('isDisabled');
     }
     if (!!initOptions?.isStatistics) {
       arr.push('isStatistics');
@@ -180,7 +180,7 @@ const AmountConfig: FC<AmountConfigProps> = (props) => {
         <Form.Item label="" name="otherOptions">
           <Checkbox.Group style={{ width: 312 }}>
             <Checkbox value="isRequired">必填</Checkbox>
-            <Checkbox value="isPreview">预览</Checkbox>
+            <Checkbox value="isDisabled">禁用</Checkbox>
             <Checkbox value="isStatistics">汇总</Checkbox>
           </Checkbox.Group>
         </Form.Item>

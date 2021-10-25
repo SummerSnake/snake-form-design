@@ -41,7 +41,7 @@ const RangePickerConfig: FC<RangePickerConfigProps> = (props) => {
             ...item?.options,
             placeholder: index < 2 ? formData?.placeholder : item?.options?.placeholder,
             isRequired: formData?.otherOptions.includes('isRequired') ? 1 : 0,
-            isPreview: formData?.otherOptions.includes('isPreview') ? 1 : 0,
+            isDisabled: formData?.otherOptions.includes('isDisabled') ? 1 : 0,
           },
         };
       });
@@ -52,7 +52,7 @@ const RangePickerConfig: FC<RangePickerConfigProps> = (props) => {
       options: {
         ...widgetData?.options,
         isRequired: formData?.otherOptions.includes('isRequired') ? 1 : 0,
-        isPreview: formData?.otherOptions.includes('isPreview') ? 1 : 0,
+        isDisabled: formData?.otherOptions.includes('isDisabled') ? 1 : 0,
       },
       formList,
     };
@@ -76,8 +76,8 @@ const RangePickerConfig: FC<RangePickerConfigProps> = (props) => {
       if (!!initOptions?.isRequired) {
         arr.push('isRequired');
       }
-      if (!!initOptions?.isPreview) {
-        arr.push('isPreview');
+      if (!!initOptions?.isDisabled) {
+        arr.push('isDisabled');
       }
 
       initFormList.forEach((item, index) => {
@@ -138,7 +138,7 @@ const RangePickerConfig: FC<RangePickerConfigProps> = (props) => {
         <Form.Item label="" name="otherOptions">
           <Checkbox.Group style={{ width: 312 }}>
             <Checkbox value="isRequired">必填</Checkbox>
-            <Checkbox value="isPreview">预览</Checkbox>
+            <Checkbox value="isDisabled">禁用</Checkbox>
           </Checkbox.Group>
         </Form.Item>
       </Form>

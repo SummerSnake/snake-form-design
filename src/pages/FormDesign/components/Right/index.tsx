@@ -60,8 +60,8 @@ const RightComponent: FC<RightProps> = (props) => {
   return (
     <div className="rightWrap">
       {(() => {
-        if (Array.isArray(midList) && midList[activeIdx])
-          switch (midList[activeIdx].id) {
+        if (Array.isArray(midList))
+          switch (midList[activeIdx]?.id) {
             case 'baseTitle':
               return <TitleConfig activeIndex={activeIdx} />;
             case 'baseInput':

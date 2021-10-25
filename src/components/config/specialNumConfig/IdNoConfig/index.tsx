@@ -36,7 +36,7 @@ const IdNoConfig: FC<IdNoConfigProps> = (props) => {
         ...widgetData.options,
         placeholder: formData.placeholder,
         isRequired: otherOptions.includes('isRequired') ? 1 : 0,
-        isPreview: otherOptions.includes('isPreview') ? 1 : 0,
+        isDisabled: otherOptions.includes('isDisabled') ? 1 : 0,
       },
     };
 
@@ -58,8 +58,8 @@ const IdNoConfig: FC<IdNoConfigProps> = (props) => {
     if (!!initOptions?.isRequired) {
       arr.push('isRequired');
     }
-    if (!!initOptions?.isPreview) {
-      arr.push('isPreview');
+    if (!!initOptions?.isDisabled) {
+      arr.push('isDisabled');
     }
 
     form.setFieldsValue({
@@ -107,7 +107,7 @@ const IdNoConfig: FC<IdNoConfigProps> = (props) => {
         <Form.Item label="" name="otherOptions">
           <Checkbox.Group style={{ width: 312 }}>
             <Checkbox value="isRequired">必填</Checkbox>
-            <Checkbox value="isPreview">预览</Checkbox>
+            <Checkbox value="isDisabled">禁用</Checkbox>
           </Checkbox.Group>
         </Form.Item>
       </Form>

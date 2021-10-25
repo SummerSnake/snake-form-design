@@ -42,7 +42,7 @@ const AddressConfig: FC<AddressConfigProps> = (props) => {
             ...item.options,
             placeholder: formData[placeholder],
             isRequired: formData[otherOptions].includes('isRequired') ? 1 : 0,
-            isPreview: formData[otherOptions].includes('isPreview') ? 1 : 0,
+            isDisabled: formData[otherOptions].includes('isDisabled') ? 1 : 0,
           },
         };
       });
@@ -75,8 +75,8 @@ const AddressConfig: FC<AddressConfigProps> = (props) => {
         if (!!options?.isRequired) {
           arr.push('isRequired');
         }
-        if (!!options?.isPreview) {
-          arr.push('isPreview');
+        if (!!options?.isDisabled) {
+          arr.push('isDisabled');
         }
 
         const label = `label${index}`;
@@ -133,7 +133,7 @@ const AddressConfig: FC<AddressConfigProps> = (props) => {
                 <Form.Item label="" name={`otherOptions${index}`}>
                   <Checkbox.Group style={{ width: 312 }}>
                     <Checkbox value="isRequired">必填</Checkbox>
-                    <Checkbox value="isPreview">预览</Checkbox>
+                    <Checkbox value="isDisabled">禁用</Checkbox>
                   </Checkbox.Group>
                 </Form.Item>
               </React.Fragment>

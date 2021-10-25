@@ -66,12 +66,12 @@ const TitleConfig: FC<TitleConfigProps> = (props) => {
         wrapperCol={{ span: 14 }}
       >
         <div className="configTitleWrap">
-          <p className="configTitle">说明</p>
+          <p className="configTitle">标题</p>
         </div>
 
         <Form.Item
           label="控件名称"
-          name="placeholder"
+          name="label"
           rules={[
             {
               required: true,
@@ -79,20 +79,7 @@ const TitleConfig: FC<TitleConfigProps> = (props) => {
             },
           ]}
         >
-          <Input disabled style={{ width: 312 }} />
-        </Form.Item>
-
-        <Form.Item
-          label="说明文字"
-          name="label"
-          rules={[
-            {
-              required: true,
-              message: '请输入说明文字',
-            },
-          ]}
-        >
-          <Input maxLength={10} style={{ width: 312 }} />
+          <Input style={{ width: 312 }} />
         </Form.Item>
       </Form>
     </>

@@ -2,6 +2,7 @@ import React, { FC, useEffect } from 'react';
 import { connect } from 'react-redux';
 import { DndProvider } from 'react-dnd';
 import { HTML5Backend } from 'react-dnd-html5-backend';
+import { v4 as uuidv4 } from 'uuid';
 
 import { cloneErrorsList, cloneMidList } from '@utils/util';
 import { FormDesignModelState, SnakeFormDesignProps, Widget } from '@/pages/index.d';
@@ -79,9 +80,10 @@ const FormDesignPage: FC<FormDesignProps> = (props) => {
   }, [getRemoveWidgetId]);
 
   /**
-   * @desc 设置左侧控件列表数据
+   * @desc 设置默认数据
    */
   useEffect(() => {
+    // 左侧基础控件列表数据
     if (dataSource) {
       dispatch({
         type: 'formDesign/save',
@@ -91,14 +93,14 @@ const FormDesignPage: FC<FormDesignProps> = (props) => {
         },
       });
     }
-    if (Array.isArray(formList)) {
-      dispatch({
-        type: 'formDesign/save',
-        payload: {
-          midList: formList,
-        },
-      });
-    }
+
+    dispatch({
+      type: 'formDesign/save',
+      payload: {
+        midList: Array.isArray(formList) ? formList : [], // 中间控件列表默认值
+        isDroped: uuidv4(), // 更新右侧配置面板
+      },
+    });
   }, []);
 
   return (

@@ -11,11 +11,11 @@ const initialData = {
         {
           id: 'baseInput',
           label: '单行文本',
-          type: 'text',
+          type: 'input',
           icon: 'singleTxtIcon',
           options: {
             isRequired: 0,
-            isPreview: 0,
+            isDisabled: 0,
             placeholder: '请输入单行文本',
           },
           formKey: '',
@@ -23,23 +23,20 @@ const initialData = {
         {
           id: 'baseTextarea',
           label: '多行文本',
-          type: 'multilineText',
+          type: 'textarea',
           icon: 'multipleTxtIcon',
           options: {
             isRequired: 0,
-            isPreview: 0,
+            isDisabled: 0,
             placeholder: '请输入多行文本',
           },
           formKey: '',
         },
         {
           id: 'baseTitle',
-          label: '说明',
-          type: 'description',
+          label: '标题',
+          type: 'title',
           icon: 'txtIcon',
-          options: {
-            placeholder: '说明',
-          },
           formKey: '',
         },
       ],
@@ -55,12 +52,12 @@ const initialData = {
           icon: 'numberIcon',
           options: {
             isRequired: 0,
-            isPreview: 0,
+            isDisabled: 0,
             isStatistics: 0,
             decimal: 0,
             unit: '',
-            lowerLimit: '',
-            upperLimit: '',
+            lowerLimit: '-2147483648',
+            upperLimit: '2147483647',
             placeholder: '请输入数字',
           },
           formKey: '',
@@ -73,12 +70,12 @@ const initialData = {
           options: {
             currency: 1,
             isRequired: 0,
-            isPreview: 0,
+            isDisabled: 0,
             isStatistics: 0,
             isUppercase: 0,
             decimal: 0,
-            lowerLimit: '',
-            upperLimit: '',
+            lowerLimit: '0',
+            upperLimit: '2147483647',
             placeholder: '请输入金额',
           },
           formKey: '',
@@ -96,7 +93,7 @@ const initialData = {
           icon: 'radioIcon',
           options: {
             isRequired: 0,
-            isPreview: 0,
+            isDisabled: 0,
             placeholder: '请选择',
             elements: [{ id: 1, title: '属性1' }],
           },
@@ -109,7 +106,7 @@ const initialData = {
           icon: 'checkboxIcon',
           options: {
             isRequired: 0,
-            isPreview: 0,
+            isDisabled: 0,
             placeholder: '请选择',
             elements: [{ id: 1, title: '属性1' }],
           },
@@ -118,11 +115,11 @@ const initialData = {
         {
           id: 'baseAttrSingleSelect',
           label: '属性选择(单选)',
-          type: 'propertySingle',
+          type: 'select',
           icon: 'radioIcon',
           options: {
             isRequired: 0,
-            isPreview: 0,
+            isDisabled: 0,
             placeholder: '请选择属性',
             selectVal: 1,
             elements: [
@@ -136,11 +133,11 @@ const initialData = {
         {
           id: 'baseAttrMultipleSelect',
           label: '属性选择(多选)',
-          type: 'propertyMultiple',
+          type: 'select',
           icon: 'checkboxIcon',
           options: {
             isRequired: 0,
-            isPreview: 0,
+            isDisabled: 0,
             placeholder: '请选择属性',
             selectVal: 1,
             elements: [
@@ -164,7 +161,7 @@ const initialData = {
           icon: 'dateIcon',
           options: {
             isRequired: 0,
-            isPreview: 0,
+            isDisabled: 0,
             placeholder: '请选择日期',
           },
           formKey: '',
@@ -176,7 +173,7 @@ const initialData = {
           icon: 'timeIcon',
           options: {
             isRequired: 0,
-            isPreview: 0,
+            isDisabled: 0,
             placeholder: '请选择时间',
           },
           formKey: '',
@@ -194,7 +191,7 @@ const initialData = {
           icon: 'idNoIcon',
           options: {
             isRequired: 0,
-            isPreview: 0,
+            isDisabled: 0,
             placeholder: '请输入身份证号',
           },
           formKey: '',
@@ -206,7 +203,7 @@ const initialData = {
           icon: 'phoneIcon',
           options: {
             isRequired: 0,
-            isPreview: 0,
+            isDisabled: 0,
             placeholder: '请输入手机号',
           },
           formKey: '',
@@ -220,11 +217,11 @@ const initialData = {
         {
           id: 'baseSingleDepartment',
           label: '部门(单部门)',
-          type: 'departmentSingle',
+          type: 'singleDepartment',
           icon: 'departmentIcon',
           options: {
             isRequired: 0,
-            isPreview: 0,
+            isDisabled: 0,
             placeholder: '请选择部门',
           },
           formKey: '',
@@ -232,11 +229,11 @@ const initialData = {
         {
           id: 'baseMultipleDepartment',
           label: '部门(多部门)',
-          type: 'departmentMultiple',
+          type: 'multipleDepartment',
           icon: 'departmentIcon',
           options: {
             isRequired: 0,
-            isPreview: 0,
+            isDisabled: 0,
             placeholder: '请选择部门',
           },
           formKey: '',
@@ -244,11 +241,11 @@ const initialData = {
         {
           id: 'baseSingleMember',
           label: '成员(单成员)',
-          type: 'memberSingle',
+          type: 'singleMember',
           icon: 'memberIcon',
           options: {
             isRequired: 0,
-            isPreview: 0,
+            isDisabled: 0,
             isSelf: 0,
             placeholder: '请选择成员',
           },
@@ -257,11 +254,11 @@ const initialData = {
         {
           id: 'baseMultipleMember',
           label: '成员(多成员)',
-          type: 'memberMultiple',
+          type: 'multipleMember',
           icon: 'memberIcon',
           options: {
             isRequired: 0,
-            isPreview: 0,
+            isDisabled: 0,
             isSelf: 0,
             placeholder: '请选择成员',
           },
@@ -270,11 +267,11 @@ const initialData = {
         {
           id: 'baseSingleCompany',
           label: '内部公司(单公司)',
-          type: 'companySingle',
+          type: 'singleCompany',
           icon: 'companyIcon',
           options: {
             isRequired: 0,
-            isPreview: 0,
+            isDisabled: 0,
             placeholder: '请选择内部公司',
           },
           formKey: '',
@@ -282,11 +279,11 @@ const initialData = {
         {
           id: 'baseMultipleCompany',
           label: '内部公司(多公司)',
-          type: 'companyMultiple',
+          type: 'multipleCompany',
           icon: 'companyIcon',
           options: {
             isRequired: 0,
-            isPreview: 0,
+            isDisabled: 0,
             placeholder: '请选择内部公司',
           },
           formKey: '',
@@ -294,11 +291,11 @@ const initialData = {
         {
           id: 'baseOrganizeRange',
           label: '组织范围',
-          type: 'upload',
+          type: 'organizeRange',
           icon: 'organizeRangeIcon',
           options: {
             isRequired: 0,
-            isPreview: 0,
+            isDisabled: 0,
             placeholder: '请选择组织范围',
           },
           formKey: '',
@@ -316,7 +313,7 @@ const initialData = {
           icon: 'uploadIcon',
           options: {
             isRequired: 0,
-            isPreview: 0,
+            isDisabled: 0,
             placeholder: '请上传图片',
           },
           formKey: '',
@@ -324,11 +321,11 @@ const initialData = {
         {
           id: 'baseAppendix',
           label: '附件',
-          type: 'attachment',
+          type: 'appendix',
           icon: 'appendixIcon',
           options: {
             isRequired: 0,
-            isPreview: 0,
+            isDisabled: 0,
             placeholder: '请上传附件',
           },
           formKey: '',
@@ -340,7 +337,7 @@ const initialData = {
           icon: 'associateIcon',
           options: {
             isRequired: 0,
-            isPreview: 0,
+            isDisabled: 0,
             isOnlyRelatedComplete: 0,
             elements: [],
             placeholder: '请选择关联流程',
@@ -350,11 +347,11 @@ const initialData = {
         {
           id: 'baseRegion',
           label: '省市区',
-          type: 'selectArea',
+          type: 'region',
           icon: 'regionIcon',
           options: {
             isRequired: 0,
-            isPreview: 0,
+            isDisabled: 0,
             placeholder: '请选择省市区',
           },
           formKey: '',
@@ -362,11 +359,11 @@ const initialData = {
         {
           id: 'baseLocation',
           label: '当前地址',
-          type: 'currentLocation',
+          type: 'location',
           icon: 'locationIcon',
           options: {
             isRequired: 0,
-            isPreview: 0,
+            isDisabled: 0,
             placeholder: '请选择当前地址',
           },
           formKey: '',
@@ -374,11 +371,11 @@ const initialData = {
         {
           id: 'basePosition',
           label: '位置',
-          type: 'address',
+          type: 'position',
           icon: 'locationIcon',
           options: {
             isRequired: 0,
-            isPreview: 0,
+            isDisabled: 0,
             placeholder: '请选择位置',
           },
           formKey: '',
@@ -391,7 +388,7 @@ const initialData = {
           options: {
             autographType: 1,
             isRequired: 0,
-            isPreview: 0,
+            isDisabled: 0,
             placeholder: '点击签名',
           },
           formKey: '',
@@ -403,7 +400,7 @@ const initialData = {
           icon: 'commentIcon',
           options: {
             isRequired: 0,
-            isPreview: 0,
+            isDisabled: 0,
             placeholder: '请选择评分',
           },
           formKey: '',
@@ -428,11 +425,11 @@ const initialData = {
             {
               id: 'baseRegion',
               label: '省市区',
-              type: 'selectArea',
+              type: 'region',
               icon: '',
               options: {
                 isRequired: 0,
-                isPreview: 0,
+                isDisabled: 0,
                 placeholder: '请选择省市区',
               },
               formKey: 'addr_item_01',
@@ -440,11 +437,11 @@ const initialData = {
             {
               id: 'baseTextarea',
               label: '详细地址',
-              type: 'multilineText',
+              type: 'textarea',
               icon: '',
               options: {
                 isRequired: 0,
-                isPreview: 0,
+                isDisabled: 0,
                 placeholder: '请输入详细地址',
               },
               formKey: 'addr_item_02',
@@ -459,7 +456,7 @@ const initialData = {
           icon: 'rangePickerIcon',
           options: {
             isRequired: 0,
-            isPreview: 0,
+            isDisabled: 0,
             placeholder: '请选择',
           },
           formList: [
@@ -470,7 +467,7 @@ const initialData = {
               icon: '',
               options: {
                 isRequired: 0,
-                isPreview: 0,
+                isDisabled: 0,
                 placeholder: '请选择开始时间',
               },
               formKey: 'rangePicker_item_01',
@@ -482,7 +479,7 @@ const initialData = {
               icon: '',
               options: {
                 isRequired: 0,
-                isPreview: 0,
+                isDisabled: 0,
                 placeholder: '请选择结束时间',
               },
               formKey: 'rangePicker_item_02',
@@ -494,7 +491,7 @@ const initialData = {
               icon: '',
               options: {
                 isRequired: 0,
-                isPreview: 0,
+                isDisabled: 0,
                 placeholder: '自动计算',
               },
               formKey: 'rangePicker_item_03',
